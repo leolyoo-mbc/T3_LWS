@@ -1,0 +1,68 @@
+{
+  "retrieved": "2026-11-04",
+  "current": {
+    "model": {
+      "title": "Lowpoly Dummy Character(10 Animations)",
+      "creator": "Umplix",
+      "source": "https://opengameart.org/content/lowpoly-dummy-character10-animations",
+      "license": "CC0-1.0",
+      "file": "Assets/_02LWS/Art/Characters/UmplixDummy/LowpolyDummy.fbx",
+      "bytes": 442604,
+      "sha256": "00177d777d324e2eb807f5f94b573026c94226c6574267900213863a0dc8014d",
+      "rig": "Unmodified source FBX; Unity automatic Humanoid"
+    },
+    "animations": {
+      "source": "User-provided Mixamo downloads",
+      "clips": [
+        "Talking_01",
+        "Talking_02",
+        "Standing Idle"
+      ],
+      "license": "Mixamo terms; not covered by the model CC0 license"
+    },
+    "particles": {
+      "source": "https://kenney.nl/assets/particle-pack",
+      "license": "CC0-1.0",
+      "prefab": "Assets/_02LWS/Prefabs/Environment/FireEffect.prefab"
+    }
+  },
+  "historicalQuaterniusSelection": {
+    "retrieved": "2026-11-04",
+    "models": "https://poly.pizza/m/HMnuH5geEG",
+    "animations": "https://quaternius.itch.io/universal-animation-library",
+    "particles": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0-1.0 for selected files; author/asset/archive evidence retained",
+    "sourceFiles": [
+      {
+        "file": "Male.glb",
+        "sha256": "dad8fa3ca2bc7760892f9ff47f544941179e50acb2aa772cf9f035154a37fc58",
+        "bytes": 493196
+      },
+      {
+        "file": "MaleHumanoid.fbx (installed as CivilianMan.fbx)",
+        "sha256": "273be9827e8fbbb84a1683aa23b1eba4594434ba345233f31a5bd71421059aef",
+        "bytes": 211356
+      },
+      {
+        "file": "UniversalAnimationLibrary-Standard.zip",
+        "sha256": "cc73fc4e495b82958207316596317a3f40b9fa38065bde1027937452da537724",
+        "bytes": 15904933
+      },
+      {
+        "file": "Animations-License.txt",
+        "sha256": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061",
+        "bytes": 332
+      },
+      {
+        "file": "KenneyParticlePack.zip",
+        "sha256": "b631d4b07f7002549fdcf155f01141ad482f79f3440e4e301eed49ce5f1d8958",
+        "bytes": 15001764
+      },
+      {
+        "file": "Kenney-License.txt",
+        "sha256": "75d759af1c49d1d84e6efd21d6d57c61b809e597b0bf7bd38125d8e0d89f32ec",
+        "bytes": 673
+      }
+    ]
+  }
+}
