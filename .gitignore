@@ -82,3 +82,5 @@ crashlytics-build.properties
 
 # Unity가 자동 생성하는 솔루션 파일
 *.slnx
+
+/[Aa]rtifacts/
