@@ -1,0 +1,15 @@
+Lowpoly Dummy Character(10 Animations)
+Creator: Umplix
+Source: https://opengameart.org/content/lowpoly-dummy-character10-animations
+Download: https://opengameart.org/sites/default/files/lowpoly_dummy_character.zip
+Retrieved: 2026-11-04
+
+The creator's source page labels this model CC0 and explicitly describes Mixamo compatibility. Credit is not required, but appreciated.
+CC0 reference: https://creativecommons.org/publicdomain/zero/1.0/
+
+Selected file: Lowpoly Dummy Character/Lowpoly Dummy Character Idle Anim.fbx
+Installed as: Art/Characters/UmplixDummy/LowpolyDummy.fbx
+Original FBX bytes retained; animation import disabled because the project uses the user's separately downloaded Mixamo clips.
+Unity automatically creates a valid Human avatar. No manual bone mapping, bone reparenting, bind-pose edits or mesh edits applied.
+Local Unity prefab uses a URP/Lit material matching the source white color, scene scale/position and existing conversation controllers.
+The Mixamo clips have their own terms; the model's CC0 dedication does not change the animation license.

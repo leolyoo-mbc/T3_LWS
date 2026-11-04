@@ -1,0 +1,7 @@
+Man by Quaternius
+Published on Poly Pizza: 2021-08-24
+Source: https://poly.pizza/m/HMnuH5geEG
+Original GLB: https://static.poly.pizza/3746be88-6799-4817-929b-6bc067c47caa.glb
+Publisher model metadata Licence: CC0 1.0
+Creator pack page: https://quaternius.com/packs/animatedmen.html
+Retrieved 2026-11-04. Converted locally with Blender 5.2.2 to FBX; no claim of original authorship.
