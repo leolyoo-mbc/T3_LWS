@@ -1,0 +1,14 @@
+{
+  "name": "LWS.FireNotification.Runtime",
+  "rootNamespace": "LWS.FireNotification",
+  "references": [
+    "LWS.FireNotification.Domain",
+    "Unity.XR.Interaction.Toolkit",
+    "Unity.XR.CoreUtils",
+    "Unity.XR.OpenXR",
+    "Unity.InputSystem",
+    "Unity.TextMeshPro",
+    "Unity.ugui"
+  ],
+  "autoReferenced": true
+}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b6d2fb05c29ea4796ad8e2e0f892e4, type: 3}
+  m_Name: ActionOptions
+  m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ActionOptions
+  options:
+  - id: shout
+    label: "\uD070\uC18C\uB9AC\uB85C \uC54C\uB9AC\uAE30"
+    isShout: 1
+    feedbackCueId: 
+  - id: wait
+    label: "\uB2E4\uB978 \uC0AC\uB78C\uC774 \uC54C\uB9B4 \uB54C\uAE4C\uC9C0 \uAE30\uB2E4\uB9AC\uAE30"
+    isShout: 0
+    feedbackCueId: feedback

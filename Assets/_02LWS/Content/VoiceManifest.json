@@ -1,0 +1,123 @@
+{
+  "model": "Supertone/supertonic-2",
+  "revision": "75e6727618a02f323c720cba9478152d4bc16ca4",
+  "inferenceRevision": "1e9799e964ea4c0dad7cde993b65c3c813a7b373",
+  "language": "ko",
+  "steps": 16,
+  "speed": 0.95,
+  "listeningReview": "user-feedback-resolved",
+  "disclosure": "이 체험의 음성은 AI 합성 음성입니다.",
+  "cues": [
+    {
+      "id": "situation",
+      "text": "지금 이 복도에서 화재가 발생했어요. 주변 사람들을 한번 볼까요? 아직 화재를 알아차리지 못한 것 같네요. 이 사람들에게 화재가 났다는 사실을 어떻게 알리면 좋을까요?",
+      "file": "Audio/Voice/situation.wav",
+      "voice": "F1",
+      "durationSeconds": 14.804489795918368,
+      "sampleRate": 44100,
+      "sha256": "3ee70d6eb95ba769319191f2d268211bbe200d6fa71db1810af8952ba7122791",
+      "source": "https://huggingface.co/Supertone/supertonic-2/tree/75e6727618a02f323c720cba9478152d4bc16ca4",
+      "generation": {
+        "steps": 24,
+        "speed": 0.95,
+        "method": "sentence-by-sentence synthesis; 240 ms gaps",
+        "segments": [
+          {
+            "text": "지금 이 복도에서 화재가 발생했어요.",
+            "startSeconds": 0.0,
+            "endSeconds": 3.3560090702947845,
+            "seed": 202611140
+          },
+          {
+            "text": "주변 사람들을 한번 볼까요?",
+            "startSeconds": 3.5960090702947847,
+            "endSeconds": 6.187936507936508,
+            "seed": 202611141
+          },
+          {
+            "text": "아직 화재를 알아차리지 못한 것 같네요.",
+            "startSeconds": 6.427936507936508,
+            "endSeconds": 9.794739229024943,
+            "seed": 202611142
+          },
+          {
+            "text": "이 사람들에게 화재가 났다는 사실을 어떻게 알리면 좋을까요?",
+            "startSeconds": 10.034739229024943,
+            "endSeconds": 14.804489795918368,
+            "seed": 202611143
+          }
+        ],
+        "reason": "User heard duplicated syllables in 어떻게; candidate awaits listening review."
+      },
+      "listeningReview": "approved by user after revision"
+    },
+    {
+      "id": "next",
+      "text": "사람들이 소리를 듣고 반응하기 시작했네요. 화재를 발견해도 주변 사람들은 아직 모르고 있을 수 있어요. ‘불이야!’라고 크게 외치면 화재가 났다는 사실을 알릴 수 있죠. 이번에는 같은 상황에서 비상벨을 이용해 볼까요? 준비되면 ‘다음’을 선택해 주세요.",
+      "file": "Audio/Voice/next.wav",
+      "voice": "F1",
+      "durationSeconds": 21.368503401360545,
+      "sampleRate": 44100,
+      "sha256": "7747d499699f3b897a663ea0fd9f492c660dc2d0142f3cd91ee1e741241924a3",
+      "source": "https://huggingface.co/Supertone/supertonic-2/tree/75e6727618a02f323c720cba9478152d4bc16ca4",
+      "listeningReview": "no issue reported in user review of six cues"
+    },
+    {
+      "id": "bell",
+      "text": "주변 사람들이 아직 화재를 모르는 상황으로 돌아왔어요. 비상벨도 화재 사실을 알리는 방법이에요. 버튼을 누르면 경보음이 울려 주변 사람들에게 알릴 수 있죠. 직접 눌러 보고 사람들이 어떻게 반응하는지 살펴볼까요? 컨트롤러로 손을 움직여 비상벨 버튼을 밀어 눌러 보세요.",
+      "file": "Audio/Voice/bell.wav",
+      "voice": "F1",
+      "durationSeconds": 23.013038548752835,
+      "sampleRate": 44100,
+      "sha256": "9f163cd9da2500b13757906025396632d03b4e4b9177184a2527d3e1128ecfa5",
+      "source": "https://huggingface.co/Supertone/supertonic-2/tree/75e6727618a02f323c720cba9478152d4bc16ca4",
+      "listeningReview": "no issue reported in user review of six cues"
+    },
+    {
+      "id": "completion",
+      "text": "경보음을 듣고 사람들이 하던 행동을 멈췄네요. 이번에는 목소리 대신 비상벨로 화재 사실을 전했어요. 앞에서는 큰소리로 외쳤고, 이번에는 비상벨을 눌렀죠. 두 행동 모두 주변에 화재 사실을 알리기 위한 방법이에요. 오늘 체험은 여기까지예요. 준비되면 메뉴로 돌아가 주세요.",
+      "file": "Audio/Voice/completion.wav",
+      "voice": "F1",
+      "durationSeconds": 24.720544217687074,
+      "sampleRate": 44100,
+      "sha256": "3a01c7982ff589f903284d9351751b6eeefd7c5cc6435e41a3a8d5692dc8e481",
+      "source": "https://huggingface.co/Supertone/supertonic-2/tree/75e6727618a02f323c720cba9478152d4bc16ca4",
+      "listeningReview": "no issue reported in user review of six cues"
+    },
+    {
+      "id": "feedback",
+      "text": "기다리기만 하면 주변 사람들이 화재를 알아차리지 못할 수 있어요. 큰소리로 화재 사실을 알려 보세요.",
+      "file": "Audio/Voice/feedback.wav",
+      "voice": "F1",
+      "durationSeconds": 8.293310657596372,
+      "sampleRate": 44100,
+      "sha256": "6ce298ef30514d685d08da5e85c0b124722c2dd924e76351124b95f29b9006a8",
+      "source": "https://huggingface.co/Supertone/supertonic-2/tree/75e6727618a02f323c720cba9478152d4bc16ca4",
+      "listeningReview": "no issue reported in user review of six cues"
+    },
+    {
+      "id": "shout",
+      "text": "불이야!",
+      "file": "Audio/Voice/ElevenLabs_2026-11-04T04_14_37_Roger - Laid-Back, Casual, Resonant_pre_s50_sim75_v4.mp3",
+      "voice": "Roger (from supplied filename)",
+      "provider": "ElevenLabs (user-supplied)",
+      "durationSeconds": 1.0710204081632653,
+      "sampleRate": 44100,
+      "sha256": "cfec79402ac339459b3cdfbb2a893f0f4787440651f22b1446856863d3502fae",
+      "source": "User-provided local MP3",
+      "originalFilename": "ElevenLabs_2026-11-04T04_14_37_Roger - Laid-Back, Casual, Resonant_pre_s50_sim75_v4.mp3",
+      "generation": {
+        "method": "Imported user-provided audio unchanged; no local synthesis or processing",
+        "model": "Not verified; not inferred from filename",
+        "settings": "Not independently verified"
+      },
+      "listeningReview": "user-selected ElevenLabs replacement",
+      "accountPlan": "free (confirmed by user)",
+      "distributionRights": "non-commercial only; publication title attribution required under general free-plan terms",
+      "attribution": "불이야! 음성: ElevenLabs (elevenlabs.io), Roger",
+      "publicationTitleAttribution": "elevenlabs.io or 11.ai",
+      "licenseSource": "https://elevenlabs.io/docs/help-center/legal/can-i-publish-the-content-i-generate-on-the-platform",
+      "licenseCheckedOn": "2026-11-04"
+    }
+  ]
+}

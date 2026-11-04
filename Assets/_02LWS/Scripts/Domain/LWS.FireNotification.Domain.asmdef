@@ -1,0 +1,7 @@
+{
+  "name": "LWS.FireNotification.Domain",
+  "rootNamespace": "LWS.FireNotification.Domain",
+  "references": [],
+  "autoReferenced": true,
+  "noEngineReferences": true
+}
