@@ -1,6 +1,6 @@
 # Quickstart Validation — 구현 후 실행 가이드
 
-현재는 설계 문서만 있다. 아래 씬·테스트는 아직 구현되지 않았고 성공을 주장하지 않는다. [상태 모델](data-model.md)과 [계약](contracts/experience-contract.md)을 기준으로 검증한다.
+현재는 설계 문서만 있다. 아래 씬은 아직 구현되지 않았고 검증 성공을 주장하지 않는다. [상태 모델](data-model.md)과 [계약](contracts/experience-contract.md)을 기준으로 검증한다.
 
 ## Prerequisites and setup
 
@@ -9,14 +9,15 @@
 3. Android Build Profile에서 OpenXR, Quest Support, Oculus Touch profile, Input System, IL2CPP/ARM64·SDK 설정을 확인한다. 메뉴·체험 씬을 등록하고 메뉴를 첫 씬으로 둔다.
 4. Quest 2 컨트롤러 추적, 벨 높이·도달 위치를 확인한다. 필요한 이동은 텔레포테이션. 설치 이후 PC 연결을 해제해 단독 실행한다.
 
-## Editor tests
+## Editor 수동 검증
 
-`Window > General > Test Runner`에서 기능의 EditMode와 PlayMode 테스트를 실행한다.
+구현 후 체험 씬을 열어 Play Mode에서 아래 항목을 확인하고 필요하면 XR Simulator를 사용한다. Editor 전용 단계 진입점으로 각 체험·중단 복귀를 분리 확인하되 배포 빌드에는 건너뛰기 UI를 노출하지 않는다.
 
-- EditMode: 9단계 전이, 오답 재선택, 단계 외 명령 거부, 무입력 대기, 만료 executionId 무시, 모든 단계 중단·재진입.
-- PlayMode: 음성/자막 cue, 벨 poke 깊이·ray 거부, 반복·양손 입력, 취소 후 늦은 완료, 메뉴 Single 씬 이동·재진입, 중단 신호 중복·역순.
+- 9단계 전이, 오답 재선택, 무입력 대기, 단계 외·반복 입력 거부를 직접 확인한다.
+- 음성·자막 일치, 벨 깊이·ray 거부, 양손·반복 입력, 메뉴 씬 이동·재진입을 확인한다.
+- 단계 전환/연출 중 중단과 복귀를 반복하여 취소 후 늦은 완료나 중복 신호가 단계를 건너뛰지 않는지 확인한다. 착용·시스템 메뉴의 실제 신호는 Quest 2에서 별도로 검증한다.
 
-예상 결과: 실패 0개, missing reference/script와 예외 없음. Simulator는 보조 확인이며 실기기 검증을 대체하지 않는다.
+예상 결과는 각 시나리오의 기대 동작 충족, missing reference/script 및 예외 없음이다. 새 자동 테스트 작성은 현재 Tasks 범위가 아니다. 기존 EditMode/PlayMode 자동 테스트가 있으면 `Window > General > Test Runner`에서 추가 실행하고 결과를 기록한다. 테스트가 없다는 사실을 성공으로 표시하지 않는다. Editor/Simulator 결과는 최종 실기기 검증을 대체하지 않는다.
 
 ## Quest 2 end-to-end
 

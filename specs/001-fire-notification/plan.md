@@ -28,7 +28,7 @@
 
 **Storage**: 로컬 에셋·음성·자막, 메모리 세션 상태. 서버·로그인·영구 진도 없음.
 
-**Testing**: Unity Test Framework 1.6.0. EditMode 단계 전이, PlayMode 입력·취소·씬 전환, Quest 2 단독 실행, 깨끗한 별도 프로젝트 Import 검증.
+**Testing**: Editor Play Mode/Simulator에서 단계 전이·입력·취소·씬 전환을 수동 검증하고 Quest 2 단독 실행 및 별도 프로젝트 Import로 최종 확인한다. 새 자동 테스트 작성은 현재 범위에 포함하지 않는다. 기존 자동 테스트가 있으면 설치된 Unity Test Framework 1.6.0으로 추가 실행한다.
 
 **Target Platform**: Quest 2 Android 단독 앱. 기존 IL2CPP/ARM64, OpenXR Quest 지원을 기준으로 설치 가능성과 입력을 실기기 검증한다.
 
@@ -67,7 +67,8 @@ specs/001-fire-notification/
 ├── data-model.md
 ├── content-script.md
 ├── contracts/experience-contract.md
-└── quickstart.md
+├── quickstart.md
+└── tasks.md
 ```
 
 ### Source Code (repository root; AI 제안, 아직 생성하지 않음)
@@ -76,7 +77,8 @@ specs/001-fire-notification/
 Assets/_02LWS/
 ├── Scenes/              # ContentMenu.unity, FireNotification.unity
 ├── Scripts/
-│   ├── Domain/          # Unity와 분리한 상태·명령 검증
+│   ├── LWS.FireNotification.Runtime.asmdef  # Runtime·Presentation·Interaction 공통
+│   ├── Domain/          # 별도 Domain asmdef, Unity와 분리한 상태·명령 검증
 │   ├── Runtime/         # 씬·세션·중단 조정
 │   ├── Presentation/    # 음성·자막·주변 인물·상황 복원
 │   └── Interaction/     # UI와 비상벨 poke 어댑터
@@ -85,12 +87,14 @@ Assets/_02LWS/
 ├── Audio/
 ├── Art/                 # 모델·애니메이션·재질·한글 폰트
 ├── Settings/            # 소유 Input Actions
-├── Tests/EditMode/
-├── Tests/PlayMode/
 └── Documentation/       # 통합 설정·리소스 출처·라이선스
 ```
 
 **Structure Decision**: 씬 분리는 사용자 선택이다. 씬마다 XR rig·EventSystem·AudioListener 하나씩 배치하고 Single 로드로 교체하는 구성을 AI가 제안한다. 전역 영속 매니저는 도입하지 않는다. 체험 씬 직접 실행도 첫 안내부터 초기화한다. 메뉴 이동 전 체험을 정리한다.
+
+Scripts 루트의 Runtime assembly가 Domain assembly를 참조하고 Domain은 Runtime을 참조하지 않는다. Domain의 중첩 asmdef가 해당 하위 코드를 분리하며 나머지 Runtime·Presentation·Interaction은 공통 assembly에 포함한다.
+
+공통 복도·화재 표현·인물 기본 행동과 반응 기능·필요한 텔레포테이션은 기반 단계에서 준비한다. US1과 US2는 이 기반을 공유하고 각 행동의 결과 표현을 별도로 연결해 독립 구현·검증한다.
 
 기존 Starter Assets는 참고하되 폴더 밖 prefab/inputactions/material을 제품에서 그대로 참조하지 않는다. 필요한 소유 의존성을 내부로 복사·재연결하고 라이선스를 유지한다. XRI 전역 interaction layer 설정은 임의 이동하지 않고 통합 문서에 의미 기반 매핑을 기록한다. 필터는 레이어 번호 외에 poke interactor 유형도 검사한다.
 
@@ -118,4 +122,4 @@ Phase 0·1 설계의 구현 전 사용자 결정 검토를 마쳤다. 씬 분리
 
 현재 추가로 꼭 필요한 사용자 결정은 없다. 리소스 선정·목소리·배치·누름 깊이·연출 길이는 확정 요구 안에서 선정·보정한다. 무료 자료를 확보하지 못하거나 확정 요구를 바꿔야 하는 상황은 별도 확인 대상이다. 통합 프로젝트 지정은 향후 외부 의존성이며 현재 계획 검토를 막지 않는다.
 
-tasks.md, 코드, 씬, 음성 파일, Android 빌드는 생성하지 않았다. 이 검토 완료를 다음 단계 실행 승인으로 간주하지 않으며 여기서 멈춘다.
+[tasks.md](tasks.md)를 생성했고 사용자 승인에 따라 분석에서 발견한 구조·검증·의존성 불일치를 문서에 반영했다. 코드·씬·음성 파일·Android 빌드는 생성하지 않았다. 문서 수정 및 재분석은 구현 시작 승인으로 간주하지 않는다.
