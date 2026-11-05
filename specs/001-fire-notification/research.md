@@ -81,3 +81,13 @@
 ## 편집 모드 공간 표시 — 2026-11-05
 
 사용자 확정: 편집 모드에서는 모든 스페이스를 활성화해 배치를 확인한다. 구현은 MenuSpace·FireNotificationSpace를 활성화한 씬을 저장하는 방식이다. Play 시작 시 기존 ContentSceneNavigator.Start가 메뉴만 활성화하고 체험 공간을 끈다. startOnSceneEntry=false를 유지해 교육은 선택 후 시작한다. Play 종료 시 편집 상태의 두 공간 활성화로 복원되는지 확인한다. Play 중 전체 표시 기능은 추가하지 않는다.
+
+## UI 적용 결정 — 2026-11-05
+
+Decision: design.md v0.1.1을 현재 프로젝트 UI의 기준으로 사용한다. 공통 자원은 전달되지 않았으므로 기존 uGUI/TMP·XRI를 유지하며 `_02LWS/UI`에 내부화한다. 색상·크기 제안은 이 프로젝트 초기값이며 팀 전체 합의로 격상하지 않는다.
+
+Rationale: 기존 UI Prefab과 단일 씬을 재사용하고 단독 Export 경계를 지킨다. 기존 폰트 파일은 지정된 CJK KR Regular와 동일한지 확인되지 않았으므로 새 원본/TMP/라이선스 확인이 필요하다. 패키지 업그레이드는 필요하지 않다.
+
+Alternatives: 문서의 외부 SharedUI 경로는 단독 Export 시 누락 위험이 있어 현재 채택하지 않는다. 전역 timeScale만으로 멈추면 unscaledDeltaTime 자막/연출이 계속될 수 있고 기존 lifecycle 중단 API는 실행을 취소하므로 내부 메뉴의 같은 지점 재개에 그대로 사용할 수 없다. 별도 게이트를 사용한다.
+
+근거 범위: 로컬 design.md, 기존 GuidancePresenter의 unscaledDeltaTime 및 controller의 Suspend 시 취소/Resume 시 Enter 흐름을 확인했다. 새 UI 동작과 기기 가독성은 아직 검증하지 않았다. 원본 폰트 출처와 설치된 XRI 버전의 세부 API는 구현 시 공식 자료로 확인한다.

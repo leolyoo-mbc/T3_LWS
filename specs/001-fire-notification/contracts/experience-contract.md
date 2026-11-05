@@ -49,3 +49,11 @@ pause/focus/XR 착용 신호를 하나의 suspended 상태로 합성한다. 중�
 ## 편집 모드 공간 표시 — 2026-11-05
 
 사용자 확정: 편집 모드에서는 모든 스페이스를 활성화해 배치를 확인한다. 구현은 MenuSpace·FireNotificationSpace를 활성화한 씬을 저장하는 방식이다. Play 시작 시 기존 ContentSceneNavigator.Start가 메뉴만 활성화하고 체험 공간을 끈다. startOnSceneEntry=false를 유지해 교육은 선택 후 시작한다. Play 종료 시 편집 상태의 두 공간 활성화로 복원되는지 확인한다. Play 중 전체 표시 기능은 추가하지 않는다.
+
+## 공통 UI 계약 — FR-024~029
+
+기준은 design.md v0.1.1과 plan.md의 UI 절이다. 공용 UI는 표시·설정·열기/닫기와 RestartRequested/ReturnToMenuRequested 요청만 제공하고 프로젝트 연결부가 교육 컨트롤러를 호출한다. 기존 UI.Select 및 새 press 규칙을 유지하고 PC Esc는 열기/한 단계 닫기, VR는 화면 메뉴 진입을 제공한다. EventSystem과 입력 모듈을 추가 중복 생성하지 않는다.
+
+UISettings는 공용 수명으로 메뉴·체험·재시작에서 유지한다. 모달이 열리면 뒤쪽 UI·벨·이동 입력을 차단하며 추적은 계속한다. 내부 메뉴의 같은 지점 재개는 Lifecycle boundary의 시스템 중단 단계 재시작과 구별한다. 둘이 겹치면 시스템 중단이 우선하며 내부 메뉴까지 닫힌 뒤 한 번 재진입한다. 위 Input→command의 체험 중 ReturnToMenu 요청은 이제 확인창을 경유하며 완료 후 복귀는 직접 실행한다.
+
+Subtitle은 동일 음성 구간을 표시하고 자막 끔은 출력만 숨긴다. 음성 음량 0이나 자막 끔이 교육 단계를 자동 완료시키지 않는다. 음성 완료 시점과 진행 조건은 유지한다. 저장 안내/없는 통합 메뉴는 표시하지 않는다.

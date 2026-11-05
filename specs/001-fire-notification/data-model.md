@@ -51,3 +51,11 @@ AlarmResult는 경보 loop 자체 종료를 기다리지 않고 설정된 결과
 ## 편집 모드 공간 표시 — 2026-11-05
 
 사용자 확정: 편집 모드에서는 모든 스페이스를 활성화해 배치를 확인한다. 구현은 MenuSpace·FireNotificationSpace를 활성화한 씬을 저장하는 방식이다. Play 시작 시 기존 ContentSceneNavigator.Start가 메뉴만 활성화하고 체험 공간을 끈다. startOnSceneEntry=false를 유지해 교육은 선택 후 시작한다. Play 종료 시 편집 상태의 두 공간 활성화로 복원되는지 확인한다. Play 중 전체 표시 기능은 추가하지 않는다.
+
+## 내부 메뉴 상태 — design.md 적용
+
+UISettings는 voiceVolume/effectsVolume(0~1, 기본 1), subtitlesEnabled(기본 true), textScale(1~1.5, 기본 1)을 같은 실행 동안 공유한다. 영구 진도나 저장 기록은 만들지 않는다.
+
+UI 상태는 Closed/Pause/Settings/ConfirmRestart/ConfirmExit다. 메뉴/설정/확인창이 열려 있는 동안 userPaused=true로 교육 명령과 완료 커밋을 보류한다. 취소는 이전 메뉴로 돌아가고 계속하기는 메뉴 스택을 닫는다. 시스템 중단 suspended는 기존 단계 snapshot과 독립한다.
+
+내부 메뉴만 열렸다면 stage·executionId·재생 위치·물체 상태를 보존한다. 시스템 중단이 발생하면 기존 실행은 취소하고 pendingStageRestart를 남긴다. 시스템 중단 요인 해제와 userPaused=false가 모두 충족된 뒤 같은 단계에 새 executionId로 한 번 진입한다. 메뉴 복귀/재시작은 보류 완료와 snapshot을 폐기한다. 내부 메뉴를 닫을 때 held trigger/벨 접촉은 새 입력으로 인정하지 않는다.
