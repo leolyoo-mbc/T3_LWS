@@ -30,6 +30,10 @@ namespace LWS.FireNotification.Interaction
         private XRPokeInteractor[] pokes;
         private Vector3 restCap;
         private bool initialized;
+        private ExperienceSession observedSession;
+        private long observedExecution = -1;
+        private bool pausedByMenu;
+        private bool requireRelease;
         public bool canProcess=>isActiveAndEnabled;
         public bool Process(IXRHoverInteractor interactor,IXRHoverInteractable target)=>interactor is XRPokeInteractor;
         public bool Process(IXRSelectInteractor interactor,IXRSelectInteractable target)=>interactor is XRPokeInteractor;
@@ -42,7 +46,28 @@ namespace LWS.FireNotification.Interaction
         {
             // Starter Assets enables controllers only after a tracked device is available.
             pokes=FindObjectsByType<XRPokeInteractor>(FindObjectsInactive.Include,FindObjectsSortMode.None);
-            controller.StateChanged+=ResetPush;ResetPush();
+            controller.StateChanged+=OnStateChanged;OnStateChanged();
+        }
+        private void OnStateChanged()
+        {
+            var session = controller.Session;
+            if (session != observedSession || session == null || session.ExecutionId != observedExecution)
+            {
+                observedSession = session;
+                observedExecution = session != null ? session.ExecutionId : -1;
+                pausedByMenu = controller.UserPaused;
+                requireRelease = false;
+                ResetPush();
+                return;
+            }
+            if (controller.UserPaused) { pausedByMenu = true; return; }
+            if (pausedByMenu)
+            {
+                // Keep the frozen pose, but discard old contact eligibility on continue.
+                pausedByMenu = false;
+                requireRelease = true;
+                Armed = false; Pressed = false; contacts.Clear();
+            }
         }
         private void ResetPush()
         {
@@ -62,6 +87,7 @@ namespace LWS.FireNotification.Interaction
                 bool lateral=local.x*local.x+local.y*local.y<=halfWidth*halfWidth;
                 bool touching=lateral&&local.z>=-releaseDistance&&local.z<=maximumDepth;
                 anyContact|=touching;
+                if(requireRelease)continue;
                 contacts.TryGetValue(poke,out var contact);
                 if(!touching) contact.touched=false;
                 bool hover=interactable.interactorsHovering.Contains(poke);
@@ -77,14 +103,23 @@ namespace LWS.FireNotification.Interaction
                 }
                 contact.previousDepth=local.z;contact.initialized=true;contacts[poke]=contact;
             }
+            if(requireRelease)
+            {
+                if(!anyContact) { requireRelease=false; ResetPush(); Armed=true; }
+                return;
+            }
             if(!anyContact&&!Pressed)Armed=true;
             NormalizedDepth=Mathf.Clamp01(depth/pressDepth);
             cap.localPosition=restCap+Vector3.forward*Mathf.Clamp(depth,0,pressDepth);
         }
-        private void OnDisable() { if(initialized)ResetPush(); }
+        private void OnDisable()
+        {
+            if(initialized)ResetPush();
+            observedSession=null;observedExecution=-1;pausedByMenu=false;requireRelease=false;
+        }
         private void OnDestroy()
         {
-            if(controller!=null)controller.StateChanged-=ResetPush;
+            if(controller!=null)controller.StateChanged-=OnStateChanged;
             if(interactable!=null){interactable.hoverFilters.Remove(this);interactable.selectFilters.Remove(this);}
         }
     }

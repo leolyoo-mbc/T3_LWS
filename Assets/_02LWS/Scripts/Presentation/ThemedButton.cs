@@ -29,11 +29,11 @@ namespace LWS.FireNotification.Presentation
             if (theme == null) return;
             if (image == null) image = GetComponent<Image>();
             if (outline == null) outline = GetComponent<Outline>();
-            image.color = !Available || Busy ? theme.disabledFill : primary
+            image.color = !Available ? theme.disabledFill : Busy ? theme.raised : primary
                 ? (pressed ? theme.primaryPressed : hover ? theme.primaryHover : theme.primary)
                 : (pressed ? theme.secondaryPressed : hover ? theme.secondaryHover : theme.secondary);
-            if (outline != null) { outline.effectColor = theme.accent; outline.enabled = hover && Available && !Busy; }
-            foreach (var text in GetComponentsInChildren<TMP_Text>()) text.color = Available && !Busy ? theme.text : theme.disabledText;
+            if (outline != null) { outline.effectColor = Busy ? theme.warning : theme.accent; outline.enabled = Available && (hover || Busy); }
+            foreach (var text in GetComponentsInChildren<TMP_Text>()) text.color = !Available ? theme.disabledText : Busy ? theme.warning : theme.text;
         }
     }
 }

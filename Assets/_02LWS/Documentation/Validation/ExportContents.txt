@@ -63,6 +63,8 @@ Assets/_02LWS/Documentation/Licenses/Supertonic3.txt
 Assets/_02LWS/Documentation/Licenses/UmplixDummy-Source.txt
 Assets/_02LWS/Documentation/Licenses/UnityCompanionLicense.txt
 Assets/_02LWS/Documentation/Licenses/UnityTextMeshProNotice.md
+Assets/_02LWS/Documentation/Licenses/XRI-StarterAssets-CopiedPaths.json
+Assets/_02LWS/Documentation/Licenses/XRI-StarterAssets-Notice.md
 Assets/_02LWS/Documentation/ThirdPartyNotices.md
 Assets/_02LWS/Documentation/Validation/AcceptanceSummary.md
 Assets/_02LWS/Documentation/Validation/AndroidBuild.md
@@ -74,6 +76,15 @@ Assets/_02LWS/Documentation/Validation/ComfortFollow-Input.txt
 Assets/_02LWS/Documentation/Validation/ComfortFollow-Regression.txt
 Assets/_02LWS/Documentation/Validation/CommitReadiness.md
 Assets/_02LWS/Documentation/Validation/ContentAudit.md
+Assets/_02LWS/Documentation/Validation/Convergence.md
+Assets/_02LWS/Documentation/Validation/Convergence-BellPause.txt
+Assets/_02LWS/Documentation/Validation/Convergence-ButtonStates.txt
+Assets/_02LWS/Documentation/Validation/Convergence-Contrast.json
+Assets/_02LWS/Documentation/Validation/Convergence-MouseLayout.txt
+Assets/_02LWS/Documentation/Validation/Convergence-Regression.txt
+Assets/_02LWS/Documentation/Validation/Convergence-TeleportRay.txt
+Assets/_02LWS/Documentation/Validation/Convergence-WallAlarm.txt
+Assets/_02LWS/Documentation/Validation/Convergence-XR.json
 Assets/_02LWS/Documentation/Validation/ConversationIntegration.md
 Assets/_02LWS/Documentation/Validation/DummyIntegration.md
 Assets/_02LWS/Documentation/Validation/ExportContents.txt
@@ -185,3 +196,44 @@ Assets/_02LWS/UI/Prefabs/UI_Button.prefab
 Assets/_02LWS/UI/Theme/Button.png
 Assets/_02LWS/UI/Theme/DisasterTheme.asset
 Assets/_02LWS/UI/Theme/Panel.png
+Assets/_02LWS/XR/StarterAssets/AffordanceThemes/PokeSphereColor.asset
+Assets/_02LWS/XR/StarterAssets/Animations/ArrowBounce.anim
+Assets/_02LWS/XR/StarterAssets/Animations/Climb Teleport Arrow.controller
+Assets/_02LWS/XR/StarterAssets/DemoAssets/Sprites/Forward.png
+Assets/_02LWS/XR/StarterAssets/DemoAssets/Sprites/LegibilityMask.png
+Assets/_02LWS/XR/StarterAssets/DemoAssets/Textures/Concrete_Normal.tif
+Assets/_02LWS/XR/StarterAssets/Filters/AnyGazedAtTeleportAnchorFilter.asset
+Assets/_02LWS/XR/StarterAssets/LWS.FireNotification.XR.StarterAssets.asmdef
+Assets/_02LWS/XR/StarterAssets/Materials/Controller_Grey.mat
+Assets/_02LWS/XR/StarterAssets/Materials/Controller_White.mat
+Assets/_02LWS/XR/StarterAssets/Materials/Flat Blue.mat
+Assets/_02LWS/XR/StarterAssets/Materials/FresnelHighlight.mat
+Assets/_02LWS/XR/StarterAssets/Materials/Interactable.mat
+Assets/_02LWS/XR/StarterAssets/Materials/Telport Anchor.mat
+Assets/_02LWS/XR/StarterAssets/Materials/UI-NoZTest.mat
+Assets/_02LWS/XR/StarterAssets/Models/BlinkVisual.fbx
+Assets/_02LWS/XR/StarterAssets/Models/Pinch_Pointer_LOD0.fbx
+Assets/_02LWS/XR/StarterAssets/Models/Reticle_Torus.fbx
+Assets/_02LWS/XR/StarterAssets/Models/UniversalController.fbx
+Assets/_02LWS/XR/StarterAssets/Prefabs/Affordances/PokePointerAffordance.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Controllers/XR Controller Left.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Controllers/XR Controller Right.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Interactors/Gaze Interactor.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Interactors/Left_NearFarInteractor.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Interactors/Poke Interactor.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Interactors/Right_NearFarInteractor.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Interactors/Teleport Interactor.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Teleport/Blocking Teleport Reticle.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Teleport/Climb Teleport Arrow.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/Teleport/Directional Teleport Reticle.prefab
+Assets/_02LWS/XR/StarterAssets/Prefabs/XR Origin (XR Rig).prefab
+Assets/_02LWS/XR/StarterAssets/Scripts/ClimbTeleportDestinationIndicator.cs
+Assets/_02LWS/XR/StarterAssets/Scripts/ControllerAnimator.cs
+Assets/_02LWS/XR/StarterAssets/Scripts/ControllerInputActionManager.cs
+Assets/_02LWS/XR/StarterAssets/Scripts/DynamicMoveProvider.cs
+Assets/_02LWS/XR/StarterAssets/Scripts/GazeInputManager.cs
+Assets/_02LWS/XR/StarterAssets/Shaders/Interactable.shadergraph
+Assets/_02LWS/XR/StarterAssets/Shaders/UI-NoZTest.shader
+Assets/_02LWS/XR/StarterAssets/Shaders/Unlit_Fresnel.shadergraph
+Assets/_02LWS/XR/StarterAssets/Textures/DefaultMaterial_AO.png
+Assets/_02LWS/XR/StarterAssets/XRI Default Input Actions.inputactions

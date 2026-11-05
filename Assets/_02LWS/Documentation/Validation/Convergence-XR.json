@@ -1,0 +1,16 @@
+{
+  "scene": "Assets/_02LWS/Scenes/FireNotification.unity",
+  "externalProjectAssets": [],
+  "missingScripts": 0,
+  "copiedScriptTypes": [
+    "ClimbTeleportDestinationIndicator",
+    "ControllerAnimator",
+    "ControllerInputActionManager",
+    "DynamicMoveProvider",
+    "GazeInputManager"
+  ],
+  "origins": 1,
+  "listeners": 1,
+  "eventSystems": 1,
+  "unity": "6000.3.26f1"
+}

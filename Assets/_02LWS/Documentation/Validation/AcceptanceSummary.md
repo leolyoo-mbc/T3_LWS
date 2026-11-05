@@ -1,3 +1,22 @@
+### Current requirement evidence
+
+| Requirement group | Current implementation/evidence | Remaining acceptance |
+|---|---|---|
+| FR-001~017, FR-022~023 / stories 1~4 | Local data and one-scene flow; fresh 111-check regression, 25 physical-poke checks, 6 teleport-ray checks; external asset refs/missing scripts zero | Latest APK on Quest, fresh offline install and fresh-project Import |
+| FR-018~021 / SC-006~008 | Local input/audio/assets implemented; Editor synthetic input/lifecycle evidence | Actual Quest standalone, physical controller and headset/system signals; T037/T080 |
+| FR-024~029 / story 5 | Local Theme/font; busy/disabled wired; 9 state checks, 35 mouse/layout checks, 11 partial-pause checks and 111 lifecycle checks | Quest 100%/150% legibility, real input and interruption; T060/T080 |
+| FR-030 / SC-014 | Existing comfort follow and teleport-end connection retained; actual teleport ray regression passes | Headset readability/comfort; T066/T080 |
+| FR-031 / SC-015 | Blender/native model, recorded electric bell, 25 physical-poke checks and preserved partial press | Real reach, press feel, timbre/volume; T073/T080 |
+| Submission / T077~T079 | 40 required sample project assets internalized; zero external project asset refs | Separate Editor cannot initialize licensing under current CDN restriction; T079/T041 |
+| Performance / T038/T082 | No hardware timings claimed | Quest CPU/GPU/profile evidence |
+| Final acceptance / T042/T083 | Current evidence and blockers explicit; current package refreshed and byte-compared | Final device/import/performance acceptance and corresponding APK |
+
+## Current convergence revision — 2026-11-05
+
+T077/T078/T081 implemented: required XR sample assets are internal, partial bell depth/pose survives internal pause, and input availability/processing is reflected in button visuals. Saved-scene external project asset dependencies are zero; UPM/XR/Android/interaction-layer prerequisites still apply. New Editor evidence is in [Convergence validation](Convergence.md). Earlier 40-external-path/sample-prerequisite statements below are historical and superseded for the current scene.
+
+Clean-project Import remains blocked: launching a separate Editor was denied access to public-cdn.cloud.unity3d.com during licensing initialization, including with 25 local cached UPM packages. No product assets or Starter Assets sample were copied into the prepared receiving project. No Import PASS is claimed. ADB lists no devices; Quest standalone/offline/controller/readability/audio/performance and final acceptance remain incomplete. No revised APK was produced in this pass because T079 is a prerequisite of T080.
+
 ## Current wall alarm revision — 2026-11-05
 
 Wall-mounted Blender model, circular push guard, dedicated 3D gong emitter, CC0 actual electric-bell recording and approach anchor applied. Editor 162 checks passed; actual VR appearance/reach/listening, Quest performance, new APK and receiving-project import remain unverified. See [WallAlarm.md](WallAlarm.md). Editable .blend is in Art/Models/FireAlarm/Source~ (workspace/Git only); unitypackage uses FBX/native meshes and needs no Blender. Existing external XRI 3.5.1 Starter Assets prerequisites remain.

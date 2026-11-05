@@ -1,0 +1,11 @@
+Live button state binding
+PASS disabled and processing have distinct fill
+PASS actual settings selection executed
+PASS selection exposes processing state
+PASS processing rejects duplicate selection
+PASS processing clears and restores availability
+PASS input component disable updates visual state
+PASS input component reenable restores state
+PASS modal input lock updates content button state
+PASS continue restores content button state
+DONE checks=9 failed=0

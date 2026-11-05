@@ -1,0 +1,13 @@
+Partial bell press internal pause
+PASS actual poke partially depresses cap
+PASS opening menu preserves partial cap position
+PASS opening menu preserves normalized depth
+PASS cap stays frozen while hand moves behind menu
+PASS menu blocks bell success
+PASS held deep contact after continue does not press
+PASS internal pause keeps execution
+PASS withdrawal rearms after continue
+PASS new contact and push succeeds
+PASS system restart waits behind internal menu
+PASS system resume resets stage and requires withdrawal
+DONE checks=11 failed=0

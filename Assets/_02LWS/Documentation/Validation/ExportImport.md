@@ -1,3 +1,9 @@
+## Current convergence revision — 2026-11-05
+
+T077/T078/T081 implemented: required XR sample assets are internal, partial bell depth/pose survives internal pause, and input availability/processing is reflected in button visuals. Saved-scene external project asset dependencies are zero; UPM/XR/Android/interaction-layer prerequisites still apply. New Editor evidence is in [Convergence validation](Convergence.md). Earlier 40-external-path/sample-prerequisite statements below are historical and superseded for the current scene.
+
+Clean-project Import remains blocked: launching a separate Editor was denied access to public-cdn.cloud.unity3d.com during licensing initialization, including with 25 local cached UPM packages. No product assets or Starter Assets sample were copied into the prepared receiving project. No Import PASS is claimed. ADB lists no devices; Quest standalone/offline/controller/readability/audio/performance and final acceptance remain incomplete. No revised APK was produced in this pass because T079 is a prerequisite of T080.
+
 ## Current wall alarm revision — 2026-11-05
 
 Wall-mounted Blender model, circular push guard, dedicated 3D gong emitter, CC0 actual electric-bell recording and approach anchor applied. Editor 162 checks passed; actual VR appearance/reach/listening, Quest performance, new APK and receiving-project import remain unverified. See [WallAlarm.md](WallAlarm.md). Editable .blend is in Art/Models/FireAlarm/Source~ (workspace/Git only); unitypackage uses FBX/native meshes and needs no Blender. Existing external XRI 3.5.1 Starter Assets prerequisites remain.

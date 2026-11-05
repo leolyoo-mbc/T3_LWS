@@ -262,3 +262,22 @@ Phase 13 결과: T067~T072 완료. Editor 162개 검사 통과(실제 합성 pok
 - [X] T076 문서·패키지를 갱신하고 최종 원본/meta를 대조한다.
 
 T076 결과: 최종 187개 파일 Export, 원본/meta 불일치 0, SHA-256 3859e5c02ab792e9a1c24aa567e06771cbc294c2392076bc3e5c46e61a3ccb2e. 레이 선택 경로 6/6 및 기존 앵커/메뉴 차단 6/6 통과. 실제 컨트롤러 확인은 미완료다.
+
+
+## Phase 15: Convergence
+
+2026-11-05 정적 대조: FR 31개·SC 15개·수락 시나리오 24개·경계 조건 6개·계획 결정 12개·기존 작업 76개를 확인했다. 헌법은 미작성 템플릿이라 규범 검사를 생략했다. partial 7건(HIGH 4, MEDIUM 3); missing/contradicts/unrequested 및 CRITICAL/LOW 0건. F1~F7을 아래 새 작업에 대응시킨다. 기존 작업과 완료 마커는 보존한다. 검증 미완료는 코드 결함 확정과 구분한다.
+
+- [X] T077 [HIGH] F1 — Assets/_02LWS/Prefabs/XR/LwsXRStarterRig.prefab에서 따라가는 필수 Starter Assets prefab·Input Actions·스크립트·모델·재질·shader를 필요한 범위만 Assets/_02LWS 안으로 복사·재연결하고 라이선스를 보존하라. 현재 텍스트 GUID 추적에서 외부 샘플 자산 37개가 연결되고 Unity 의존성 기록은 40개다. 샘플 prerequisite 안내만으로 내부화 의무를 완료 처리하지 말라. UPM/엔진 참조는 유지하고 전역 XRI 레이어 설정은 옮기지 않는다. 양손 입력·poke·Teleport 레이어·공용 객체 수를 보존하고 필수 외부 프로젝트 자산 참조가 없는지 Unity에서 검증하라. per plan: 제출 자산 내부화, T010, T039 (partial)
+- [X] T078 [HIGH] F2 — Assets/_02LWS/Scripts/Interaction/BellPushInput.cs의 StateChanged 일괄 ResetPush와 Assets/_02LWS/Scripts/Runtime/FireNotificationController.cs의 SetUserPaused 경로를 분리하여 내부 메뉴를 열 때 부분적으로 눌린 캡의 위치·진행 상태가 초기화되지 않게 하라. 현재 SetUserPaused가 StateChanged를 발행하면 ResetPush가 cap.localPosition을 restCap으로 되돌린다. 시스템 중단의 단계 재시작과 실제 단계 변경 초기화는 유지하고, 메뉴 종료 후 기존 접촉만으로 성공하지 않도록 새 접촉/재무장을 처리하라. 유효 깊이 직전 부분 누름 → 메뉴 열기/대기 → 취소·계속하기, 시스템 중단 겹침, 손 잔류와 재접촉을 검증하라. per FR-026, US5/AC3, plan: 내부 일시정지 상태 보존, T056~T059 (partial)
+- [ ] T079 [HIGH] F3 — T077·T078·T081 후 최신 패키지를 같은 Unity/UPM 버전의 별도 새 프로젝트에 Import하고 Starter Assets를 별도 Import하지 않은 상태에서 누락 참조/스크립트·한글·단일 기능 씬·공용 객체 수·메뉴 왕복·poke·텔레포트 레이 선택/해제·중단을 검증하라. 현재 ExportImport.md는 새 구조를 미검증으로 명시하므로 옛 두 씬 Import 결과를 재사용하지 말라. 샘플 디렉터리에 대한 암묵적 의존을 확인하고 환경·패키지 식별자·실제 결과를 Assets/_02LWS/Documentation/Validation/ExportImport.md에 기록하라. 통합 대상 미지정 시 이 선행 검증과 향후 대상 재검증을 구분하라. per plan: clean Import, T041, FR-022~023 (partial)
+- [ ] T080 [HIGH] F4 — T077·T078·T081 수정과 T079 선행 Import 확인 후 최신 Quest 2 Android 빌드를 생성하고 해시·앱 버전·기기/OS를 식별하라. 메뉴부터 두 행동·완료·복귀/재진입, 실제 레이+새 트리거·손 poke·스틱 조준/해제 텔레포트, 탈착/시스템 메뉴 각각 9단계와 오답 피드백, 새 설치/데이터 초기화 후 최초 오프라인 순환을 검증하라. 같은 빌드에서 기본/150% 한국어·추종/재정렬·조작성·내부 메뉴와 시스템 중단 겹침·벨 식별/도달성/누름·녹음 음질/음량을 확인하라. T037/T060/T066/T073의 중복 검증을 하나의 기기 기록으로 묶고 Quest2Acceptance.md·SharedUI.md·ComfortFollow.md·WallAlarm.md에 항목별 증거를 연결하라. 기기 접근이나 실제 수행이 없으면 미완료로 남기며 Editor/PC 연결 확인으로 대체하지 말라. per FR-018~021, FR-024~031, SC-006~008, SC-013~015, T037, T060, T066, T073 (partial)
+- [X] T081 [MEDIUM] F5 — Assets/_02LWS/Scripts/Presentation/ThemedButton.cs의 Available/Busy를 실제 입력 잠금·피드백·전환/확인 처리와 연결하라. 현재 SetAvailable 호출처가 없고 !Available과 Busy가 같은 색상 분기다. 필요한 실제 상태에 비활성과 구별되는 처리 중 표시를 제공하되 새 교육 단계나 평가 화면을 추가하지 말라. FreshPressButton의 새 press/중복 차단과 함께 기본·가리킴·누름·비활성·처리 중 표시와 재활성화를 검증하고 기본/150% 문구를 확인하라. per FR-029, T055, T057, T059 (partial)
+- [ ] T082 [MEDIUM] F6 — T080과 같은 최종 빌드의 Quest 2에서 안내·화재·인물 반응·경종·UI 추종·텔레포트·반복 중단의 CPU/GPU 프레임 시간과 스파이크를 측정하여 Assets/_02LWS/Documentation/Validation/Performance.md에 환경·방법·실측값을 기록하라. 72 Hz/13.9 ms는 제안된 프로파일링 기준으로만 취급하고 실측 병목을 수정하면 영향 범위를 재검증하라. 장치 측정이 없으면 T038과 이 작업은 미완료다. per plan: Performance Goals/실기기 검증, T038 (partial)
+- [ ] T083 [MEDIUM] F7 — T077~T082의 실제 결과를 기존 T037/T038/T041/T042/T060/T066/T073 및 FR/SC·각 스토리에 연결하여 Assets/_02LWS/Documentation/Validation/AcceptanceSummary.md의 최종 수락 표를 완성하라. 이용 가능한 기존 테스트만 실행하고 미실시/실패/외부 조건을 합격으로 바꾸지 말라. 제품 변경 후 영향 범위 검사와 최종 Export·원본/meta 바이트 대조·해시를 갱신하고 새 APK와 패키지가 동일 최종 구현을 가리키게 하라. 현재 패키지 187개 파일의 원본/meta 불일치 0은 확인했으므로 이를 새 수정 이후의 수락/Import/성능 성공으로 확대하지 말라. per T042, plan: 최종 수락/제출 검증 (partial)
+
+실행 의존성: T077 → T078 → T081 → T079 → T080 → T082 → T083. 심각도 순으로 ID를 배정했으므로 구현 시 숫자 순서보다 이 선행 조건을 따른다. 기존 미완료 작업을 삭제하거나 중복 완료 처리하지 않고 해당 실제 증거를 함께 충족한다. 이번 converge는 코드·명세·계획·체크리스트를 수정하지 않았으며 실행/실기기 테스트를 새로 수행한 결과가 아니다.
+
+Phase 15 실행 상태: T077/T078/T081 완료. Editor 197/197 통과, 필수 외부 프로젝트 자산 참조/누락 스크립트/복사 셰이더 오류 0. T079는 별도 Unity 실행의 public-cdn.cloud.unity3d.com 접속 차단과 라이선스 초기화 정지로 미검증이다. T080은 T079 선행 조건과 실제 Quest 연결 부재로 미완료, T082는 기기 성능 측정 부재로 미완료, T083은 최종 수락 증거가 없어 미완료다. 기존 T037/T038/T041/T042/T060/T066/T073도 유지한다. 상세 증거는 Assets/_02LWS/Documentation/Validation/Convergence.md에 기록한다.
+
+Phase 15 최종 패키지: 239개 파일, 36579867 bytes, 원본/meta 불일치 0개. SHA-256 29d444a9ed621720b7ed927aaaac1cea3d46bc9fef09af23b089d3d00a1acd00. T077/T078/T081 완료, T079/T080/T082/T083 미완료. 새 APK 없음. 전후 확장 훅 없음.

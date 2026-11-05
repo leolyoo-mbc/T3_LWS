@@ -1,0 +1,37 @@
+UI input/layout - isolated virtual mouse; physical devices restored
+PASS PC mouse exists
+PASS mouse raycast enters content
+PASS teleport provider disabled in menu
+PASS teleport queue rejected in menu
+PASS 150 percent setting active
+PASS 150 percent height PausePanel/Title 일시정지
+PASS 150 percent height PausePanel/Label 계속하기
+PASS 150 percent height PausePanel/Label 설정
+PASS 150 percent height PausePanel/Label 처음부터 다시
+PASS 150 percent height PausePanel/Label 시나리오 선택으로
+PASS 150 percent height SettingsPanel/Title 설정
+PASS 150 percent height SettingsPanel/SettingsValues 음성 100 %    효과음 100 % 자막 켬    글자 150 %
+PASS 150 percent height SettingsPanel/Label 음성 줄이기
+PASS 150 percent height SettingsPanel/Label 음성 키우기
+PASS 150 percent height SettingsPanel/Label 효과음 줄이기
+PASS 150 percent height SettingsPanel/Label 효과음 키우기
+PASS 150 percent height SettingsPanel/Label 자막 켜기/끄기
+PASS 150 percent height SettingsPanel/Label 글자 크기 변경
+PASS 150 percent height SettingsPanel/Label 위치 재정렬
+PASS 150 percent height SettingsPanel/Label 뒤로
+PASS 150 percent height ConfirmDialog/Question 현재 체험을 끝내고 시나리오 선택으로 돌아갈까요?
+PASS 150 percent height ConfirmDialog/Label 계속하기
+PASS 150 percent height ConfirmDialog/Label 선택 화면으로
+PASS 150 percent height ResultPanel/Result 화재 사실 알리기 체험 완료 큰소리로 화재 알리기 수행 비상벨 누르기 수행
+PASS 150 percent height ResultPanel/Label 다시 체험하기
+PASS 150 percent height ResultPanel/Label 선택 화면으로
+PASS 150 percent height MenuSpace/Title 화재 대피 교육 음성: elevenlabs.io
+PASS 150 percent height MenuSpace/Label 콘텐츠 1 화재 사실 알리기
+PASS 150 percent height MenuSpace/Disclosure 이 체험의 음성은 AI 합성 음성입니다.
+PASS 150 percent height MenuSpace/VoiceCredit 불이야! 음성: ElevenLabs elevenlabs.io Roger
+PASS 150 percent height MenuSpace/Use 비상업적 과제용
+PASS 150 percent height MenuSpace/Label 설정
+PASS mouse raycast continues
+PASS no stale teleport after continue
+PASS return after mouse interaction
+DONE checks=35 failed=0 frame=95548
