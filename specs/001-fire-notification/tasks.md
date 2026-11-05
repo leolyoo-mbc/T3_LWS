@@ -239,3 +239,26 @@ T061 최초 결과: Unity Editor Export 155개 파일, package/source/meta 바�
 - [ ] T066 실제 VR에서 가독성·추종 불편감·레이 조작성을 확인한다. 기기 결과 없이는 완료 표시하지 않는다.
 
 Phase 12 결과: T062~T065 완료. Editor 추종/입력 13개 및 기존 회귀 111개 통과. 실제 VR 검증 T066/T060은 미완료. 패키지 161개 파일, 원본/meta 불일치 0. SHA-256 fd9317801dbebb1ebe4b10c6454285de01d9740d3a527c22c74caf98f130a49b. 새 APK 없음. 전후 훅 없음. 상세 제한은 Assets/_02LWS/Documentation/Validation/ComfortFollow.md.
+
+
+## Phase 13: 벽 부착형 비상벨 Blender 모델링 및 실제 경종음
+
+- [X] T067 승인 범위·형상/음원 근거·원본/FBX 경계·검증 조건을 스펙킷 문서에 반영한다. 기존 체크리스트와 AGENTS.md는 수정하지 않는다.
+- [X] T068 Blender MCP에서 기존 씬을 보존하고 별도 씬에 발신기·분리 누름부·표시등·경종·부착판을 모델링한다. Assets/_02LWS/Art/Models/FireAlarm에 편집 원본·FBX·재현 스크립트를 보존하고 정면/사선 화면과 크기/메시를 확인한다.
+- [X] T069 CC0 실제 전기벨 녹음을 Assets/_02LWS/Audio/Alarm/CorridorAlarm.wav로 편집하고 출처·라이선스·편집 내용을 기록한다. 기존 WAV GUID를 보존한다.
+- [X] T070 Unity Editor에서 FireAlarm.prefab과 FireNotification.unity의 벽면 위치/방향·분리 누름부·collider·기준 상태·공간 음원을 연결한다. 기존 가상 손 push와 메뉴/중단 규칙을 보존한다.
+- [X] T071 Editor에서 벽/모델 정합·실제 poke 깊이·잘못된 입력·중복/중단/복원·전체 메뉴/교육 회귀를 검증하고 Validation/WallAlarm.md에 증거와 한계를 기록한다.
+- [X] T072 최신 자산·문서로 unitypackage를 Export하고 원본/meta·단일 씬·외부 의존성을 대조한다.
+- [ ] T073 실제 VR에서 발신기 식별·도달성·누름·경종음 자연스러움과 음량을 확인한다. 기기 결과 없이는 완료 표시하지 않는다.
+
+순서: T067 → T068 → T069 → T070 → T071 → T072. T073과 기존 미검증 실기기/Import 작업은 별도다.
+
+Phase 13 결과: T067~T072 완료. Editor 162개 검사 통과(실제 합성 poke 25, 실제 앵커 텔레포트 6, 기존 회귀 111, 씬 검사 20). 초기 원형 모서리 판정 1건 수정 후 재검증 통과. 패키지 186개 파일·32430519 bytes, 원본/meta 불일치 0개, SHA-256 844d6b6bc80a6f5c402ccfe404eae3eaef369b4677a58731e84850051f72f81e. Blender 원본 Source~는 workspace/Git에 보존하고 Unity 패키지에서는 FBX/네이티브 메시 사용. T073 및 기존 실기기/성능/Import 작업은 미완료, 새 APK 없음. 전후 확장 훅 없음.
+
+## Phase 14: 텔레포트 레이 선택 오류 수정
+
+- [X] T074 BellApproach의 Default interaction layer를 기존 전용 Teleport Interactor와 같은 Teleport layer로 수정하고 TeleportSurface 프리팹 기본값을 맞춘다. 일반 grip 선택은 제외한다.
+- [X] T075 직접 RequestTeleport 호출이 아닌 물리 ray hover·입력 선택·해제·이동 경로를 재현해 수정 전 5개 실패와 수정 후 6/6 통과를 기록한다. 실제 컨트롤러 확인은 T073 미완료로 유지한다.
+- [X] T076 문서·패키지를 갱신하고 최종 원본/meta를 대조한다.
+
+T076 결과: 최종 187개 파일 Export, 원본/meta 불일치 0, SHA-256 3859e5c02ab792e9a1c24aa567e06771cbc294c2392076bc3e5c46e61a3ccb2e. 레이 선택 경로 6/6 및 기존 앵커/메뉴 차단 6/6 통과. 실제 컨트롤러 확인은 미완료다.

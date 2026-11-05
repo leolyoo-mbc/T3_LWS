@@ -1,3 +1,7 @@
+## Current wall alarm revision — 2026-11-05
+
+Wall-mounted Blender model, circular push guard, dedicated 3D gong emitter, CC0 actual electric-bell recording and approach anchor applied. Editor 162 checks passed; actual VR appearance/reach/listening, Quest performance, new APK and receiving-project import remain unverified. See [WallAlarm.md](WallAlarm.md). Editable .blend is in Art/Models/FireAlarm/Source~ (workspace/Git only); unitypackage uses FBX/native meshes and needs no Blender. Existing external XRI 3.5.1 Starter Assets prerequisites remain.
+
 ## Shared-system revision — 2026-11-05
 
 Current saved scene keeps the main Directional Light, XR/input/navigation and application-interruption sensing under always-active SharedSystems. 90 shared-system checks and 149 single-scene regression checks passed; current menu/content screenshots inspected and console errors 0. See SharedSystems.md. Package regenerated after this revision; source/archive comparison and SHA-256 are outside the package in Artifacts. The existing Starter Assets prerequisite, pending Quest/Android/performance/import limits still apply.

@@ -1,3 +1,7 @@
+## Current wall alarm revision — 2026-11-05
+
+Wall-mounted Blender model, circular push guard, dedicated 3D gong emitter, CC0 actual electric-bell recording and approach anchor applied. Editor 162 checks passed; actual VR appearance/reach/listening, Quest performance, new APK and receiving-project import remain unverified. See [WallAlarm validation](Validation/WallAlarm.md). Editable .blend is in Art/Models/FireAlarm/Source~ (workspace/Git only); unitypackage uses FBX/native meshes and needs no Blender. Existing external XRI 3.5.1 Starter Assets prerequisites remain.
+
 # Fire notification integration
 
 This is a non-commercial coursework content package. Display/publication title: `화재 사실 알리기 elevenlabs.io`. Keep ThirdPartyNotices.md and its ElevenLabs title-attribution requirement with any submission or redistribution. The supplied shout is a local ElevenLabs free-plan output; commercial rights are not included. Do not imply endorsement by the voice provider.
@@ -67,3 +71,5 @@ Teardown follow-up: stopping a session while a modal is open no longer dereferen
 ## 2026-11-05 공간 UI 추종
 
 Meta 지침 기반 완만한 추종과 텔레포트 완료 후 재배치를 반영했다. 초기값과 공식 근거, Editor 13개 추종/입력 및 111개 회귀 결과는 Validation/ComfortFollow.md를 참고한다. 실기기 가독성/불편감/지속 입력 검증은 미완료이며 최신 APK는 없다. 패키지를 다시 Export한 결과는 Artifacts/SharedUIPackageAudit.json 기준이다.
+
+Teleport correction: BellApproach and the owned TeleportSurface prefab use the existing dedicated Teleport interaction layer (current bit 31), excluding ordinary grip selection. On import, match this semantic layer with both Teleport Interactors. New full ray-selection/release regression passes 6/6; see Validation/WallAlarm-RayInput.txt.

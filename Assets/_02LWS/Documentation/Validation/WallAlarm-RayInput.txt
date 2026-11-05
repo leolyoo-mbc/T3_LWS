@@ -1,0 +1,9 @@
+Teleport ray selection/release path
+PASS actual teleport ray and anchor interaction layers overlap
+HIT BellApproach at (41.90, 0.02, 1.10)
+PASS teleport ray physically hovers approach anchor
+PASS stick-equivalent select input selects anchor
+PASS release input teleports through anchor selection event
+PASS general grip interactors cannot select anchor
+PASS floor areas share teleport ray layer
+DONE checks=6 failed=0

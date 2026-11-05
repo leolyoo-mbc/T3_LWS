@@ -17,6 +17,7 @@ namespace LWS.FireNotification.Interaction
         public Transform surface;
         public Transform cap;
         [Min(0.005f)] public float pressDepth=0.025f;
+        [Tooltip("Radius of the circular press plate, in surface-local metres.")]
         [Min(0.02f)] public float halfWidth=0.12f;
         public float contactTolerance=0.004f;
         public float maximumDepth=0.09f;
@@ -58,7 +59,7 @@ namespace LWS.FireNotification.Interaction
             {
                 if(poke==null||!poke.isActiveAndEnabled)continue;
                 var local=surface.InverseTransformPoint(poke.GetAttachTransform(interactable).position);
-                bool lateral=Mathf.Abs(local.x)<=halfWidth&&Mathf.Abs(local.y)<=halfWidth;
+                bool lateral=local.x*local.x+local.y*local.y<=halfWidth*halfWidth;
                 bool touching=lateral&&local.z>=-releaseDistance&&local.z<=maximumDepth;
                 anyContact|=touching;
                 contacts.TryGetValue(poke,out var contact);

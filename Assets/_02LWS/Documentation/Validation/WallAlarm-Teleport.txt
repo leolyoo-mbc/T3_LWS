@@ -1,0 +1,8 @@
+Bell approach actual teleport request
+PASS approach anchor references existing provider
+PASS pause menu blocks approach teleport
+PASS actual anchor teleport places head above approach marker
+PASS teleport faces right-wall alarm
+PASS head to button horizontal gap 0.53m
+PASS teleport does not press bell or advance stage
+DONE checks=6 failed=0

@@ -1,0 +1,19 @@
+{
+  "source": "Dave Welsh / School Bell - Fire Bell.wav / Freesound 523317",
+  "license": "CC0 1.0",
+  "download": "https://cdn.freesound.org/previews/523/523317_1985044-hq.mp3",
+  "sourceSha256": "f9954e2b745033e95e1f2d2aad006ec94ae490c2b536a19fe3d77f3f171b72bf",
+  "sourceExcerptSeconds": [
+    56.0,
+    64.1
+  ],
+  "sampleRate": 48000,
+  "channels": 1,
+  "bits": 16,
+  "durationSeconds": 7.999979166666667,
+  "crossfadeSeconds": 0.1,
+  "peak": 0.49999999999999994,
+  "loopBoundaryJump": 0.01990670099889931,
+  "sha256": "d1dad33bd67074c393ef8175b66e325963791a0c769db9acc004dbe48207bcc9",
+  "scope": "Recorded solenoid electric bell; not a recording of the modeled Korean product. Headset listening approval pending."
+}

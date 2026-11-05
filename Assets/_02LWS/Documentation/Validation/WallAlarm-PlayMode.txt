@@ -1,0 +1,27 @@
+Wall alarm Editor Play Mode verification
+PASS frames advancing
+PASS backplate on right wall; button centre 1.2m
+PASS button front faces into corridor
+PASS baseline retains moving cap reference
+PASS new 50mm cap with 8mm press travel
+PASS real recording imported mono 48kHz 8sec
+PASS 3D emitter at gong; does not move equipment
+PASS hand outside arms button
+PASS near hand not successful
+PASS surface contact not successful
+PASS half depth not successful
+PASS actual XRI poke overlap produces hover
+PASS valid physical poke triggers alarm
+PASS repeated press does not restart result
+PASS recording loops during alarm result
+PASS internal menu pauses recorded alarm
+PASS continue resumes recorded alarm
+PASS system interruption cancels alarm
+PASS system resume starts fresh alarm result
+PASS hand left inside does not auto press after restart
+PASS withdrawal rearms button
+PASS outside circular press plate rejects corner push
+PASS fresh physical press succeeds after reset
+PASS completion stops alarm
+PASS menu return cleans alarm
+DONE checks=25 failed=0 frame=8032

@@ -1,0 +1,11 @@
+School Bell - Fire Bell.wav
+Author: Dave Welsh
+Source: https://freesound.org/people/Dave%20Welsh/sounds/523317/
+Uploaded: 2020-06-21
+Checked: 2026-11-05
+License: CC0 1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+Legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Publisher permission statement: You can copy, modify, distribute and perform the sound, even for commercial purposes, all without the need of asking permission to the author.
+Source provided locally: publisher HQ MP3 preview, 48kHz stereo; original 96kHz WAV master not downloaded.
+See Audio/Alarm/RecordingInfo.json for hashes and edit details.

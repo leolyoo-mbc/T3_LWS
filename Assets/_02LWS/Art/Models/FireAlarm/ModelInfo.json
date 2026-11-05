@@ -1,0 +1,26 @@
+{
+  "blender": "5.2.3 LTS",
+  "metres": true,
+  "objects": {
+    "Housing": {
+      "vertices": 5067,
+      "triangles": 9369,
+      "dimensions": [
+        0.20000000298023224,
+        0.08400000631809235,
+        0.49000000953674316
+      ]
+    },
+    "MovingCap": {
+      "vertices": 384,
+      "triangles": 764,
+      "dimensions": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.006000000052154064
+      ]
+    }
+  },
+  "references": "See Documentation/Validation/WallAlarm.md",
+  "original_scene_preserved": "Scene"
+}

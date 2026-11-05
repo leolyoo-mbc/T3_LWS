@@ -14,7 +14,14 @@ Assets/_02LWS/Art/Effects/Kenney/smoke_04.png
 Assets/_02LWS/Art/Fonts/LwsKorean.asset
 Assets/_02LWS/Art/Fonts/NotoSansKR.ttf
 Assets/_02LWS/Art/Fonts/OFL.txt
+Assets/_02LWS/Art/Materials/Alarm_BrushedMetal.mat
+Assets/_02LWS/Art/Materials/Alarm_DarkTrim.mat
+Assets/_02LWS/Art/Materials/Alarm_EnamelRed.mat
+Assets/_02LWS/Art/Materials/Alarm_Lettering.mat
+Assets/_02LWS/Art/Materials/Alarm_PressPlate.mat
+Assets/_02LWS/Art/Materials/Alarm_RedLens.mat
 Assets/_02LWS/Art/Materials/AlarmRed.mat
+Assets/_02LWS/Art/Materials/BellApproach.mat
 Assets/_02LWS/Art/Materials/DoorAndLegs.mat
 Assets/_02LWS/Art/Materials/FireCore.mat
 Assets/_02LWS/Art/Materials/FireFlames.mat
@@ -23,9 +30,17 @@ Assets/_02LWS/Art/Materials/Floor.mat
 Assets/_02LWS/Art/Materials/Ray.mat
 Assets/_02LWS/Art/Materials/Skin.mat
 Assets/_02LWS/Art/Materials/Wall.mat
+Assets/_02LWS/Art/Models/FireAlarm/BuildFireAlarm.py
+Assets/_02LWS/Art/Models/FireAlarm/ModelInfo.json
+Assets/_02LWS/Art/Models/FireAlarm/ProcessAlarmAudio.py
+Assets/_02LWS/Art/Models/FireAlarm/WallAlarm.fbx
+Assets/_02LWS/Art/Models/FireAlarm/WallAlarmHousing.asset
+Assets/_02LWS/Art/Models/FireAlarm/WallAlarmMovingCap.asset
 Assets/_02LWS/Art/Shaders/LwsKoreanSDF.shader
 Assets/_02LWS/Art/Shaders/TMPro_Properties.cginc
 Assets/_02LWS/Audio/Alarm/CorridorAlarm.wav
+Assets/_02LWS/Audio/Alarm/RecordingInfo.json
+Assets/_02LWS/Audio/Alarm/Source-ElectricBell.mp3
 Assets/_02LWS/Audio/Voice/bell.wav
 Assets/_02LWS/Audio/Voice/completion.wav
 Assets/_02LWS/Audio/Voice/ElevenLabs_2026-11-04T04_14_37_Roger - Laid-Back, Casual, Resonant_pre_s50_sim75_v4.mp3
@@ -39,6 +54,7 @@ Assets/_02LWS/Docs/XRStarterRigMigration.md
 Assets/_02LWS/Documentation/Environment.md
 Assets/_02LWS/Documentation/Integration.md
 Assets/_02LWS/Documentation/Licenses/CC0-1.0-Reference.txt
+Assets/_02LWS/Documentation/Licenses/DaveWelsh-Bell-CC0.txt
 Assets/_02LWS/Documentation/Licenses/KenneyParticles-CC0.txt
 Assets/_02LWS/Documentation/Licenses/QuaterniusAnimations-CC0.txt
 Assets/_02LWS/Documentation/Licenses/QuaterniusMan-Source.txt
@@ -80,6 +96,16 @@ Assets/_02LWS/Documentation/Validation/US2.md
 Assets/_02LWS/Documentation/Validation/US3.md
 Assets/_02LWS/Documentation/Validation/US4.md
 Assets/_02LWS/Documentation/Validation/VisualReplacement.md
+Assets/_02LWS/Documentation/Validation/WallAlarm.md
+Assets/_02LWS/Documentation/Validation/WallAlarm-BlenderFront.png
+Assets/_02LWS/Documentation/Validation/WallAlarm-BlenderOblique.png
+Assets/_02LWS/Documentation/Validation/WallAlarm-PlayMode.txt
+Assets/_02LWS/Documentation/Validation/WallAlarm-RayInput.txt
+Assets/_02LWS/Documentation/Validation/WallAlarm-Regression.txt
+Assets/_02LWS/Documentation/Validation/WallAlarm-SceneAudit.json
+Assets/_02LWS/Documentation/Validation/WallAlarm-Teleport.txt
+Assets/_02LWS/Documentation/Validation/WallAlarm-UnityFront.png
+Assets/_02LWS/Documentation/Validation/WallAlarm-UnityOblique.png
 Assets/_02LWS/Documentation/VisualAssetSources.json
 Assets/_02LWS/Documentation/VoiceGeneration.md
 Assets/_02LWS/Prefabs/Characters/LowpolyDummy.prefab
