@@ -39,7 +39,8 @@ namespace LWS.FireNotification.Interaction
         }
         private void Start()
         {
-            pokes=FindObjectsByType<XRPokeInteractor>(FindObjectsSortMode.None);
+            // Starter Assets enables controllers only after a tracked device is available.
+            pokes=FindObjectsByType<XRPokeInteractor>(FindObjectsInactive.Include,FindObjectsSortMode.None);
             controller.StateChanged+=ResetPush;ResetPush();
         }
         private void ResetPush()
