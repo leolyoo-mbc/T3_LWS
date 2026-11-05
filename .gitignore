@@ -84,3 +84,6 @@ crashlytics-build.properties
 *.slnx
 
 /[Aa]rtifacts/
+
+.agents
+.specify
