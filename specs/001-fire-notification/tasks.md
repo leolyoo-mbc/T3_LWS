@@ -96,11 +96,11 @@
 **Purpose**: 네 스토리가 연결된 결과를 실기기·오프라인·Import 환경에서 검증한다. 실제 확인 전 완료 표시하지 않는다.
 
 - [X] T036 `Assets/_02LWS/Content/GuidanceCatalog.asset`, `Assets/_02LWS/Content/VoiceManifest.json`과 `Assets/_02LWS/Documentation/Validation/ContentAudit.md`에서 확정 대본·두 선택지·음성/자막 일치·한글 표시·로컬 참조·무료 이용 조건·출처를 대조하고 누락을 수정한다. 네트워크·온라인 합성·원격 필수 자료가 없어야 한다.
-- [ ] T037 `Assets/_02LWS/Documentation/Validation/Quest2Acceptance.md`에 실제 빌드 식별자·Quest 2 OS·단독 실행 결과를 기록하며 quickstart.md 전체 및 FR-001~021/SC-001~008을 항목별 검증한다. 헤드셋 탈착·시스템 메뉴 각각 9단계/오답 피드백, 반복 신호·held trigger·취소와 완료 경합을 확인하고 최초 실행 전 인터넷 차단 상태의 새 설치/데이터 초기화 검증을 포함한다. 기기 접근이 없으면 미완료로 남긴다.
+- [ ] T037 `Assets/_02LWS/Documentation/Validation/Quest2Acceptance.md`에 실제 빌드 식별자·Quest 2 OS·단독 실행 결과를 기록하며 quickstart.md 전체 및 FR-001~023/SC-001~010을 항목별 검증한다. 헤드셋 탈착·시스템 메뉴 각각 9단계/오답 피드백, 반복 신호·held trigger·취소와 완료 경합을 확인하고 최초 실행 전 인터넷 차단 상태의 새 설치/데이터 초기화 검증을 포함한다. 기기 접근이 없으면 미완료로 남긴다.
 - [ ] T038 `Assets/_02LWS/Documentation/Validation/Performance.md`에 Quest 2에서 제안 기준 72 Hz의 CPU/GPU 시간·경보/인물 반응 스파이크를 실측한다. 필요한 경우 `Assets/_02LWS/Art/`와 `Assets/_02LWS/Prefabs/`의 조명·효과·모델을 조정하고 변경한 동작을 재확인한다. 13.9 ms는 프로파일링 기준이며 사용자 확정 합격 기준으로 바꾸지 않는다.
 - [X] T039 `Assets/_02LWS/Documentation/Integration.md`에 Unity/패키지 버전·Android SDK/IL2CPP/ARM64·OpenXR Quest/Touch·Input·URP/폰트·씬 등록·interaction layer 의미 매핑·기존 rig 중복 방지·자산 라이선스를 완성하고 `_02LWS` 밖 프로젝트 에셋 참조를 내부화한다. Package Manager와 ProjectSettings는 unitypackage에 포함되지 않음을 명시한다.
 - [X] T040 `Assets/_02LWS/Documentation/Validation/ExportImport.md`에 `_02LWS` Export 목록·GUID 참조·포함 범위를 기록하고 `Artifacts/FireNotification.unitypackage`로 내보낸다. Include dependencies로 폴더 밖 소유 자산이 섞이지 않는지 확인한다. 패키지는 제출 산출물이므로 Assets 밖 Artifacts에 두고 제품 소유 에셋의 경계는 유지한다.
-- [ ] T041 별도 같은 Unity 버전 프로젝트에서 T039의 prerequisite 설정 후 `Artifacts/FireNotification.unitypackage`를 Import하고 missing reference/script·외부 샘플 의존·한글·중복 rig·두 씬을 확인한다. 새 Quest 2 빌드의 기본 순환·벨 push·메뉴 재진입·오프라인 결과를 `Assets/_02LWS/Documentation/Validation/ExportImport.md`에 추가한다. 통합 프로젝트 미지정 시 이 선행 검증과 향후 대상 지정 후 재검증을 구분한다.
+- [ ] T041 별도 같은 Unity 버전 프로젝트에서 T039의 prerequisite 설정 후 `Artifacts/FireNotification.unitypackage`를 Import하고 missing reference/script·외부 샘플 의존·한글·중복 rig·FireNotification 단일 씬 및 Starter Assets prerequisite을 확인한다. 새 Quest 2 빌드의 기본 순환·벨 push·메뉴 재진입·오프라인 결과를 `Assets/_02LWS/Documentation/Validation/ExportImport.md`에 추가한다. 통합 프로젝트 미지정 시 이 선행 검증과 향후 대상 지정 후 재검증을 구분한다.
 - [ ] T042 `Assets/_02LWS/Documentation/Validation/AcceptanceSummary.md`에 모든 스토리·FR/SC·실기기·성능·라이선스·Import 증거와 미완료 항목을 모으고 이용 가능한 기존 EditMode/PlayMode 테스트를 실행해 결과를 기록한다. 문서/Export 이후 제품 변경이 있으면 영향 범위 재검증·재Export하여 `Artifacts/FireNotification.unitypackage`와 최종 소스가 일치하게 한다.
 
 ## Dependencies & Execution Order
@@ -172,3 +172,34 @@ US1과 US2는 공통 기반 뒤 각각 구현·검증 가능하다. 두 스토�
 ## Task generation validation
 
 42개 작업: Setup 4 / Foundation 8 / US1 6 / US2 6 / US3 5 / US4 6 / Final 7. 생성 당시 모두 미실행으로 시작했으며 현재 상태는 각 체크박스와 Validation 문서에서 확인한다. 전후 훅은 `.specify/extensions.yml`의 유무와 등록에 따라 확인한다.
+
+## Phase 8: 2026-11-05 변경 — 단일 씬·주제별 독립 공간
+
+기존 T001~T042는 최초 구현/검증 이력이다. 두 씬 관련 완료 표시는 당시 구조에 대한 기록이며 새 구조 검증 완료를 의미하지 않는다. 현재 범위는 콘텐츠 1과 메뉴이며 나머지 후보 공간은 만들지 않는다. 기존 Quest 2·성능·clean Import 미완료는 유지한다.
+
+- [X] T043 spec.md·plan.md·research.md·data-model.md·contracts/experience-contract.md·quickstart.md를 단일 씬·별도 공간 요구 FR-022/SC-009와 일치시킨다. requirements.md 체크리스트는 읽기 전용으로 유지한다.
+- [X] T044 ContentSceneNavigator.cs의 씬 로딩을 공간 활성화·XR 앵커 이동으로 교체하고 FireNotificationController.cs에 재진입 시 새 세션 시작/종료를 연결한다. 중복 선택, 메뉴 복귀 시 취소, 앱 중단 규칙을 보존한다.
+- [X] T045 Unity Editor에서 FireNotification.unity에 MenuSpace·FireNotificationSpace와 시작 앵커를 구성하고 공용 rig·EventSystem·AudioListener 각 하나를 연결한다. 기존 ContentMenu 씬은 원본으로 보존하되 기능 Build Scene List에서 제외하고 무관한 씬은 보존한다.
+- [X] T046 Play Mode에서 프레임 진행, 메뉴/체험 위치·방향, 중복 선택, 9단계/오답 중 메뉴 복귀, 재진입 새 세션, 소리/반응/입력 잔류, 중단/복귀 및 전체 교육 순환을 검증하고 Assets/_02LWS/Documentation/Validation/SingleScene.md에 실제 결과를 기록한다. 기기 검증과 구분한다.
+- [X] T047 Assets/_02LWS/Documentation/Integration.md 및 AcceptanceSummary.md·ExportImport.md의 현재 상태를 갱신하고 의존성·컴파일·씬 구조 검사 후 Artifacts/FireNotification.unitypackage를 다시 Export해 최종 소스와 일치시킨다. 기존 메뉴 원본 씬은 패키지에서 제외한다. Quest 2/성능/clean Import 미검증은 완료 처리하지 않는다.
+
+순서: T043 → T044 → T045 → T046 → T047. FR-022/SC-009는 T043~T047이 담당한다.
+
+변경 검증: Play Mode 149개 검사 통과, 콘솔 오류 0, missing script/버튼 대상 누락 0. 독립 코드 검토에서 새 Critical/Important 결함 없음. 패키지 131개 경로·원본 및 meta 바이트 일치, 포함 씬은 FireNotification 하나. 상세 검사·SHA-256은 `Artifacts/SingleScenePackageAudit.json`과 `Artifacts/SHA256SUMS.txt`에 기록한다. 기존 리그의 외부 Starter Assets 의존 40개는 유지되므로 수신 프로젝트의 prerequisite이며, 자체 완결 패키지·새 APK·Quest·clean Import 성공으로 표시하지 않는다. T037/T038/T041/T042는 미완료다. `.specify/extensions.yml`이 없어 전후 훅은 없다.
+
+## Phase 9: 2026-11-05 변경 — 공용 객체 유지
+
+- [X] T048 FR-023/SC-010과 공용/콘텐츠별 객체 경계를 spec.md·plan.md·research.md·data-model.md·contracts/experience-contract.md·quickstart.md에 반영한다. AGENTS.md와 체크리스트는 수정하지 않는다.
+- [X] T049 Unity Editor에서 FireNotification.unity의 기존 XR rig·EventSystem·SpaceNavigation과 기본 Directional Light를 SharedSystems로 묶고 ExperienceLifecycle을 SharedLifecycle로 옮겨 참조를 재연결한다. 기본 조명의 회전·광량과 기존 GUID·공용 객체 수를 보존하고 화재 Point Light·체험 효과/진행은 콘텐츠에 유지한다.
+- [X] T050 Play Mode에서 공용 조명·XR/입력·공간 전환·중단 감지의 활성 상태/동일 인스턴스·개수, 메뉴 중단 상태 진입, 기존 전환/중단/초기화 동작과 화면을 검증하여 Assets/_02LWS/Documentation/Validation/SharedSystems.md에 기록한다. 통합 안내를 갱신하고 패키지를 재Export·원본 대조한다. 이전 실기기·성능·수신 프로젝트 미완료는 유지한다.
+
+순서: T048 → T049 → T050. 기존 미완료 T037/T038/T041/T042를 임의로 완료 처리하지 않는다.
+
+공용화 검증: 기존 단일 씬 회귀 149개 + 공용 객체 검사 90개 통과, 콘솔 오류/누락 스크립트 0. 기본 Directional Light의 회전·광량 보존, 메뉴에서도 활성, 공용 lifecycle의 메뉴 중단 상태 반영 확인. 최종 패키지 132개 항목은 원본/meta와 일치하며 씬은 FireNotification 하나다. 기존 외부 Starter Assets 의존 40개 및 T037/T038/T041/T042 미완료는 유지한다. `.specify/extensions.yml`이 없어 전후 훅은 없다.
+
+## Phase 10: 편집 중 모든 공간 표시
+
+- [X] T051 단일 씬에서 MenuSpace·FireNotificationSpace를 활성화해 저장하고 관련 스펙킷 문서에 편집/실행 구분을 명시한다.
+- [X] T052 Play 시작 시 메뉴 활성·체험 비활성·세션 미시작 및 종료 후 양 공간 활성 복원을 확인하고 통합 안내·패키지를 갱신한다.
+
+T052 결과: 편집 시 두 공간 활성, Play 시작 시 메뉴만 활성·체험 세션 없음, 종료 후 두 공간 활성 복원 확인. 콘솔 오류 0. 패키지 원본/meta 대조 일치. 전후 훅 없음. 기존 Quest/성능/Import 미완료는 유지한다.

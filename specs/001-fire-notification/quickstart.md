@@ -1,12 +1,12 @@
 # Quickstart Validation — 구현 후 실행 가이드
 
-현재는 설계 문서만 있다. 아래 씬은 아직 구현되지 않았고 검증 성공을 주장하지 않는다. [상태 모델](data-model.md)과 [계약](contracts/experience-contract.md)을 기준으로 검증한다.
+이 가이드는 단일 씬 변경 후 검증 기준이다. 기존 두 씬 검증 기록은 새 구조의 성공 증거를 대신하지 않는다. [상태 모델](data-model.md)과 [계약](contracts/experience-contract.md)을 기준으로 검증한다.
 
 ## Prerequisites and setup
 
 1. Unity Hub에서 6000.3.26f1 및 Android Build Support(SDK/NDK/OpenJDK)를 준비하고 프로젝트를 연다. manifest·lock의 패키지 버전을 유지한다.
-2. 구현 후 `_02LWS`의 두 씬, 로컬 음성·자막·한글 폰트·Input Actions·인물 반응 참조를 검사한다. 최종 교육 문구의 검토 여부를 확인한다.
-3. Android Build Profile에서 OpenXR, Quest Support, Oculus Touch profile, Input System, IL2CPP/ARM64·SDK 설정을 확인한다. 메뉴·체험 씬을 등록하고 메뉴를 첫 씬으로 둔다.
+2. 구현 후 `_02LWS`의 FireNotification 단일 씬, 로컬 음성·자막·한글 폰트·Input Actions·인물 반응 참조를 검사한다. 최종 교육 문구의 검토 여부를 확인한다.
+3. Android Build Profile에서 OpenXR, Quest Support, Oculus Touch profile, Input System, IL2CPP/ARM64·SDK 설정을 확인한다. FireNotification.unity 하나를 기능 진입 씬으로 등록한다. 시작 시 메뉴 활성·체험 비활성을 확인한다.
 4. Quest 2 컨트롤러 추적, 벨 높이·도달 위치를 확인한다. 필요한 이동은 텔레포테이션. 설치 이후 PC 연결을 해제해 단독 실행한다.
 
 ## Editor 수동 검증
@@ -14,10 +14,19 @@
 구현 후 체험 씬을 열어 Play Mode에서 아래 항목을 확인하고 필요하면 XR Simulator를 사용한다. Editor 전용 단계 진입점으로 각 체험·중단 복귀를 분리 확인하되 배포 빌드에는 건너뛰기 UI를 노출하지 않는다.
 
 - 9단계 전이, 오답 재선택, 무입력 대기, 단계 외·반복 입력 거부를 직접 확인한다.
-- 음성·자막 일치, 벨 깊이·ray 거부, 양손·반복 입력, 메뉴 씬 이동·재진입을 확인한다.
+- 음성·자막 일치, 벨 깊이·ray 거부, 양손·반복 입력, 같은 씬의 메뉴 공간 이동·재진입을 확인한다.
 - 단계 전환/연출 중 중단과 복귀를 반복하여 취소 후 늦은 완료나 중복 신호가 단계를 건너뛰지 않는지 확인한다. 착용·시스템 메뉴의 실제 신호는 Quest 2에서 별도로 검증한다.
 
 예상 결과는 각 시나리오의 기대 동작 충족, missing reference/script 및 예외 없음이다. 새 자동 테스트 작성은 현재 Tasks 범위가 아니다. 기존 EditMode/PlayMode 자동 테스트가 있으면 `Window > General > Test Runner`에서 추가 실행하고 결과를 기록한다. 테스트가 없다는 사실을 성공으로 표시하지 않는다. Editor/Simulator 결과는 최종 실기기 검증을 대체하지 않는다.
+
+- 단일 씬 시작 → 메뉴 선택 → 체험 공간 → 메뉴 복귀 → 재진입을 반복한다. 씬 handle과 공용 rig/EventSystem/AudioListener ID가 유지되고 선택 공간으로 머리 위치·방향이 이동해야 한다. 비선택 공간의 소리·연출·입력은 없고 세션 ID는 새로 생성되어야 한다. FR-022/SC-009를 확인한다.
+
+## Shared systems checks
+
+- SharedSystems가 두 공간과 형제이며, 공용 Directional Light가 메뉴/체험/복귀에서 활성인지 확인한다. 조명 회전·광량은 변경 전과 같아야 한다.
+- XR rig·AudioListener·EventSystem·XRUIInputModule·SpaceNavigation·ExperienceLifecycle이 각각 하나이고 전환 후 ID가 유지되는지 확인한다.
+- 중단 상태의 메뉴에서 체험에 진입하면 진행·음성이 멈추고, 해제하면 첫 안내부터 재생되는지 확인한다. 기존 9단계 중단/복귀·재진입 초기화도 보존한다.
+- 화재 Point Light·NPC·벨·체험 오디오는 콘텐츠 루트 안에 남아 메뉴에서 꺼져 있는지 확인한다. FR-023/SC-010 기준이다.
 
 ## Quest 2 end-to-end
 
@@ -55,11 +64,15 @@ Android Build Profile의 Build And Run으로 설치 후 PC 연결을 해제한�
 
 1. Project 창에서 `_02LWS`를 선택해 Export Package. export 목록과 참조를 검사하고 폴더 밖 소유 의존성은 먼저 내부화한다. Include dependencies로 외부 폴더가 무조건 묶이지 않도록 한다. .meta·폰트·음성·shader 참조 확인.
 2. 별도의 같은 Unity 버전 프로젝트에 패키지 버전·URP를 준비하고 Import. 원본 Assets가 없는 환경에서 검증한다.
-3. 전달 문서를 따라 XR/Android/Input/레이어와 두 씬을 등록한다. missing reference/script·중복 rig/EventSystem/AudioListener·폰트 누락 없음.
+3. 전달 문서를 따라 XR/Android/Input/레이어와 FireNotification 단일 씬을 등록한다. missing reference/script·중복 rig/EventSystem/AudioListener·폰트 누락 없음.
 4. 새 프로젝트 Quest 2 빌드에서 기본 순환·벨 밀기·메뉴 재진입·오프라인 검증. 실제 통합 프로젝트가 지정되면 해당 환경에서도 반복한다.
 
 ## Performance and acceptance record
 
 AI 제안 72 Hz 기준으로 Quest 2 CPU/GPU 프레임 시간과 경보/인물 반응 스파이크를 기록하고 실측으로 효과·조명을 조정한다. 사용자 확정 성능 기준이나 현재 측정 결과는 아니다.
 
-FR-001~021, SC-001~008 각각의 실제 결과·실패 재현·수정 후 검증과 Import 결과를 남긴다. Editor만 확인한 상태는 Quest 2 합격으로 표시하지 않는다.
+FR-001~023, SC-001~010 각각의 실제 결과·실패 재현·수정 후 검증과 Import 결과를 남긴다. Editor만 확인한 상태는 Quest 2 합격으로 표시하지 않는다.
+
+## 편집 모드 공간 표시 — 2026-11-05
+
+사용자 확정: 편집 모드에서는 모든 스페이스를 활성화해 배치를 확인한다. 구현은 MenuSpace·FireNotificationSpace를 활성화한 씬을 저장하는 방식이다. Play 시작 시 기존 ContentSceneNavigator.Start가 메뉴만 활성화하고 체험 공간을 끈다. startOnSceneEntry=false를 유지해 교육은 선택 후 시작한다. Play 종료 시 편집 상태의 두 공간 활성화로 복원되는지 확인한다. Play 중 전체 표시 기능은 추가하지 않는다.

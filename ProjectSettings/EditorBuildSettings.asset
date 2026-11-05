@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_02LWS/Scenes/ContentMenu.unity
-    guid: 0691eb4411129a44a9e45ed45c08ad76
-  - enabled: 1
     path: Assets/_02LWS/Scenes/FireNotification.unity
     guid: fffe27dc9247f754fa9fbe43c3c7a17d
   - enabled: 1

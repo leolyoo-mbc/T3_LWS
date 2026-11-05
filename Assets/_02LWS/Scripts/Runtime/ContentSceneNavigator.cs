@@ -1,30 +1,57 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Unity.XR.CoreUtils;
 
 namespace LWS.FireNotification.Runtime
 {
     public sealed class ContentSceneNavigator : MonoBehaviour
     {
-        public string menuScene="Assets/_02LWS/Scenes/ContentMenu.unity";
-        public string contentScene="Assets/_02LWS/Scenes/FireNotification.unity";
+        public XROrigin origin;
+        public GameObject menuRoot;
+        public GameObject contentRoot;
+        public Transform menuAnchor;
+        public Transform contentAnchor;
         public FireNotificationController controller;
         public bool Loading { get; private set; }
+        public bool InContent { get; private set; }
         private void OnEnable(){if(controller!=null)controller.MenuRequested+=LoadMenu;}
         private void OnDisable(){if(controller!=null)controller.MenuRequested-=LoadMenu;}
-        public void StartContent()=>Load(contentScene);
-        private void LoadMenu()=>Load(menuScene);
-        private void Load(string path)
+        private void Start()
         {
-            if(Loading)return;
-            if(!Application.CanStreamedLevelBeLoaded(path))throw new System.InvalidOperationException("Scene not registered: "+path);
-            Loading=true;StartCoroutine(Navigate(path));
+            contentRoot.SetActive(false);
+            menuRoot.SetActive(true);
+            MoveTo(menuAnchor);
         }
-        private IEnumerator Navigate(string path)
+        public void StartContent()
         {
-            // Finish the input event before replacing its scene and event system.
+            if (!Loading && !InContent) StartCoroutine(Navigate(true));
+        }
+        private void LoadMenu()
+        {
+            if (!Loading && InContent) StartCoroutine(Navigate(false));
+        }
+        private IEnumerator Navigate(bool enterContent)
+        {
+            Loading = true;
+            // Finish the selecting UI event before disabling its hierarchy.
             yield return null;
-            yield return SceneManager.LoadSceneAsync(path,LoadSceneMode.Single);
+            menuRoot.SetActive(false);
+            contentRoot.SetActive(false);
+            MoveTo(enterContent ? contentAnchor : menuAnchor);
+            InContent = enterContent;
+            if (enterContent)
+            {
+                contentRoot.SetActive(true);
+                controller.BeginExperience();
+            }
+            else menuRoot.SetActive(true);
+            Loading = false;
+        }
+        private void MoveTo(Transform anchor)
+        {
+            // Preserve head height and compensate for room-scale head offsets.
+            origin.MatchOriginUpCameraForward(Vector3.up, anchor.forward);
+            origin.MoveCameraToWorldLocation(anchor.position + Vector3.up * origin.CameraInOriginSpaceHeight);
         }
     }
 }

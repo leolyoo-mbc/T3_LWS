@@ -10,7 +10,7 @@
 
 ### 결정 상태
 
-- **사용자 확정**: 명세의 FR-001~021, Unity VR와 `_02LWS` 제출 경계. 이번 대화에서 **메뉴 씬·체험 씬 분리**를 선택했다.
+- **사용자 확정**: 명세의 FR-001~023, Unity VR와 `_02LWS` 제출 경계. 이번 대화에서 **단일 Unity 씬 안에 주제별 별도 공간을 배치하고 선택한 공간으로 이동**하도록 변경했다(2026-11-05). 이전 씬 분리 결정을 대체한다.
 - **추가 사용자 확정**: 첫 선택지는 ‘큰소리로 알리기’와 ‘다른 사람이 알릴 때까지 기다리기’ 두 항목. 후자는 research.md의 확정 피드백을 음성·자막으로 제공한다.
 - **사용자 확인 — 자료 현황**: 이번 콘텐츠에 사용할 에셋과 음성 자료는 아직 확보하지 않았다. 자료의 제작·조달 방식은 미확정이다.
 - **추가 사용자 확정 — 화면 표현**: 단순하면서 실제 복도와 비상벨을 알아볼 수 있는 수준으로 구성한다. 사실적인 모델·조명 재현보다 교육 행동과 조작 대상의 식별을 우선한다. 구체적인 에셋은 별도로 정한다.
@@ -28,11 +28,11 @@
 
 **Storage**: 로컬 에셋·음성·자막, 메모리 세션 상태. 서버·로그인·영구 진도 없음.
 
-**Testing**: Editor Play Mode/Simulator에서 단계 전이·입력·취소·씬 전환을 수동 검증하고 Quest 2 단독 실행 및 별도 프로젝트 Import로 최종 확인한다. 새 자동 테스트 작성은 현재 범위에 포함하지 않는다. 기존 자동 테스트가 있으면 설치된 Unity Test Framework 1.6.0으로 추가 실행한다.
+**Testing**: Editor Play Mode/Simulator에서 단계 전이·입력·취소·공간 전환을 수동 검증하고 Quest 2 단독 실행 및 별도 프로젝트 Import로 최종 확인한다. 새 자동 테스트 작성은 현재 범위에 포함하지 않는다. 기존 자동 테스트가 있으면 설치된 Unity Test Framework 1.6.0으로 추가 실행한다.
 
 **Target Platform**: Quest 2 Android 단독 앱. 기존 IL2CPP/ARM64, OpenXR Quest 지원을 기준으로 설치 가능성과 입력을 실기기 검증한다.
 
-**Project Type**: 오프라인 VR 앱, 메뉴·체험 두 씬.
+**Project Type**: 오프라인 VR 앱, 메뉴·체험 공간을 포함한 단일 씬.
 
 **Performance Goals**: AI 제안으로 72 Hz 설정 시 프레임 예산 13.9 ms를 기준으로 CPU/GPU 프로파일링. 사용자 확정 합격 기준 또는 측정 결과가 아니다.
 
@@ -71,11 +71,11 @@ specs/001-fire-notification/
 └── tasks.md
 ```
 
-### Source Code (repository root; AI 제안, 아직 생성하지 않음)
+### Source Code (repository root; 구현 구조)
 
 ```text
 Assets/_02LWS/
-├── Scenes/              # ContentMenu.unity, FireNotification.unity
+├── Scenes/              # FireNotification.unity (메뉴 및 독립 체험 공간)
 ├── Scripts/
 │   ├── LWS.FireNotification.Runtime.asmdef  # Runtime·Presentation·Interaction 공통
 │   ├── Domain/          # 별도 Domain asmdef, Unity와 분리한 상태·명령 검증
@@ -90,7 +90,7 @@ Assets/_02LWS/
 └── Documentation/       # 통합 설정·리소스 출처·라이선스
 ```
 
-**Structure Decision**: 씬 분리는 사용자 선택이다. 씬마다 XR rig·EventSystem·AudioListener 하나씩 배치하고 Single 로드로 교체하는 구성을 AI가 제안한다. 전역 영속 매니저는 도입하지 않는다. 체험 씬 직접 실행도 첫 안내부터 초기화한다. 메뉴 이동 전 체험을 정리한다.
+**Structure Decision**: 단일 씬·별도 공간은 사용자 선택이다. 구현 방안: FireNotification.unity 안에 MenuSpace(원점)와 FireNotificationSpace(X축 40m)를 배치한다. 공용 XR rig·EventSystem·AudioListener 각 하나와 SpaceNavigation을 유지하고 공간 루트는 상호 배타적으로 활성화한다. 각 시작 앵커로 머리 추적 오프셋을 보정해 이동한다. 씬 실행은 메뉴부터, 콘텐츠 선택은 새 세션으로 첫 안내부터, 메뉴 복귀는 연출·입력·snapshot 취소 후 체험 공간을 끈다. 거리·이름은 기술 판단이다. 기존 ContentMenu.unity는 마이그레이션 원본으로 보존하지만 빌드·배포에서 제외한다. 기능 Build Scene List는 FireNotification 하나이며 무관한 SampleScene은 보존한다.
 
 Scripts 루트의 Runtime assembly가 Domain assembly를 참조하고 Domain은 Runtime을 참조하지 않는다. Domain의 중첩 asmdef가 해당 하위 코드를 분리하며 나머지 Runtime·Presentation·Interaction은 공통 assembly에 포함한다.
 
@@ -98,9 +98,13 @@ Scripts 루트의 Runtime assembly가 Domain assembly를 참조하고 Domain은 
 
 기존 Starter Assets는 참고하되 폴더 밖 prefab/inputactions/material을 제품에서 그대로 참조하지 않는다. 필요한 소유 의존성을 내부로 복사·재연결하고 라이선스를 유지한다. XRI 전역 interaction layer 설정은 임의 이동하지 않고 통합 문서에 의미 기반 매핑을 기록한다. 필터는 레이어 번호 외에 poke interactor 유형도 검사한다.
 
+## Shared systems revision — 2026-11-05
+
+사용자 요구: 공용으로 사용할 수 있는 객체는 공용으로 사용한다. 구현 판단: 씬 루트 SharedSystems에 기존 XR rig(카메라·AudioListener·컨트롤러·입력·XRInteractionManager 포함), LwsEventSystem, SpaceNavigation과 단일 SharedDirectionalLight를 모은다. 기존 ExperienceLifecycle을 별도 SharedLifecycle 객체로 옮겨 앱 중단 신호를 메뉴에서도 감지하고 controller.lifecycle을 재연결한다. 월드 회전과 광량은 보존한다. SharedSystems는 공간 전환 대상에서 제외한다. 화재 Point Light·NPC·벨·안내 패널과 체험 음성/진행은 FireNotificationSpace에 유지한다. 폰트·입력 설정·재질 등 이미 참조로 공유되는 에셋은 복제하지 않는다. 범용 프레임워크·새 콘텐츠·새 공용 매니저 코드는 추가하지 않는다.
+
 ## Phase 0: Research
 
-[research.md](research.md)에 기존 구성, 공식 근거, 대안, 선택 상태를 기록했다. 한 씬 방식은 사용자 선택으로 제외했고 XRI poke와 커스텀 물리 버튼을 비교했다.
+[research.md](research.md)에 기존 구성, 공식 근거, 대안, 선택 상태를 기록했다. 기존 씬 분리를 단일 씬·별도 공간 구성으로 대체했고 XRI poke와 커스텀 물리 버튼을 비교했다.
 
 ## Phase 1: Design
 
@@ -118,8 +122,12 @@ Scripts 루트의 Runtime assembly가 Domain assembly를 참조하고 Domain은 
 
 ## Handoff Status
 
-Phase 0·1 설계의 구현 전 사용자 결정 검토를 마쳤다. 씬 분리, 선택지·피드백, 표현 수준, 합성 음성 방식, 무료 범위와 안내 대본을 확정했다. 기술 세부사항은 사용자가 위임한 범위에서 AI 판단으로 기록하며 사용자 개별 선택으로 표현하지 않는다.
+Phase 0·1 설계의 구현 전 사용자 결정 검토를 마쳤다. 단일 씬·별도 공간, 선택지·피드백, 표현 수준, 합성 음성 방식, 무료 범위와 안내 대본을 확정했다. 기술 세부사항은 사용자가 위임한 범위에서 AI 판단으로 기록하며 사용자 개별 선택으로 표현하지 않는다.
 
 현재 추가로 꼭 필요한 사용자 결정은 없다. 리소스 선정·목소리·배치·누름 깊이·연출 길이는 확정 요구 안에서 선정·보정한다. 무료 자료를 확보하지 못하거나 확정 요구를 바꿔야 하는 상황은 별도 확인 대상이다. 통합 프로젝트 지정은 향후 외부 의존성이며 현재 계획 검토를 막지 않는다.
 
-[tasks.md](tasks.md)를 생성했고 사용자 승인에 따라 분석에서 발견한 구조·검증·의존성 불일치를 문서에 반영했다. 코드·씬·음성 파일·Android 빌드는 생성하지 않았다. 문서 수정 및 재분석은 구현 시작 승인으로 간주하지 않는다.
+[tasks.md](tasks.md)를 생성했고 사용자 승인에 따라 분석에서 발견한 구조·검증·의존성 불일치를 문서에 반영했다. 초기 구현 이력은 tasks.md의 기존 체크박스에 보존한다. 2026-11-05 사용자 speckit-implement 요청으로 단일 씬 변경 T043~T047을 추가한다. 기기·성능·Import 미검증은 계속 미완료로 남긴다.
+
+## 편집 모드 공간 표시 — 2026-11-05
+
+사용자 확정: 편집 모드에서는 모든 스페이스를 활성화해 배치를 확인한다. 구현은 MenuSpace·FireNotificationSpace를 활성화한 씬을 저장하는 방식이다. Play 시작 시 기존 ContentSceneNavigator.Start가 메뉴만 활성화하고 체험 공간을 끈다. startOnSceneEntry=false를 유지해 교육은 선택 후 시작한다. Play 종료 시 편집 상태의 두 공간 활성화로 복원되는지 확인한다. Play 중 전체 표시 기능은 추가하지 않는다.

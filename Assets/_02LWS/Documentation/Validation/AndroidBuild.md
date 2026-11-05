@@ -1,3 +1,5 @@
+> **2026-11-05 single-scene revision:** The records below describe the former two-scene version. They do not validate the new spatial navigation or a current Android APK. See SingleScene.md for the current Editor checks. Quest 2, performance and clean-project import of the revised package remain pending. The previously generated APK is stale for this revision.
+
 # Android build — 2026-11-04
 
 Unity build ID `build_ee6734680cf5`, target Android, IL2CPP/ARM64, result `Succeeded`, 0 errors, 0 warnings in the BuildReport. Duration 438429 ms (visual replacement rebuild). Explicit scene selection: ContentMenu then FireNotification; SampleScene excluded from this artifact.

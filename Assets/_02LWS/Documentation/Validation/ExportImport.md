@@ -1,3 +1,13 @@
+## Shared-system revision — 2026-11-05
+
+Current saved scene keeps the main Directional Light, XR/input/navigation and application-interruption sensing under always-active SharedSystems. 90 shared-system checks and 149 single-scene regression checks passed; current menu/content screenshots inspected and console errors 0. See SharedSystems.md. Package regenerated after this revision; source/archive comparison and SHA-256 are outside the package in Artifacts. The existing Starter Assets prerequisite, pending Quest/Android/performance/import limits still apply.
+
+## Current single-scene status — 2026-11-05
+
+149 Editor Play Mode checks PASS, zero console errors; menu/content captures inspected. One runtime scene, exclusive spaces, persistent rig, fresh sessions, all nine-stage menu returns and the full authored-duration command sequence validated. See [SingleScene.md](SingleScene.md) for procedures and limits. Current rig requires the XRI 3.5.1 Starter Assets sample (40 outside-folder dependency paths); current package is not self-contained. This differs from the historical dependency/import records below. Revised package export excludes the old ContentMenu source scene. Revised APK, receiving-project import and Quest 2 acceptance remain pending. Final package hash is maintained outside the archive in Artifacts/SHA256SUMS.txt.
+
+> **2026-11-05 single-scene revision:** The records below describe the former two-scene version. They do not validate the new spatial navigation or a current Android APK. See SingleScene.md for the current Editor checks. Quest 2, performance and clean-project import of the revised package remain pending. The previously generated APK is stale for this revision.
+
 # Export / clean import verification
 
 The feature was exported through Unity AssetDatabase.ExportPackage with `ExportPackageOptions.Recurse` from `Assets/_02LWS` into `Artifacts/FireNotification.unitypackage`. IncludeDependencies was not used. The first package archive inspection found 126 asset/folder pathname records, all equal to `Assets/_02LWS` or beneath it; no outside project folders were included. Both scene dependency scans separately found zero outside project-asset references. Unity/package/ProjectSettings requirements are in Integration.md and are not packaged.

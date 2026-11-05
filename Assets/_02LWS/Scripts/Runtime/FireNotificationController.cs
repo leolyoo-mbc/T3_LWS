@@ -13,6 +13,7 @@ namespace LWS.FireNotification.Runtime
         public ScenarioBaseline baseline;
         public ExperienceLifecycle lifecycle;
         public ExperienceStageHandler[] handlers = Array.Empty<ExperienceStageHandler>();
+        public bool startOnSceneEntry = true;
         public ExperienceSession Session { get; private set; }
         public SuspensionSnapshot Snapshot { get; private set; }
         public PresentationRun Run { get; private set; }
@@ -25,7 +26,13 @@ namespace LWS.FireNotification.Runtime
 
         private void Start()
         {
+            if (startOnSceneEntry) BeginExperience();
+        }
+        public void BeginExperience()
+        {
+            if (started || !isActiveAndEnabled) return;
             catalog.Validate(); baseline.Capture();
+            leaving = false; commands.Clear(); Snapshot = null;
             Session = new ExperienceSession(); started = true;
             lifecycle.Changed += OnSuspension;
             if (lifecycle.Blocked) OnSuspension(true); else Enter();
@@ -93,6 +100,7 @@ namespace LWS.FireNotification.Runtime
         {
             if (lifecycle != null) lifecycle.Changed -= OnSuspension;
             Run?.Dispose(); CancelPresentation(); Session?.Close(); Snapshot = null; commands.Clear();
+            started = false;
         }
 #if UNITY_EDITOR
         public void DebugEnter(ExperienceStage stage)

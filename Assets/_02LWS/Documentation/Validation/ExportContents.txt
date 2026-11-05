@@ -1,161 +1,132 @@
-Unity GUID | asset path
-387056c5c582c9b44840b95bdeabe379 | Assets/_02LWS
-bd4b9a1521b8b004eac548b1b7090eb9 | Assets/_02LWS/Art
-c8e33456b164de846af0d48143959c00 | Assets/_02LWS/Art/Characters
-7987b9258a7b7294283c4e1450586545 | Assets/_02LWS/Art/Characters/Quaternius
-5c5d2debbd0eb8e479333ffc242683c4 | Assets/_02LWS/Art/Characters/Quaternius/Bystander.controller
-0896790c105fe5a42957200d95f7cad6 | Assets/_02LWS/Art/Characters/Quaternius/CivilianMan.fbx
-ec39498e22acd4d4c836322135646597 | Assets/_02LWS/Art/Characters/Quaternius/UAL1_Standard.fbx
-fa4acc7a35e328d46831ca05e8c9497e | Assets/_02LWS/Art/Effects
-7c1132546f3dc664c926cae44b3e6bae | Assets/_02LWS/Art/Effects/Kenney
-daa63f0a2b561ef4aa3f6fe0e54d5fb0 | Assets/_02LWS/Art/Effects/Kenney/fire_01.png
-80696ee2a2ccd5445847da625231c990 | Assets/_02LWS/Art/Effects/Kenney/flame_01.png
-caf13133dc939194aac750ca75b819de | Assets/_02LWS/Art/Effects/Kenney/flame_02.png
-0df4f82492fbe1544b7e7a4641190ab3 | Assets/_02LWS/Art/Effects/Kenney/flame_03.png
-4dec584b73e7dae4d98f4fb563ccbf7f | Assets/_02LWS/Art/Effects/Kenney/smoke_01.png
-c02664e974bf468498454a36a3b5df29 | Assets/_02LWS/Art/Effects/Kenney/smoke_04.png
-72d622818e2b8354c81ebc38284a31f0 | Assets/_02LWS/Art/Fonts
-fc17b51b21cc8e04b8915163f95410f3 | Assets/_02LWS/Art/Fonts/LwsKorean.asset
-2151babda228a1a48887f8393c39e50a | Assets/_02LWS/Art/Fonts/NotoSansKR.ttf
-1cc380178a94be94bacf0863aa98c4d3 | Assets/_02LWS/Art/Fonts/OFL.txt
-8b9dc006f450357499c274a970436170 | Assets/_02LWS/Art/Materials
-515342fe953ad404884e07dbf9d6a66f | Assets/_02LWS/Art/Materials/AlarmRed.mat
-d879ee4d5def55d4e8bceed2af21bd6f | Assets/_02LWS/Art/Materials/Civilian_Eyes.mat
-2cd329073b8955047a7f827e81840e3a | Assets/_02LWS/Art/Materials/Civilian_Hair.mat
-92b6433702df23444a9bbe9f9e9eb7e5 | Assets/_02LWS/Art/Materials/Civilian_Pants.mat
-39ba248c12c39c04e8f2dd5bfb427a77 | Assets/_02LWS/Art/Materials/Civilian_Shirt.mat
-4a735a2d8a2110446905b496ac97122a | Assets/_02LWS/Art/Materials/Civilian_Shirt_1.mat
-72009071cca5c5b4483c5ddcd3b28e7d | Assets/_02LWS/Art/Materials/Civilian_Shirt_2.mat
-418f6fd9dd2778542843b4bd6a08e15a | Assets/_02LWS/Art/Materials/Civilian_Skin.mat
-1d6ad886010956c43988925c9d938a12 | Assets/_02LWS/Art/Materials/Civilian_Socks.mat
-222062d8c5a8d464d928f52bb5f8b189 | Assets/_02LWS/Art/Materials/Clothing.mat
-b5814c770a983bb4cae07c831e00ea35 | Assets/_02LWS/Art/Materials/DoorAndLegs.mat
-de397b8218f468e4e81c386b17233d10 | Assets/_02LWS/Art/Materials/Fire.mat
-4dde3413e849fc443a69d032bc66ad83 | Assets/_02LWS/Art/Materials/FireCore.mat
-2277db8a89e4c3d4db44273f2bebba31 | Assets/_02LWS/Art/Materials/FireFlames.mat
-2858e810cb455a540a801c6165aeb3a9 | Assets/_02LWS/Art/Materials/FireSmoke.mat
-4f40f4d85f75a6344a32a8c0501b4da5 | Assets/_02LWS/Art/Materials/Floor.mat
-39696cb42a1d06449888220fcba6e6fc | Assets/_02LWS/Art/Materials/Ray.mat
-0e7ac9f4f58617c4d9bddf1224883c5f | Assets/_02LWS/Art/Materials/Skin.mat
-7a412daa65c79c34785f2cedf2a58684 | Assets/_02LWS/Art/Materials/Wall.mat
-957a8832b0f16bf40b2f7f3a71773fd3 | Assets/_02LWS/Art/Shaders
-150454e45da527646a4e4e8b95ee00fb | Assets/_02LWS/Art/Shaders/LwsKoreanSDF.shader
-1b7b8b22dd2ebc64ab3400c0190c36de | Assets/_02LWS/Art/Shaders/TMPro_Properties.cginc
-4e7ea6d3cfd261545ac87bfe31370ae1 | Assets/_02LWS/Audio
-2130547bffca23a42b130f746010944f | Assets/_02LWS/Audio/Alarm
-0f85c5eab42ece34b9c3fe82656f0890 | Assets/_02LWS/Audio/Alarm/CorridorAlarm.wav
-451a1b1c2922015428533aeab90e15ca | Assets/_02LWS/Audio/Voice
-0b12b5a586d7dd842bc2c219d5c56ce9 | Assets/_02LWS/Audio/Voice/bell.wav
-caad2e7514149234bbbfd288f022bc44 | Assets/_02LWS/Audio/Voice/completion.wav
-b26d75a926d117345aa212a0cd303208 | Assets/_02LWS/Audio/Voice/ElevenLabs_2026-11-04T04_14_37_Roger - Laid-Back, Casual, Resonant_pre_s50_sim75_v4.mp3
-52d791b33af59624db219655509a054b | Assets/_02LWS/Audio/Voice/feedback.wav
-bed0f60f3fb40a2448a20672f394004d | Assets/_02LWS/Audio/Voice/next.wav
-3794040a03d0e924bba43b8d99279fa0 | Assets/_02LWS/Audio/Voice/shout.wav
-6ae26424d4fb4e44c81417573da07935 | Assets/_02LWS/Audio/Voice/situation.wav
-004c84844b302a94ca53156bd14580fc | Assets/_02LWS/Content
-8e3b71d9c629630438b2ac9edea31183 | Assets/_02LWS/Content/ActionOptions.asset
-9ad9f556b37327840a4087955f8ba3bb | Assets/_02LWS/Content/GuidanceCatalog.asset
-792bad21a9b097045804285a1a2187d2 | Assets/_02LWS/Content/VoiceManifest.json
-c32dbee5012223448a279f0f74a67b24 | Assets/_02LWS/Documentation
-f73ba8cfa4dcef84b8848302405fc3bc | Assets/_02LWS/Documentation/Environment.md
-d577444acb88e924fac9448736c5b2b8 | Assets/_02LWS/Documentation/Integration.md
-dd0c1eeccf99bc14abac65035dd090b9 | Assets/_02LWS/Documentation/Licenses
-1daab644bd8ae7b4ebf72591c0cc9fc6 | Assets/_02LWS/Documentation/Licenses/CC0-1.0-Reference.txt
-04ebbd347c34c3649a8dffc7213c1e05 | Assets/_02LWS/Documentation/Licenses/KenneyParticles-CC0.txt
-4b4f78e052a3b804fabbb83d8a036963 | Assets/_02LWS/Documentation/Licenses/QuaterniusAnimations-CC0.txt
-89293ddffba9337489227c43d732ccd1 | Assets/_02LWS/Documentation/Licenses/QuaterniusMan-Source.txt
-b4edec9ceb4833046b5b0ec945f78880 | Assets/_02LWS/Documentation/Licenses/Supertonic2.txt
-c428450b8de62c54bb8afc2955233424 | Assets/_02LWS/Documentation/Licenses/Supertonic3.txt
-88d44800050512641826df1055b7d034 | Assets/_02LWS/Documentation/Licenses/UnityCompanionLicense.txt
-5c72eaf7d74de144584cba18e7a2dcab | Assets/_02LWS/Documentation/Licenses/UnityTextMeshProNotice.md
-cc0d6065a837a164eb4a1243e7d95c7e | Assets/_02LWS/Documentation/ThirdPartyNotices.md
-dcff42d4b9746184e9f9e115aa90695d | Assets/_02LWS/Documentation/Validation
-93187bb8e67cea648bd83f07f726a3b3 | Assets/_02LWS/Documentation/Validation/AcceptanceSummary.md
-3ac6e43453690754f93b12203b9de874 | Assets/_02LWS/Documentation/Validation/AndroidBuild.md
-fed46a0161267ed4abf1f0ed4a03c59c | Assets/_02LWS/Documentation/Validation/CodeReview.md
-fa59621a53e85804aa0ab665515d4906 | Assets/_02LWS/Documentation/Validation/ContentAudit.md
-754368550f21cbd478e8aa4ca49ac47e | Assets/_02LWS/Documentation/Validation/ExportContents.txt
-4de39b30d8e1ff840b274a784d35447e | Assets/_02LWS/Documentation/Validation/ExportImport.md
-2d4ff717fa3ea42458e91403d30e0c14 | Assets/_02LWS/Documentation/Validation/Foundation.md
-b87c3ce25de14004c89179fdd71d86df | Assets/_02LWS/Documentation/Validation/Performance.md
-e871a8d046658054c85b19778e7e87f8 | Assets/_02LWS/Documentation/Validation/Quest2Acceptance.md
-3fa4a5f8451258c4193f80531a75aac6 | Assets/_02LWS/Documentation/Validation/Setup.md
-eb24683586660a0468749fca2e82a098 | Assets/_02LWS/Documentation/Validation/US1.md
-927988bb9e71217468daf5aac59cba49 | Assets/_02LWS/Documentation/Validation/US2.md
-e43d5c20abcb2ca4fb06dcea7b719336 | Assets/_02LWS/Documentation/Validation/US3.md
-d97997e51df8649438c869574dff32de | Assets/_02LWS/Documentation/Validation/US4.md
-0384257319b0f314798bd37f0e7e3da5 | Assets/_02LWS/Documentation/Validation/VisualReplacement.md
-204966da8d8c93b40bd365d64b3c15a1 | Assets/_02LWS/Documentation/VisualAssetSources.json
-6e264adf73a65cc41b5a26cb0aff26de | Assets/_02LWS/Documentation/VoiceGeneration.md
-26c7632d6083e4543b4933618a2776a1 | Assets/_02LWS/Prefabs
-1176a65b9c5b1244fb6bbafca2d49b67 | Assets/_02LWS/Prefabs/Characters
-3300be052a8064a4ea11c0a46bb3c5b6 | Assets/_02LWS/Prefabs/Characters/Bystander.prefab
-c6482641a58876e4a82cc0b1eb4b9539 | Assets/_02LWS/Prefabs/Environment
-21d5239122a6bfc4f9a77c879539d598 | Assets/_02LWS/Prefabs/Environment/Corridor.prefab
-981575ae415129b4f930ca997732d224 | Assets/_02LWS/Prefabs/Environment/FireEffect.prefab
-4d4b92c26304ab64b8864022c5c346f5 | Assets/_02LWS/Prefabs/Environment/TeleportSurface.prefab
-deab3f5947f6baa4c8a42a1e79ef2945 | Assets/_02LWS/Prefabs/Interaction
-d772899f3493d9546a25086a827748f3 | Assets/_02LWS/Prefabs/Interaction/FireAlarm.prefab
-398bc7e141e60594ab5eb74d38ac6f91 | Assets/_02LWS/Prefabs/UI
-1b6387613a6230f428e8c19b30afb596 | Assets/_02LWS/Prefabs/UI/ActionChoicePanel.prefab
-3a9b13c71a0fb3048a7ecdaa7a73cef7 | Assets/_02LWS/Prefabs/UI/ContentMenuPanel.prefab
-51a4ef42eb551e74c8b09e9f0ee2b32f | Assets/_02LWS/Prefabs/UI/LwsEventSystem.prefab
-aecdb840af615874f89e641b02e3687b | Assets/_02LWS/Prefabs/UI/NextPanel.prefab
-8aaa82853f9368348a6a869ee9b4e5cd | Assets/_02LWS/Prefabs/UI/ReturnToMenuPanel.prefab
-f87bfe9826fb4a44f8d5af5160bcdd9a | Assets/_02LWS/Prefabs/XR
-bbb18e6ce1051c74a86d5e2951204d46 | Assets/_02LWS/Prefabs/XR/LwsXROrigin.prefab
-a21c2b463e16b50479dce8c9db31b9e7 | Assets/_02LWS/Scenes
-0691eb4411129a44a9e45ed45c08ad76 | Assets/_02LWS/Scenes/ContentMenu.unity
-fffe27dc9247f754fa9fbe43c3c7a17d | Assets/_02LWS/Scenes/FireNotification.unity
-307b7f5b0fb80b14680ab97bde5364f0 | Assets/_02LWS/Scripts
-effff3887384ca6428b0fd2be72f1403 | Assets/_02LWS/Scripts/Domain
-0abf3d48f28cd56499ec5fd87c97f23d | Assets/_02LWS/Scripts/Domain/ActionOption.cs
-2511f75a17859744c84a9326f4e5cb55 | Assets/_02LWS/Scripts/Domain/ExperienceSession.cs
-c143303cf016dbf4c8e204f5bf348254 | Assets/_02LWS/Scripts/Domain/ExperienceStage.cs
-22b58e0f84b644945b6af4c91304602e | Assets/_02LWS/Scripts/Domain/LWS.FireNotification.Domain.asmdef
-62aee90cfc6b79c44bd5488960f6d469 | Assets/_02LWS/Scripts/Interaction
-e8f7e64c0a65b5e4e9bf99d625a4f8db | Assets/_02LWS/Scripts/Interaction/ActionChoiceInput.cs
-7537705fe0ddd784c93fefcd6e782a47 | Assets/_02LWS/Scripts/Interaction/BellPushInput.cs
-ea6f771b22f6b224e967a3c978c1af6c | Assets/_02LWS/Scripts/Interaction/ContentMenuInput.cs
-dbddf769fcb28fc46994db08e808d5ea | Assets/_02LWS/Scripts/Interaction/FreshPressButton.cs
-2aa477d0ff08c0d49aa505b544bd39e9 | Assets/_02LWS/Scripts/Interaction/LwsXRInputs.cs
-12abf66ef101e2f4c94f8894f4be69f7 | Assets/_02LWS/Scripts/Interaction/NextInput.cs
-3c4ed73d484d4ed4fb79edfc1978f951 | Assets/_02LWS/Scripts/Interaction/ReturnToMenuInput.cs
-8c455409da8bb504b9a31d03b5f8806e | Assets/_02LWS/Scripts/LWS.FireNotification.Runtime.asmdef
-79b315eaf60daf647bd75b8c46d4f53c | Assets/_02LWS/Scripts/Presentation
-c3b6d2fb05c29ea4796ad8e2e0f892e4 | Assets/_02LWS/Scripts/Presentation/ActionOptions.cs
-778dac4a81b5ffb44b4871711f51de42 | Assets/_02LWS/Scripts/Presentation/AlarmResultPresenter.cs
-7c38df28af68f724785e4e3fe563b7cc | Assets/_02LWS/Scripts/Presentation/BystanderPresenter.cs
-f1a9575ce81f1a04da143ba861b3ca06 | Assets/_02LWS/Scripts/Presentation/FireVisualPresenter.cs
-fd930c397da7ea84591d89dbed80290c | Assets/_02LWS/Scripts/Presentation/GuidanceCatalog.cs
-cd8e17ab4fa5fe342842f0cf7da20c0e | Assets/_02LWS/Scripts/Presentation/GuidanceCue.cs
-63d083712350f034caf69f8d18519ef4 | Assets/_02LWS/Scripts/Presentation/GuidancePresenter.cs
-c8f126f383c57f84f896b3915ddb67ad | Assets/_02LWS/Scripts/Presentation/PresentationRun.cs
-79a54a8393611d545b9f20f576fbb443 | Assets/_02LWS/Scripts/Presentation/ScenarioBaseline.cs
-6a226aa9a45a7be4e8e1d2d2511e727e | Assets/_02LWS/Scripts/Presentation/ScenarioRestorer.cs
-34bae75b60d34e2408aa380613620895 | Assets/_02LWS/Scripts/Presentation/ShoutResultPresenter.cs
-6da52ebdff8dea74aaac4674bc98e41a | Assets/_02LWS/Scripts/Runtime
-a1e91bf57ed22bb4bbacc326471e4133 | Assets/_02LWS/Scripts/Runtime/BellExperience.cs
-50829b0a367f1b94890220e9310f4e2f | Assets/_02LWS/Scripts/Runtime/CompletionExperience.cs
-f54d6ea72ad71854f9248f0015f4140a | Assets/_02LWS/Scripts/Runtime/ContentSceneNavigator.cs
-a2e5544b70ac0a84e8df04ca8980c46b | Assets/_02LWS/Scripts/Runtime/ExperienceLifecycle.cs
-e9e92afe8a774c94ea452e55512fefa8 | Assets/_02LWS/Scripts/Runtime/ExperienceStageHandler.cs
-fcdb6eecee66dfd46a0642ef14dfdfa5 | Assets/_02LWS/Scripts/Runtime/FireNotificationController.cs
-8b6af48e5ace054409f2818875e2e7c6 | Assets/_02LWS/Scripts/Runtime/MethodSequence.cs
-249f71e067b485847ade8b35d8d11d71 | Assets/_02LWS/Scripts/Runtime/ShoutExperience.cs
-19a8d79fa477fed4a85cef265fba642a | Assets/_02LWS/Settings
-287a336da413472469ded67944013ed5 | Assets/_02LWS/Settings/InputReferences
-03ab1f227725d8545a1172e4d5b4c2b4 | Assets/_02LWS/Settings/InputReferences/Head_Position.asset
-5c8ec7dd69ac60f44aa64672cf01b08e | Assets/_02LWS/Settings/InputReferences/Head_Rotation.asset
-5d0a17685531f6c4a84f963d8741fe66 | Assets/_02LWS/Settings/InputReferences/Head_TrackingState.asset
-c585fc26d20556c4c803dae5aa5c5a70 | Assets/_02LWS/Settings/InputReferences/Left_Position.asset
-e7e168efa6c7e4b4e8b7f070eef31cac | Assets/_02LWS/Settings/InputReferences/Left_Press.asset
-c736c6088ee91764a9eb6d4081bf4ba2 | Assets/_02LWS/Settings/InputReferences/Left_Rotation.asset
-ef577ae4098558b479621a480530e19e | Assets/_02LWS/Settings/InputReferences/Left_Teleport.asset
-8dc261a48937834498bd09f9d3515511 | Assets/_02LWS/Settings/InputReferences/Left_TrackingState.asset
-63034fc203470c74fa125990dcfa621e | Assets/_02LWS/Settings/InputReferences/Right_Position.asset
-81ce3499e7801a64f929099d1d3a9df4 | Assets/_02LWS/Settings/InputReferences/Right_Press.asset
-0efa07fd96e34cc4092436ae29d16e1b | Assets/_02LWS/Settings/InputReferences/Right_Rotation.asset
-89de4f30a42e9e94c8d0826f24c17e55 | Assets/_02LWS/Settings/InputReferences/Right_Teleport.asset
-e02b18d85ca3bdb429f69265a86fc502 | Assets/_02LWS/Settings/InputReferences/Right_TrackingState.asset
-37caf55e70e3cba4da92a9dfbbf0e308 | Assets/_02LWS/Settings/LwsInputActions.inputactions
+Assets/_02LWS/Art/Animations/Conversation_1.controller
+Assets/_02LWS/Art/Animations/Conversation_2.controller
+Assets/_02LWS/Art/Animations/X Bot@Standing Idle.fbx
+Assets/_02LWS/Art/Animations/X Bot@Talking_01.fbx
+Assets/_02LWS/Art/Animations/X Bot@Talking_02.fbx
+Assets/_02LWS/Art/Characters/UmplixDummy/Body.mat
+Assets/_02LWS/Art/Characters/UmplixDummy/LowpolyDummy.fbx
+Assets/_02LWS/Art/Effects/Kenney/fire_01.png
+Assets/_02LWS/Art/Effects/Kenney/flame_01.png
+Assets/_02LWS/Art/Effects/Kenney/flame_02.png
+Assets/_02LWS/Art/Effects/Kenney/flame_03.png
+Assets/_02LWS/Art/Effects/Kenney/smoke_01.png
+Assets/_02LWS/Art/Effects/Kenney/smoke_04.png
+Assets/_02LWS/Art/Fonts/LwsKorean.asset
+Assets/_02LWS/Art/Fonts/NotoSansKR.ttf
+Assets/_02LWS/Art/Fonts/OFL.txt
+Assets/_02LWS/Art/Materials/AlarmRed.mat
+Assets/_02LWS/Art/Materials/DoorAndLegs.mat
+Assets/_02LWS/Art/Materials/FireCore.mat
+Assets/_02LWS/Art/Materials/FireFlames.mat
+Assets/_02LWS/Art/Materials/FireSmoke.mat
+Assets/_02LWS/Art/Materials/Floor.mat
+Assets/_02LWS/Art/Materials/Ray.mat
+Assets/_02LWS/Art/Materials/Skin.mat
+Assets/_02LWS/Art/Materials/Wall.mat
+Assets/_02LWS/Art/Shaders/LwsKoreanSDF.shader
+Assets/_02LWS/Art/Shaders/TMPro_Properties.cginc
+Assets/_02LWS/Audio/Alarm/CorridorAlarm.wav
+Assets/_02LWS/Audio/Voice/bell.wav
+Assets/_02LWS/Audio/Voice/completion.wav
+Assets/_02LWS/Audio/Voice/ElevenLabs_2026-11-04T04_14_37_Roger - Laid-Back, Casual, Resonant_pre_s50_sim75_v4.mp3
+Assets/_02LWS/Audio/Voice/feedback.wav
+Assets/_02LWS/Audio/Voice/next.wav
+Assets/_02LWS/Audio/Voice/situation.wav
+Assets/_02LWS/Content/ActionOptions.asset
+Assets/_02LWS/Content/GuidanceCatalog.asset
+Assets/_02LWS/Content/VoiceManifest.json
+Assets/_02LWS/Docs/XRStarterRigMigration.md
+Assets/_02LWS/Documentation/Environment.md
+Assets/_02LWS/Documentation/Integration.md
+Assets/_02LWS/Documentation/Licenses/CC0-1.0-Reference.txt
+Assets/_02LWS/Documentation/Licenses/KenneyParticles-CC0.txt
+Assets/_02LWS/Documentation/Licenses/QuaterniusAnimations-CC0.txt
+Assets/_02LWS/Documentation/Licenses/QuaterniusMan-Source.txt
+Assets/_02LWS/Documentation/Licenses/Supertonic2.txt
+Assets/_02LWS/Documentation/Licenses/Supertonic3.txt
+Assets/_02LWS/Documentation/Licenses/UmplixDummy-Source.txt
+Assets/_02LWS/Documentation/Licenses/UnityCompanionLicense.txt
+Assets/_02LWS/Documentation/Licenses/UnityTextMeshProNotice.md
+Assets/_02LWS/Documentation/ThirdPartyNotices.md
+Assets/_02LWS/Documentation/Validation/AcceptanceSummary.md
+Assets/_02LWS/Documentation/Validation/AndroidBuild.md
+Assets/_02LWS/Documentation/Validation/CharacterRemoval.md
+Assets/_02LWS/Documentation/Validation/CodeReview.md
+Assets/_02LWS/Documentation/Validation/CommitReadiness.md
+Assets/_02LWS/Documentation/Validation/ContentAudit.md
+Assets/_02LWS/Documentation/Validation/ConversationIntegration.md
+Assets/_02LWS/Documentation/Validation/DummyIntegration.md
+Assets/_02LWS/Documentation/Validation/ExportContents.txt
+Assets/_02LWS/Documentation/Validation/ExportImport.md
+Assets/_02LWS/Documentation/Validation/Foundation.md
+Assets/_02LWS/Documentation/Validation/Performance.md
+Assets/_02LWS/Documentation/Validation/QuaterniusOriginalAttempt.md
+Assets/_02LWS/Documentation/Validation/Quest2Acceptance.md
+Assets/_02LWS/Documentation/Validation/Setup.md
+Assets/_02LWS/Documentation/Validation/SharedSystems.md
+Assets/_02LWS/Documentation/Validation/SingleScene.md
+Assets/_02LWS/Documentation/Validation/US1.md
+Assets/_02LWS/Documentation/Validation/US2.md
+Assets/_02LWS/Documentation/Validation/US3.md
+Assets/_02LWS/Documentation/Validation/US4.md
+Assets/_02LWS/Documentation/Validation/VisualReplacement.md
+Assets/_02LWS/Documentation/VisualAssetSources.json
+Assets/_02LWS/Documentation/VoiceGeneration.md
+Assets/_02LWS/Prefabs/Characters/LowpolyDummy.prefab
+Assets/_02LWS/Prefabs/Environment/Corridor.prefab
+Assets/_02LWS/Prefabs/Environment/FireEffect.prefab
+Assets/_02LWS/Prefabs/Environment/TeleportSurface.prefab
+Assets/_02LWS/Prefabs/Interaction/FireAlarm.prefab
+Assets/_02LWS/Prefabs/UI/ActionChoicePanel.prefab
+Assets/_02LWS/Prefabs/UI/ContentMenuPanel.prefab
+Assets/_02LWS/Prefabs/UI/LwsEventSystem.prefab
+Assets/_02LWS/Prefabs/UI/NextPanel.prefab
+Assets/_02LWS/Prefabs/UI/ReturnToMenuPanel.prefab
+Assets/_02LWS/Prefabs/XR/LwsXROrigin.prefab
+Assets/_02LWS/Prefabs/XR/LwsXRStarterRig.prefab
+Assets/_02LWS/Scenes/FireNotification.unity
+Assets/_02LWS/Scripts/Domain/ActionOption.cs
+Assets/_02LWS/Scripts/Domain/ExperienceSession.cs
+Assets/_02LWS/Scripts/Domain/ExperienceStage.cs
+Assets/_02LWS/Scripts/Domain/LWS.FireNotification.Domain.asmdef
+Assets/_02LWS/Scripts/Interaction/ActionChoiceInput.cs
+Assets/_02LWS/Scripts/Interaction/BellPushInput.cs
+Assets/_02LWS/Scripts/Interaction/ContentMenuInput.cs
+Assets/_02LWS/Scripts/Interaction/FreshPressButton.cs
+Assets/_02LWS/Scripts/Interaction/LwsXRInputs.cs
+Assets/_02LWS/Scripts/Interaction/NextInput.cs
+Assets/_02LWS/Scripts/Interaction/ReturnToMenuInput.cs
+Assets/_02LWS/Scripts/LWS.FireNotification.Runtime.asmdef
+Assets/_02LWS/Scripts/Presentation/ActionOptions.cs
+Assets/_02LWS/Scripts/Presentation/AlarmResultPresenter.cs
+Assets/_02LWS/Scripts/Presentation/ConversationBystander.cs
+Assets/_02LWS/Scripts/Presentation/FireVisualPresenter.cs
+Assets/_02LWS/Scripts/Presentation/GuidanceCatalog.cs
+Assets/_02LWS/Scripts/Presentation/GuidanceCue.cs
+Assets/_02LWS/Scripts/Presentation/GuidancePresenter.cs
+Assets/_02LWS/Scripts/Presentation/PresentationRun.cs
+Assets/_02LWS/Scripts/Presentation/ScenarioBaseline.cs
+Assets/_02LWS/Scripts/Presentation/ScenarioRestorer.cs
+Assets/_02LWS/Scripts/Presentation/ShoutResultPresenter.cs
+Assets/_02LWS/Scripts/Runtime/BellExperience.cs
+Assets/_02LWS/Scripts/Runtime/CompletionExperience.cs
+Assets/_02LWS/Scripts/Runtime/ContentSceneNavigator.cs
+Assets/_02LWS/Scripts/Runtime/ExperienceLifecycle.cs
+Assets/_02LWS/Scripts/Runtime/ExperienceStageHandler.cs
+Assets/_02LWS/Scripts/Runtime/FireNotificationController.cs
+Assets/_02LWS/Scripts/Runtime/MethodSequence.cs
+Assets/_02LWS/Scripts/Runtime/ShoutExperience.cs
+Assets/_02LWS/Settings/InputReferences/Head_Position.asset
+Assets/_02LWS/Settings/InputReferences/Head_Rotation.asset
+Assets/_02LWS/Settings/InputReferences/Head_TrackingState.asset
+Assets/_02LWS/Settings/InputReferences/Left_Position.asset
+Assets/_02LWS/Settings/InputReferences/Left_Press.asset
+Assets/_02LWS/Settings/InputReferences/Left_Rotation.asset
+Assets/_02LWS/Settings/InputReferences/Left_Teleport.asset
+Assets/_02LWS/Settings/InputReferences/Left_TrackingState.asset
+Assets/_02LWS/Settings/InputReferences/Right_Position.asset
+Assets/_02LWS/Settings/InputReferences/Right_Press.asset
+Assets/_02LWS/Settings/InputReferences/Right_Rotation.asset
+Assets/_02LWS/Settings/InputReferences/Right_Teleport.asset
+Assets/_02LWS/Settings/InputReferences/Right_TrackingState.asset
+Assets/_02LWS/Settings/LwsInputActions.inputactions
