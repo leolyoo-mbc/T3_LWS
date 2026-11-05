@@ -10,6 +10,6 @@ namespace LWS.FireNotification.Interaction
         private void OnEnable(){controller.StateChanged+=Refresh;Refresh();}
         private void OnDisable(){if(controller!=null)controller.StateChanged-=Refresh;if(panel!=null)panel.SetActive(false);}
         private void Refresh(){var s=controller.Session;panel.SetActive(s!=null&&!s.Suspended&&!s.Closed);}
-        public void ReturnToMenu()=>controller.ReturnToMenu();
+        public void ReturnToMenu()=>controller.RequestReturnToMenu();
     }
 }

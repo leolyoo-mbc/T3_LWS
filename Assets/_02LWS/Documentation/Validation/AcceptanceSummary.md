@@ -44,3 +44,13 @@ Separate Unity 6000.3.26f1 project import and edit-mode audit passed: two scenes
 Record final Android artifact and package paths/hashes and clean-import findings when generated. T037/T038 remain unchecked; T041 remains incomplete until its newly built Quest loop and offline test are performed, even if the source package imports cleanly. T042 remains incomplete until required final acceptance evidence is complete. The later designated submission integration project must be revalidated separately.
 
 Follow Integration.md and ThirdPartyNotices.md, including the supplied ElevenLabs free-plan non-commercial use and publication-title attribution. No paid plan, real-time TTS, microphone or downloaded player content was introduced.
+
+## Current shared UI revision — 2026-11-05
+
+This section supersedes earlier UI/artifact counts for the current source. design.md v0.1.1 styles, font, pause/settings/confirm/result UI are implemented under _02LWS. SharedUI.md and its raw result files identify executed evidence and limitations; historical validation sections above describe older revisions. The existing APK predates the UI revision. T060 and T037/T038/T041/T042 remain pending actual device/receiving-project evidence. Do not interpret Editor synthetic suspension or Input System mouse results as Quest standalone verification.
+
+Current teardown fix verified: 7 focused teardown checks and repeated 35-check input/layout run pass. Stopping Play Mode with settings open produces no error. The final unitypackage is re-exported after this change; the older APK remains unchanged.
+
+
+2026-11-05 공간 UI 추종 추가: Validation/ComfortFollow.md 및 ComfortFollow-Editor/Input/Regression.txt가 최신 증거다. Editor 추종/입력 13개 및 기존 회귀 111개 통과. 실기기 T066/T060과 기존 기기/Import 미완료 유지. 최신 unitypackage는 재Export 후 Artifacts/SharedUIPackageAudit.json으로 원본/meta 일치를 확인한다. APK는 이전 버전이다.
+

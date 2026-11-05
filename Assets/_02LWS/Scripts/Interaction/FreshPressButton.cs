@@ -10,6 +10,8 @@ namespace LWS.FireNotification.Interaction
     {
         public InputActionAsset inputs;
         public UnityEvent selected = new UnityEvent();
+        public bool allowWhilePaused;
+        private bool Blocked => !allowWhilePaused && Runtime.SharedUIController.Active != null && Runtime.SharedUIController.Active.IsOpen;
         private bool armed;
         private int acceptedPointer = int.MinValue;
         private InputAction left;
@@ -17,7 +19,7 @@ namespace LWS.FireNotification.Interaction
         private bool released;
         private void OnEnable()
         {
-            armed = false; acceptedPointer = int.MinValue;
+            armed = false; released = false; acceptedPointer = int.MinValue;
             left = inputs != null ? inputs.FindAction("Left/Press") : null;
             right = inputs != null ? inputs.FindAction("Right/Press") : null;
         }
@@ -27,15 +29,13 @@ namespace LWS.FireNotification.Interaction
         }
         public void OnPointerDown(PointerEventData data)
         {
-#if !UNITY_EDITOR
-            if (!(data is TrackedDeviceEventData)) return;
-#endif
-            if (!armed || !isActiveAndEnabled) return;
+if (UnityEngine.XR.XRSettings.isDeviceActive && !(data is TrackedDeviceEventData)) return;
+            if (!armed || !isActiveAndEnabled || Blocked || (GetComponent<Presentation.ThemedButton>() is Presentation.ThemedButton style && (!style.Available || style.Busy))) return;
             acceptedPointer = data.pointerId; armed = false;
         }
         public void OnPointerClick(PointerEventData data)
         {
-            if (acceptedPointer != data.pointerId || !isActiveAndEnabled) return;
+            if (acceptedPointer != data.pointerId || !isActiveAndEnabled || Blocked || (GetComponent<Presentation.ThemedButton>() is Presentation.ThemedButton style && (!style.Available || style.Busy))) return;
             acceptedPointer = int.MinValue; selected.Invoke();
         }
         public void OnPointerUp(PointerEventData data) { if (acceptedPointer == data.pointerId) released = true; }

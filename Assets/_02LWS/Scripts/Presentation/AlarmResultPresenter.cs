@@ -20,9 +20,10 @@ namespace LWS.FireNotification.Presentation
         private IEnumerator Finish(FireNotificationController controller,PresentationRun run)
         {
             float time=0;
-            while(time<resultDuration&&!run.Canceled){yield return null;time+=Time.unscaledDeltaTime;}
+            while(time<resultDuration&&!run.Canceled){yield return null;time+=controller.PresentationDelta;}
             if(!run.Canceled)controller.Complete(run);
         }
+        public void SetPaused(bool value) { if(alarm == null || alarm.clip == null) return; if(value) alarm.Pause(); else alarm.UnPause(); }
         public void Cancel(){StopAllCoroutines();if(alarm!=null){alarm.Stop();alarm.clip=null;}}
         private void OnDisable()=>Cancel();
     }

@@ -16,6 +16,8 @@ namespace LWS.FireNotification.Presentation
         private bool captured;
         private bool turning;
         private bool frozen;
+        private bool userPaused;
+        public void SetUserPaused(bool value) { userPaused = value; if(animator != null) animator.speed = value || frozen ? 0 : 1; }
 
         public void Capture()
         {
@@ -27,7 +29,7 @@ namespace LWS.FireNotification.Presentation
         public void Restore(bool watchingFire, Transform target)
         {
             Capture();
-            frozen = false; turning = false;
+            frozen = false; userPaused = false; turning = false;
             transform.rotation = conversationRotation;
             if (watchingFire) transform.rotation = Facing(target);
             if (!Application.isPlaying) return;
@@ -59,7 +61,7 @@ namespace LWS.FireNotification.Presentation
         }
         private void Update()
         {
-            if (!turning || frozen) return;
+            if (!turning || frozen || userPaused) return;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, fireRotation, turnDegreesPerSecond * Time.unscaledDeltaTime);
             if (Quaternion.Angle(transform.rotation, fireRotation) < 0.1f) turning = false;
         }

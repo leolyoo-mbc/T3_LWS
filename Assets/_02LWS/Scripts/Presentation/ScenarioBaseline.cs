@@ -29,6 +29,11 @@ namespace LWS.FireNotification.Presentation
             if (fireVisual != null) fireVisual.SetActive(true);
             if (fireEffect != null) fireEffect.Restore();
         }
+        public void SetUserPaused(bool value)
+        {
+            foreach(var person in bystanders) person.SetUserPaused(value);
+            if(fireEffect != null) fireEffect.SetUserPaused(value);
+        }
         public void Freeze()
         {
             foreach (var person in bystanders) person.Freeze();

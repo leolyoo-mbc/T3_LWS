@@ -1,0 +1,10 @@
+Comfort follow Editor checks
+PASS eight intended panels wired
+PASS alarm label remains world fixed
+PASS small translation and turn remain stable
+PASS large yaw converges
+PASS pitch and roll excluded
+PASS translation converges
+PASS origin discontinuity snaps
+PASS reactivation snaps
+DONE checks=8 failed=0

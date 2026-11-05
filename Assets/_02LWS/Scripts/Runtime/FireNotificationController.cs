@@ -23,6 +23,40 @@ namespace LWS.FireNotification.Runtime
         private readonly Queue<Pending> commands = new Queue<Pending>();
         private bool leaving;
         private bool started;
+        public bool UserPaused { get; private set; }
+        public bool InputBlocked => UserPaused || lifecycle.Blocked || Session == null || Session.Suspended || Session.Closed;
+        public float PresentationDelta => UserPaused ? 0 : Time.unscaledDeltaTime;
+        private bool pendingStageRestart;
+        public event Action ExitConfirmationRequested;
+        public void RequestReturnToMenu()
+        {
+            if (Session == null || Session.Closed) return;
+            if (Session.Stage == ExperienceStage.CompletionGuidance) ReturnToMenu();
+            else ExitConfirmationRequested?.Invoke();
+        }
+        public void SetUserPaused(bool paused)
+        {
+            if (UserPaused == paused) return;
+            UserPaused = paused;
+            if (!started || !isActiveAndEnabled) return;
+            if (guidance != null) guidance.SetPaused(paused);
+            foreach (var result in GetComponentsInChildren<AlarmResultPresenter>(true)) result.SetPaused(paused);
+            if (baseline != null) baseline.SetUserPaused(paused);
+            if (!paused && pendingStageRestart && !lifecycle.Blocked) ResumeSystemStage();
+            StateChanged?.Invoke();
+        }
+        private void ResumeSystemStage()
+        {
+            if (Session != null && Session.Resume()) { pendingStageRestart = false; Snapshot = null; Enter(); }
+        }
+        public void RestartExperience()
+        {
+            if (!started) return;
+            Run?.Dispose(); CancelPresentation(); Session?.Close(); commands.Clear(); Snapshot = null;
+            lifecycle.Changed -= OnSuspension;
+            started = false; UserPaused = false; pendingStageRestart = false;
+            BeginExperience();
+        }
 
         private void Start()
         {
@@ -32,14 +66,14 @@ namespace LWS.FireNotification.Runtime
         {
             if (started || !isActiveAndEnabled) return;
             catalog.Validate(); baseline.Capture();
-            leaving = false; commands.Clear(); Snapshot = null;
+            leaving = false; UserPaused = false; pendingStageRestart = false; commands.Clear(); Snapshot = null;
             Session = new ExperienceSession(); started = true;
             lifecycle.Changed += OnSuspension;
             if (lifecycle.Blocked) OnSuspension(true); else Enter();
         }
         public void Send(ExperienceCommand command, string option = null)
         {
-            if (!started || leaving || Session.Suspended) return;
+            if (!started || leaving || InputBlocked) return;
             commands.Enqueue(new Pending { command = command, option = option, execution = Session.ExecutionId });
         }
         public void Complete(PresentationRun run)
@@ -51,6 +85,7 @@ namespace LWS.FireNotification.Runtime
         private void LateUpdate()
         {
             if (!started || leaving || Session.Suspended || lifecycle.Blocked) { commands.Clear(); return; }
+            if (UserPaused) return;
             while (commands.Count > 0)
             {
                 var command = commands.Dequeue();
@@ -88,11 +123,12 @@ namespace LWS.FireNotification.Runtime
                 Snapshot = new SuspensionSnapshot { stage = Session.Stage, stageExecution = Session.ExecutionId };
                 Run?.Dispose(); CancelPresentation(); StateChanged?.Invoke();
             }
-            else if (!blocked && Session.Resume()) { Snapshot = null; Enter(); }
+            else if (!blocked) { pendingStageRestart = true; if (!UserPaused) ResumeSystemStage(); }
         }
         public void ReturnToMenu()
         {
-            if (!started || leaving || Session.Suspended) return;
+            if (!started || leaving) return;
+            UserPaused = false; pendingStageRestart = false;
             leaving = true; Session.Close(); commands.Clear(); Snapshot = null;
             Run?.Dispose(); CancelPresentation(); StateChanged?.Invoke(); MenuRequested?.Invoke();
         }
@@ -100,7 +136,7 @@ namespace LWS.FireNotification.Runtime
         {
             if (lifecycle != null) lifecycle.Changed -= OnSuspension;
             Run?.Dispose(); CancelPresentation(); Session?.Close(); Snapshot = null; commands.Clear();
-            started = false;
+            started = false; UserPaused = false; pendingStageRestart = false;
         }
 #if UNITY_EDITOR
         public void DebugEnter(ExperienceStage stage)

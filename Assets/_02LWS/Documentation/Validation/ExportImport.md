@@ -22,3 +22,11 @@ Visual replacement update (2026-11-04 16:22 KST): the new CC0 character, humanoi
 
 T041 remains incomplete regardless of source import success: no new clean-project Quest build, physical bell push, standalone loop, menu re-entry or fresh offline acceptance has been performed. The user cannot currently connect a device. The final submission integration project is not designated and must be revalidated later.
 
+
+## Shared UI package revision — 2026-11-05
+
+The UI revision is re-exported from current _02LWS sources, including local Noto Sans CJK KR Regular original/TMP/OFL, Theme, view Prefabs, updated scene and runtime pause/input adapters. Original ContentMenu migration scene remains excluded. Package/source/meta byte comparison and one-scene inventory are re-run; Artifacts/SharedUIPackageAudit.json records current values. This is export integrity evidence, not a fresh receiving-project Import result. Existing Starter Assets sample prerequisites remain; actual Quest and designated integration-project checks are still incomplete. The older APK is not a build of this UI revision.
+
+
+2026-11-05 공간 UI 추종 추가: Validation/ComfortFollow.md 및 ComfortFollow-Editor/Input/Regression.txt가 최신 증거다. Editor 추종/입력 13개 및 기존 회귀 111개 통과. 실기기 T066/T060과 기존 기기/Import 미완료 유지. 최신 unitypackage는 재Export 후 Artifacts/SharedUIPackageAudit.json으로 원본/meta 일치를 확인한다. APK는 이전 버전이다.
+

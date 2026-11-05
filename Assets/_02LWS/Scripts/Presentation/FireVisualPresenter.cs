@@ -7,11 +7,18 @@ namespace LWS.FireNotification.Presentation
         public ParticleSystem[] systems;
         public Light fireLight;
         private bool frozen;
+        private bool userPaused;
+        public void SetUserPaused(bool value)
+        {
+            userPaused = value;
+            if (!Application.isPlaying) return;
+            foreach(var system in systems) { if(value || frozen) system.Pause(false); else system.Play(false); }
+        }
         private float elapsed;
         public bool Frozen => frozen;
         public void Restore()
         {
-            frozen = false; elapsed = 0;
+            frozen = false; userPaused = false; elapsed = 0;
             if (!Application.isPlaying) return;
             for (int i = 0; i < systems.Length; i++)
             {
@@ -32,7 +39,7 @@ namespace LWS.FireNotification.Presentation
         }
         private void Update()
         {
-            if (frozen) return;
+            if (frozen || userPaused) return;
             elapsed += Time.unscaledDeltaTime;
             if (fireLight != null) fireLight.intensity = 1.15f + Mathf.Sin(elapsed * 12) * 0.13f + Mathf.Sin(elapsed * 19) * 0.07f;
         }

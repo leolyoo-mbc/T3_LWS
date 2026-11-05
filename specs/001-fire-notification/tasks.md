@@ -1,4 +1,4 @@
-# Tasks: 콘텐츠 1 — 화재 사실 알리기
+﻿# Tasks: 콘텐츠 1 — 화재 사실 알리기
 
 **Input**: `specs/001-fire-notification/`의 [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [계약](contracts/experience-contract.md), [quickstart.md](quickstart.md), [확정 대본](content-script.md).
 
@@ -209,15 +209,33 @@ T052 결과: 편집 시 두 공간 활성, Play 시작 시 메뉴만 활성·체
 기준: 루트 design.md v0.1.1, spec.md US5/FR-024~029/SC-011~013, plan.md의 UI 적용 절. 기존 완료 표시는 이전 버전 증거이며 UI 변경 후 재검증을 대신하지 않는다.
 
 - [X] T053 design.md 적용 범위·기존 중단 규칙과의 차이·제출 경계를 specs/001-fire-notification/spec.md·plan.md·research.md·data-model.md·contracts/experience-contract.md·quickstart.md에 반영한다. 체크리스트 마커와 AGENTS.md는 수정하지 않는다.
-- [ ] T054 [US5] Assets/_02LWS/UI/Fonts/에 Noto Sans CJK KR Regular 원본·TMP·fallback·라이선스를 준비하고 Assets/_02LWS/Documentation/ThirdPartyNotices.md에 출처·재배포 조건을 기록한다. 기존 폰트를 이름만 바꿔 대체하지 않는다.
-- [ ] T055 [US5] T054 후 Assets/_02LWS/UI/Theme/과 Prefabs/에 design.md 5~9절 토큰·둥근 패널·아이콘·버튼 상태 공통 자원을 구성하고 기존 Assets/_02LWS/Prefabs/UI/와 FireNotification.unity의 메뉴·선택·다음·복귀·자막에 연결한다. 필수 문구 대비 4.5:1 및 150% 레이아웃을 점검한다.
-- [ ] T056 [US5] T055 후 Assets/_02LWS/Scripts/Runtime/FireNotificationController.cs와 Scripts/Presentation/의 모든 진행·음성·경보·자막·NPC·화재 연출에 내부 일시정지 게이트를 연결한다. 같은 지점 재개, 시스템 중단 시 단계 재시작, 중단 중 내부 메뉴 유지 및 해제 후 한 번 재진입을 구현한다. 전역 timeScale은 변경하지 않는다.
-- [ ] T057 [US5] T056 후 Assets/_02LWS/UI/Prefabs/와 Scripts/Interaction/에 일시정지·설정·재정렬·확인창 및 SharedSystems 연결부를 구성한다. 음성/효과음·자막·100~150% 글자를 같은 실행 중 유지하고 모달 뒤의 선택·벨·텔레포트를 차단한다. PC Esc/마우스와 VR 화면 진입 버튼, 현재 입력 표시를 연결한다.
-- [ ] T058 [US5] T057 후 Assets/_02LWS/Scripts/Runtime/ContentSceneNavigator.cs 및 CompletionExperience.cs와 Assets/_02LWS/UI/Prefabs/의 결과 화면을 연결한다. 확인된 재시작은 새 세션, 체험 중 복귀는 확인 후 메뉴, 완료 복귀는 직접 메뉴로 처리하고 실제 수행 기록만 표시한다.
-- [ ] T059 [US5] T058 후 Editor Play Mode에서 US5 전체 수락 시나리오·9단계/오답별 내부 메뉴·시스템 중단 겹침·모달 입력 차단·설정 유지·150% 긴 문구·반복 새 press·기존 교육 순환을 확인하고 Assets/_02LWS/Documentation/Validation/SharedUI.md에 실제 결과와 미검증을 기록한다. 기존 자동 테스트가 있으면 실행한다.
+- [X] T054 [US5] Assets/_02LWS/UI/Fonts/에 Noto Sans CJK KR Regular 원본·TMP·fallback·라이선스를 준비하고 Assets/_02LWS/Documentation/ThirdPartyNotices.md에 출처·재배포 조건을 기록한다. 기존 폰트를 이름만 바꿔 대체하지 않는다.
+- [X] T055 [US5] T054 후 Assets/_02LWS/UI/Theme/과 Prefabs/에 design.md 5~9절 토큰·둥근 패널·아이콘·버튼 상태 공통 자원을 구성하고 기존 Assets/_02LWS/Prefabs/UI/와 FireNotification.unity의 메뉴·선택·다음·복귀·자막에 연결한다. 필수 문구 대비 4.5:1 및 150% 레이아웃을 점검한다.
+- [X] T056 [US5] T055 후 Assets/_02LWS/Scripts/Runtime/FireNotificationController.cs와 Scripts/Presentation/의 모든 진행·음성·경보·자막·NPC·화재 연출에 내부 일시정지 게이트를 연결한다. 같은 지점 재개, 시스템 중단 시 단계 재시작, 중단 중 내부 메뉴 유지 및 해제 후 한 번 재진입을 구현한다. 전역 timeScale은 변경하지 않는다.
+- [X] T057 [US5] T056 후 Assets/_02LWS/UI/Prefabs/와 Scripts/Interaction/에 일시정지·설정·재정렬·확인창 및 SharedSystems 연결부를 구성한다. 음성/효과음·자막·100~150% 글자를 같은 실행 중 유지하고 모달 뒤의 선택·벨·텔레포트를 차단한다. PC Esc/마우스와 VR 화면 진입 버튼, 현재 입력 표시를 연결한다.
+- [X] T058 [US5] T057 후 Assets/_02LWS/Scripts/Runtime/ContentSceneNavigator.cs 및 CompletionExperience.cs와 Assets/_02LWS/UI/Prefabs/의 결과 화면을 연결한다. 확인된 재시작은 새 세션, 체험 중 복귀는 확인 후 메뉴, 완료 복귀는 직접 메뉴로 처리하고 실제 수행 기록만 표시한다.
+- [X] T059 [US5] T058 후 Editor Play Mode에서 US5 전체 수락 시나리오·9단계/오답별 내부 메뉴·시스템 중단 겹침·모달 입력 차단·설정 유지·150% 긴 문구·반복 새 press·기존 교육 순환을 확인하고 Assets/_02LWS/Documentation/Validation/SharedUI.md에 실제 결과와 미검증을 기록한다. 기존 자동 테스트가 있으면 실행한다.
 - [ ] T060 [US5] T059 후 Quest 2에서 기본/150% 한국어·대비·실제 글리프/버튼 시야각·레이 선택·텔레포트 차단·내부 일시정지와 탈착/시스템 메뉴 복귀를 검증해 Assets/_02LWS/Documentation/Validation/SharedUI.md에 기기/빌드/입력과 결과를 기록한다. 기기 접근이 없으면 미완료로 유지한다.
-- [ ] T061 T059 후 Assets/_02LWS/Documentation/Integration.md·Validation/AcceptanceSummary.md·ExportImport.md를 갱신하고 Artifacts/FireNotification.unitypackage를 재Export하여 원본/meta·폰트/UI 의존성·공용 객체 중복을 대조한다. T060 및 기존 기기/Import 미완료는 명시한다.
+- [X] T061 T059 후 Assets/_02LWS/Documentation/Integration.md·Validation/AcceptanceSummary.md·ExportImport.md를 갱신하고 Artifacts/FireNotification.unitypackage를 재Export하여 원본/meta·폰트/UI 의존성·공용 객체 중복을 대조한다. T060 및 기존 기기/Import 미완료는 명시한다.
 
 의존성: T053 → T054 → T055 → T056 → T057 → T058 → T059 → T060. T061은 T059 이후 실행 가능하고 T060을 건너뛴 결과를 기기 합격으로 기록하지 않는다. 새 작업은 동일 씬/진행 코드를 공유하므로 병렬 표시하지 않는다.
 
 요구 매핑: FR-024/025 → T054~T055,T059~T060; FR-026 → T056~T057,T059~T060; FR-027 → T057,T059~T060; FR-028 → T057~T059; FR-029 → T055,T057,T059~T060; SC-011~013 → T059~T060. 초기 검토 단위는 스타일 적용(T054~T055)이며 전체 범위 완료는 나머지 구현·검증을 필요로 한다.
+
+Phase 11 Editor results: T054~T059 completed with 111 progression/lifecycle checks and 35 actual Input System mouse/layout checks, all passing. Exact local font and all 150% subtitle segments verified, 23 buttons bound, missing scripts 0, shared XR/EventSystem/listener each 1. Review fixed desktop-build mouse rejection and found no remaining critical/important issue. T060 stays unchecked: ADB device list empty. T037/T038/T041/T042 remain unchecked. Package update and integrity check are T061; an older APK does not represent this UI. Details: Assets/_02LWS/Documentation/Validation/SharedUI.md. No extension hooks registered (.specify/extensions.yml absent).
+
+T061 최초 결과: Unity Editor Export 155개 파일, package/source/meta 바이트 불일치 0. 포함 씬 FireNotification 하나. Artifacts/SharedUIPackageAudit.json 및 SHA256SUMS.txt에 현재 패키지 해시 기록. 기존 외부 Starter Assets 의존 40개 유지, 새 UI 폰트/셰이더 내부화. Quest/성능/수신 프로젝트 검증 미완료는 유지.
+
+종료 보완: UI 모달이 열린 채 종료할 때의 파괴된 컨트롤러 참조를 수정했다. UI 비활성화/재활성화/컨트롤러 선행 파괴 7개 검사 및 반복 입력·배치 35개 통과. 실제 설정창 열린 Play Mode 종료 후 콘솔 오류 0. 최종 패키지는 이 수정 이후 다시 Export·대조한다.
+
+최종 T061: 종료 수정 포함 156개 파일 재Export, 원본/meta 불일치 0개. SHA-256 2b5e9a7d743281a7f812ca400ae701b115269334ab3d9446a97bb1ef3784edf5. T060 및 기존 실기기/성능/수신 프로젝트 미완료는 유지한다. 전후 확장 훅 없음.
+
+## Phase 12: Meta 공식 공간 UI 지침 반영
+
+- [X] T062 공식 근거와 프로젝트 조정값을 구분해 명세·계획·조사·계약·검증 절차를 갱신한다.
+- [X] T063 ComfortFollowUI.cs 및 SharedUIController.cs에 작은 움직임을 무시하는 수평 추종, 누르는 동안 안정화, Origin 이동 후 즉시 재배치와 실제 벨 라벨 제외를 구현한다.
+- [X] T064 Editor에서 작은/큰 이동·고개 회전·텔레포트·누르는 동안 안정화·재활성화를 검증하고 기존 교육/메뉴 회귀를 수행한다.
+- [X] T065 변경 소스와 메타를 포함해 unitypackage를 다시 Export·대조한다.
+- [ ] T066 실제 VR에서 가독성·추종 불편감·레이 조작성을 확인한다. 기기 결과 없이는 완료 표시하지 않는다.
+
+Phase 12 결과: T062~T065 완료. Editor 추종/입력 13개 및 기존 회귀 111개 통과. 실제 VR 검증 T066/T060은 미완료. 패키지 161개 파일, 원본/meta 불일치 0. SHA-256 fd9317801dbebb1ebe4b10c6454285de01d9740d3a527c22c74caf98f130a49b. 새 APK 없음. 전후 훅 없음. 상세 제한은 Assets/_02LWS/Documentation/Validation/ComfortFollow.md.

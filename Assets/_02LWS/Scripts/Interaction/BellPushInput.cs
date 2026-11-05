@@ -52,7 +52,7 @@ namespace LWS.FireNotification.Interaction
         {
             if(pokes==null || controller.Session==null)return;
             var s=controller.Session;
-            if(s.Suspended||s.Closed||s.Stage!=ExperienceStage.AwaitBellPress) return;
+            if(controller.InputBlocked||s.Stage!=ExperienceStage.AwaitBellPress) return;
             bool anyContact=false;float depth=0;
             foreach(var poke in pokes)
             {

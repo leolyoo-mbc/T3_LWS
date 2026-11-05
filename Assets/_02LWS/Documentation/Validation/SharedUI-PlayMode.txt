@@ -1,0 +1,113 @@
+Shared UI Play Mode acceptance
+PASS frames advancing
+PASS menu initial state
+PASS one EventSystem
+PASS exact font family/style
+PASS menu settings active
+PASS content started
+PASS settings survive entry
+PASS pause preserves stage SituationGuidance
+PASS pause preserves subtitle time SituationGuidance
+PASS audio paused SituationGuidance
+PASS NPC paused SituationGuidance
+PASS particles paused SituationGuidance
+PASS commands blocked SituationGuidance
+PASS underlying UI blocked SituationGuidance
+PASS continue same execution SituationGuidance
+PASS system resume deferred behind menu SituationGuidance
+PASS system restarts stage once SituationGuidance
+PASS pause preserves stage AwaitAction
+PASS pause preserves subtitle time AwaitAction
+PASS audio paused AwaitAction
+PASS NPC paused AwaitAction
+PASS particles paused AwaitAction
+PASS commands blocked AwaitAction
+PASS underlying UI blocked AwaitAction
+PASS continue same execution AwaitAction
+PASS system resume deferred behind menu AwaitAction
+PASS system restarts stage once AwaitAction
+PASS pause preserves stage ShoutResult
+PASS pause preserves subtitle time ShoutResult
+PASS audio paused ShoutResult
+PASS NPC paused ShoutResult
+PASS particles paused ShoutResult
+PASS commands blocked ShoutResult
+PASS underlying UI blocked ShoutResult
+PASS continue same execution ShoutResult
+PASS system resume deferred behind menu ShoutResult
+PASS system restarts stage once ShoutResult
+PASS pause preserves stage AwaitNext
+PASS pause preserves subtitle time AwaitNext
+PASS audio paused AwaitNext
+PASS NPC paused AwaitNext
+PASS particles paused AwaitNext
+PASS commands blocked AwaitNext
+PASS underlying UI blocked AwaitNext
+PASS continue same execution AwaitNext
+PASS system resume deferred behind menu AwaitNext
+PASS system restarts stage once AwaitNext
+PASS pause preserves stage RestoreSituation
+PASS pause preserves subtitle time RestoreSituation
+PASS audio paused RestoreSituation
+PASS NPC paused RestoreSituation
+PASS particles paused RestoreSituation
+PASS commands blocked RestoreSituation
+PASS underlying UI blocked RestoreSituation
+PASS continue same execution RestoreSituation
+PASS system resume deferred behind menu RestoreSituation
+PASS system restarts stage once RestoreSituation
+PASS pause preserves stage BellGuidance
+PASS pause preserves subtitle time BellGuidance
+PASS audio paused BellGuidance
+PASS NPC paused BellGuidance
+PASS particles paused BellGuidance
+PASS commands blocked BellGuidance
+PASS underlying UI blocked BellGuidance
+PASS continue same execution BellGuidance
+PASS system resume deferred behind menu BellGuidance
+PASS system restarts stage once BellGuidance
+PASS pause preserves stage AwaitBellPress
+PASS pause preserves subtitle time AwaitBellPress
+PASS audio paused AwaitBellPress
+PASS NPC paused AwaitBellPress
+PASS particles paused AwaitBellPress
+PASS commands blocked AwaitBellPress
+PASS underlying UI blocked AwaitBellPress
+PASS continue same execution AwaitBellPress
+PASS system resume deferred behind menu AwaitBellPress
+PASS system restarts stage once AwaitBellPress
+PASS pause preserves stage AlarmResult
+PASS pause preserves subtitle time AlarmResult
+PASS audio paused AlarmResult
+PASS NPC paused AlarmResult
+PASS particles paused AlarmResult
+PASS commands blocked AlarmResult
+PASS underlying UI blocked AlarmResult
+PASS continue same execution AlarmResult
+PASS system resume deferred behind menu AlarmResult
+PASS system restarts stage once AlarmResult
+PASS pause preserves stage CompletionGuidance
+PASS pause preserves subtitle time CompletionGuidance
+PASS audio paused CompletionGuidance
+PASS NPC paused CompletionGuidance
+PASS particles paused CompletionGuidance
+PASS commands blocked CompletionGuidance
+PASS underlying UI blocked CompletionGuidance
+PASS continue same execution CompletionGuidance
+PASS system resume deferred behind menu CompletionGuidance
+PASS system restarts stage once CompletionGuidance
+PASS wrong answer feedback starts
+PASS wrong answer paused
+PASS feedback system resume returns to choice
+PASS cancel restart preserves session
+PASS confirmed restart new session
+PASS settings survive restart
+PASS cancel exit stays in content
+PASS confirmed exit returns to menu
+PASS reach AwaitAction
+PASS reach AwaitNext
+PASS reach AwaitBellPress
+PASS reach CompletionGuidance
+PASS result visible after full loop
+PASS result return hides result
+DONE checks=111 failed=0 frame=17241

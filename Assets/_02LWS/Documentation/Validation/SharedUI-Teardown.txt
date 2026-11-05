@@ -1,0 +1,9 @@
+UI disable and teardown regression
+PASS pause before UI disable
+PASS UI disable releases pause and closes modal
+PASS UI disable restores canvases
+PASS UI disable preserves execution
+PASS reenable restores active input owner
+PASS pause works after reenable
+PASS destroyed controller then UI disable is safe
+DONE checks=7 failed=0

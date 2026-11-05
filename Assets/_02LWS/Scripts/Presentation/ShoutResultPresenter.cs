@@ -17,11 +17,11 @@ namespace LWS.FireNotification.Presentation
         private IEnumerator Finish(FireNotificationController controller, PresentationRun run,float shoutDuration)
         {
             float elapsed=0;
-            while(elapsed<shoutDuration && !run.Canceled) { yield return null; elapsed+=Time.unscaledDeltaTime; }
+            while(elapsed<shoutDuration && !run.Canceled) { yield return null; elapsed+=controller.PresentationDelta; }
             if(run.Canceled) yield break;
             controller.baseline.NoticeFire();
             float duration=Mathf.Max(reactionDuration,shoutDuration+1.1f);
-            while(elapsed<duration && !run.Canceled) { yield return null; elapsed+=Time.unscaledDeltaTime; }
+            while(elapsed<duration && !run.Canceled) { yield return null; elapsed+=controller.PresentationDelta; }
             if(!run.Canceled) controller.Complete(run);
         }
         public void Cancel() => StopAllCoroutines();

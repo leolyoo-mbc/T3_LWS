@@ -1,0 +1,7 @@
+Comfort input checks
+PASS held press freezes panel delta=0 pressed=True current=True
+PASS release permits follow
+PASS small teleport queued
+PASS small teleport applied
+PASS small teleport recenters without distance threshold
+DONE checks=5 failed=0
