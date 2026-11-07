@@ -24,7 +24,7 @@ namespace LWS.FireNotification.Presentation
                 cue.Validate();
                 if (!ids.Add(cue.id)) throw new InvalidOperationException("Duplicate cue: " + cue.id);
                 foreach (var character in cue.text)
-                    if (!char.IsWhiteSpace(character) && !font.HasCharacter(character))
+                    if (!char.IsWhiteSpace(character) && !font.HasCharacter(character, searchFallbacks: true, tryAddCharacter: true))
                         throw new InvalidOperationException("Missing font glyph: " + character);
             }
             foreach (var id in new[] { "situation", "next", "bell", "completion", "feedback", "shout" }) Get(id);
