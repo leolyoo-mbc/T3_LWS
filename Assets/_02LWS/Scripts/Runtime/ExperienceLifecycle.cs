@@ -16,11 +16,10 @@ namespace LWS.FireNotification.Runtime
     public sealed class ExperienceLifecycle : MonoBehaviour
     {
         private bool paused;
-        private bool unfocused;
         private bool xrBlocked;
         private bool xrObserved;
         private bool debugBlocked;
-        public bool Blocked => paused || unfocused || xrBlocked || debugBlocked;
+        public bool Blocked => paused || xrBlocked || debugBlocked;
         public event Action<bool> Changed;
         private bool last;
         private void OnApplicationPause(bool value)
@@ -29,13 +28,6 @@ namespace LWS.FireNotification.Runtime
             if (ignoreEditorCallbacks) return;
 #endif
             paused = value; Publish();
-        }
-        private void OnApplicationFocus(bool value)
-        {
-#if UNITY_EDITOR
-            if (ignoreEditorCallbacks) return;
-#endif
-            unfocused = !value; Publish();
         }
         private void Update()
         {
@@ -52,7 +44,7 @@ namespace LWS.FireNotification.Runtime
         public void DebugIsolateLifecycle(bool value)
         {
             ignoreEditorCallbacks=value;
-            if(value) { paused=false; unfocused=false; debugBlocked=false; Publish(); }
+            if(value) { paused=false; debugBlocked=false; Publish(); }
         }
         public void DebugSuspend(bool value) { debugBlocked = value; Publish(); }
 #endif
