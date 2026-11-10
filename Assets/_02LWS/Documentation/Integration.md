@@ -1,3 +1,9 @@
+## Smoke posture implementation — 2026-11-10
+
+The existing entry scene now includes SmokePostureSpace and a second content-menu selection. One XR Origin/EventSystem is shared. Explicit standing ready captures a per-run head-height baseline; the user lowers their body in place, holds the recognized posture for 2 seconds, then receives limitations and returns/restarts. Practice has a fixed upper smoke layer with circulating particles and locomotion disabled. This is posture practice, not a completed escape.
+
+Editor evidence: Validation/SmokePostureDetection.md, SmokePostureLoop.md, SmokePostureReviewFixes.md, SmokePostureRegression.md. Actual Quest recognition/latency/readability/performance, 5-person learning evaluation, narration listening/redistribution approval and full receiving-project runtime acceptance remain pending. Preliminary same-version receiving-project compile/reference/domain checks passed after installing TMP Essential Resources; see Validation/SmokePostureImport.md. New Microsoft Heami WAVs are development drafts; do not present them as submission-cleared. Refer to SmokePostureScript.md and ThirdPartyNotices.md. Existing package/XR/Android prerequisites and content1 voice credits still apply. No final submission package is certified by this update.
+
 ## Current convergence revision — 2026-11-05
 
 T077/T078/T081 implemented: required XR sample assets are internal, partial bell depth/pose survives internal pause, and input availability/processing is reflected in button visuals. Saved-scene external project asset dependencies are zero; UPM/XR/Android/interaction-layer prerequisites still apply. New Editor evidence is in [Convergence validation](Validation/Convergence.md). Earlier 40-external-path/sample-prerequisite statements below are historical and superseded for the current scene.

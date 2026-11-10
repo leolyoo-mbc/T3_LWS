@@ -9,6 +9,7 @@ namespace LWS.FireNotification.Presentation
     {
         public AudioSource voice;
         public TMP_Text subtitle;
+        public bool manageSubtitleBackground = true;
         private Coroutine playback;
         private bool paused;
         private float elapsed;
@@ -50,6 +51,7 @@ namespace LWS.FireNotification.Presentation
         }
         private void LateUpdate()
         {
+            if (!manageSubtitleBackground) return;
             if(subtitle == null || subtitle.canvas == null) return;
             var background = subtitle.canvas.GetComponent<UnityEngine.UI.Image>();
             if(background != null) background.enabled = subtitle.enabled && !string.IsNullOrWhiteSpace(subtitle.text);

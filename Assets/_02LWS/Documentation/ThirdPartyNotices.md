@@ -1,3 +1,7 @@
+## Smoke posture development narration — 2026-11-10
+
+Audio/Voice/SmokePosture/*.wav was generated locally from original Korean draft text using the installed Microsoft Heami (ko-KR) Windows voice via SAPI. No Windows voice engine/model is included and no hosted service or account was used. This identifies provenance only: final listening/pronunciation review and redistribution terms for the submission remain unconfirmed. These WAVs are development assets; do not label them CC0 or unrestricted, and do not certify a distributable package until those checks are resolved. Draft wording and educational references are in SmokePostureScript.md. Existing Kenney smoke texture/material and Noto font/OFL notices below continue to apply.
+
 # Third-party materials
 
 Selection checked against publisher sources on 2026-11-04. No paid subscription or hosted synthesis is required. This file records technical selection within the approved free-materials scope.

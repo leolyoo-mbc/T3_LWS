@@ -35,28 +35,29 @@ namespace LWS.FireNotification.Runtime
         private UnityEngine.UI.GraphicRaycaster[] desktopRaycasters;
         private readonly Dictionary<TeleportationProvider, bool> teleportStates = new Dictionary<TeleportationProvider, bool>();
         private readonly Dictionary<AudioSource, float> audioVolumes = new Dictionary<AudioSource, float>();
-        private FireNotificationController Controller => navigator.controller;
+        private ContentExperienceAdapter Controller => navigator.ActiveAdapter;
+        private readonly Dictionary<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider, bool> movementDefaults = new Dictionary<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider, bool>();
 
         private void Awake()
         {
             Active = this;
             desktopRaycasters = FindObjectsByType<UnityEngine.UI.GraphicRaycaster>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             teleporters = navigator.origin.GetComponentsInChildren<TeleportationProvider>(true);
-            foreach (var source in navigator.contentRoot.GetComponentsInChildren<AudioSource>(true)) audioVolumes[source] = source.volume;
+            foreach (var provider in navigator.origin.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider>(true)) movementDefaults[provider] = provider.enabled;
             modalRoot.SetActive(false); resultPanel.SetActive(false);
         }
         private void OnEnable()
         {
             Active = this;
-            Controller.StateChanged += Refresh;
-            Controller.ExitConfirmationRequested += ConfirmExit;
+            navigator.ExitConfirmationRequested += ConfirmExit;
+
             foreach (var teleporter in teleporters) teleporter.locomotionEnded += TeleportEnded;
         }
         private void OnDisable()
         {
             if (teleporters != null) foreach (var teleporter in teleporters) if (teleporter != null) teleporter.locomotionEnded -= TeleportEnded;
-            var controller = navigator != null ? navigator.controller : null;
-            if (controller != null) { controller.StateChanged -= Refresh; controller.ExitConfirmationRequested -= ConfirmExit; }
+            var controller = navigator != null ? navigator.ActiveAdapter : null;
+            if (navigator != null) navigator.ExitConfirmationRequested -= ConfirmExit;
             if (IsOpen)
             {
                 IsOpen = false;
@@ -80,6 +81,7 @@ namespace LWS.FireNotification.Runtime
                 Vector3 offset;
                 switch (canvas.name)
                 {
+                    case "SmokeGuidanceCanvas":
                     case "GuidanceCanvas": offset = new Vector3(0, -.35f, 1.8f); break;
                     case "ActionChoicePanel": offset = new Vector3(0, -.65f, 1.8f); break;
                     case "NextPanel": offset = new Vector3(0, -.65f, 1.8f); break;
@@ -97,6 +99,8 @@ namespace LWS.FireNotification.Runtime
         }
         private void Update()
         {
+            foreach (var pair in movementDefaults)
+                if (pair.Key != null) pair.Key.enabled = pair.Value && !IsOpen && navigator.MovementAllowed;
             foreach(var raycaster in desktopRaycasters) if(raycaster != null) raycaster.enabled = !UnityEngine.XR.XRSettings.isDeviceActive;
             Refresh();
             if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -105,7 +109,7 @@ namespace LWS.FireNotification.Runtime
             }
             if (inputText != null)
             {
-                
+
                 var fresh = openMenuPanel.GetComponentInChildren<FreshPressButton>(true);
                 var action = fresh != null && fresh.inputs != null ? fresh.inputs.FindAction("Right/Press") : null;
                 inputText.text = UnityEngine.XR.XRSettings.isDeviceActive && action != null
@@ -131,7 +135,7 @@ namespace LWS.FireNotification.Runtime
             IsOpen = true; page = next;
             if (first)
             {
-                Controller.SetUserPaused(true);
+                Controller?.SetUserPaused(true);
                 BlockWorld(true);
                 Recenter();
             }
@@ -155,15 +159,15 @@ namespace LWS.FireNotification.Runtime
             IsOpen = false;
             modalRoot.SetActive(false);
             BlockWorld(false);
-            Controller.SetUserPaused(false);
+            Controller?.SetUserPaused(false);
             Refresh();
         }
         public void ExecuteConfirmation()
         {
             var requested = page;
             IsOpen = false; modalRoot.SetActive(false); BlockWorld(false);
-            if (requested == Page.Restart) Controller.RestartExperience();
-            else if (requested == Page.Exit) Controller.ReturnToMenu();
+            if (requested == Page.Restart) Controller?.Restart();
+            else if (requested == Page.Exit) Controller?.ReturnToMenu();
             Refresh();
         }
         public void Recenter()
@@ -183,9 +187,7 @@ namespace LWS.FireNotification.Runtime
         public void ApplySettings()
         {
             foreach (var text in FindObjectsByType<ThemedText>(FindObjectsInactive.Include, FindObjectsSortMode.None)) text.Apply(TextScale);
-            foreach (var pair in audioVolumes)
-                if (pair.Key != null) pair.Key.volume = pair.Value * (pair.Key == Controller.guidance.voice ? VoiceVolume : EffectsVolume);
-            if (Controller.guidance.subtitle != null) Controller.guidance.subtitle.enabled = SubtitlesEnabled;
+            foreach (var entry in navigator.contents) if (entry?.adapter != null) entry.adapter.ApplySettings(VoiceVolume, EffectsVolume, SubtitlesEnabled);
             if (settingsText != null) settingsText.text = $"음성 {VoiceVolume:P0}    효과음 {EffectsVolume:P0}\n자막 {(SubtitlesEnabled ? "켬" : "끔")}    글자 {TextScale:P0}";
         }
         private void BlockWorld(bool value)
@@ -195,22 +197,21 @@ namespace LWS.FireNotification.Runtime
             {
                 if (teleporter == null) continue;
                 if (value) { if (teleporter is MenuTeleportationProvider guarded) guarded.CancelPending(); teleportStates[teleporter] = teleporter.enabled; teleporter.enabled = false; }
-                else if (teleportStates.TryGetValue(teleporter, out var enabled)) teleporter.enabled = enabled;
+                else if (teleportStates.TryGetValue(teleporter, out var enabled)) teleporter.enabled = enabled && navigator.MovementAllowed;
             }
             if (!value) teleportStates.Clear();
-            foreach (var button in navigator.contentRoot.GetComponentsInChildren<FreshPressButton>(true))
+            foreach (var button in (navigator.ActiveContent?.root ?? navigator.contentRoot).GetComponentsInChildren<FreshPressButton>(true))
                 if (!button.allowWhilePaused) button.enabled = !value;
         }
         private void Refresh()
         {
-            var session = Controller.Session;
-            bool complete = navigator.InContent && session != null && !session.Closed && session.Stage == ExperienceStage.CompletionGuidance;
-            if (resultPanel != null) resultPanel.SetActive(complete && !IsOpen && !session.Suspended);
-            if (resultText != null) resultText.text = "화재 사실 알리기\n체험 완료\n큰소리로 화재 알리기 수행\n비상벨 누르기 수행";
+            bool complete = navigator.InContent && Controller != null && Controller.ResultVisible;
+            if (resultPanel != null) resultPanel.SetActive(complete && !IsOpen && !Controller.Blocked);
+            if (resultText != null) resultText.text = Controller?.ResultText ?? "";
             if (openMenuPanel != null) openMenuPanel.SetActive(navigator.InContent && !IsOpen);
             // Visibility of content roots still belongs to the navigator and input presenters.
         }
-        public void CompletedReturn() { Controller.ReturnToMenu(); }
-        public void CompletedRestart() { Controller.RestartExperience(); }
+        public void CompletedReturn() { Controller?.ReturnToMenu(); }
+        public void CompletedRestart() { Controller?.Restart(); }
     }
 }

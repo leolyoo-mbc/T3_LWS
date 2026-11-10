@@ -1,4 +1,4 @@
-﻿using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using LWS.FireNotification.Runtime;
 
 namespace LWS.FireNotification.Interaction
@@ -8,7 +8,7 @@ namespace LWS.FireNotification.Interaction
         public SharedUIController ui;
         public override bool QueueTeleportRequest(TeleportRequest request)
         {
-            if (ui != null && (ui.IsOpen || ui.navigator.controller.lifecycle.Blocked)) return false;
+            if (ui != null && (ui.IsOpen || !ui.navigator.MovementAllowed)) return false;
             return base.QueueTeleportRequest(request);
         }
         public void CancelPending()
