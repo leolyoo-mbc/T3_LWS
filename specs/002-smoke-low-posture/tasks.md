@@ -2,7 +2,7 @@
 
 **Input**: `specs/002-smoke-low-posture/`의 spec.md, plan.md, research.md, data-model.md, contracts/, quickstart.md.
 
-**Status**: 구현 진행 중. 완료 체크는 아래 검증 기록이 있는 항목만 반영한다. T014 음성 최종 청취/제출 권리와 실기기·학습·제출 검증은 별도로 남긴다. 헌장은 미작성 템플릿이므로 예시 원칙을 적용하지 않는다.
+**Status**: 구현 진행 중. 완료 체크는 아래 검증 기록이 있는 항목만 반영한다. T014 음성 최종 청취/제출 권리와 실기기·학습·제출 검증은 별도로 남긴다. 현재 헌장 v1.1.0을 적용하며 후속 실행 변경은 아래 시각 검증 게이트를 따른다.
 
 **확정/제안**: 실제 숙임, 준비 완료 순간 기준, 연속 2초 자동 인정, 연습 중 고정 연기층은 사용자 확정이다. 20% 하강·0.03 m 해제 여유·화면 문구·타입명은 AI 설계 제안이다. 튜닝으로 2초 조건이나 교육 범위를 바꾸지 않는다.
 
@@ -12,7 +12,17 @@
 
 모든 작업은 `- [ ] T번호 [P 선택] [US번호 해당 시] 설명 + 경로`다. `[P]`는 명시한 선행 작업이 끝난 뒤 다른 파일에서 병렬 진행할 수 있다는 뜻이다. 병렬 실행 예시는 인력 배치 가능성을 나타내며 에이전트 실행 지시가 아니다.
 
-경로는 저장소 루트 기준이다. 새 실행 자산·스크립트·검증 기록은 `Assets/_02LWS/`에 두고 Unity가 만든 `.meta`를 보존한다. 작업 안에 여러 파일이 나열되면 해당 연결을 함께 완결한다. 기존 `Assets/XR/Settings/OpenXRPackageSettings.asset` 변경과 AGENTS.md를 덮어쓰지 않는다.
+경로는 저장소 루트 기준이다. 새 실행 자산·스크립트·제출 문서는 `Assets/_02LWS/`에 두고 Unity가 만든 `.meta`를 보존한다. 작업 안에 여러 파일이 나열되면 해당 연결을 함께 완결한다. 기존 `Assets/XR/Settings/OpenXRPackageSettings.asset` 변경과 AGENTS.md를 덮어쓰지 않는다.
+
+## 후속 변경의 시각 검증 게이트
+
+헌장 v1.1.0에 따라 이후 실행 결과에 영향을 주는 구현·수정(T046 및 후속 코드/자산 조정 포함)에 적용한다. 과거 완료 작업은 소급 녹화하지 않으며 문서만 수정하는 작업에는 새 녹화를 요구하지 않는다. 기존 기록은 일괄 이동하지 않는다.
+
+실제 실행 MP4에 변경 기능의 진입·핵심 동작·결과를 포함한다. 녹화 불가 시 주요 단계의 대체 시각 자료와 사유·검증 한계를 기록한다. 실행 자체가 불가능하면 가능한 실제 Editor 화면과 미실행 사실을 남긴다. 대체 자료도 없으면 미확보 원인을 보고하고 게이트 충족으로 표시하지 않는다. 목업·텍스트 로그는 실제 실행 영상 또는 대체 시각 자료를 대신하지 못한다.
+
+영상·스크린샷·동반 원본 기록은 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-작업명/`에 보관하고 기존 폴더를 덮어쓰지 않는다. 같은 폴더의 `verification.md`에 작업 식별자·일시·씬·환경/기기·입력 방식·확인 동작·파일명·실제 결과·미검증 항목과 대체 자료 사용 시 녹화 불가 사유·한계를 적는다. `git check-ignore`와 `git ls-files`로 제외 규칙 적용과 비추적 상태를 확인하고 강제 추가하지 않는다. 검증 원본을 Assets나 제출 패키지에 포함하지 않는다.
+
+아래 `Assets/_02LWS/Documentation/Validation/` 경로는 제출용 결과 요약·원본 참조 문서다. 후속 변경의 검증 원본은 위 공통 경로에 둔다. 파일 존재·열람 가능 여부를 확인하고 완료 보고에 대표 파일 직접 링크와 결과·한계를 포함한다. Editor/PC/Quest 증거를 구분하며 자료 존재만으로 기능 합격을 선언하지 않는다.
 
 ## Phase 1: Setup
 
@@ -69,10 +79,10 @@
 - [X] T026 [US2] `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`와 `Assets/_02LWS/Scripts/Domain/SmokePosture/SmokePostureSession.cs`에 모달/lifecycle/추적 상실/기준 변경을 완료보다 먼저 처리하는 경로를 구현한다. 완료 이전 lowRecognized=false/holdSeconds=0, 복수 차단 모두 해제 후 재개, 일반 pause의 음성/자막/입자 보존, 기준 변경의 재준비, 이미 인정된 완료 유지, 이탈/재시작의 콜백 무효화를 적용한다.
 - [X] T027 [US2] `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`에 UNITY_EDITOR 전용 높이·시간·차단·기준 변경 주입/상태 확인 경로를 제공한다. “시험용 샘플 공급자는 Editor/테스트 전용이며 플레이어가 가짜 높이로 완료할 경로를 제공하지 않는다”를 적용하고 신체정보 파일/분석 로그는 추가하지 않는다.
 - [X] T028 [US2] quickstart Q1을 T027 경로로 수행하고 `Assets/_02LWS/Documentation/Validation/SmokePostureDetection.md`에 합성 높이 1.2/1.6/1.9 m별 기립/낮춤/재기립/추적 상실, 준비 전 성공 0건, 1.99초 초기화/2초 한 번 인정, 경계 포함/초과, 무효 수치·추적의 완료 0건을 기록한다. 기존 관련 자동 테스트가 있으면 추가 실행하고 수동 주입 결과와 구분한다.
-- [X] T029 [US2] quickstart Q5를 `Assets/_02LWS/Scenes/FireNotification.unity`에서 수행하고 `Assets/_02LWS/Documentation/Validation/SmokePostureInterruption.md`에 1.9초 후 pause/추적 상실·기준 변경·동일 프레임 중단 우선·복구 새 2초·이미 완료 유지·입자/음성 정지·모달 뒤 입력 차단을 기록한다. 실제 OS/장치 중단 검증은 T039/T040에서 구분한다.
+- [X] T029 [US2] quickstart Q5를 `Assets/_02LWS/Scenes/FireNotification.unity`에서 수행하고 `Assets/_02LWS/Documentation/Validation/SmokePostureInterruption.md`에 1.9초 후 pause/추적 상실·기준 변경·동일 프레임 중단 우선·복구 새 2초·이미 완료 유지·입자/음성 정지·모달 뒤 입력 차단을 기록한다. 실제 OS/장치 중단 검증은 T039/T040〈Quest 중단 검증〉에서 구분한다.
 - [X] T030 [US2] `Assets/_02LWS/Scenes/FireNotification.unity`에 준비부터 관찰·Practice·완료 인정까지 실제 입력 경로를 최종 연결하고 `Assets/_02LWS/Documentation/Validation/SmokePostureDetection.md`에 추적/구성 오류·편하게 숙이기 안내·언제든 중단·무제한 대기를 확인한다. 한계 안내/결과는 US3 연결 전 완료된 전체 체험으로 표시하지 않는다.
 
-**Checkpoint**: US2의 판정은 독립적으로 확인 가능하다. US1과 연결한 Editor 정상 경로를 확보한다. 실제 편안한 숙임·지연·Quest 판정은 T039~T041이 끝나기 전 합격으로 표시하지 않는다.
+**Checkpoint**: US2의 판정은 독립적으로 확인 가능하다. US1과 연결한 Editor 정상 경로를 확보한다. 실제 편안한 숙임·지연·Quest 판정은 T039~T041〈성능 검증〉이 끝나기 전 합격으로 표시하지 않는다.
 
 ## Phase 5: US3 — 교육의 한계 확인과 메뉴 복귀 (P2)
 
@@ -96,9 +106,9 @@
 - [X] T037 quickstart Q7의 콘텐츠 1 전체 순환을 연기 체험 전후 `Assets/_02LWS/Scenes/FireNotification.unity`에서 실행하고 `Assets/_02LWS/Documentation/Validation/SmokePostureRegression.md`에 직접 벨·기존 이동·설정·모달·재시작·복귀·콘텐츠별 결과·단일 활성 root/EventSystem을 기록한다. 공통 연결부 수정 후 회귀가 생기면 수정한 경로를 재검증한다.
 - [X] T038 현재 Android/OpenXR 조건을 확인해 `Assets/_02LWS/Scenes/FireNotification.unity`를 포함한 개발 빌드를 `Artifacts/SmokePosture/SmokePosture-development.apk`에 생성한 뒤 APK를 `Assets/_02LWS/Artifacts~/SmokePosture/`에 복사해 보관한다. Unity는 Assets 내부로 직접 빌드할 수 없으므로 출력 임시 경로와 보관 경로를 구분한다. Unity/패키지/빌드 설정·소스 상태·빌드 결과를 `Assets/_02LWS/Documentation/Validation/SmokePostureBuild.md`에 기록한다. 기존 사용자 XR 설정 변경을 임의 덮어쓰지 않는다.
 - [ ] T039 T038 후 Quest 2에서 quickstart Q4/Q7의 실제 준비·편한 숙임·재기립·새 실행을 검증하고 `Assets/_02LWS/Documentation/Validation/SmokePostureQuest.md`에 인식 성공/오인식·Q4의 경계 통과/피드백 표식 및 D+2G≤1초 판정(오차 상한이 불명확하면 미검증)·2초 완료·컨트롤러·양안 표현·읽기·150% 글자·중단 버튼을 기록한다. 불편한 깊이를 요구하지 말고 제안 튜닝 값은 `Assets/_02LWS/Data/SmokePosture/PostureTuning.asset`에서 조정한 뒤 관련 검증을 다시 수행한다.
-- [ ] T040 T038 후 Quest 2에서 quickstart Q5/Q7의 헤드셋 벗기/시스템 pause/실제 추적 상실·복구/기준 재설정·네 단계 중단 및 비행기 모드 최초 실행을 검증하고 `Assets/_02LWS/Documentation/Validation/SmokePostureQuest.md`에 기록한다. Editor 주입으로 실제 OS 동작 검증을 대신하지 않는다. T039와 같은 기기/기록 파일을 사용하므로 순차 수행한다.
-- [ ] T041 quickstart Q8의 Quest 프로파일링을 수행하고 `Assets/_02LWS/Documentation/Validation/SmokePosturePerformance.md`에 CPU/GPU 시간·양안 표시·입자 수/크기/중첩·설정을 기록한다. 필요 시 `Assets/_02LWS/Prefabs/SmokePosture/SmokeLayer.prefab`을 조정하고 연기층 불변·교육 표현을 재검증한다. 72 Hz/13.9 ms는 AI 제안 비교 기준이며 사용자 확정 합격 기준으로 쓰지 않는다.
-- [ ] T042 [P] T039/T040의 안전한 사용 경로 확인 후 실제 체험자 5명으로 quickstart Q8을 수행하고 `Assets/_02LWS/Documentation/Validation/SmokePostureLearning.md`에 익명 번호·설명 요지·결과를 기록한다. 4명 이상이 두 이유를 모두 설명해야 SC-005 충족이며 신체 수치/식별정보를 요구하지 않는다. 장치/진행자가 별도 확보된 경우에만 T041과 병렬 수행한다.
+- [ ] T040〈Quest 중단 검증〉 T038 후 Quest 2에서 quickstart Q5/Q7의 헤드셋 벗기/시스템 pause/실제 추적 상실·복구/기준 재설정·네 단계 중단 및 비행기 모드 최초 실행을 검증하고 `Assets/_02LWS/Documentation/Validation/SmokePostureQuest.md`에 기록한다. Editor 주입으로 실제 OS 동작 검증을 대신하지 않는다. T039와 같은 기기/기록 파일을 사용하므로 순차 수행한다.
+- [ ] T041〈성능 검증〉 quickstart Q8의 Quest 프로파일링을 수행하고 `Assets/_02LWS/Documentation/Validation/SmokePosturePerformance.md`에 CPU/GPU 시간·양안 표시·입자 수/크기/중첩·설정을 기록한다. 필요 시 `Assets/_02LWS/Prefabs/SmokePosture/SmokeLayer.prefab`을 조정하고 연기층 불변·교육 표현을 재검증한다. 72 Hz/13.9 ms는 AI 제안 비교 기준이며 사용자 확정 합격 기준으로 쓰지 않는다.
+- [ ] T042 [P] T039/T040〈Quest 중단 검증〉의 안전한 사용 경로 확인 후 실제 체험자 5명으로 quickstart Q8을 수행하고 `Assets/_02LWS/Documentation/Validation/SmokePostureLearning.md`에 익명 번호·설명 요지·결과를 기록한다. 4명 이상이 두 이유를 모두 설명해야 SC-005 충족이며 신체 수치/식별정보를 요구하지 않는다. 장치/진행자가 별도 확보된 경우에만 T041〈성능 검증〉과 병렬 수행한다.
 - [ ] T043 `Assets/_02LWS/Documentation/ThirdPartyNotices.md`와 `Assets/_02LWS/Documentation/Integration.md`를 갱신하고 신규 음성/재질/텍스처/셰이더/폰트의 출처·재배포 조건·.meta·필수 로컬 파일을 점검한다. quickstart Q9에 따라 `Assets/_02LWS/Scenes/FireNotification.unity`/프리팹 참조의 외부 경로·신체정보 저장/전송·새 마이크 입력 0건을 확인해 `Assets/_02LWS/Documentation/Validation/SmokePostureDependencies.md`에 기록한다. 역사적 문서의 sample 의존성 설명과 현재 상태를 구분한다.
 - [ ] T044 T037~T043의 수정 반영 후 `Assets/_02LWS`를 최신 소스로 Export하여 `Assets/_02LWS/Artifacts~/SmokePosture/SmokePosture.unitypackage`에 보관하고 별도 수신 프로젝트에서 필요한 UPM/XR 조건을 갖춰 Import·Console 오류 0건·두 콘텐츠 전체 진행을 확인한다. 결과/버전/패키지 해시를 `Assets/_02LWS/Documentation/Validation/SmokePostureImport.md`에 기록한다. Artifacts~의 이전 패키지는 재귀적으로 포함하지 않으며 지정 수신 프로젝트가 생기면 그 환경도 확인한다.
 - [ ] T045 quickstart Q1~Q9 및 FR-001~013/SC-001~006의 증거를 `Assets/_02LWS/Documentation/Validation/SmokePostureAcceptance.md`에 집계한다. `specs/002-smoke-low-posture/tasks.md` 체크 상태를 실제 증거와 대조하고 자동화 미수행·기기 부재·교육 평가·Import의 남은 제한을 구분한다. 이전 콘텐츠의 과거 PASS를 새 체험 결과로 복사하지 않는다.
@@ -111,10 +121,10 @@ T001 → (T002 ∥ T003)
   → US1: (T012 ∥ T013) → T014 → T015 → T016 → T017 → T018 → T019
   → US2: T020 → (T021 ∥ T022) → T023 → T024 → T025 → T026 → T027 → T028 → T029 → T030
   → US3: T031 → T032 → T033 → T034 → T035 → T036
-  → T037 → T038 → T039 → T040 → (T041 ∥ T042) → T043 → T044 → T045
+  → T037 → T038 → T039 → T040〈Quest 중단 검증〉 → (T041〈성능 검증〉 ∥ T042) → T043 → T044 → T045
 ```
 
-T009는 T007, T010은 T008/T009, T016은 T013/T014/T015, T023은 T021/T022를 모두 기다린다. 그래프는 안전한 기본 순서다. T042는 별도 기기/진행자가 없으면 T041 이후 수행한다. 이 경우에도 작업을 생략하지 않는다.
+T009는 T007, T010은 T008/T009, T016은 T013/T014/T015, T023은 T021/T022를 모두 기다린다. 그래프는 안전한 기본 순서다. T042는 별도 기기/진행자가 없으면 T041〈성능 검증〉 이후 수행한다. 이 경우에도 작업을 생략하지 않는다.
 
 US1은 Foundation 후 다른 스토리 없이 관찰만 검증할 수 있다. US2의 도메인/추적 파일(T020~T022)은 Foundation 후 독립 작업 가능하지만 UI/정상 흐름 연결(T023 이후)은 US1 씬에 의존하므로 순차 진행한다. US3는 T027의 합성 입력으로 준비/원리 안내/연속 2초를 진행해 화면·복귀를 검증하며 US2의 판정 경로에 의존한다. 완료 상태를 직접 주입하지 않는다. 공통 씬/Controller/세션 파일을 동시에 수정하지 않는다.
 
@@ -129,7 +139,7 @@ US1은 Foundation 후 다른 스토리 없이 관찰만 검증할 수 있다. US
 | US1 | T012 대본 문서 / T013 연기 코드·프리팹 | T014는 T012 후, 씬 연결 T016 전에 합류 |
 | US2 | T021 세션 / T022 추적 제공자 | T020의 입력 형식 확정 후, T023 전에 합류 |
 | US3 | 내부 병렬 없음 | 같은 Controller/씬/세션을 바꾸므로 T031~T036 순차 |
-| 실제 검증 | T041 프로파일링 / T042 학습 평가 | T039/T040 후, 별도 장치/진행자 필요 |
+| 실제 검증 | T041〈성능 검증〉 프로파일링 / T042 학습 평가 | T039/T040〈Quest 중단 검증〉 후, 별도 장치/진행자 필요 |
 
 US3는 병렬성을 만들기 위해 같은 파일의 작업을 인위적으로 분리하지 않는다. T036은 실제 기기 없이 합성 입력으로 정상 완료 경로를 재현해 한계 안내·결과·복귀를 검증한다.
 
@@ -147,26 +157,26 @@ US3는 병렬성을 만들기 위해 같은 파일의 작업을 인위적으로 
 |---|---|
 | FR-001 | T004~T011, T017, T034, T037 |
 | FR-002 | T009, T013, T016, T018, T039 |
-| FR-003/005 | T013, T018, T041 |
+| FR-003/005 | T013, T018, T041〈성능 검증〉 |
 | FR-004 | T012, T014~T016, T018/T019, T039 |
 | FR-006 | T020~T023, T027/T028, T039 |
 | FR-007 | T024/T025, T028/T029, T036, T039 |
 | FR-008 | T025, T030, T018 |
-| FR-009 | T007/T009, T026/T029, T034/T035, T040 |
+| FR-009 | T007/T009, T026/T029, T034/T035, T040〈Quest 중단 검증〉 |
 | FR-010 | T012/T014, T031/T032, T035/T036 |
-| FR-011 | T033/T035, T039/T040 |
+| FR-011 | T033/T035, T039/T040〈Quest 중단 검증〉 |
 | FR-012 | T012/T016/T025/T032, T043/T045 |
-| FR-013 | T014, T027/T033, T040, T043/T044 |
+| FR-013 | T014, T027/T033, T040〈Quest 중단 검증〉, T043/T044 |
 | SC-001 | T035 |
-| SC-002 | T028/T029, T035/T036, T039/T040 |
-| SC-003 | T018/T019, T035, T041 |
+| SC-002 | T028/T029, T035/T036, T039/T040〈Quest 중단 검증〉 |
+| SC-003 | T018/T019, T035, T041〈성능 검증〉 |
 | SC-004 | T025, T039 |
 | SC-005 | T042 |
-| SC-006 | T034/T035, T040 |
+| SC-006 | T034/T035, T040〈Quest 중단 검증〉 |
 
 ## Task totals
 
-45 tasks: Setup 3 / Foundation 8 / US1 8 / US2 11 / US3 6 / Polish 9. `[P]` 6개(T002/T003/T008/T013/T022/T042), 파일 충돌 없이 조건부 병렬 가능한 묶음 5개. 완료 상태는 각 체크박스를 따른다. 새 자동 테스트 프레임워크/테스트 어셈블리는 추가하지 않았다.
+초기 목록의 역사적 집계 — 45 tasks: Setup 3 / Foundation 8 / US1 8 / US2 11 / US3 6 / Polish 9. `[P]` 6개(T002/T003/T008/T013/T022/T042), 파일 충돌 없이 조건부 병렬 가능한 묶음 5개. 현재 전체 집계는 문서 끝의 ID 대응표를 따른다. 새 자동 테스트 프레임워크/테스트 어셈블리는 추가하지 않았다.
 
 
 ## Implementation evidence — 2026-11-10
@@ -177,18 +187,41 @@ Foundation: existing shared UI 111/111 and physical bell 25/25. Smoke: Editor do
 
 사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 최종 발음·억양 청취 검수는 미완료다.
 
-- [X] T040 안내 6개를 F1으로 생성·교체하고 기존 GUID와 대본을 보존, 자막 시간 및 생성 manifest 갱신.
-- [ ] T041 교체된 F1 안내 6개의 발음·억양을 사용자 청취 검수하고 결과 기록. T014는 이 검수 전까지 미완료 유지.
+- [X] T040〈F1 음성 생성〉 안내 6개를 F1으로 생성·교체하고 기존 GUID와 대본을 보존, 자막 시간 및 생성 manifest 갱신.
+- [ ] T041〈F1 청취 검수〉 교체된 F1 안내 6개의 발음·억양을 사용자 청취 검수하고 결과 기록. T014는 이 검수 전까지 미완료 유지.
 
 ## Phase 7: Convergence
 
-2026-11-11: 현재 콘텐츠 002의 spec/plan/tasks와 실행 코드·자산·검증 기록을 대조했다. 선행 확인 도구는 001을 반환하지만 이번 세션의 명시 대상은 002다. 헌장은 미작성 템플릿으로 검사 제외. 아래 작업은 기존 미완료 항목의 구체화이며 중복 실행을 요구하지 않는다. 기존 작업 47개 항목(고유 ID 45개)을 보존한다. Quest/참여자/수신 환경이 없으면 검증 항목을 완료 처리하지 않는다.
+2026-11-11 Convergence 당시 기록: 콘텐츠 002의 spec/plan/tasks와 실행 코드·자산·검증 기록을 대조했고 당시 선행 확인 도구는 001을 반환했다. 현재 분석 도구는 002를 반환한다. 현재 헌장 v1.1.0을 적용하며 후속 실행 변경은 위 시각 검증 게이트를 따른다. 아래 작업은 기존 미완료 항목의 구체화이며 중복 실행을 요구하지 않는다. 기존 작업 47개 항목(고유 ID 45개)을 보존한다. Quest/참여자/수신 환경이 없으면 검증 항목을 완료 처리하지 않는다.
 
-- [ ] T046 [HIGH] 시스템 중단 복귀에서 현재 안내와 자세 확인을 다시 제공하도록 `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`의 lifecycle 복구 경로를 보완한다. 현재 LifecycleChanged는 차단/해제만 처리해 중단 전 안내 위치와 기준을 그대로 재사용한다. 일반 사용자 pause의 위치 보존과 구분하고, 미완료 유지 시간 초기화·이미 인정한 완료 유지·모달 중 복구 지연·닫힌 실행 콜백 무효화를 보존한다. 준비/원리/연습/완료 안내 단계별 중단·복귀를 Editor 입력으로 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureInterruption.md`에 기록한다. per spec: Edge Cases(시스템 중단 복귀), FR-009, T026 (contradicts)
-- [ ] T047 [HIGH] F1 안내 6개의 실제 청취 검수를 받아 발음·억양·대본 일치를 기록하고 필요한 구간만 재생성한다. `Assets/_02LWS/Audio/Voice/SmokePosture/VoiceManifest.json`의 검수 상태·해시·길이와 GuidanceCatalog 자막 시간을 동기화하고 현재 선택된 모델 라이선스·AI 음성 고지·로컬 파일을 점검한다. `Assets/_02LWS/Documentation/Validation/SmokePostureDependencies.md` 등 현재 음성을 Heami로 설명하는 기록은 역사/현재를 구분한다. 콘텐츠 1 음성은 보존하고 청취 전 최종 승인으로 표시하지 않는다. per FR-004/013, plan:F1 음성 통일, T014/T043 및 후미 T041(음성 청취) (partial)
-- [ ] T048 [HIGH] T046과 최신 개발 빌드 확보 후 실제 Quest 2에서 준비·편한 숙임·재기립·다양한 시작 높이·1초 이내 피드백·2초 한 번 인정·양안/150% 글자/중단 조작·네 단계 시스템 중단/추적 복구/기준 변경·오프라인 실행·콘텐츠 1 회귀를 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureQuest.md`에 기록한다. 기존 T039 및 원래 Phase 6의 T040 범위를 포함하며 Editor 합성 입력을 실제 기기 증거로 대체하지 않는다. per SC-002/004/006, FR-001/009/011/013, T039/T040 (partial)
-- [ ] T049 [MEDIUM] 실제 Quest 프로파일링으로 CPU/GPU 시간·양안 표시·입자 설정을 `Assets/_02LWS/Documentation/Validation/SmokePosturePerformance.md`에 기록하고 필요한 최적화 후 고정 연기층·성공 후 유지 표현을 재검증한다. 72 Hz/13.9 ms를 사용자 확정 기준으로 취급하지 않는다. per plan:Performance Goals, FR-003/005, 원래 Phase 6의 T041 (partial)
+- [ ] T046 [HIGH] 시스템 중단 복귀에서 현재 안내와 자세 확인을 다시 제공하도록 `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`의 lifecycle 복구 경로를 보완한다. 현재 LifecycleChanged는 차단/해제만 처리해 중단 전 안내 위치와 기준을 그대로 재사용한다. 일반 사용자 pause의 위치 보존과 구분하고, 미완료 유지 시간 초기화·이미 인정한 완료 유지·모달/다른 차단 모두 해제 후 복구·닫힌 실행 콜백 무효화를 보존한다. 추적 기준 공간이 유지되면 기존 시작 높이를 유지하고 기준 변경 시 미완료 기준을 폐기해 준비 완료 선택부터 다시 받는다. 준비/원리/연습/완료 안내 단계별 안내·자세 확인 재제공과 유지 시간 초기화·완료 유지·차단 해제 후 복구·종료 콜백 무효화를 Editor 입력으로 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureInterruption.md`에 기록한다. per spec: Edge Cases(시스템 중단 복귀), FR-009, T026 (contradicts)
+- [ ] T047 [HIGH] F1 안내 6개의 실제 청취 검수를 받아 발음·억양·대본 일치를 기록하고 필요한 구간만 재생성한다. `Assets/_02LWS/Audio/Voice/SmokePosture/VoiceManifest.json`의 검수 상태·해시·길이와 GuidanceCatalog 자막 시간을 동기화하고 현재 선택된 모델 라이선스·AI 음성 고지·로컬 파일을 점검한다. `Assets/_02LWS/Documentation/Validation/SmokePostureDependencies.md` 등 현재 음성을 Heami로 설명하는 기록은 역사/현재를 구분한다. 콘텐츠 1 음성은 보존하고 청취 전 최종 승인으로 표시하지 않는다. per FR-004/013, plan:F1 음성 통일, T014/T043 및 후미 T041〈F1 청취 검수〉 (partial)
+- [ ] T048 [HIGH] T046 및 T051-A 완료 후 실제 Quest 2에서 준비·편한 숙임·재기립·다양한 시작 높이·1초 이내 피드백·2초 한 번 인정·양안/150% 글자/중단 조작·네 단계 시스템 중단/추적 복구/기준 변경·오프라인 실행·콘텐츠 1 회귀를 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureQuest.md`에 기록한다. 기존 T039 및 원래 Phase 6의 T040〈Quest 중단 검증〉 범위를 포함하며 Editor 합성 입력을 실제 기기 증거로 대체하지 않는다. per SC-002/004/006, FR-001/009/011/013, T039/T040〈Quest 중단 검증〉 (partial)
+- [ ] T049 [MEDIUM] T048 완료 후 실제 Quest 프로파일링으로 CPU/GPU 시간·양안 표시·입자 설정을 `Assets/_02LWS/Documentation/Validation/SmokePosturePerformance.md`에 기록하고 필요한 최적화 후 고정 연기층·성공 후 유지 표현을 재검증한다. 72 Hz/13.9 ms를 사용자 확정 기준으로 취급하지 않는다. per plan:Performance Goals, FR-003/005, 원래 Phase 6의 T041〈성능 검증〉 (partial)
 - [ ] T050 [MEDIUM] T048의 편안한 사용 경로 확인 후 체험자 5명의 두 교육 이유 설명을 익명으로 평가하여 `Assets/_02LWS/Documentation/Validation/SmokePostureLearning.md`에 기록한다. SC-005는 구현 기능이 아닌 사람 대상 검증이며 참여자 없이 통과를 주장하지 않는다. per T042, SC-005 (partial)
-- [ ] T051 [MEDIUM] F1 음성과 수정된 복구 동작을 포함한 최신 Android 개발 빌드를 생성·보관하고 빌드/소스 식별·해시를 갱신한다. T047~T050 검증과 권리 점검 후 최신 `Assets/_02LWS`를 Export하고 별도 수신 프로젝트에서 두 콘텐츠 전체 진행·설정·중단·복귀·Console 및 참조를 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureBuild.md`와 `SmokePostureImport.md`에 기록한다. 예전 Heami 빌드·예비 Import 결과를 최신 F1 결과로 사용하지 않는다. per T038/T043/T044, plan:검증과 제출 (partial)
-- [ ] T052 [MEDIUM] T046~T051의 결과를 `Assets/_02LWS/Documentation/Validation/SmokePostureAcceptance.md`에 집계하여 현재 F1 출처·Editor/Quest/학습/Import 증거·완료 수·미실시 제한을 대조한다. 이전 37/45 집계와 음성 권리 미확인 문구를 현재 검증 결과에 맞추고 실제 근거가 있는 작업만 완료 처리한다. per T045, plan:검증과 제출 (partial)
-- [ ] T053 [LOW] 기존 작업을 수정·삭제·재번호화하지 않고 tasks.md 끝에 ID 대응표를 추가하여 원래 Phase 6의 T040(Quest 중단)/T041(성능)과 후미 F1 절의 T040(생성 완료)/T041(청취 대기)을 구분한다. 후미 음성 생성은 완료 근거를 유지하고 청취 의무는 고유 ID T047로 추적하며 전체 항목/고유 ID/완료 집계 기준을 명시한다. per tasks:Format and paths 및 완료 근거 추적, T045 (partial)
+- [ ] T051 [MEDIUM] A/B 두 단계로 수행한다. T051-A는 T046 복구 수정 및 T047 음성 검수·필요한 재생성 반영 후 최신 Android 개발 빌드를 생성·보관하고 빌드/소스 식별·해시를 갱신한다. T051-B는 T048~T050 검증 및 T043 잔여 권리/의존성 점검 후 최신 `Assets/_02LWS`를 Export하고 별도 수신 프로젝트에서 두 콘텐츠 전체 진행·설정·중단·복귀·Console 및 참조를 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureBuild.md`와 `SmokePostureImport.md`에 기록한다. 예전 Heami 빌드·예비 Import 결과를 최신 F1 결과로 사용하지 않는다. T051은 A/B 모두 끝나야 완료 처리한다. 검증 중 실행 코드·자산을 수정하면 영향을 받는 빌드와 검증을 다시 수행하며 필요한 환경이 없으면 해당 단계는 미완료로 남긴다. per T038/T043/T044, plan:검증과 제출 (partial)
+- [ ] T052 [MEDIUM] T046~T051의 결과를 `Assets/_02LWS/Documentation/Validation/SmokePostureAcceptance.md`에 집계하여 현재 F1 출처·Editor/Quest/학습/Import 증거·완료 수·미실시 제한을 대조한다. 이전 37/45 집계와 음성 권리 미확인 문구를 현재 검증 결과에 맞추고 실제 근거가 있는 작업만 완료 처리한다. 후속 실행 변경의 MP4 또는 대체 시각 자료·verification.md·Git 비추적 확인·대표 파일 링크·미검증 환경을 공통 게이트와 대조한다. per T045, plan:검증과 제출 (partial)
+- [X] T053 [LOW] 기존 작업의 ID·의무·완료 근거를 보존하고 tasks.md 끝에 ID 대응표를 추가하여 원래 Phase 6의 T040〈Quest 중단 검증〉/T041〈성능 검증〉과 후미 F1 절의 T040〈F1 음성 생성〉/T041〈F1 청취 검수〉를 구분한다. 후미 음성 생성은 완료 근거를 유지하고 청취 의무는 고유 ID T047로 추적하며 전체 항목/고유 ID/완료 집계 기준을 명시한다. per tasks:Format and paths 및 완료 근거 추적, T045 (partial)
+
+## ID 대응표 및 후속 실행 순서 — 2026-11-11 문서 정정
+
+기존 ID와 항목을 보존한다. 중복 ID는 아래 구분명까지 사용해 식별한다. 앞의 번호 범위 T039~T041 및 T039~T042는 Phase 6의 기기 검증 범위다. F1 청취 의무는 고유 ID T047로 추적한다. T053은 이 대응표·참조 구분·집계 작성과 문서 검증으로 완료 처리하며 실제 앱 검증을 뜻하지 않는다.
+
+| 기존 위치/ID | 구분 표기 | 후속 추적 |
+|---|---|---|
+| Phase 6 T040 | T040〈Quest 중단 검증〉 | T048 |
+| Phase 6 T041 | T041〈성능 검증〉 | T049 |
+| F1 절 T040 | T040〈F1 음성 생성〉 | 기존 생성 완료 근거 유지 |
+| F1 절 T041 | T041〈F1 청취 검수〉 | T047 |
+
+현재 집계: 체크박스 55개 / 고유 ID 53개 / 체크 39개 / 미체크 16개. 이번 문서 정정 전 38/17에서 T053만 완료로 변경했다. 집계 단위는 체크박스이며 구현·실기기 검증 합격률이 아니다. Phase 7은 기존 미완료 의무의 구체화이므로 같은 검증을 중복 수행하지 않되 원래 항목도 같은 증거로 충족되는지 대조한다.
+
+아래 순서는 Phase 7 후속 작업에 적용하며 앞의 Phase 1~6 역사적 그래프를 보완한다. T051-A/B는 T051 내부 단계이며 별도 체크박스나 새 작업 ID가 아니다.
+
+```text
+T046·T047 → T051-A(검증용 APK) → T048(Quest)
+  → T049(성능)·T050(학습) → T043 잔여 점검
+  → T051-B(Export·Import) → T052(최종 집계)
+```
+
+T049/T050은 별도 기기·진행자가 있을 때만 병렬 수행하고 그렇지 않으면 순차 수행한다. T051은 A/B 모두 완료해야 체크한다. 검증 중 코드·자산이 바뀌면 영향을 받는 빌드·검증을 다시 수행한다. 기기·참여자·수신 환경 부재는 해당 단계의 미완료로 남긴다.
