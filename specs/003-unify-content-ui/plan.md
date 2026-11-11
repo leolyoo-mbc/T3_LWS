@@ -32,7 +32,7 @@
 
 ## Constitution Check
 
-헌법은 미작성 템플릿이므로 자리표시자를 원칙으로 간주하지 않는다. 다음은 실제 프로젝트 지침과 사용자 요구의 게이트다.
+헌법 v1.1.0(2026-11-11)을 적용한다. 아래 게이트는 헌법과 기존 프로젝트 지침·사용자 요구를 함께 확인한다. 설계 게이트 통과는 실제 구현·녹화 완료를 뜻하지 않는다.
 
 | Gate | 연구 전 | 설계 후 |
 |---|---|---|
@@ -41,6 +41,8 @@
 | design.md 및 기존 자원 우선 | 통과 | 통과 — Theme/Prefab/uGUI 재사용 |
 | Assets/_02LWS 제출 경계 | 통과 | 통과 — 검증 도구 포함 |
 | 화재 원문 보존·PC/기기 결과 구분 | 통과 | 통과 — 기준 캡처와 환경별 검증 |
+| 실행 MP4 또는 대체 시각 자료 확보 | 개정 후 반영 | 설계 반영 — 구현 후 촬영, 미확보 시 완료 기준 미충족 |
+| 공통 경로 보관·대표 파일 경로 보고 | 개정 후 반영 | 설계 반영 — VisualEvidence/작업별 폴더와 verification.md |
 
 ## Project Structure
 
@@ -57,7 +59,7 @@ specs/003-unify-content-ui/
 └── checklists/requirements.md
 ```
 
-`tasks.md`는 후속 speckit-tasks에서 생성한다.
+`tasks.md`는 후속 speckit-tasks에서 생성한다. 실행 화면 MP4 기록, 녹화 불가 시 대체 자료 확보, 공통 경로 저장·열람 확인, 완료 보고의 대표 파일 경로 확인을 검증 작업과 완료 조건으로 포함한다.
 
 ### Source Code (repository root)
 
@@ -75,6 +77,8 @@ Assets/_02LWS/
 ```
 
 **Structure Decision**: 기존 Runtime/Presentation/Interaction 분리와 어셈블리를 유지한다. namespace는 현재 LWS.FireNotification 하위를 사용한다. 팀 공용 namespace/패키지 전환은 범위 밖이다.
+
+검증 영상·스크린샷·동반 기록은 위 Assets 트리 밖의 프로젝트 루트 `Artifacts/Validation/VisualEvidence/`에 로컬 보관한다. 기존 `.gitignore` 규칙으로 제외하고 Git 추적·커밋·강제 추가 또는 Unity 제출 자산에 포함하지 않는다. Documentation/Validation은 필요한 요약 문서에만 사용한다. 완료 전에 실제 자료의 Git 제외 및 비추적 상태를 확인한다.
 
 ## Phase 0 — Research
 
@@ -115,6 +119,10 @@ Assets/_02LWS/
 [data-model.md](data-model.md), [연결 계약](contracts/shared-experience-ui.md), [quickstart.md](quickstart.md)에 모델·소유권·실행 검증을 정의한다. Editor 도구로 이전 콜백 거부·설정 격리·원문 불변과 실제 씬 구성을 검사하고 Play Mode/Quest에서 입력과 표시를 확인한다. 도메인 판정 알고리즘을 다시 설계하지 않는다.
 
 이번 단계는 설계 문서만 작성한다. 구현·기기 성공으로 표시하지 않으며 음성/기기 미준비는 검증 기록에 남긴다. design.md와 기존 콘텐츠 명세는 수정하지 않는다.
+
+구현 후에는 실제 Play Mode 또는 빌드의 진입·핵심 동작·결과를 MP4로 기록한다. 우선 현재 사용 가능한 캡처 도구를 확인하고 녹화 시작 → 실제 검증 경로 실행 → 녹화 종료 → MP4 재생 확인 순서로 수행한다. 특정 Recorder 패키지 설치를 전제로 하지 않는다. 녹화가 불가능하면 사유와 검증 한계를 기록하고 주요 단계별 스크린샷을 확보한다. 로그만으로 대체하지 않는다.
+
+자료와 `verification.md`는 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-작업명/`에 저장하고 기존 폴더를 덮어쓰지 않는다. 실제 캡처 환경·입력·확인 동작·결과·미검증 항목을 구분한다. 완료 보고는 대표 MP4/대체 파일의 실제 경로를 포함한다. 시각 자료도 없으면 원칙 미충족으로 보고하며 검증 완료로 선언하지 않는다. 문서만 수정하는 이번 작업에는 새 녹화를 요구하지 않는다.
 
 ## Complexity Tracking
 

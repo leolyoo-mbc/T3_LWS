@@ -34,11 +34,13 @@
 
 ## 검증과 기존 문서
 
-- **Decision**: Editor 검증 도구와 실제 씬/기기 검증, 변경 근거 기록을 사용한다.
-- **Rationale**: 프로젝트 소유 자동 테스트는 발견하지 못했다. 기존 자세 quickstart는 Editor 주입과 기기 검증을 구분한다. 헌법은 미작성이다. design.md의 콘텐츠 구현 상태는 오래되어 최신 자세 명세를 취소하지 않으며 기존 승인 추종 정책은 유지한다.
-- **Alternatives considered**: PackageCache 테스트를 프로젝트 검증으로 간주하거나 PC 성공을 실기기 성공으로 대체하지 않는다.
+- **Decision**: Editor 검증 도구와 실제 씬/기기 검증, 변경 근거 기록에 더해 헌법 v1.1.0의 MP4 기록·대체 시각 자료·공통 경로 보관·결과물 경로 보고를 적용한다.
+- **Rationale**: 프로젝트 소유 자동 테스트는 발견하지 못했다. 기존 자세 quickstart는 Editor 주입과 기기 검증을 구분한다. 최초 조사 이후 2026-11-11 채택된 헌법 v1.1.0은 사용자가 나중에 확인할 수 있는 실행 화면 기록을 요구한다. design.md의 콘텐츠 구현 상태는 오래되어 최신 자세 명세를 취소하지 않으며 기존 승인 추종 정책은 유지한다.
+- **Alternatives considered**: PackageCache 테스트를 프로젝트 검증으로 간주하거나 PC 성공을 실기기 성공으로 대체하지 않는다. 텍스트 로그만으로 녹화를 대체하지 않으며 캡처 도구는 구현 시 실제 환경에서 확인한다. 특정 도구의 가용성을 검증했다고 주장하지 않는다.
 
 ## 조사 근거
+
+저장 경로 교정: 헌법 1.0.0 최초 채택 뒤 1.1.0에서 비추적 의무와 경로를 명시했다. 기존 `.gitignore`의 `/[Aa]rtifacts/` 규칙을 사용해 프로젝트 루트 `Artifacts/Validation/VisualEvidence/`에 로컬 결과물을 둔다. Assets 안에 생성하면 Git 및 Unity 자산/제출물에 섞일 수 있어 검증 원본 경로로 사용하지 않는다.
 
 프로젝트 루트 기준: design.md, AGENTS.md, specs/001-fire-notification/spec.md, specs/002-smoke-low-posture/contracts/experience-ui.md 및 quickstart.md, ProjectSettings/ProjectVersion.txt, Packages/manifest.json, Assets/_02LWS/Scripts 아래 Runtime/Presentation/Interaction의 위 클래스와 두 카탈로그.
 
