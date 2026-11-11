@@ -86,5 +86,5 @@ crashlytics-build.properties
 /[Aa]rtifacts/
 
 .agents
-.specify
+# Spec Kit shared files are tracked; local state is excluded by .specify/.gitignore.
 .unsnooze
