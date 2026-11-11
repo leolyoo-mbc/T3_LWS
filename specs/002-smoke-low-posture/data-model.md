@@ -85,3 +85,7 @@ EducationCue는 고유 key, 로컬 AudioClip, 시간 구간별 한국어 자막�
 ## 데이터 수명
 
 세션/샘플/기준은 실행 종료 시 폐기한다. 새 키/머리 위치 로그·파일·분석 전송은 추가하지 않는다. 검증 보고서에는 시험 조건과 결과만 기록하고 실제 체험자의 신체 수치/식별정보는 요구하지 않는다. 계정·네트워크·서버·DB·마이그레이션은 없다.
+
+## Shared presentation binding — 2026-11-12
+
+ContentUIAction contains an ID, label and callback supplied by the active ContentExperienceAdapter. SharedContentUI owns the common panel/status/subtitle/button pool and guidance presenter. Owner identifies the active binding; generation changes whenever actions/owner are replaced or cleared. Click callbacks require matching owner/generation and unblocked active content. This is transient app presentation state, not posture/session completion data. Content roots contain no Canvas or guidance presenter. HeadPoseSampleProvider lives in SharedSystems; baseline/reference/2-second completion still belong to SmokePostureSession. Gameplay labels use 3D text.

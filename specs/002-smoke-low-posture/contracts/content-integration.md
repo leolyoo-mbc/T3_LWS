@@ -47,3 +47,11 @@ Navigator는 콘텐츠 등록·활성 항목·공간 전환을 소유한다. 콘
 ## 회귀 불변 조건
 
 콘텐츠 1의 큰소리 알림 선택·주변 반응·상황 복원·직접 벨 누르기·경보·완료 순서는 유지한다. 물리 벨을 UI 트리거 선택으로 바꾸지 않는다. 메뉴/음량/자막/글자/일시정지/재시작/복귀/콘텐츠 1의 기존 이동을 전체 순환에서 확인한다. 연기 체험 진입 전후 모두 통과해야 한다.
+
+## Approved shared UI contract — 2026-11-12
+
+ContentExperienceAdapter.view references SharedContentUI. Bind(owner,title) selects one content; SetStatus(owner,text) updates operational text; SetActions(owner,ContentUIAction[]) supplies stable action IDs, labels and callbacks; Clear(owner) invalidates bindings and presentation on exit. Shared view rejects stale owner/generation and blocked input. Content owns stage progression, cue selection and completion callbacks; common GuidancePresenter owns playback/subtitles. SharedUIController owns common settings/modal/result/menu visibility. No UI class references FireNotificationController or SmokePostureController. All UI panels share one Canvas; gameplay text labels are 3D text. This replaces earlier per-content Canvas registration/input adapters.
+
+Result display waits for both ResultVisible and GuidancePresenter.IsPresenting=false so completion narration retains its captions. Common button presses are invalidated on blocker transitions, including tracking/lifecycle changes, not just when panels are rebound. Existing authored action labels are preserved.
+
+Current shared action row capacity is two choices, matching both existing contents; more choices require extending the common layout and 150% checks first. Buttons are pooled and reuse the same presenter contract. This is a current layout limit, not a restriction on future educational content.

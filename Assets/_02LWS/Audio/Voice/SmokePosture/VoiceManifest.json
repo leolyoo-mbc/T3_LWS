@@ -5,7 +5,7 @@
   "language": "ko",
   "steps": 16,
   "speed": 0.95,
-  "listeningReview": "pending",
+  "listeningReview": "approved",
   "cues": [
     {
       "id": "ready",
@@ -61,5 +61,7 @@
       "sha256": "fc4c5d0f7347ee703bfaeda7ab597d18c0a9c9bb82d38fcba6360a2cefa9369b",
       "seed": 202611115
     }
-  ]
+  ],
+  "listeningReviewDate": "2026-11-12",
+  "listeningReviewEvidence": "User confirmed all six cues listened; pronunciation, intonation and script have no issues."
 }

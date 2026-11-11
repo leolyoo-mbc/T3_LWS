@@ -9,7 +9,9 @@ namespace LWS.FireNotification.Runtime
     public sealed class FireNotificationController : MonoBehaviour
     {
         public GuidanceCatalog catalog;
-        public GuidancePresenter guidance;
+        public SharedContentUI view;
+        public ContentExperienceAdapter presentationOwner;
+        public GuidancePresenter guidance => view != null && view.Owner == presentationOwner ? view.guidance : null;
         public ScenarioBaseline baseline;
         public ExperienceLifecycle lifecycle;
         public ExperienceStageHandler[] handlers = Array.Empty<ExperienceStageHandler>();

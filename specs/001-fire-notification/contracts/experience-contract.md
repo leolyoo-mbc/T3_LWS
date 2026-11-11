@@ -81,3 +81,9 @@ Subtitle은 동일 음성 구간을 표시하고 자막 끔은 출력만 숨긴�
 형상 참고: 국내 제조/공급사 카탈로그 https://waf-e.dubudisk.com/ilshinfa.dubuplus.com/yollam%40naver.com/O18B62L/DubuDisk/www/2021%EC%B9%B4%EB%8B%A4%EB%A1%9C%EA%B7%B8.pdf (원형 발신기 144mm·경종 120mm·표시등 87mm 도면, 검색 색인 확인) 및 https://www.alllitelife.com/page.php?page=sub2_3_7 (발신기/경종/표시등 사진 및 경종 120x50mm 도면 직접 확인). 비율·부착판 배치·눌림 깊이와 음량은 프로젝트 초기 조정값이며 법적 설치 규정/모든 제품의 공통 규격으로 표현하지 않는다.
 
 검증: 실제 벽면 부착, 정면 접근/텔레포트, 분리 누름부와 collider 정합, 표면 접촉·잘못된 입력 거부/유효 깊이 성공, 중단·메뉴·초기화, 전체 교육 순환을 Editor에서 확인한다. 실제 VR의 도달성·식별성·소리 자연스러움 및 Quest 성능은 기기 증거 없이는 미완료다.
+
+## 공용 UI 구조 우선 적용 — 사용자 승인 2026-11-12
+
+현재 콘텐츠 1과 연기 콘텐츠는 SharedSystems/SharedCanvas와 SharedNarration을 공유한다. 이 절은 아래의 과거 콘텐츠별 Canvas/GuidancePresenter/NextPanel/ReturnToMenuPanel 배치 설명보다 우선한다. 콘텐츠는 ContentExperienceAdapter.view에 제목·상태·선택/다음 행동을 연결하고 종료 때 연결을 정리한다. 화면/레이 입력/위치 추적/설정/모달/결과는 공용이며, 교육 진행·주변 사람 반응·물리 벨·공간 경보음은 콘텐츠에 남긴다. 벨 표지는 3D 텍스트로 보존한다.
+
+새 콘텐츠 제작 기준: Assets/_02LWS/Documentation/ContentAuthoring.md. 구현 작업과 검증 추적: specs/002-smoke-low-posture/tasks.md Phase 8(T054~T060). Tools > LWS > Validate Shared UI로 공용화 규칙을 검사한다. AGENTS.md와 기존 기기/제출 미완료 작업은 수정하지 않는다.

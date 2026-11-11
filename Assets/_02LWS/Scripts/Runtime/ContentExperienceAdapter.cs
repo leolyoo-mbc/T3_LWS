@@ -5,6 +5,7 @@ namespace LWS.FireNotification.Runtime
 {
     public abstract class ContentExperienceAdapter : MonoBehaviour
     {
+        public SharedContentUI view;
         public event Action StateChanged;
         public event Action MenuRequested;
         public event Action ExitConfirmationRequested;

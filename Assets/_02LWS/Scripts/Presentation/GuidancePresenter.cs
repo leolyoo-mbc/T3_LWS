@@ -14,6 +14,7 @@ namespace LWS.FireNotification.Presentation
         private bool paused;
         private float elapsed;
         public float Elapsed => elapsed;
+        public bool IsPresenting => playback != null;
         public void SetPaused(bool value)
         {
             paused = value;

@@ -1,4 +1,4 @@
-﻿# Tasks: 콘텐츠 1 — 화재 사실 알리기
+# Tasks: 콘텐츠 1 — 화재 사실 알리기
 
 **Input**: `specs/001-fire-notification/`의 [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [계약](contracts/experience-contract.md), [quickstart.md](quickstart.md), [확정 대본](content-script.md).
 
@@ -281,3 +281,9 @@ T076 결과: 최종 187개 파일 Export, 원본/meta 불일치 0, SHA-256 3859e
 Phase 15 실행 상태: T077/T078/T081 완료. Editor 197/197 통과, 필수 외부 프로젝트 자산 참조/누락 스크립트/복사 셰이더 오류 0. T079는 별도 Unity 실행의 public-cdn.cloud.unity3d.com 접속 차단과 라이선스 초기화 정지로 미검증이다. T080은 T079 선행 조건과 실제 Quest 연결 부재로 미완료, T082는 기기 성능 측정 부재로 미완료, T083은 최종 수락 증거가 없어 미완료다. 기존 T037/T038/T041/T042/T060/T066/T073도 유지한다. 상세 증거는 Assets/_02LWS/Documentation/Validation/Convergence.md에 기록한다.
 
 Phase 15 최종 패키지: 239개 파일, 36579867 bytes, 원본/meta 불일치 0개. SHA-256 29d444a9ed621720b7ed927aaaac1cea3d46bc9fef09af23b089d3d00a1acd00. T077/T078/T081 완료, T079/T080/T082/T083 미완료. 새 APK 없음. 전후 확장 훅 없음.
+
+## 공용 UI 구조 우선 적용 — 사용자 승인 2026-11-12
+
+현재 콘텐츠 1과 연기 콘텐츠는 SharedSystems/SharedCanvas와 SharedNarration을 공유한다. 이 절은 아래의 과거 콘텐츠별 Canvas/GuidancePresenter/NextPanel/ReturnToMenuPanel 배치 설명보다 우선한다. 콘텐츠는 ContentExperienceAdapter.view에 제목·상태·선택/다음 행동을 연결하고 종료 때 연결을 정리한다. 화면/레이 입력/위치 추적/설정/모달/결과는 공용이며, 교육 진행·주변 사람 반응·물리 벨·공간 경보음은 콘텐츠에 남긴다. 벨 표지는 3D 텍스트로 보존한다.
+
+새 콘텐츠 제작 기준: Assets/_02LWS/Documentation/ContentAuthoring.md. 구현 작업과 검증 추적: specs/002-smoke-low-posture/tasks.md Phase 8(T054~T060). Tools > LWS > Validate Shared UI로 공용화 규칙을 검사한다. AGENTS.md와 기존 기기/제출 미완료 작업은 수정하지 않는다.

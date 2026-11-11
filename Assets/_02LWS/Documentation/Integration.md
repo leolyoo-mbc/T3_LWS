@@ -1,7 +1,18 @@
+## Latest: 체험 UI 시야 가림 수정 — 2026-11-12
+
+공용 Canvas1개와 안내 재생기1개를 유지하고 체험 안내를 아래쪽 가변 높이로 바꿨다. 고정1.325m 높이 배경·중복 제목·콘텐츠2 전용 고정 설명을 제거했다. 빈 상태/자막 행은 공간을 사용하지 않고 내용/동작이 모두 없으면 배경을 숨긴다. 글자150%는 높이를 늘려 수용한다. 메뉴/설정/결과 배치는 유지한다.
+
+현재 수정본 Editor 통합49/49, 자막/배치452/452 PASS. 실제 실행 영상의1101개 활성 안내 표본에서 상단 고정·글자 영역 초과0건. 저장 씬 Canvas1/안내 재생기1/누락 스크립트0/외부 프로젝트 자산 참조0, 컴파일 오류0. 실제 MP4를 Unity VideoPlayer로 디코딩했다.
+
+원본: Artifacts/Validation/VisualEvidence/20261112-023201-compact-content-ui/verification.md, execution.mp4, 03-fire-choices.png, 03b-fire-choices150.png, 09-synthetic-crouch.png. 검증은 Editor 합성 입력이다. Quest 가독성/편안함·기기 성능·학습·최종 Import는 미검증. 아래 기존 APK와284검사 기록은 이 수정 이전 이력이며 최신 시야 수정이 APK에 포함됐다는 뜻이 아니다.
+## Current shared UI architecture — 2026-11-12
+
+SharedSystems owns one World Space SharedCanvas, one SharedNarration (GuidancePresenter/AudioSource), and shared head tracking/lifecycle. Contents groups MenuSpace/FireNotificationSpace/SmokePostureSpace; content roots contain zero Canvas and zero UI guidance presenters. Existing two content flows use SharedContentUI owner-bound text/actions and preserve their own scripts/cues/spatial effects. Common UI does not reference either concrete content controller. The old per-content GuidanceCanvas/SmokeGuidanceCanvas/ActionChoicePanel/NextPanel/ReturnToMenuPanel descriptions below are historical. New content authors must follow ContentAuthoring.md and run Tools > LWS > Validate Shared UI. Original UI prefabs retained for historical assets are not the new-content template.
+
 
 ## F1 음성 통일 — 2026-11-11
 
-사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 최종 발음·억양 청취 검수는 미완료다.
+사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 2026-11-12 사용자 청취 검수 완료: 6개 모두 발음·억양·대본에 문제가 없다고 확인했다.
 
 Current source: Supertonic 2 revision 75e6727618a02f323c720cba9478152d4bc16ca4; F1; ko; 16 steps; speed 0.95. See Audio/Voice/SmokePosture/VoiceManifest.json and Licenses/Supertonic2.txt. Earlier Heami notes describe superseded development audio. Preserve AI speech disclosure and existing model-license conditions.
 
@@ -9,7 +20,7 @@ Current source: Supertonic 2 revision 75e6727618a02f323c720cba9478152d4bc16ca4; 
 
 The existing entry scene now includes SmokePostureSpace and a second content-menu selection. One XR Origin/EventSystem is shared. Explicit standing ready captures a per-run head-height baseline; the user lowers their body in place, holds the recognized posture for 2 seconds, then receives limitations and returns/restarts. Practice has a fixed upper smoke layer with circulating particles and locomotion disabled. This is posture practice, not a completed escape.
 
-Editor evidence: Validation/SmokePostureDetection.md, SmokePostureLoop.md, SmokePostureReviewFixes.md, SmokePostureRegression.md. Actual Quest recognition/latency/readability/performance, 5-person learning evaluation, narration listening/redistribution approval and full receiving-project runtime acceptance remain pending. Preliminary same-version receiving-project compile/reference/domain checks passed after installing TMP Essential Resources; see Validation/SmokePostureImport.md. New Microsoft Heami WAVs are development drafts; do not present them as submission-cleared. Refer to SmokePostureScript.md and ThirdPartyNotices.md. Existing package/XR/Android prerequisites and content1 voice credits still apply. No final submission package is certified by this update.
+Editor evidence: Validation/SmokePostureDetection.md, SmokePostureLoop.md, SmokePostureReviewFixes.md, SmokePostureRegression.md. Actual Quest recognition/latency/readability/performance, 5-person learning evaluation, narration listening/redistribution approval and full receiving-project runtime acceptance remain pending. Preliminary same-version receiving-project compile/reference/domain checks passed after installing TMP Essential Resources; see Validation/SmokePostureImport.md. The 2026-11-10 Microsoft Heami WAV notes are historical; the current six smoke WAVs use Supertonic 2 F1, with user listening approval on 2026-11-12. Refer to SmokePostureScript.md and ThirdPartyNotices.md. Existing package/XR/Android prerequisites and content1 voice credits still apply. No final submission package is certified by this update.
 
 ## Current convergence revision — 2026-11-05
 

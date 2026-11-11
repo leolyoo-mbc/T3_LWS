@@ -1,11 +1,11 @@
 
 ## F1 음성 통일 — 2026-11-11
 
-사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 최종 발음·억양 청취 검수는 미완료다.
+사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 2026-11-12 사용자 청취 검수 완료: 6개 모두 발음·억양·대본에 문제가 없다고 확인했다.
 
 Current source: Supertonic 2 revision 75e6727618a02f323c720cba9478152d4bc16ca4; F1; ko; 16 steps; speed 0.95. See Audio/Voice/SmokePosture/VoiceManifest.json and Licenses/Supertonic2.txt. Earlier Heami notes describe superseded development audio. Preserve AI speech disclosure and existing model-license conditions.
 
-## Smoke posture development narration — 2026-11-10
+## Historical smoke posture development narration — 2026-11-10 (superseded)
 
 Audio/Voice/SmokePosture/*.wav was generated locally from original Korean draft text using the installed Microsoft Heami (ko-KR) Windows voice via SAPI. No Windows voice engine/model is included and no hosted service or account was used. This identifies provenance only: final listening/pronunciation review and redistribution terms for the submission remain unconfirmed. These WAVs are development assets; do not label them CC0 or unrestricted, and do not certify a distributable package until those checks are resolved. Draft wording and educational references are in SmokePostureScript.md. Existing Kenney smoke texture/material and Noto font/OFL notices below continue to apply.
 

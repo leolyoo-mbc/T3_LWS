@@ -273,3 +273,9 @@
 
 - FR-031: 비상벨은 복도 벽에 부착된 발신기·표시등·경종으로 식별 가능해야 하며, 실제 전기벨 녹음과 분리된 누름부를 제공한다.
 - SC-015: 벽 부착과 누름부 정합·유효 push·경보 재생/중단을 Editor에서 검증하고 실제 VR 외형/도달성/음질 검증은 별도 기록한다.
+
+## 공용 UI 구조 우선 적용 — 사용자 승인 2026-11-12
+
+현재 콘텐츠 1과 연기 콘텐츠는 SharedSystems/SharedCanvas와 SharedNarration을 공유한다. 이 절은 아래의 과거 콘텐츠별 Canvas/GuidancePresenter/NextPanel/ReturnToMenuPanel 배치 설명보다 우선한다. 콘텐츠는 ContentExperienceAdapter.view에 제목·상태·선택/다음 행동을 연결하고 종료 때 연결을 정리한다. 화면/레이 입력/위치 추적/설정/모달/결과는 공용이며, 교육 진행·주변 사람 반응·물리 벨·공간 경보음은 콘텐츠에 남긴다. 벨 표지는 3D 텍스트로 보존한다.
+
+새 콘텐츠 제작 기준: Assets/_02LWS/Documentation/ContentAuthoring.md. 구현 작업과 검증 추적: specs/002-smoke-low-posture/tasks.md Phase 8(T054~T060). Tools > LWS > Validate Shared UI로 공용화 규칙을 검사한다. AGENTS.md와 기존 기기/제출 미완료 작업은 수정하지 않는다.

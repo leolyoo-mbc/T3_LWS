@@ -11,7 +11,9 @@ namespace LWS.FireNotification.Interaction
         public InputActionAsset inputs;
         public UnityEvent selected = new UnityEvent();
         public bool allowWhilePaused;
-        private bool Blocked => !allowWhilePaused && Runtime.SharedUIController.Active != null && Runtime.SharedUIController.Active.IsOpen;
+        public System.Func<bool> CanSelect { get; set; }
+        private bool Blocked => (!allowWhilePaused && Runtime.SharedUIController.Active != null && Runtime.SharedUIController.Active.IsOpen) ||
+            (CanSelect != null && !CanSelect());
         private bool armed;
         private int acceptedPointer = int.MinValue;
         private InputAction left;
@@ -26,12 +28,13 @@ namespace LWS.FireNotification.Interaction
         }
         private void OnEnable()
         {
-            armed = false; released = false; acceptedPointer = int.MinValue;
-            busyUntil = 0;
+            InvalidatePress();
             left = inputs != null ? inputs.FindAction("Left/Press") : null;
             right = inputs != null ? inputs.FindAction("Right/Press") : null;
             RefreshStyle();
         }
+        public void InvalidatePress()
+        { armed = false; released = false; acceptedPointer = int.MinValue; busyUntil = 0; }
         private void Update()
         {
             if (!Processing && acceptedPointer == int.MinValue && !(left?.IsPressed() ?? false) && !(right?.IsPressed() ?? false)) armed = true;

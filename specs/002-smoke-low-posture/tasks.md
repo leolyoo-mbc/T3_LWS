@@ -2,7 +2,7 @@
 
 **Input**: `specs/002-smoke-low-posture/`의 spec.md, plan.md, research.md, data-model.md, contracts/, quickstart.md.
 
-**Status**: 구현 진행 중. 완료 체크는 아래 검증 기록이 있는 항목만 반영한다. T014 음성 최종 청취/제출 권리와 실기기·학습·제출 검증은 별도로 남긴다. 현재 헌장 v1.1.0을 적용하며 후속 실행 변경은 아래 시각 검증 게이트를 따른다.
+**Status**: 구현 진행 중. 완료 체크는 아래 검증 기록이 있는 항목만 반영한다. T014/T047 음성 청취·출처 점검과 T046 Editor 복구 보완은 2026-11-12 완료했다. 실기기·학습·최종 제출 검증은 별도로 남긴다. 현재 헌장 v1.1.0을 적용하며 후속 실행 변경은 아래 시각 검증 게이트를 따른다.
 
 **확정/제안**: 실제 숙임, 준비 완료 순간 기준, 연속 2초 자동 인정, 연습 중 고정 연기층은 사용자 확정이다. 20% 하강·0.03 m 해제 여유·화면 문구·타입명은 AI 설계 제안이다. 튜닝으로 2초 조건이나 교육 범위를 바꾸지 않는다.
 
@@ -55,7 +55,7 @@
 
 - [X] T012 [US1] `specs/002-smoke-low-posture/contracts/experience-ui.md`를 기준으로 원리·준비·인식·한계 안내의 검토용 대본과 공식자료 적용 조건을 `Assets/_02LWS/Documentation/SmokePostureScript.md`에 정리한다. 흡입 감소 중심, ‘대피가 가능한 경우’, 자세만으로 안전하지 않음, 2초는 앱 조건이라는 구분을 유지하고 새 문구를 사용자 확정으로 표시하지 않는다.
 - [X] T013 [P] [US1] `Assets/_02LWS/Scripts/Presentation/SmokeLayerPresenter.cs`와 `Assets/_02LWS/Prefabs/SmokePosture/SmokeLayer.prefab`에 InitialCollection / SteadyPractice / Frozen / Stopped를 구현한다. “Frozen은 직전 연출 상태를 보존하고 종료 시 입자를 정리한다”, “SteadyPractice의 층 경계는 공간에 고정하며 사용자 자세·대기 시간으로 바뀌지 않는다”를 적용한다. 기존 내부 FireSmoke 자산을 호환성 확인 후 재사용하며 전역 fog·성공 연기 제거·카메라 추종을 넣지 않는다. T012와 병렬 가능하다.
-- [ ] T014 [US1] T012 후 `Assets/_02LWS/Audio/Voice/SmokePosture/`에 대본과 일치하는 재배포 가능한 로컬 한국어 안내를 확보하고 `Assets/_02LWS/Data/SmokePosture/GuidanceCatalog.asset`에 큐를 구성한다. `Assets/_02LWS/Scripts/Presentation/SmokeGuidanceCatalog.cs`에서 기존 GuidanceCue/GuidancePresenter를 재사용하되 원리/연습/한계 전용 필수 ID를 검증한다. 기존 `Assets/_02LWS/Scripts/Presentation/GuidanceCatalog.cs`는 sealed이며 situation/next/bell/completion/feedback/shout를 필수로 요구하므로 새 큐를 그대로 넣거나 콘텐츠 1 검증을 약화하지 않는다. EducationCue의 “고유 key, 로컬 AudioClip, 시간 구간별 한국어 자막” 제약과 한국어 글리프 검증을 적용한다. 유료 구매·계정 사용·외부 전송이 필요하면 실행 권한을 먼저 확인하고, 확보하지 못한 음성을 완료로 처리하지 않는다.
+- [X] T014 [US1] T012 후 `Assets/_02LWS/Audio/Voice/SmokePosture/`에 대본과 일치하는 재배포 가능한 로컬 한국어 안내를 확보하고 `Assets/_02LWS/Data/SmokePosture/GuidanceCatalog.asset`에 큐를 구성한다. `Assets/_02LWS/Scripts/Presentation/SmokeGuidanceCatalog.cs`에서 기존 GuidanceCue/GuidancePresenter를 재사용하되 원리/연습/한계 전용 필수 ID를 검증한다. 기존 `Assets/_02LWS/Scripts/Presentation/GuidanceCatalog.cs`는 sealed이며 situation/next/bell/completion/feedback/shout를 필수로 요구하므로 새 큐를 그대로 넣거나 콘텐츠 1 검증을 약화하지 않는다. EducationCue의 “고유 key, 로컬 AudioClip, 시간 구간별 한국어 자막” 제약과 한국어 글리프 검증을 적용한다. 유료 구매·계정 사용·외부 전송이 필요하면 실행 권한을 먼저 확인하고, 확보하지 못한 음성을 완료로 처리하지 않는다.
 - [X] T015 [US1] `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`에 어댑터 수명·AwaitingReady→PrincipleGuidance→Practice 표시와 기존 GuidancePresenter 연결을 구현한다. 원리 안내 누락/잘못된 큐는 구성 오류로 알리고 메뉴 복귀를 제공하며 성공으로 건너뛰지 않는다. 이 단계의 Practice는 실제 판정 없이 대기하고, 준비 높이 캡처는 US2에서 연결한다.
 - [X] T016 [US1] T013~T015 후 `Assets/_02LWS/Scenes/FireNotification.unity`에 SmokePostureSpace·고정 연기 영역·진입 anchor·한국어 안내/준비/중단 UI를 배치한다. 기존 Theme/Fonts/FreshPressButton/추적 UI 입력을 재사용하고 새 Canvas를 명시 등록한다. 이동 표면/앵커·별도 XR Rig/EventSystem을 만들지 않는다.
 - [X] T017 [US1] `Assets/_02LWS/Scenes/FireNotification.unity`의 메뉴에 smoke-low-posture를 등록하고 새 root/controller/anchor/이동 불가 정책을 연결한다. 진입과 원리 관찰 후 메뉴 복귀를 확인하고 관찰만으로 자세 연습 완료나 Result를 표시하지 않는다.
@@ -185,17 +185,17 @@ Foundation: existing shared UI 111/111 and physical bell 25/25. Smoke: Editor do
 
 ## F1 음성 통일 — 2026-11-11
 
-사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 최종 발음·억양 청취 검수는 미완료다.
+사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 2026-11-12 사용자 청취 검수 완료: 6개 모두 발음·억양·대본에 문제가 없다고 확인했다.
 
 - [X] T040〈F1 음성 생성〉 안내 6개를 F1으로 생성·교체하고 기존 GUID와 대본을 보존, 자막 시간 및 생성 manifest 갱신.
-- [ ] T041〈F1 청취 검수〉 교체된 F1 안내 6개의 발음·억양을 사용자 청취 검수하고 결과 기록. T014는 이 검수 전까지 미완료 유지.
+- [X] T041〈F1 청취 검수〉 교체된 F1 안내 6개의 발음·억양을 사용자 청취 검수하고 결과 기록. T014는 이 검수 전까지 미완료 유지.
 
 ## Phase 7: Convergence
 
 2026-11-11 Convergence 당시 기록: 콘텐츠 002의 spec/plan/tasks와 실행 코드·자산·검증 기록을 대조했고 당시 선행 확인 도구는 001을 반환했다. 현재 분석 도구는 002를 반환한다. 현재 헌장 v1.1.0을 적용하며 후속 실행 변경은 위 시각 검증 게이트를 따른다. 아래 작업은 기존 미완료 항목의 구체화이며 중복 실행을 요구하지 않는다. 기존 작업 47개 항목(고유 ID 45개)을 보존한다. Quest/참여자/수신 환경이 없으면 검증 항목을 완료 처리하지 않는다.
 
-- [ ] T046 [HIGH] 시스템 중단 복귀에서 현재 안내와 자세 확인을 다시 제공하도록 `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`의 lifecycle 복구 경로를 보완한다. 현재 LifecycleChanged는 차단/해제만 처리해 중단 전 안내 위치와 기준을 그대로 재사용한다. 일반 사용자 pause의 위치 보존과 구분하고, 미완료 유지 시간 초기화·이미 인정한 완료 유지·모달/다른 차단 모두 해제 후 복구·닫힌 실행 콜백 무효화를 보존한다. 추적 기준 공간이 유지되면 기존 시작 높이를 유지하고 기준 변경 시 미완료 기준을 폐기해 준비 완료 선택부터 다시 받는다. 준비/원리/연습/완료 안내 단계별 안내·자세 확인 재제공과 유지 시간 초기화·완료 유지·차단 해제 후 복구·종료 콜백 무효화를 Editor 입력으로 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureInterruption.md`에 기록한다. per spec: Edge Cases(시스템 중단 복귀), FR-009, T026 (contradicts)
-- [ ] T047 [HIGH] F1 안내 6개의 실제 청취 검수를 받아 발음·억양·대본 일치를 기록하고 필요한 구간만 재생성한다. `Assets/_02LWS/Audio/Voice/SmokePosture/VoiceManifest.json`의 검수 상태·해시·길이와 GuidanceCatalog 자막 시간을 동기화하고 현재 선택된 모델 라이선스·AI 음성 고지·로컬 파일을 점검한다. `Assets/_02LWS/Documentation/Validation/SmokePostureDependencies.md` 등 현재 음성을 Heami로 설명하는 기록은 역사/현재를 구분한다. 콘텐츠 1 음성은 보존하고 청취 전 최종 승인으로 표시하지 않는다. per FR-004/013, plan:F1 음성 통일, T014/T043 및 후미 T041〈F1 청취 검수〉 (partial)
+- [X] T046 [HIGH] 시스템 중단 복귀에서 현재 안내와 자세 확인을 다시 제공하도록 `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`의 lifecycle 복구 경로를 보완한다. 수정 전 LifecycleChanged는 차단/해제만 처리해 중단 전 안내 위치와 기준을 그대로 재사용했다. 일반 사용자 pause의 위치 보존과 구분하고, 미완료 유지 시간 초기화·이미 인정한 완료 유지·모달/다른 차단 모두 해제 후 복구·닫힌 실행 콜백 무효화를 보존한다. 추적 기준 공간이 유지되면 기존 시작 높이를 유지하고 기준 변경 시 미완료 기준을 폐기해 준비 완료 선택부터 다시 받는다. 준비/원리/연습/완료 안내 단계별 안내·자세 확인 재제공과 유지 시간 초기화·완료 유지·차단 해제 후 복구·종료 콜백 무효화를 Editor 입력으로 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureInterruption.md`에 기록한다. per spec: Edge Cases(시스템 중단 복귀), FR-009, T026 (contradicts)
+- [X] T047 [HIGH] F1 안내 6개의 실제 청취 검수를 받아 발음·억양·대본 일치를 기록하고 필요한 구간만 재생성한다. `Assets/_02LWS/Audio/Voice/SmokePosture/VoiceManifest.json`의 검수 상태·해시·길이와 GuidanceCatalog 자막 시간을 동기화하고 현재 선택된 모델 라이선스·AI 음성 고지·로컬 파일을 점검한다. `Assets/_02LWS/Documentation/Validation/SmokePostureDependencies.md` 등 현재 음성을 Heami로 설명하는 기록은 역사/현재를 구분한다. 콘텐츠 1 음성은 보존하고 청취 전 최종 승인으로 표시하지 않는다. per FR-004/013, plan:F1 음성 통일, T014/T043 및 후미 T041〈F1 청취 검수〉 (partial)
 - [ ] T048 [HIGH] T046 및 T051-A 완료 후 실제 Quest 2에서 준비·편한 숙임·재기립·다양한 시작 높이·1초 이내 피드백·2초 한 번 인정·양안/150% 글자/중단 조작·네 단계 시스템 중단/추적 복구/기준 변경·오프라인 실행·콘텐츠 1 회귀를 검증해 `Assets/_02LWS/Documentation/Validation/SmokePostureQuest.md`에 기록한다. 기존 T039 및 원래 Phase 6의 T040〈Quest 중단 검증〉 범위를 포함하며 Editor 합성 입력을 실제 기기 증거로 대체하지 않는다. per SC-002/004/006, FR-001/009/011/013, T039/T040〈Quest 중단 검증〉 (partial)
 - [ ] T049 [MEDIUM] T048 완료 후 실제 Quest 프로파일링으로 CPU/GPU 시간·양안 표시·입자 설정을 `Assets/_02LWS/Documentation/Validation/SmokePosturePerformance.md`에 기록하고 필요한 최적화 후 고정 연기층·성공 후 유지 표현을 재검증한다. 72 Hz/13.9 ms를 사용자 확정 기준으로 취급하지 않는다. per plan:Performance Goals, FR-003/005, 원래 Phase 6의 T041〈성능 검증〉 (partial)
 - [ ] T050 [MEDIUM] T048의 편안한 사용 경로 확인 후 체험자 5명의 두 교육 이유 설명을 익명으로 평가하여 `Assets/_02LWS/Documentation/Validation/SmokePostureLearning.md`에 기록한다. SC-005는 구현 기능이 아닌 사람 대상 검증이며 참여자 없이 통과를 주장하지 않는다. per T042, SC-005 (partial)
@@ -214,7 +214,7 @@ Foundation: existing shared UI 111/111 and physical bell 25/25. Smoke: Editor do
 | F1 절 T040 | T040〈F1 음성 생성〉 | 기존 생성 완료 근거 유지 |
 | F1 절 T041 | T041〈F1 청취 검수〉 | T047 |
 
-현재 집계: 체크박스 55개 / 고유 ID 53개 / 체크 39개 / 미체크 16개. 이번 문서 정정 전 38/17에서 T053만 완료로 변경했다. 집계 단위는 체크박스이며 구현·실기기 검증 합격률이 아니다. Phase 7은 기존 미완료 의무의 구체화이므로 같은 검증을 중복 수행하지 않되 원래 항목도 같은 증거로 충족되는지 대조한다.
+Phase 8 추가 전 역사적 집계(2026-11-12): 체크박스 55개 / 고유 ID 53개 / 체크 43개 / 미체크 12개. 2026-11-11 문서 정정에서는 T053만 완료로 변경해 39/16이었고, 이번에는 T014·F1 절 T041·T046·T047을 근거에 따라 완료 처리했다. 집계 단위는 체크박스이며 구현·실기기 검증 합격률이 아니다. Phase 7은 기존 미완료 의무의 구체화이므로 같은 검증을 중복 수행하지 않되 원래 항목도 같은 증거로 충족되는지 대조한다.
 
 아래 순서는 Phase 7 후속 작업에 적용하며 앞의 Phase 1~6 역사적 그래프를 보완한다. T051-A/B는 T051 내부 단계이며 별도 체크박스나 새 작업 ID가 아니다.
 
@@ -225,3 +225,49 @@ T046·T047 → T051-A(검증용 APK) → T048(Quest)
 ```
 
 T049/T050은 별도 기기·진행자가 있을 때만 병렬 수행하고 그렇지 않으면 순차 수행한다. T051은 A/B 모두 완료해야 체크한다. 검증 중 코드·자산이 바뀌면 영향을 받는 빌드·검증을 다시 수행한다. 기기·참여자·수신 환경 부재는 해당 단계의 미완료로 남긴다.
+
+## Implementation evidence — 2026-11-12
+
+T046: 시스템 중단 복구 42/42 Editor 합성 입력 검사와 기존 도메인 회귀 84/84 통과. 네 단계 안내 재시작·일반 pause 위치 보존·미완료 유지 시간 초기화·완료 유지·모달/추적 차단 뒤 복구·기준 변경 재준비·종료/새 실행 분리를 확인했다. 실행 MP4와 검증 원본: `Artifacts/Validation/VisualEvidence/20261112-000952-smoke-system-recovery/`. 요약은 Assets/_02LWS/Documentation/Validation/SmokePostureInterruption.md. 실제 OS/Quest 복구 합격은 아니다.
+
+T014/T047 및 F1 절 T041: 사용자 6개 음성 청취 승인(2026-11-12), 실제 WAV 해시/meta 6/6 일치, catalog 검증·자막 시간 일치, 현재 모델 출처/라이선스/AI 고지를 확인했다. 재생성 없이 승인 상태만 갱신했다. 기기·학습·최종 Export/Import와 T043 잔여 점검은 완료 처리하지 않는다.
+
+T051-A: 최신 Android 개발 APK 빌드 성공(오류 0, 디버그 심볼 경고 1, 119.306초). `Artifacts/SmokePosture/SmokePosture-development-20261112.apk` 및 `Assets/_02LWS/Artifacts~/SmokePosture/SmokePosture-development-20261112.apk`의 SHA256 일치: 237DA822F24D81ED2C83DCEB89E6004FA2E2B3E16B996F479880BFA72BB61AF4. T051-B는 기기·학습 검증과 최종 의존성 점검 후 수행하므로 T051 전체는 미완료다.
+
+## Phase 8: Shared UI — 사용자 승인 2026-11-12
+
+이번 단계는 공용 UI 재사용 FR-014~018/SC-007~009를 구현한다. 기존 T039~T052의 실제 기기/학습/최종 제출 의무는 보존한다. 실행 순서는 T054→T055→T056→T057→T058→T059→T060이다. T055/T056 후 씬 전환 전에는 중간 연결이 완성됐다고 주장하지 않는다.
+
+- [X] T054 사용자 승인 공용 UI 요구·설계·계약·검증 순서를 specs/002-smoke-low-posture/spec.md, plan.md, contracts/, quickstart.md에 반영하고 현재 구조의 실패 검사를 기록한다.
+- [X] T055 Assets/_02LWS/Scripts/Runtime/SharedContentUI.cs에 소유자 기반 화면/버튼 연결과 공용 재생·설정 처리를 구현하고 ContentExperienceAdapter.cs에 공용 view를 연결한다. 버튼 재사용·오래된 콜백·중단 차단을 검증한다.
+- [X] T056 FireNotificationAdapter.cs와 SmokePostureController.cs가 공용 view에 내용/동작만 전달하도록 바꾸고 SharedUIController.cs/ContentSceneNavigator.cs의 콘텐츠 내부 UI 탐색과 콘텐츠 1 lifecycle 의존을 제거한다. 기존 교육/복구/효과음을 보존한다.
+- [X] T057 Editor API로 Assets/_02LWS/Scenes/FireNotification.unity를 SharedCanvas 1개·공용 안내 재생기 1개·Contents 그룹 구조로 통합한다. 콘텐츠 내부 Canvas와 전용 UI 입력 연결을 제거하고 벨 표지를 3D 텍스트로 보존한다.
+- [X] T058 Assets/_02LWS/Documentation/ContentAuthoring.md에 새 콘텐츠 표준 예시와 제작/검사 절차를 작성한다. Scripts/Runtime/SharedUIContractAudit.cs로 Canvas/재생기/전용 UI 중복을 검사하고 실제 임시 위반 검출을 확인한다.
+- [X] T059 공용 UI 계층/오래된 버튼/두 콘텐츠 전체 진행/벨/자세/설정/중단 회귀를 Editor에서 검증하고 실행 MP4와 원본을 헌장 지정 경로에 보관한다. Assets/_02LWS/Documentation/Validation/SharedContentUI.md에 결과·원본 참조·기기 한계를 기록한다.
+- [X] T060 관련 변경을 리뷰하고 컴파일·최신 Android 개발 APK·아카이브 해시를 확인해 SharedContentUI.md 및 SmokePostureBuild.md에 기록한다. 전체 체크 수와 기존 미완료 의무를 갱신하고 후속 구현 훅을 확인한다.
+### Shared UI requirement coverage
+
+| Requirement | Tasks |
+|---|---|
+| FR-014 | T055/T057/T059 |
+| FR-015 | T055/T056/T059 |
+| FR-016 | T055/T056/T059 |
+| FR-017 | T056/T057/T059 |
+| FR-018 | T058/T059 |
+| SC-007 | T057/T058/T059 |
+| SC-008 | T055/T056/T059 |
+| SC-009 | T059/T060 |
+
+최종 공용 UI Editor 결과: 통합47/47·자세 도메인84/84·콘텐츠1 단계 회귀111/111·연기 시스템 복구42/42 PASS. 저장/실행 씬의 Canvas1·안내 재생기1·누락 스크립트0·외부 프로젝트 자산 참조0을 확인했다. 기존 Quest·성능·학습·최종 Import 의무는 유지한다.
+### Final shared UI status — 2026-11-12
+
+T054~T060 완료. 현재 체크박스62개 / 고유ID60개 / 완료50개 / 미완료12개. 기존 실기기·학습·성능·최종 패키지/Import 의무는 유지했다. 새 UI 개발 APK `Artifacts/SmokePosture/SharedUI-development-20261112.apk` 및 보관본 `Assets/_02LWS/Artifacts~/SharedUI/SharedUI-development-20261112.apk`: 108592714 bytes, SHA256 E83CD20A3195E0BEE63B15EF05D32E44670396D8B5A227D2D86F8C698860FD92, 빌드 오류0/경고1. 검증 원본 `Artifacts/Validation/VisualEvidence/20261112-011720-shared-content-ui/verification.md`와 실행영상 `Artifacts/Validation/VisualEvidence/20261112-011720-shared-content-ui/execution.mp4`를 참조한다. 외부 확장 구현 전후 훅 파일은 없다.
+## Phase 9: 체험 UI 시야 가림 수정 — 사용자 승인 2026-11-12
+
+공용 Canvas/소유자 계약과 기존 교육 순서는 유지한다. design.md 6·8절의 시야 보존 규칙을 적용한다. 실행 순서 T061→T062→T063.
+
+- [X] T061 공용 체험 패널의 고정 높이·중앙 배치를 제거하고 SharedContentUI.cs에서 실제 상태·자막·버튼 높이로 아래쪽 레이아웃을 계산한다. FireNotification.unity의 중복 제목/콘텐츠 전용 고정 문구는 숨긴다. 메뉴/설정/결과는 기존 배치를 유지한다.
+- [X] T062 두 콘텐츠 진입·선택·직접 벨·자세 완료, 자막 끄기/빈 자막/150%/모달·숙임을 Play Mode에서 검증한다. 실제 실행 MP4와 시야/잘림 검사 결과를 헌장 경로에 보관한다.
+- [X] T063 작성 규칙·명세·계약·검증 문서에 아래쪽 가변 높이 규칙과 검증 한계를 반영하고 컴파일/씬 연결/차이/확장 훅을 확인한다. 이전 APK가 이번 수정 전임을 명시한다.
+
+T061~T063 완료: Editor 통합49/49·배치452/452, 실행1101표본·MP4 디코딩 PASS. 원본: Artifacts/Validation/VisualEvidence/20261112-023201-compact-content-ui/verification.md. 기존 APK는 이 수정 전이며 실기기/최종 제출 의무는 유지한다.

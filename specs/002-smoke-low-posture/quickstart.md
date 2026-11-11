@@ -82,3 +82,11 @@ Assets/_02LWS를 선택해 최신 소스로 unitypackage를 Export한다. 별도
 ## 기록
 
 각 결과에 소스 commit 또는 변경 상태, Unity/패키지 버전, 씬, 기기/입력 방식, 절차 ID, 기대/실제 결과, 증거 파일, 미검증 이유를 남긴다. Editor 입력 주입·Play Mode·Quest·Import·교육 효과 결과를 구분하고 기존 자동 테스트를 실행했다면 별도로 기록한다. 기존 콘텐츠 1의 과거 PASS를 새 연기 체험의 PASS로 복사하지 않는다.
+
+## Q10 shared UI acceptance — 2026-11-12
+
+Run SharedUIContractAudit.CheckScene in saved scene and Play Mode: Canvas=1, GuidancePresenter=1, content Canvas/presenter/legacy UI input=0. Add a temporary Canvas under a content root and ensure audit/entry reject it, then remove it. Verify both contents use the same view and voice, stale action after swap does nothing, choice/next/ready work once per fresh press, modal/tracking/system block interactions, captions/voice/150% settings persist, physical bell and 2-second posture rules remain. Repeat existing domain/system recovery probes and complete both authored narration paths without skipping. Record runtime MP4/verification.md under the constitution path; validate decoding and ignore status. Build latest Android APK; keep device/learning/final package acceptance separate.
+
+## Q11. 체험 UI 시야 보존 — FR-019 / SC-010
+
+두 콘텐츠의 진입·설명·선택·다음·직접 벨·자세 연습·완료를 실제 순서대로 실행한다. 체험 안내는 아래쪽에 있으며 정면에 고정 대형 배경이 없어야 한다. 빈 상태/자막 행은 높이0이고 내용/버튼이 모두 없으면 배경이 꺼져야 한다. 자막 끄기와 글자150%를 바꿔 조작/추적 안내·전체 선택 문구·자막이 잘리지 않는지 확인한다. 서기/숙이기와 메뉴/모달 복귀 시 하단 기준·클릭 차단을 확인한다. MP4·주요 화면·글자 영역 검사를 함께 남긴다. Editor 합성 입력과 실제 Quest 읽기/편안함은 구분한다.

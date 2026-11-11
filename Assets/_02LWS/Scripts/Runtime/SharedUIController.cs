@@ -21,7 +21,11 @@ namespace LWS.FireNotification.Runtime
         public GameObject modalRoot, pausePanel, settingsPanel, confirmPanel, resultPanel, openMenuPanel;
         public TMP_Text confirmText, settingsText, resultText, inputText;
         public FreshPressButton cancelButton, executeButton;
-        public CanvasGroup[] contentGroups;
+        public CanvasGroup contentGroup;
+        public GameObject menuPanel;
+        public SharedContentUI contentUI;
+        public ComfortFollowUI follow;
+        public UnityEngine.UI.GraphicRaycaster desktopRaycaster;
         public Transform head;
         public bool IsOpen { get; private set; }
         public float VoiceVolume { get; private set; } = 1;
@@ -32,16 +36,12 @@ namespace LWS.FireNotification.Runtime
         private Page page;
         private bool settingsFromMenu;
         private TeleportationProvider[] teleporters;
-        private UnityEngine.UI.GraphicRaycaster[] desktopRaycasters;
-        private readonly Dictionary<TeleportationProvider, bool> teleportStates = new Dictionary<TeleportationProvider, bool>();
-        private readonly Dictionary<AudioSource, float> audioVolumes = new Dictionary<AudioSource, float>();
         private ContentExperienceAdapter Controller => navigator.ActiveAdapter;
         private readonly Dictionary<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider, bool> movementDefaults = new Dictionary<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider, bool>();
 
         private void Awake()
         {
             Active = this;
-            desktopRaycasters = FindObjectsByType<UnityEngine.UI.GraphicRaycaster>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             teleporters = navigator.origin.GetComponentsInChildren<TeleportationProvider>(true);
             foreach (var provider in navigator.origin.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider>(true)) movementDefaults[provider] = provider.enabled;
             modalRoot.SetActive(false); resultPanel.SetActive(false);
@@ -63,45 +63,23 @@ namespace LWS.FireNotification.Runtime
                 IsOpen = false;
                 if (modalRoot != null) modalRoot.SetActive(false);
                 if (controller != null && controller.isActiveAndEnabled) controller.SetUserPaused(false);
-                if (navigator != null && navigator.contentRoot != null) BlockWorld(false);
+                if (navigator != null) BlockWorld(false);
             }
             if (Active == this) Active = null;
         }
         private void Start() { ConfigureFollowing(); ApplySettings(); Refresh(); }
-        private void TeleportEnded(UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider provider)
-        {
-            foreach (var follow in FindObjectsByType<ComfortFollowUI>(FindObjectsInactive.Include, FindObjectsSortMode.None)) follow.Recenter();
-        }
+        private void TeleportEnded(UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider provider) => Recenter();
         private void ConfigureFollowing()
         {
-            // Explicit allow-list: physical alarm labels remain attached to their scene object.
-            foreach (var canvas in FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None))
-            {
-                var panel = canvas.transform;
-                Vector3 offset;
-                switch (canvas.name)
-                {
-                    case "SmokeGuidanceCanvas":
-                    case "GuidanceCanvas": offset = new Vector3(0, -.35f, 1.8f); break;
-                    case "ActionChoicePanel": offset = new Vector3(0, -.65f, 1.8f); break;
-                    case "NextPanel": offset = new Vector3(0, -.65f, 1.8f); break;
-                    case "ReturnToMenuPanel": offset = new Vector3(.85f, .08f, 1.8f); break;
-                    case "OpenMenuPanel": offset = new Vector3(.75f, .45f, 1.5f); break;
-                    case "ContentMenuPanel": offset = new Vector3(0, 0, 1.5f); break;
-                    case "SharedUIModal": offset = new Vector3(0, 0, 1.5f); break;
-                    case "ResultPanel": offset = new Vector3(0, .25f, 1.5f); break;
-                    default: continue;
-                }
-                var follow = panel.GetComponent<ComfortFollowUI>();
-                if (follow == null) follow = panel.gameObject.AddComponent<ComfortFollowUI>();
-                follow.head = head; follow.origin = navigator.origin.transform; follow.offset = offset;
-            }
+            if (follow == null) return;
+            follow.head = head; follow.origin = navigator.origin.transform;
+            follow.Recenter();
         }
         private void Update()
         {
             foreach (var pair in movementDefaults)
                 if (pair.Key != null) pair.Key.enabled = pair.Value && !IsOpen && navigator.MovementAllowed;
-            foreach(var raycaster in desktopRaycasters) if(raycaster != null) raycaster.enabled = !UnityEngine.XR.XRSettings.isDeviceActive;
+            if(desktopRaycaster != null) desktopRaycaster.enabled = !UnityEngine.XR.XRSettings.isDeviceActive;
             Refresh();
             if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
             {
@@ -170,14 +148,7 @@ namespace LWS.FireNotification.Runtime
             else if (requested == Page.Exit) Controller?.ReturnToMenu();
             Refresh();
         }
-        public void Recenter()
-        {
-            if (head == null) return;
-            foreach (var follow in FindObjectsByType<ComfortFollowUI>(FindObjectsInactive.Include, FindObjectsSortMode.None)) follow.Recenter();
-            var forward = Vector3.ProjectOnPlane(head.forward, Vector3.up).normalized;
-            if (forward.sqrMagnitude < .01f) forward = Vector3.forward;
-            modalRoot.transform.SetPositionAndRotation(head.position + forward * 1.5f, Quaternion.LookRotation(forward));
-        }
+        public void Recenter() { if(follow != null) follow.Recenter(); }
         public void VoiceDown() { VoiceVolume = Mathf.Max(0, VoiceVolume - .1f); ApplySettings(); }
         public void VoiceUp() { VoiceVolume = Mathf.Min(1, VoiceVolume + .1f); ApplySettings(); }
         public void EffectsDown() { EffectsVolume = Mathf.Max(0, EffectsVolume - .1f); ApplySettings(); }
@@ -187,29 +158,26 @@ namespace LWS.FireNotification.Runtime
         public void ApplySettings()
         {
             foreach (var text in FindObjectsByType<ThemedText>(FindObjectsInactive.Include, FindObjectsSortMode.None)) text.Apply(TextScale);
+            contentUI?.ApplySettings(VoiceVolume, SubtitlesEnabled);
             foreach (var entry in navigator.contents) if (entry?.adapter != null) entry.adapter.ApplySettings(VoiceVolume, EffectsVolume, SubtitlesEnabled);
             if (settingsText != null) settingsText.text = $"음성 {VoiceVolume:P0}    효과음 {EffectsVolume:P0}\n자막 {(SubtitlesEnabled ? "켬" : "끔")}    글자 {TextScale:P0}";
         }
         private void BlockWorld(bool value)
         {
-            foreach (var group in contentGroups) if (group != null) { group.blocksRaycasts = !value; group.interactable = !value; group.alpha = value ? 0 : 1; }
-            foreach (var teleporter in teleporters)
-            {
-                if (teleporter == null) continue;
-                if (value) { if (teleporter is MenuTeleportationProvider guarded) guarded.CancelPending(); teleportStates[teleporter] = teleporter.enabled; teleporter.enabled = false; }
-                else if (teleportStates.TryGetValue(teleporter, out var enabled)) teleporter.enabled = enabled && navigator.MovementAllowed;
-            }
-            if (!value) teleportStates.Clear();
-            foreach (var button in (navigator.ActiveContent?.root ?? navigator.contentRoot).GetComponentsInChildren<FreshPressButton>(true))
-                if (!button.allowWhilePaused) button.enabled = !value;
+            if(contentGroup != null)
+            { contentGroup.blocksRaycasts = !value; contentGroup.interactable = !value; contentGroup.alpha = value ? 0 : 1; }
+            if(value) foreach(var teleporter in teleporters)
+                if(teleporter is MenuTeleportationProvider guarded) guarded.CancelPending();
         }
         private void Refresh()
         {
-            bool complete = navigator.InContent && Controller != null && Controller.ResultVisible;
+            bool complete = navigator.InContent && Controller != null && Controller.ResultVisible &&
+                (contentUI == null || contentUI.guidance == null || !contentUI.guidance.IsPresenting);
             if (resultPanel != null) resultPanel.SetActive(complete && !IsOpen && !Controller.Blocked);
             if (resultText != null) resultText.text = Controller?.ResultText ?? "";
             if (openMenuPanel != null) openMenuPanel.SetActive(navigator.InContent && !IsOpen);
-            // Visibility of content roots still belongs to the navigator and input presenters.
+            if(menuPanel != null) menuPanel.SetActive(!navigator.InContent && !navigator.Loading && !IsOpen);
+            if(contentUI != null && contentUI.panel != null) contentUI.panel.SetActive(navigator.InContent && !complete && contentUI.Owner == Controller);
         }
         public void CompletedReturn() { Controller?.ReturnToMenu(); }
         public void CompletedRestart() { Controller?.Restart(); }

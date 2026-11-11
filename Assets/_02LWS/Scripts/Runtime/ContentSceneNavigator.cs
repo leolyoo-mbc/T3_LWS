@@ -17,9 +17,10 @@ namespace LWS.FireNotification.Runtime
     public sealed class ContentSceneNavigator : MonoBehaviour
     {
         public XROrigin origin;
-        public GameObject menuRoot, contentRoot;
-        public Transform menuAnchor, contentAnchor;
-        public FireNotificationController controller; // Existing scene/tool compatibility.
+        public ExperienceLifecycle lifecycle;
+        public SharedContentUI contentUI;
+        public GameObject menuRoot;
+        public Transform menuAnchor;
         public TMPro.TMP_Text configurationErrorText;
         public ContentEntry[] contents = Array.Empty<ContentEntry>();
         public ContentEntry ActiveContent { get; private set; }
@@ -27,17 +28,9 @@ namespace LWS.FireNotification.Runtime
         public event Action ExitConfirmationRequested;
         public bool Loading { get; private set; }
         public bool InContent => ActiveContent != null;
-        public bool MovementAllowed => !Loading && controller != null && controller.lifecycle != null && !controller.lifecycle.Blocked &&
+        public bool MovementAllowed => !Loading && lifecycle != null && !lifecycle.Blocked &&
             (ActiveContent == null || (ActiveContent.locomotionAllowed && ActiveAdapter != null && !ActiveAdapter.Blocked));
         public string ConfigurationError { get; private set; }
-        private void Awake()
-        {
-            if (contents.Length != 0) return;
-            var adapter = contentRoot.GetComponent<FireNotificationAdapter>();
-            if (adapter == null) adapter = contentRoot.AddComponent<FireNotificationAdapter>();
-            adapter.controller = controller;
-            contents = new[] { new ContentEntry { id="fire-notification", root=contentRoot, anchor=contentAnchor, adapter=adapter } };
-        }
         private void Start()
         {
             foreach (var entry in contents) if (entry?.root != null) entry.root.SetActive(false);
@@ -48,6 +41,8 @@ namespace LWS.FireNotification.Runtime
         public void StartContent(string id)
         {
             if (Loading || InContent) return;
+            var issues = SharedUIContractAudit.Validate(this);
+            if (issues.Count != 0) { SetError("공용 UI 구성을 확인해 주세요. " + issues[0]); return; }
             var seen = new System.Collections.Generic.HashSet<string>();
             ContentEntry chosen = null;
             foreach (var entry in contents)
