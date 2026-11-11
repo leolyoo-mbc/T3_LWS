@@ -1,0 +1,65 @@
+{
+  "model": "Supertone/supertonic-2",
+  "revision": "75e6727618a02f323c720cba9478152d4bc16ca4",
+  "voice": "F1",
+  "language": "ko",
+  "steps": 16,
+  "speed": 0.95,
+  "listeningReview": "pending",
+  "cues": [
+    {
+      "id": "ready",
+      "text": "편하게 서 주세요. 주변에 몸을 숙일 공간이 있는지 확인한 뒤 준비 완료를 선택하세요. 불편하면 언제든 중단할 수 있습니다.",
+      "file": "Audio/Voice/SmokePosture/ready.wav",
+      "durationSeconds": 11.079160997732426,
+      "sampleRate": 44100,
+      "sha256": "49bdc83f43d7e9e44d708de8fbfdd49f1bce45dfabb6927345a46d4ef567ae33",
+      "seed": 202611110
+    },
+    {
+      "id": "principle",
+      "text": "뜨거운 연기는 위로 올라가 천장 부근에 모입니다. 연기 흡입을 줄이기 위해 머리와 몸을 낮춥니다.",
+      "file": "Audio/Voice/SmokePosture/principle.wav",
+      "durationSeconds": 9.182131519274376,
+      "sampleRate": 44100,
+      "sha256": "18fe1ee20dc3d3e43107f9c1cc347d4e06250704ba905cc23bb296e14cedfd71",
+      "seed": 202611111
+    },
+    {
+      "id": "practice",
+      "text": "이동하지 않고, 무리하지 않는 범위에서 머리와 몸을 낮춰 보세요.",
+      "file": "Audio/Voice/SmokePosture/practice.wav",
+      "durationSeconds": 5.815442176870748,
+      "sampleRate": 44100,
+      "sha256": "2754ff68b9fad17409df68cb8e8a3408d1edf65fbb7260f90e205eade5cff004",
+      "seed": 202611112
+    },
+    {
+      "id": "recognized",
+      "text": "낮은 자세가 인식됐어요. 잠시 유지해 주세요.",
+      "file": "Audio/Voice/SmokePosture/recognized.wav",
+      "durationSeconds": 4.125873015873016,
+      "sampleRate": 44100,
+      "sha256": "473f0390d98311a5325a553f6d7a02fa10cd56974647928421af7caf01c3e9f4",
+      "seed": 202611113
+    },
+    {
+      "id": "stand",
+      "text": "자세 연습을 마쳤어요. 이제 편하게 일어서세요.",
+      "file": "Audio/Voice/SmokePosture/stand.wav",
+      "durationSeconds": 4.258412698412698,
+      "sampleRate": 44100,
+      "sha256": "89d4d8827d3a47cbcfae4a5659726a6b491074079416b828378501ba442257af",
+      "seed": 202611114
+    },
+    {
+      "id": "completion",
+      "text": "이번 체험은 제자리 자세 연습입니다. 연기는 아래쪽까지 퍼질 수 있고, 몸을 낮추는 것만으로 안전해지지는 않습니다. 실제 화재에서 대피가 가능한 경우에는 연기를 피해 낮은 자세로 신속히 이동해야 합니다.",
+      "file": "Audio/Voice/SmokePosture/completion.wav",
+      "durationSeconds": 17.921156462585035,
+      "sampleRate": 44100,
+      "sha256": "fc4c5d0f7347ee703bfaeda7ab597d18c0a9c9bb82d38fcba6360a2cefa9369b",
+      "seed": 202611115
+    }
+  ]
+}

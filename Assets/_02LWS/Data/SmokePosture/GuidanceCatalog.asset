@@ -21,7 +21,7 @@ MonoBehaviour:
       \uC5B8\uC81C\uB4E0 \uC911\uB2E8\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
     segments:
     - start: 0
-      end: 11.2474375
+      end: 11.079160997732426
       text: "\uD3B8\uD558\uAC8C \uC11C \uC8FC\uC138\uC694. \uC8FC\uBCC0\uC5D0 \uBAB8\uC744
         \uC219\uC77C \uACF5\uAC04\uC774 \uC788\uB294\uC9C0 \uD655\uC778\uD55C \uB4A4
         \uC900\uBE44 \uC644\uB8CC\uB97C \uC120\uD0DD\uD558\uC138\uC694. \uBD88\uD3B8\uD558\uBA74
@@ -33,7 +33,7 @@ MonoBehaviour:
       \uC904\uC774\uAE30 \uC704\uD574 \uBA38\uB9AC\uC640 \uBAB8\uC744 \uB0AE\uCDA5\uB2C8\uB2E4."
     segments:
     - start: 0
-      end: 8.407936
+      end: 9.182131519274376
       text: "\uB728\uAC70\uC6B4 \uC5F0\uAE30\uB294 \uC704\uB85C \uC62C\uB77C\uAC00
         \uCC9C\uC7A5 \uBD80\uADFC\uC5D0 \uBAA8\uC785\uB2C8\uB2E4. \uC5F0\uAE30 \uD761\uC785\uC744
         \uC904\uC774\uAE30 \uC704\uD574 \uBA38\uB9AC\uC640 \uBAB8\uC744 \uB0AE\uCDA5\uB2C8\uB2E4."
@@ -43,7 +43,7 @@ MonoBehaviour:
       \uBC94\uC704\uC5D0\uC11C \uBA38\uB9AC\uC640 \uBAB8\uC744 \uB0AE\uCDB0 \uBCF4\uC138\uC694."
     segments:
     - start: 0
-      end: 5.6736054
+      end: 5.815442176870748
       text: "\uC774\uB3D9\uD558\uC9C0 \uC54A\uACE0, \uBB34\uB9AC\uD558\uC9C0 \uC54A\uB294
         \uBC94\uC704\uC5D0\uC11C \uBA38\uB9AC\uC640 \uBAB8\uC744 \uB0AE\uCDB0 \uBCF4\uC138\uC694."
   - id: recognized
@@ -52,7 +52,7 @@ MonoBehaviour:
       \uC720\uC9C0\uD574 \uC8FC\uC138\uC694."
     segments:
     - start: 0
-      end: 5.1237187
+      end: 4.125873015873016
       text: "\uB0AE\uC740 \uC790\uC138\uAC00 \uC778\uC2DD\uB410\uC5B4\uC694. \uC7A0\uC2DC
         \uC720\uC9C0\uD574 \uC8FC\uC138\uC694."
   - id: stand
@@ -61,7 +61,7 @@ MonoBehaviour:
       \uD3B8\uD558\uAC8C \uC77C\uC5B4\uC11C\uC138\uC694."
     segments:
     - start: 0
-      end: 5.043719
+      end: 4.258412698412698
       text: "\uC790\uC138 \uC5F0\uC2B5\uC744 \uB9C8\uCCE4\uC5B4\uC694. \uC774\uC81C
         \uD3B8\uD558\uAC8C \uC77C\uC5B4\uC11C\uC138\uC694."
   - id: completion
@@ -75,7 +75,7 @@ MonoBehaviour:
       \uD569\uB2C8\uB2E4."
     segments:
     - start: 0
-      end: 17.531292
+      end: 17.921156462585035
       text: "\uC774\uBC88 \uCCB4\uD5D8\uC740 \uC81C\uC790\uB9AC \uC790\uC138 \uC5F0\uC2B5\uC785\uB2C8\uB2E4.
         \uC5F0\uAE30\uB294 \uC544\uB798\uCABD\uAE4C\uC9C0 \uD37C\uC9C8 \uC218 \uC788\uACE0,
         \uBAB8\uC744 \uB0AE\uCD94\uB294 \uAC83\uB9CC\uC73C\uB85C \uC548\uC804\uD574\uC9C0\uC9C0\uB294

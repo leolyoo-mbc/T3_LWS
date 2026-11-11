@@ -1,3 +1,10 @@
+
+## F1 음성 통일 — 2026-11-11
+
+사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 최종 발음·억양 청취 검수는 미완료다.
+
+Current source: Supertonic 2 revision 75e6727618a02f323c720cba9478152d4bc16ca4; F1; ko; 16 steps; speed 0.95. See Audio/Voice/SmokePosture/VoiceManifest.json and Licenses/Supertonic2.txt. Earlier Heami notes describe superseded development audio. Preserve AI speech disclosure and existing model-license conditions.
+
 # Smoke posture Korean narration — implementation draft
 
 Local synthesis: Microsoft Heami Korean installed Windows voice; original text below. Generated offline using SAPI; no recording of user or external service. Listening review and redistribution-rights confirmation remain pending. These development WAVs are not cleared as a final submission asset. No Microsoft engine/model files are redistributed.
