@@ -36,7 +36,7 @@
 
 - [ ] T007 [US1] `Assets/_02LWS/Scripts/Validation/RouteDomainChecks.cs`에 A 시작, 준비/안내, 실제 도착 후 선택, 계단 완료, 엘리베이터 피드백, 다른 경로, 재방문, 중복/낡은 입력 거부 assertion과 Run 메뉴를 먼저 작성한다. 아직 구현하지 않은 동작은 실제 실패를 확인하고 임시 성공 반환으로 우회하지 않는다.
 - [ ] T008 [US1] `Assets/_02LWS/Scripts/Domain/EvacuationRoute/RouteSession.cs`에 계약의 Begin/Ready/Arrive/LeaveCheckpoint/Choose/GuidanceDone/SetBlockers/Close와 A 상태 전이를 구현한다. “입력, 비동기 완료는 현재 RunId/Execution/TargetId와 일치해야 한다”를 적용하고 다른 경로 선택 후 영역 이탈 전 재선택을 억제한다. T007을 실행해 전부 통과시킨다.
-- [ ] T009 [P] [US1] `Assets/_02LWS/Prefabs/Environment/SchoolRouteA.prefab`에 계획 초기값인 폭 3 m, 길이 24 m 직선 학교 복도, 중앙 출발, 양 끝 이용 가능한 계단, 중앙 부근 엘리베이터, 교실 문, 유도등을 만든다. 기존 CorridorFinish/로컬 재질을 참조하되 원본은 수정하지 않는다. 확인 위치는 입구 복도 쪽 최소 2 m를 시작값으로 두고 상태가 보이게 배치한다. `Assets/_02LWS/Scripts/Presentation/RouteScenarioAsset.cs`에 순수 RouteScenario로 변환하는 ScriptableObject 래퍼를 추가하고 `Assets/_02LWS/Data/EvacuationRoute/ScenarioA.asset`에 ID, 상태, 연결을 저장한다. 씬 Transform은 RouteWaypoint에 남겨 프리팹/데이터 에셋의 씬 객체 참조를 피한다. 수치는 실제 안전 기준이 아니다.
+- [ ] T009 [P] [US1] `Assets/_02LWS/Prefabs/Environment/SchoolRouteA.prefab`에 계획 초기값인 폭 3 m, 길이 24 m 직선 학교 복도, 중앙 출발, 양 끝 이용 가능한 계단, 중앙 부근 엘리베이터, 교실 문, 유도등을 만든다. 기존 CorridorFinish/로컬 재질을 참조하되 원본은 수정하지 않는다. 확인 위치는 입구 복도 쪽 최소 2 m를 시작값으로 두고 상태가 보이게 배치한다. `Assets/_02LWS/Scripts/Presentation/RouteScenarioAsset.cs`에 순수 RouteScenario로 변환하는 ScriptableObject 래퍼를 추가하고 `Assets/_02LWS/Data/EvacuationRoute/ScenarioA.asset`에 ID, 상태, 연결을 저장한다. 씬 Transform은 RouteWaypoint에 남겨 프리팹/데이터 에셋의 씬 객체 참조를 피한다. 수치는 실제 안전 기준이 아니다. 문과 창문의 반복과 비례, 벽과 문틀의 깊이, 천장과 조명 배치, 계단참과 난간의 연결, 엘리베이터 문과 테두리의 깊이를 함께 제작한다(FR-017). 기존 자산을 재사용하더라도 단순한 벽/바닥/대상 배치만으로 완료하지 않는다. 필요할 때 Blender를 사용할 수 있으나 필수 도구는 아니다.
 - [ ] T010 [P] [US1] `Assets/_02LWS/Audio/Voice/EvacuationRoute/`에 A에서 필요한 준비, 확인 방법, 엘리베이터 피드백, A 완료 WAV를 기존 Supertonic 2 F1/ko/속도 0.95/16 steps 방식으로 생성하고 `VoiceManifest.json`에 모델 revision, 대본, 길이, hash, 청취 미검수 상태를 기록한다. `Assets/_02LWS/Data/EvacuationRoute/RouteGuidance.asset`의 자막 구간을 실제 길이에 맞추며 Python/모델은 자산 폴더에 넣지 않는다.
 - [ ] T011 [US1] `Assets/_02LWS/Scripts/Runtime/EvacuationRouteController.cs`에 A용 adapter, 공용 Bind/SetStatus/SetActions, 준비/안내/피드백/상황 완료를 연결한다. 계단/엘리베이터 선택 문구는 명세 그대로 최대 2개만 제공한다. 실제 locomotionEnded와 추적 유효한 바닥 투영 위치로 확인 지점 도착을 검증하고, 기본 반경 0.65 m, 지점 간 최소 2 m, 인접 앵커만 활성화한다. 클릭만으로 도착을 인정하지 않고 대상 변경/이탈 시 이전 선택을 폐기한다.
 - [ ] T012 [US1] `Assets/_02LWS/Scenes/FireNotification.unity`에 RouteSpace/A와 `safe-evacuation-route` ContentEntry(root, A 시작 anchor, adapter, locomotionAllowed=true)를 등록하고 기존 테마의 메뉴 버튼을 추가한다. 공용 view/재생기/추적/lifecycle를 연결하고 새 Canvas는 만들지 않는다. MVP는 A 완료에서 멈춰 메뉴로 복귀 가능하게 하며, B가 없는 상태에서 동작하지 않는 다음 버튼을 노출하지 않는다. B 연결은 T020에서 수행한다.
@@ -54,7 +54,7 @@
 - [ ] T015 [US2] `Assets/_02LWS/Scripts/Validation/RouteDomainChecks.cs`에 B의 직접 완료, 막힌 계단 오답/재선택, 다른 경로 후 미완료, 실제 우회, 미방문, 도중 엘리베이터 방문, 오답 보존, A→B 결과 보존 assertion을 추가한다. 실제 구현 전 해당 실패를 확인한다. TransitionDone의 정상 수락, 차단 중 거부, 잘못된 상태 거부, 중복 호출 거부, 재시작 후 이전 RunId/Execution 거부를 검증한다.
 - [ ] T016 [US2] `Assets/_02LWS/Scripts/Domain/EvacuationRoute/RouteSession.cs`에 NextScenario/Transition과 B 판단, 우회 기록을 구현한다. “고정 A/B. A 계단 2개 Available, B Available/SmokeBlocked 각 1개, 각 엘리베이터 1개”를 검증하고, “막힌 계단 FindAnotherRoute → 영역 이탈 → 다른 Available Stair 도착 → Use 완료의 순서만 DetourPerformed=true”를 적용한다. 직접 완료는 Completed=true/DetourPerformed=false이며 필수 방문, 우회 감점을 추가하지 않는다. T015를 통과시킨다. TransitionDone(long runId, long execution)은 현재 실행/단계와 차단되지 않은 Transition 상태에서만 true를 반환하고 Execution 증가 후 Intro(B)로 전이한다. 중복/낡은 호출은 false로 거부한다.
 - [ ] T017 [P] [US2] `Assets/_02LWS/Scripts/Presentation/RouteSmokePresenter.cs`에 Play/SetPaused/Stop을 구현해 기존 연기 텍스처 기반 smoke-only 효과를 시작, 일시정지, 재개, 완전 정리한다. 자세 판정, fireLight/fireSystems를 필수 의존성으로 가져오지 않는다.
-- [ ] T018 [US2] `Assets/_02LWS/Prefabs/Environment/SchoolRouteB.prefab`와 `Assets/_02LWS/Data/EvacuationRoute/ScenarioB.asset`에 폭 3 m, 팔 약 12 m의 꺾인 학교 복도, 다른 출발/계단 방향/엘리베이터 배치를 구성한다. 가까운 끝 계단은 연기로 막고 코너 너머 다른 계단까지는 연기 없이 접근 가능하게 한다. 확인 영역, 앵커가 연기와 겹치면 위치를 물리고 연기 내부 목적지는 두지 않는다. 양쪽 확인 지점은 같은 중립 표시를 쓴다.
+- [ ] T018 [US2] `Assets/_02LWS/Prefabs/Environment/SchoolRouteB.prefab`와 `Assets/_02LWS/Data/EvacuationRoute/ScenarioB.asset`에 폭 3 m, 팔 약 12 m의 꺾인 학교 복도, 다른 출발/계단 방향/엘리베이터 배치를 구성한다. 가까운 끝 계단은 연기로 막고 코너 너머 다른 계단까지는 연기 없이 접근 가능하게 한다. 확인 영역, 앵커가 연기와 겹치면 위치를 물리고 연기 내부 목적지는 두지 않는다. 양쪽 확인 지점은 같은 중립 표시를 쓴다. T009의 공간 구성 기준을 동일하게 적용하고 A와 같은 학교의 마감과 구조를 유지한다(FR-017). 새 구조물이 연기 관찰과 우회 동선을 가리지 않는지 확인한다.
 - [ ] T019 [P] [US2] `Assets/_02LWS/Audio/Voice/EvacuationRoute/`에 B 도입, 막힌 계단 피드백, 최종 완료 WAV를 생성하고 `VoiceManifest.json`, `Assets/_02LWS/Data/EvacuationRoute/RouteGuidance.asset`에 실제 길이, 자막, hash를 연결한다. B 안내에서 정답 방향을 알려주지 않고 두 경로 모두 막힘은 별도 교육 범위로 구분한다. 기존 음원 승인을 신규 cue 승인으로 취급하지 않는다.
 - [ ] T020 [US2] `Assets/_02LWS/Scripts/Runtime/EvacuationRouteController.cs`와 `Assets/_02LWS/Scenes/FireNotification.unity`에 A 완료 안내 후 다음 연습→예약 취소→A 비활성화→B 시작 위치 이동/높이 보존→UI Recenter→B 도입을 연결한다. Edit에서는 두 구역을 보이고 Play에서는 현재 구역만 활성화한다. 다른 경로 선택은 정답 자동 이동 없이 복도 탐색을 재개하며, 위험 선택은 진입을 막고 음성/자막 피드백 후 재선택한다. 전환 순서는 B 공간 활성화와 시작 위치 이동, UI Recenter 성공 후 TransitionDone(runId, execution) 호출, 수락 후 B 도입 안내다. 실패하면 완료 입력을 보내지 않고 Configuration 차단과 오류 안내, 메뉴 복귀를 제공한다. 중단 중 완료가 거부되면 복구 후 실제 전환 상태를 재확인해 현재 실행 번호로 전달한다.
 - [ ] T021 [US2] `Assets/_02LWS/Scripts/Validation/RouteIntegrationChecks.cs`에 B 구성 검사, RunPlayMode 메뉴, 명세 US2의 7개 인수 시나리오를 추가하고 실제 실행한다. 최소 하나의 이용 가능한 계단, 연기 없는 우회 연결, 세 배치 항목 차이, 정답 미노출, 직접/우회/오답 후 완료를 확인해 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-safe-evacuation-route-us2/verification.md`와 MP4/대체 자료로 남긴다. B 공간/위치 전환 성공 전 안내 시작 0건, 전환 완료 중복/낡은 호출의 재진행 0건, 전환 실패 시 오류 안내와 메뉴 복귀, 중단 중 완료 거부와 복구 후 유효한 재전달을 실제 통합 검사에 포함한다.
@@ -87,7 +87,9 @@
 - [ ] T032 실제 Quest 2에서 앵커 조작, 돌아서기, 연기 관찰, 우회, 150% 읽기, 중단 복구, 성능/편안함을 확인하고 `Assets/_02LWS/Documentation/Validation/RouteQuestAcceptance.md`에 입력/기기/refresh rate, 실제 결과, 한계를 기록한다. 기기가 없거나 실행하지 못하면 미검증으로 남기고 작업을 체크하지 않는다.
 - [ ] T033 `Assets/_02LWS/Documentation/Validation/ExportImport.md`의 기존 절차로 새 _02LWS 패키지를 `Artifacts/EvacuationRoute/`에 내보내고 별도 수신 테스트 프로젝트에서 참조, 컴파일, 공용 UI, 세 콘텐츠 Play를 검증해 `Assets/_02LWS/Documentation/Validation/RouteExportImport.md`에 기록한다. 필수 외부 패키지/프로젝트 설정은 문서로 전달하고 대상 프로젝트 설정을 일괄 덮어쓰지 않는다. 수신 환경이 없으면 미검증으로 남기고 체크하지 않는다.
 - [ ] T034 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-safe-evacuation-route-final/execution.mp4`와 `verification.md`에 정상, 오답, 직접 완료, 실제 우회, 결과, 회귀를 확인할 대표 실행 증거를 보관한다. 아래 공통 증거 기준으로 원본 해상도/fps, 화면/소리 실제 재생, 입력 분리, Git 비추적을 확인하고, 대체 사용 시 사유와 미검증 범위를 함께 남긴다.
-- [ ] T035 `specs/005-safe-evacuation-route/quickstart.md`와 `Assets/_02LWS/Documentation/Validation/RouteAcceptance.md`에 FR-001–016/SC-001–007별 실제 검증 결과, 증거 직접 파일 링크, Editor/Android/Quest/import/청취 승인 상태, 남은 작업을 집계하고 `git diff --check`를 실행한다. 다른 미완료 작업을 체크하거나 전체 구현/제출 합격으로 표시하지 않는다.
+- [ ] T035 `specs/005-safe-evacuation-route/quickstart.md`와 `Assets/_02LWS/Documentation/Validation/RouteAcceptance.md`에 FR-001–017/SC-001–008별 실제 검증 결과, 증거 직접 파일 링크, Editor/Android/Quest/import/청취 승인 및 T036 외관 검토 상태, 남은 작업을 집계하고 `git diff --check`를 실행한다. 다른 미완료 작업을 체크하거나 전체 구현/제출 합격으로 표시하지 않는다.
+
+- [ ] T036 `specs/005-safe-evacuation-route/quickstart.md`의 외관 확인 절차에 따라 A/B의 실제 실행 영상과 시작점, 복도 중간, 계단 앞, 엘리베이터 앞 화면을 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-safe-evacuation-route-visual/`에 보관하고 사용자에게 대표 파일을 직접 제공한다. `Assets/_02LWS/Documentation/Validation/RouteVisualReview.md`에 FR-017/SC-008별 구성 확인, 구조물의 틈/끊김, 비례, 재질 크기, 조명 누락, 판단 대상 가림과 사용자 검토 결과, 수정 요청, 재검토 결과를 기록한다. 수정 시 같은 위치에서 다시 확인하고 공통 증거 기준을 적용한다. 사용자 승인을 확보하지 못하면 승인 대기로 남기고 체크하지 않는다. 기존 두 콘텐츠의 외관 개선은 세 번째 콘텐츠 확인 후 범위를 결정하는 후속 작업이며 이번 구현에 포함하지 않는다.
 
 ## Dependencies & Execution Order
 
@@ -100,12 +102,12 @@ T001 → T002 → T003 → (T004 ∥ T005 ∥ T006)
                      ↓
                 US3 T022–T026
                      ↓
-             최종 검증 T027–T035
+             최종 검증 T027–T036
 ```
 
 US1은 기반 완료 뒤 독립적으로 시연 가능한 MVP다. US2는 US1의 세션/어댑터/앵커를 확장하므로 구현은 US1 뒤에 진행하되 검증 진입점은 B만 시작할 수 있게 만든다. US3은 두 상황의 실제 결과를 사용하므로 US2 뒤에 통합한다. 이야기 전체를 동시에 개발하지 않는다.
 
-T011은 T008/T009/T010/T004/T005에, T012/T013은 T011에, T014는 T012/T013에 의존한다. T018은 T017/T005에, T020은 T016/T018/T019에, T021은 T020에 의존한다. T025는 US2 완료 후 검사 작성만 병행 가능하며 실행/판정은 T023/T024 이후 T026에서 한다. T030/T031은 안정된 콘텐츠와 T026/T029 이후, T032는 T031 이후, T033은 T029 이후에 진행한다. 같은 Editor를 사용하는 빌드/Play/import는 직렬 실행한다. T034는 대표 실행 상태가 확정된 뒤 수행하며, T035는 나머지 결과 또는 명시적 미검증 상태를 모아 집계한다.
+T011은 T008/T009/T010/T004/T005에, T012/T013은 T011에, T014는 T012/T013에 의존한다. T018은 T017/T005에, T020은 T016/T018/T019에, T021은 T020에 의존한다. T025는 US2 완료 후 검사 작성만 병행 가능하며 실행/판정은 T023/T024 이후 T026에서 한다. T030/T031은 안정된 콘텐츠와 T026/T029 이후, T032는 T031 이후, T033은 T029 이후에 진행한다. 같은 Editor를 사용하는 빌드/Play/import는 직렬 실행한다. T034는 대표 실행 상태가 확정된 뒤 수행하며, T036은 T021/T026 이후 A/B 실행 자료로 외관 확인을 받으며, T035는 T036을 포함한 나머지 결과 또는 명시적 미검증/승인 대기 상태를 모아 집계한다. T035 집계가 승인 대기 작업의 완료를 뜻하지 않는다.
 
 ### Parallel Examples
 
@@ -126,7 +128,7 @@ T011은 T008/T009/T010/T004/T005에, T012/T013은 T011에, T014는 T012/T013에 
 
 ## 공통 증거, 완료 기준
 
-T014/T021/T026/T034의 동작 변경은 헌장 v1.3.0에 따라 실제 실행 MP4를 원본 1920×1080 이상, 30fps 이상, 게임 소리 포함으로 남긴다. 다른 앱/마이크는 제외하고 PC 전체 소리 녹음은 사용하지 않는다. 새 녹음 방식/입력 설정은 다른 앱이 소리를 내는 동안 Unity 무음/유음 구간으로 입력 분리를 확인한다. 기존 동일 방식 검증을 재사용하면 기록을 직접 가리킨다.
+T014/T021/T026/T034/T036의 동작 변경은 헌장 v1.3.0에 따라 실제 실행 MP4를 원본 1920×1080 이상, 30fps 이상, 게임 소리 포함으로 남긴다. 다른 앱/마이크는 제외하고 PC 전체 소리 녹음은 사용하지 않는다. 새 녹음 방식/입력 설정은 다른 앱이 소리를 내는 동안 Unity 무음/유음 구간으로 입력 분리를 확인한다. 기존 동일 방식 검증을 재사용하면 기록을 직접 가리킨다.
 
 저장 MP4를 실제 재생해 화면, 문구, 게임 소리, 동기화를 확인한다. 오디오 트랙 존재, 파일 존재만으로 검증 완료하지 않는다. 녹화/소리/화질 기준 불가 시 가능한 최선의 영상, 단계별 원본 스크린샷, 분리 게임 소리 등 대체 자료와 불가 사유, 실제 조건, 미검증 범위를 남긴다. 대체도 없으면 기준 충족/시각 검증 완료를 주장하지 않는다.
 
@@ -148,5 +150,7 @@ T014/T021/T026/T034의 동작 변경은 헌장 v1.3.0에 따라 실제 실행 MP
 | SC-004 | T009, T018, T021 |
 | SC-005–006 | T025–T026, T029, T032–T033 |
 | SC-007 | T006, T019, T023, T027–T028 |
+| FR-017 | T009, T018, T036 |
+| SC-008 | T036, T035 |
 
-미완료 체크박스는 실제 구현, 검증 미완료를 뜻한다. 문서 생성 시점에는 35개 전부 미완료다.
+미완료 체크박스는 실제 구현, 검증 미완료를 뜻한다. 현재 36개 전부 미완료다. 기존 두 콘텐츠의 외관 수정 작업은 포함하지 않는다.

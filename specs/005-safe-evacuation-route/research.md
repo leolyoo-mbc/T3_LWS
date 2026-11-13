@@ -20,6 +20,8 @@
 
 ## 학교 공간과 연기
 
+**후속 합의 반영**: 기존 공간의 단순한 구성을 완성 기준으로 삼지 않고 문/창문 비례, 구조물의 깊이, 천장, 계단 연결을 보완한다(FR-017). 아래 재사용 결정은 자산의 재사용이며 이전 공간 구성의 반복을 뜻하지 않는다. Unity 전체 배치와 필요한 구조물의 Blender 제작은 도구 선택 제안이며 필수가 아니다. 특정 학교 재현 의무는 없다. 세 번째 콘텐츠의 실제 실행 외관을 사용자에게 확인받은 뒤 기존 두 콘텐츠의 후속 적용 범위를 결정한다(SC-008).
+
 **Decision**: 기존 CorridorFinish, plaster/terrazzo CC0 재질, 연기 텍스처를 재사용하며 두 route prefab과 smoke-only presenter를 만든다. 계단 입구/엘리베이터는 로컬 geometry로 만든다.
 
 **Rationale**: 기존 SmokeLayerPresenter.ConfigurationValid는 fireLight와 fireSystems를 요구한다. 막힌 계단 연기에 자세 인식, 불꽃을 함께 복제할 이유가 없다. 전용 학교 계단/엘리베이터 모델은 현재 목록에서 발견하지 못했다.
