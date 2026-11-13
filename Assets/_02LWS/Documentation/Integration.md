@@ -1,3 +1,13 @@
+## Interior environment revision — 2026-11-13
+
+FireNotification.unity retains the existing content anchors and main room footprints. CorridorFinish adds ceiling/rear closure/door trims/fixtures; SmokeRoomFinish adds interior finishes and a doorway into AdjacentFireSpace. The adjacent fire space is visual context, not a new teleport destination or door interaction. SmokeLayerPresenter owns doorway inflow, upper circulating smoke, independent fire particles and flicker light. Collect resets, Steady preserves inflow, pause freezes particles and flicker time, Stop/disable clears particles and disables the fire light. New fire references are required at smoke entry. Original FireEffect/FireVisualPresenter for notification remain unchanged.
+
+All new imported maps, generated meshes/materials/prefabs and baked lighting data/settings are under Assets/_02LWS. Keep Lighting/BakedEnvironment and the scene lightmap/probe references together when exporting; preserve GUIDs. New source/provenance is in VisualAssetSources.json and ThirdPartyNotices.md. Exclude archives, tools and validation originals under Artifacts, and the archival ContentMenu.unity.
+
+One existing shared URP configuration is used by menu and both contents. In the receiving URP17.3 project, enable Additional Lights=Per Pixel, Per Object Limit=1, Additional Light Shadows=off when using a profile that previously disabled additional lights. Preserve the host renderer/XR/HDR/render scale and existing quality selection. The source project adjusts only Performance URP Config.asset in Assets/Settings; that asset and ProjectSettings are not included by exporting _02LWS. No runtime pipeline replacement or extra lighting controller is shipped.
+
+Editor visual evidence and user approval are separate from Quest stereo/comfort/performance and recipient runtime acceptance. Current visual candidate uses upper smoke Start Size1.2; it is pending user approval. Earlier device/build/import claims below do not validate this revision.
+
 ## Latest: 체험 UI 시야 가림 수정 — 2026-11-12
 
 공용 Canvas1개와 안내 재생기1개를 유지하고 체험 안내를 아래쪽 가변 높이로 바꿨다. 고정1.325m 높이 배경·중복 제목·콘텐츠2 전용 고정 설명을 제거했다. 빈 상태/자막 행은 공간을 사용하지 않고 내용/동작이 모두 없으면 배경을 숨긴다. 글자150%는 높이를 늘려 수용한다. 메뉴/설정/결과 배치는 유지한다.

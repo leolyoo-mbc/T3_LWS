@@ -1,6 +1,6 @@
 # Quickstart: 환경·화재·연기 개선 검증
 
-**현재 상태**: 구현 후 사용할 검증 가이드. 아래 설계 대상은 아직 구현·실행 검증한 결과가 아니다. 상태 계약은 [environment-presentation.md](contracts/environment-presentation.md), 기록 필드는 [data-model.md](data-model.md)를 따른다.
+**현재 상태**: 2026-11-13 구현 및 Editor 실행 검증을 수행했다. 전체 회귀50/50·연기 lifecycle15/15·공간48방향 확인, 실행 MP4 디코딩과 전후 성능 표본 각9개를 확보했다. 사용자 외관 승인은 대기 중이며 실제 VR·수신 프로젝트 실행은 미검증이다. 기록: `Artifacts/Validation/VisualEvidence/20261113-134833-visual-environments/verification.md`. 아래는 재검증 절차다. 상태 계약은 [environment-presentation.md](contracts/environment-presentation.md), 기록 필드는 [data-model.md](data-model.md)를 따른다.
 
 ## 1. 준비와 기준 확보
 

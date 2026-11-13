@@ -1,3 +1,9 @@
+## CC0 interior surfaces — 2026-11-13
+
+New environment textures: ambientCG PaintedPlaster017 (wall/ceiling) and Terrazzo001 (floor), 2K-JPG source archives. Both are CC0 1.0. Publisher pages: https://ambientcg.com/view?id=PaintedPlaster017 and https://ambientcg.com/view?id=Terrazzo001; license: https://docs.ambientcg.com/license/. Retrieved2026-11-13. Original downloadable files may be modified and redistributed. Attribution is optional under the publisher license; this project retains provenance. Hashes and exact imported maps are listed in VisualAssetSources.json environment.
+
+Color maps use sRGB, NormalGL maps use Unity NormalMap import. MetallicSmoothness maps are derived with RGB=0 and alpha=1-roughness; Android uses1024 max and ASTC6x6. Archive/tool/validation originals are local Artifacts evidence and excluded from the unitypackage. Existing voice, character, font and particle licenses below remain unchanged.
+
 
 ## F1 음성 통일 — 2026-11-11
 

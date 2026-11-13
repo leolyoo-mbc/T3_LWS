@@ -64,5 +64,49 @@
         "bytes": 673
       }
     ]
-  }
+  },
+  "environment": [
+    {
+      "assetId": "PaintedPlaster017",
+      "sourceUrl": "https://ambientcg.com/view?id=PaintedPlaster017",
+      "downloadUrl": "https://ambientcg.com/get?file=PaintedPlaster017_2K-JPG.zip",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://docs.ambientcg.com/license/",
+      "retrievedAt": "2026-11-13T05:00:24.5766952Z",
+      "sourceFile": "Artifacts/Validation/VisualEvidence/20261113-134833-visual-environments/PaintedPlaster017_2K-JPG.zip",
+      "sha256": "a61330b10b1aa58410f8b60632f667e7a6d84d521bbd85cec4c4de7136d282d2",
+      "importedFiles": [
+        "Assets/_02LWS/Art/Textures/Environment/PaintedPlaster017_2K-JPG_Color.jpg",
+        "Assets/_02LWS/Art/Textures/Environment/PaintedPlaster017_2K-JPG_NormalGL.jpg",
+        "Assets/_02LWS/Art/Textures/Environment/PaintedPlaster017_2K-JPG_Roughness.jpg",
+        "Assets/_02LWS/Art/Textures/Environment/PaintedPlaster017_MetallicSmoothness.png"
+      ],
+      "transformations": [
+        "NormalGL imported as NormalMap; color sRGB; roughness linear",
+        "MetallicSmoothness RGBA: RGB=0; alpha=1-roughness",
+        "Android1024 ASTC6x6; source2048 retained"
+      ]
+    },
+    {
+      "assetId": "Terrazzo001",
+      "sourceUrl": "https://ambientcg.com/view?id=Terrazzo001",
+      "downloadUrl": "https://ambientcg.com/get?file=Terrazzo001_2K-JPG.zip",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://docs.ambientcg.com/license/",
+      "retrievedAt": "2026-11-13T05:00:28.9971845Z",
+      "sourceFile": "Artifacts/Validation/VisualEvidence/20261113-134833-visual-environments/Terrazzo001_2K-JPG.zip",
+      "sha256": "b5f07e28db0ce9d9460977d7495741b093c63011a7cc059e3b1863123f0504e0",
+      "importedFiles": [
+        "Assets/_02LWS/Art/Textures/Environment/Terrazzo001_2K-JPG_Color.jpg",
+        "Assets/_02LWS/Art/Textures/Environment/Terrazzo001_2K-JPG_NormalGL.jpg",
+        "Assets/_02LWS/Art/Textures/Environment/Terrazzo001_2K-JPG_Roughness.jpg",
+        "Assets/_02LWS/Art/Textures/Environment/Terrazzo001_MetallicSmoothness.png"
+      ],
+      "transformations": [
+        "NormalGL imported as NormalMap; color sRGB; roughness linear",
+        "MetallicSmoothness RGBA: RGB=0; alpha=1-roughness",
+        "Android1024 ASTC6x6; source2048 retained"
+      ]
+    }
+  ]
 }

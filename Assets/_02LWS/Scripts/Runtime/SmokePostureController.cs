@@ -81,7 +81,7 @@ namespace LWS.FireNotification.Runtime
             try
             {
                 if(catalog==null || tuning==null || guidance==null || smoke==null || poses==null || lifecycle==null || view==null)throw new InvalidOperationException("Missing smoke references");
-                if(guidance.voice==null || guidance.subtitle==null || smoke.rising==null || smoke.layer==null || tuning.tuning==null)
+                if(guidance.voice==null || guidance.subtitle==null || !smoke.ConfigurationValid || tuning.tuning==null)
                     throw new InvalidOperationException("Missing smoke presentation configuration");
                 catalog.Validate();
             }
