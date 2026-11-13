@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1048,11 +1048,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: b-w3
   scenarioId: b
-  targetId:
+  targetId: 
   adjacentIds:
   - b-w2
   - b-w4
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -2490,11 +2490,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: b-w5
   scenarioId: b
-  targetId:
+  targetId: 
   adjacentIds:
   - b-w4
   - b-w6
@@ -2510,7 +2510,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -2576,7 +2576,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -2783,7 +2783,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 40
@@ -2798,7 +2798,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures:
+  m_ActiveFontFeatures: 
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -4709,7 +4709,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -5654,7 +5654,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6e43c72f9133e4085abaedd86a3ccc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.SmokePostureValidationDisplay
   show: 0
 --- !u!114 &167972045
@@ -5667,7 +5667,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5201d5ab0573c74f819f3f6705c8b77, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.SmokePostureController
   view: {fileID: 1913844377}
   catalog: {fileID: 11400000, guid: c8ba9459bb974004cbb0d2cd3d9d81be, type: 2}
@@ -5964,7 +5964,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7984,7 +7984,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -9060,7 +9060,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9241,7 +9241,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.9607843, g: 0.96862745, b: 0.98039216, a: 1}
@@ -11242,11 +11242,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: b-w1
   scenarioId: b
-  targetId:
+  targetId: 
   adjacentIds:
   - b-w0
   - b-w2
@@ -11262,7 +11262,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -11328,7 +11328,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -16699,7 +16699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -16811,7 +16811,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbddf769fcb28fc46994db08e808d5ea, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.FreshPressButton
 --- !u!224 &344362880 stripped
 RectTransform:
@@ -18103,7 +18103,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -18118,7 +18118,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18178,7 +18178,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures:
+  m_ActiveFontFeatures: 
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -18491,7 +18491,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4ac38aa23cf3b04a98ff470290a3df2, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.SharedUIController
   navigator: {fileID: 775190219}
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
@@ -18672,7 +18672,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19882,7 +19882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -20200,7 +20200,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 28
@@ -20215,7 +20215,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20276,7 +20276,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures:
+  m_ActiveFontFeatures: 
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -21218,7 +21218,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea6f771b22f6b224e967a3c978c1af6c, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.ContentMenuInput
   navigator: {fileID: 775190219}
   contentId: safe-evacuation-route
@@ -21232,7 +21232,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61e1cfcb9c1816e4fb7ebac908d14362, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedButton
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   primary: 1
@@ -21246,7 +21246,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0.40784314, g: 0.8352941, b: 0.7921569, a: 1}
   m_EffectDistance: {x: 3, y: -3}
@@ -21261,7 +21261,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbddf769fcb28fc46994db08e808d5ea, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.FreshPressButton
   inputs: {fileID: -944628639613478452, guid: 37caf55e70e3cba4da92a9dfbbf0e308, type: 3}
   selected:
@@ -21274,10 +21274,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   allowWhilePaused: 0
@@ -21291,7 +21291,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -21335,7 +21335,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.02745098, g: 0.36862746, b: 0.3764706, a: 1}
@@ -21592,7 +21592,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -22312,7 +22312,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e5544b70ac0a84e8df04ca8980c46b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.ExperienceLifecycle
 --- !u!1 &517526865
 GameObject:
@@ -23941,7 +23941,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23951,7 +23951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text:
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
   m_sharedMaterial: {fileID: -4471024112838326175, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
@@ -24033,7 +24033,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 28
@@ -24112,7 +24112,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24698,7 +24698,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 40
@@ -24721,7 +24721,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25814,7 +25814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -26193,7 +26193,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26521,7 +26521,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26531,7 +26531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text:
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
   m_sharedMaterial: {fileID: -4471024112838326175, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
@@ -27734,7 +27734,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -27800,7 +27800,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -27819,11 +27819,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: a-w3
   scenarioId: a
-  targetId:
+  targetId: 
   adjacentIds:
   - a-w2
   - a-w4
@@ -28168,7 +28168,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30142,7 +30142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -30676,7 +30676,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
@@ -30741,7 +30741,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -31513,7 +31513,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32229,7 +32229,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f54d6ea72ad71854f9248f0015f4140a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.ContentSceneNavigator
   origin: {fileID: 8785166713178424732}
   lifecycle: {fileID: 509509518}
@@ -32535,7 +32535,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63d083712350f034caf69f8d18519ef4, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.GuidancePresenter
   voice: {fileID: 789638052}
   subtitle: {fileID: 1678102277}
@@ -32886,7 +32886,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33468,7 +33468,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6d7eb49c9ae9b24b9a5e53f7c48134b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.EvacuationRouteController
   view: {fileID: 1913844377}
   scenarios:
@@ -33903,7 +33903,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34354,7 +34354,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34554,7 +34554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9030838625420179408, guid: 18877349120d351449c77502e1250627, type: 3}
       propertyPath: m_Controller
-      value:
+      value: 
       objectReference: {fileID: 9100000, guid: cbe49152cbb41de4bb7966ea0cd7bd88, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34570,7 +34570,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d54bfeebc34de54b9572e9a928b7857, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ConversationBystander
 --- !u!4 &848202376 stripped
 Transform:
@@ -35385,7 +35385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -35515,7 +35515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -35760,7 +35760,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36028,7 +36028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -36158,7 +36158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -38523,7 +38523,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -39706,7 +39706,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea6f771b22f6b224e967a3c978c1af6c, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.ContentMenuInput
   navigator: {fileID: 775190219}
   contentId: smoke-low-posture
@@ -39720,7 +39720,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61e1cfcb9c1816e4fb7ebac908d14362, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedButton
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   primary: 1
@@ -39734,7 +39734,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0.40784314, g: 0.8352941, b: 0.7921569, a: 1}
   m_EffectDistance: {x: 3, y: -3}
@@ -39749,7 +39749,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbddf769fcb28fc46994db08e808d5ea, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.FreshPressButton
   inputs: {fileID: -944628639613478452, guid: 37caf55e70e3cba4da92a9dfbbf0e308, type: 3}
   selected:
@@ -39762,10 +39762,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   allowWhilePaused: 0
@@ -39779,7 +39779,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -39823,7 +39823,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.02745098, g: 0.36862746, b: 0.3764706, a: 1}
@@ -40161,7 +40161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -40964,7 +40964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -41119,7 +41119,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -41713,7 +41713,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1a9575ce81f1a04da143ba861b3ca06, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.FireVisualPresenter
 --- !u!1 &1078209562
 GameObject:
@@ -41993,11 +41993,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8594941410887748864, guid: 4d4b92c26304ab64b8864022c5c346f5, type: 3}
       propertyPath: m_InteractionManager
-      value:
+      value: 
       objectReference: {fileID: 8785166713178424730}
     - target: {fileID: 8594941410887748864, guid: 4d4b92c26304ab64b8864022c5c346f5, type: 3}
       propertyPath: m_TeleportationProvider
-      value:
+      value: 
       objectReference: {fileID: 8785166713178424735}
     - target: {fileID: 8594941410887748864, guid: 4d4b92c26304ab64b8864022c5c346f5, type: 3}
       propertyPath: m_InteractionLayers.m_Bits
@@ -43691,7 +43691,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea6f771b22f6b224e967a3c978c1af6c, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.ContentMenuInput
   navigator: {fileID: 775190219}
   contentId: fire-notification
@@ -44172,7 +44172,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbddf769fcb28fc46994db08e808d5ea, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.FreshPressButton
 --- !u!1 &1177237892
 GameObject:
@@ -45009,7 +45009,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d207fe2bb9e88f458349863f948c6bb, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.HeadPoseSampleProvider
   origin: {fileID: 8785166713178424732}
 --- !u!1 &1198224326
@@ -46112,7 +46112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -46884,7 +46884,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -46950,7 +46950,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -46969,7 +46969,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: a-w0
   scenarioId: a
@@ -47207,7 +47207,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e256a73bb0c03a14ca33cd39b89cb380, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.SmokeLayerPresenter
   rising: {fileID: 1568784944}
   layer: {fileID: 337393193}
@@ -47806,7 +47806,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -48186,7 +48186,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -48342,7 +48342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -48789,7 +48789,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -49082,7 +49082,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -49381,7 +49381,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.06666667, g: 0.08627451, b: 0.10980392, a: 1}
@@ -50302,7 +50302,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -50541,7 +50541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -50716,7 +50716,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -50782,7 +50782,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -50801,11 +50801,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: a-w1
   scenarioId: a
-  targetId:
+  targetId: 
   adjacentIds:
   - a-w0
   - a-w2
@@ -52243,7 +52243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -53639,7 +53639,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -53705,7 +53705,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -53724,7 +53724,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: a-w4
   scenarioId: a
@@ -54183,7 +54183,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -54249,7 +54249,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -54268,11 +54268,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: a-w5
   scenarioId: a
-  targetId:
+  targetId: 
   adjacentIds:
   - a-w4
   - a-w6
@@ -54866,7 +54866,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -55556,7 +55556,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: b-w0
   scenarioId: b
@@ -55575,7 +55575,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -55641,7 +55641,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -56027,7 +56027,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -62483,7 +62483,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -63047,11 +63047,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: b-w4
   scenarioId: b
-  targetId:
+  targetId: 
   adjacentIds:
   - b-w3
   - b-w5
@@ -63067,7 +63067,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -63133,7 +63133,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -63545,7 +63545,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.06666667, g: 0.08627451, b: 0.10980392, a: 1}
@@ -63583,7 +63583,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa50a860d9e1ed742a913056a6dc30be, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedPanel
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
 --- !u!1 &1622108722
@@ -64007,7 +64007,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcdb6eecee66dfd46a0642ef14dfdfa5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.FireNotificationController
   catalog: {fileID: 11400000, guid: 9ad9f556b37327840a4087955f8ba3bb, type: 2}
   view: {fileID: 1913844377}
@@ -64030,7 +64030,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a54a8393611d545b9f20f576fbb443, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ScenarioBaseline
   bystanders:
   - {fileID: 2075866826}
@@ -64065,7 +64065,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 249f71e067b485847ade8b35d8d11d71, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.ShoutExperience
   options: {fileID: 11400000, guid: 8e3b71d9c629630438b2ac9edea31183, type: 2}
   result: {fileID: 1632442755}
@@ -64079,7 +64079,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34bae75b60d34e2408aa380613620895, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ShoutResultPresenter
   reactionDuration: 2.2
 --- !u!114 &1632442756
@@ -64092,7 +64092,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1e91bf57ed22bb4bbacc326471e4133, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.BellExperience
   result: {fileID: 1632442757}
 --- !u!114 &1632442757
@@ -64105,7 +64105,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 778dac4a81b5ffb44b4871711f51de42, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.AlarmResultPresenter
   alarm: {fileID: 764383161}
   clip: {fileID: 8300000, guid: 0f85c5eab42ece34b9c3fe82656f0890, type: 3}
@@ -64120,7 +64120,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b6af48e5ace054409f2818875e2e7c6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.MethodSequence
   restorer: {fileID: 1632442760}
 --- !u!114 &1632442760
@@ -64133,7 +64133,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a226aa9a45a7be4e8e1d2d2511e727e, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ScenarioRestorer
 --- !u!114 &1632442762
 MonoBehaviour:
@@ -64145,7 +64145,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50829b0a367f1b94890220e9310f4e2f, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.CompletionExperience
 --- !u!1 &1634874444
 GameObject:
@@ -64375,7 +64375,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -64390,7 +64390,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -65524,7 +65524,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -65680,7 +65680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -66379,7 +66379,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -66389,7 +66389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text:
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
   m_sharedMaterial: {fileID: -4471024112838326175, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
@@ -66439,7 +66439,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures:
+  m_ActiveFontFeatures: 
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -66471,7 +66471,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -66772,7 +66772,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -66838,7 +66838,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -66857,11 +66857,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: a-w2
   scenarioId: a
-  targetId:
+  targetId: 
   adjacentIds:
   - a-w1
   - a-w3
@@ -68382,7 +68382,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa209944c365d6841923a45da71bc8c7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.RouteSmokePresenter
   systems:
   - {fileID: 1756204048}
@@ -76046,7 +76046,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -76087,7 +76087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -77798,8 +77798,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fa7b4195685c3846be746c74f0ab2f8, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1852219673
 GameObject:
   m_ObjectHideFlags: 0
@@ -78066,7 +78066,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.06666667, g: 0.08627451, b: 0.10980392, a: 1}
@@ -78104,7 +78104,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa50a860d9e1ed742a913056a6dc30be, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedPanel
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
 --- !u!1 &1863614925
@@ -78269,7 +78269,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.06666667, g: 0.08627451, b: 0.10980392, a: 1}
@@ -78307,7 +78307,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa50a860d9e1ed742a913056a6dc30be, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedPanel
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
 --- !u!1 &1867117340
@@ -78377,7 +78377,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -78443,7 +78443,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -78462,7 +78462,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: a-w6
   scenarioId: a
@@ -78811,7 +78811,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 40
@@ -78826,7 +78826,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -80858,7 +80858,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
@@ -80875,7 +80875,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06fb039c28998a54b97aa832af6f57c6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ComfortFollowUI
   head: {fileID: 1371013617}
   origin: {fileID: 8785166713178424733}
@@ -80893,7 +80893,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
   m_IgnoreReversedGraphics: 0
   m_CheckFor2DOcclusion: 0
@@ -80912,7 +80912,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
@@ -80958,7 +80958,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32c83d669d4481a469009bac3a97e38d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.SharedContentUI
   panel: {fileID: 1338795115}
   title: {fileID: 100398658}
@@ -81074,7 +81074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -81416,7 +81416,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.9607843, g: 0.96862745, b: 0.98039216, a: 1}
@@ -82887,7 +82887,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -83047,7 +83047,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -83141,7 +83141,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -83330,7 +83330,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -83396,7 +83396,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -83415,7 +83415,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: b-w6
   scenarioId: b
@@ -83471,7 +83471,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -84031,7 +84031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 405923106}
     - target: {fileID: 3966878536805848885, guid: 843ac08b768c2254e93db51ec84f86fc, type: 3}
       propertyPath: selected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -85193,7 +85193,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e752ad1edae614680778d4e5f818a0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Runtime.FireNotificationAdapter
   view: {fileID: 1913844377}
   controller: {fileID: 1632442748}
@@ -85537,7 +85537,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -85560,7 +85560,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -85690,7 +85690,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -86152,7 +86152,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9b030714b00314f90d4090bff1c618, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.RouteWaypoint
   id: b-w2
   scenarioId: b
@@ -86172,7 +86172,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2f4617667341945b5a7756e14b62d0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationAnchor
   m_InteractionManager: {fileID: 0}
   m_Colliders:
@@ -86238,7 +86238,7 @@ MonoBehaviour:
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
   m_TeleportationProvider: {fileID: 8785166713178424735}
-  m_MatchOrientation: 2
+  m_MatchOrientation: 0
   m_MatchDirectionalInput: 0
   m_TeleportTrigger: 0
   m_FilterSelectionByHitNormal: 0
@@ -86696,7 +86696,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d54bfeebc34de54b9572e9a928b7857, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ConversationBystander
 --- !u!4 &2075866827 stripped
 Transform:
@@ -87767,7 +87767,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 40
@@ -87782,7 +87782,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -88563,7 +88563,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89144,11 +89144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5912227050526771721, guid: d772899f3493d9546a25086a827748f3, type: 3}
       propertyPath: m_InteractionManager
-      value:
+      value: 
       objectReference: {fileID: 8785166713178424730}
     - target: {fileID: 6774122358184197965, guid: d772899f3493d9546a25086a827748f3, type: 3}
       propertyPath: controller
-      value:
+      value: 
       objectReference: {fileID: 1632442748}
     - target: {fileID: 6883832787606379860, guid: d772899f3493d9546a25086a827748f3, type: 3}
       propertyPath: m_Name
@@ -89338,7 +89338,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89567,7 +89567,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -89624,7 +89624,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -89731,7 +89731,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 28
@@ -89746,7 +89746,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 32
@@ -89859,7 +89859,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbddf769fcb28fc46994db08e808d5ea, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.FreshPressButton
   inputs: {fileID: -944628639613478452, guid: 37caf55e70e3cba4da92a9dfbbf0e308, type: 3}
   selected:
@@ -89876,7 +89876,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbddf769fcb28fc46994db08e808d5ea, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.FreshPressButton
   inputs: {fileID: -944628639613478452, guid: 37caf55e70e3cba4da92a9dfbbf0e308, type: 3}
   selected:
@@ -89889,10 +89889,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName:
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   allowWhilePaused: 0
@@ -89925,7 +89925,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -90048,7 +90048,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 48
@@ -94823,7 +94823,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
@@ -94882,7 +94882,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -95044,7 +95044,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
@@ -100137,7 +100137,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100229,7 +100229,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0.40784314, g: 0.8352941, b: 0.7921569, a: 1}
   m_EffectDistance: {x: 3, y: -3}
@@ -100390,7 +100390,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.9607843, g: 0.96862745, b: 0.98039216, a: 1}
@@ -100420,7 +100420,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 28
@@ -100447,7 +100447,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa50a860d9e1ed742a913056a6dc30be, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedPanel
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
 --- !u!1 &4392819783610927133
@@ -100583,7 +100583,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.02745098, g: 0.36862746, b: 0.3764706, a: 1}
@@ -100880,7 +100880,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.9607843, g: 0.96862745, b: 0.98039216, a: 1}
@@ -100910,7 +100910,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61e1cfcb9c1816e4fb7ebac908d14362, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedButton
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   primary: 1
@@ -100963,7 +100963,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101212,7 +101212,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61e1cfcb9c1816e4fb7ebac908d14362, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedButton
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   primary: 1
@@ -101226,7 +101226,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
   m_EffectColor: {r: 0.40784314, g: 0.8352941, b: 0.7921569, a: 1}
   m_EffectDistance: {x: 3, y: -3}
@@ -106138,7 +106138,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.06666667, g: 0.08627451, b: 0.10980392, a: 1}
@@ -106245,7 +106245,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106606,7 +106606,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83e4e6cca11330d4088d729ab4fc9d9f, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.XRInteractionManager
 --- !u!114 &8785166713178424732 stripped
 MonoBehaviour:
@@ -106617,8 +106617,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8785166713178424733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4891751375864717615, guid: 6c23bb565eff14943ac3f9b32a0b9540, type: 3}
@@ -106634,7 +106634,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95ad2792aba05a944a8bf7a0d63e4ced, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Interaction.MenuTeleportationProvider
   m_Mediator: {fileID: 1850038881}
   m_TransformationPriority: 20
@@ -106650,7 +106650,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fba5e18f3e87d44da6467027f3050e0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.ThemedText
   theme: {fileID: 11400000, guid: 790919cd54ff03140a48c9160668bbd7, type: 2}
   baseSize: 28
@@ -106793,7 +106793,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.02745098, g: 0.36862746, b: 0.3764706, a: 1}
