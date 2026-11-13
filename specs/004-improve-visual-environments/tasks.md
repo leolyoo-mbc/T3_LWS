@@ -84,8 +84,8 @@
 - [X] T029 [US4] 최종 씬에서 T004와 동일한10초워밍업/30초×3회 표본을 수집하여 `${E}/after/performance.json`과 `${E}/performance-comparison.md`에 전후 median/p95·측정불가·촬영부하를 기록한다. 재현되는 새 멈춤/입력지연은 미해결로 남기고 조정 시 영향받는 외관 비교도 갱신한다.
 - [X] T030 [US4] 두 체험 진입·둘러보기·핵심 행동·결과를 최종 실제 Game View로 `${E}/execution.mp4`에 기록한다. 영상 불가 시 최종 단계별 PNG와 이유·동작 확인 한계를 `${E}/verification.md`에 기록하고, 영상 존재만으로 회귀통과를 선언하지 않는다.
 - [X] T031 [US4] `${E}/execution.mp4` 또는 대체 이미지의 재생/열람과 실제 프레임 진행을 확인하고 git check-ignore/git ls-files로 E 전체의 제외·비추적을 검사해 `${E}/verification.md`에 기록한다. 원본을 Assets나 패키지에 섞지 않고 T028 인덱스를 최종 갱신한다.
-- [ ] T032 [US4] 복도 실행 화면·연기 방 전후·빽빽함 시안을 사용자에게 보여주고 `${E}/approval.md`에 콘텐츠별 pending/approved/rejected와 답변·대표증거를 기록한다. “approved는 사용자 응답이 있을 때만 기록하며 재수정 시 해당 외관 승인은 pending으로 돌린다”를 지킨다. 답변 대기 중에는 독립된 출처·의존성 작업을 계속한다.
-- [ ] T033 [US4] 거절된 외관이 있으면 해당 콘텐츠의 재질/마감/연기만 재조정하여 `Assets/_02LWS/Scenes/FireNotification.unity`와 관련 자원을 갱신하고 영향받는 회귀·성능·시각자료를 재확인한 뒤 `${E}/approval.md`를 갱신한다. 수정 불필요 시 두 콘텐츠 approved 근거를 확인해 완료한다. VR입체감·편안함·성능은 별도 후속 미검증으로 남긴다.
+- [X] T032 [US4] 복도 실행 화면·연기 방 전후·빽빽함 시안을 사용자에게 보여주고 `${E}/approval.md`에 콘텐츠별 pending/approved/rejected와 답변·대표증거를 기록한다. “approved는 사용자 응답이 있을 때만 기록하며 재수정 시 해당 외관 승인은 pending으로 돌린다”를 지킨다. 답변 대기 중에는 독립된 출처·의존성 작업을 계속한다.
+- [X] T033 [US4] 거절된 외관이 있으면 해당 콘텐츠의 재질/마감/연기만 재조정하여 `Assets/_02LWS/Scenes/FireNotification.unity`와 관련 자원을 갱신하고 영향받는 회귀·성능·시각자료를 재확인한 뒤 `${E}/approval.md`를 갱신한다. 수정 불필요 시 두 콘텐츠 approved 근거를 확인해 완료한다. VR입체감·편안함·성능은 별도 후속 미검증으로 남긴다.
 
 ## Phase 7: Polish & Cross-Cutting Concerns
 
@@ -94,7 +94,7 @@
 - [X] T034 `${E}/source-assets.json`을 근거로 `Assets/_02LWS/Documentation/VisualAssetSources.json`의 environment 항목과 `Assets/_02LWS/Documentation/ThirdPartyNotices.md`를 갱신한다. assetId/sourceUrl/downloadUrl/license=CC0-1.0/licenseUrl/retrievedAt/sourceFile/SHA256/importedFiles/transformations를 기록하며 “기존 current/historical 항목은 보존한다”. 다운로드 지도100%의 개별 근거·사용파일을 대조한다. T005/T007 후 US작업과 독립 실행 가능하다.
 - [X] T035 `Assets/_02LWS/Documentation/Integration.md`에 공용 URP의 추가 조명 조건·bake·기존 연출 스크립트 변경 전달 조건을 추가하고 _02LWS 밖 필수 프로젝트 자원 참조를 검사하여 `${E}/package-dependencies.json`에 기록한다. UPM과 ProjectSettings는 별도 전제, archive/검증원본/보관용 ContentMenu.unity는 제외한다. 실제 export/import 수행 여부와 수신 환경 미검증을 구분하며 의존성검사만으로 import합격을 표시하지 않는다.
 - [X] T036 최종 `Assets/_02LWS/Scenes/FireNotification.unity`에서 메뉴→알리기→메뉴→연기→메뉴→알리기·Play종료를 수행하여 외관 잔류·실행 중 공용 렌더 설정 교체·참조누락·새 Console오류0건을 `${E}/final-regression.md`에 기록한다. 최초 메뉴부터 같은 공용 설정을 쓰는지와 메뉴·두 체험의 외관·성능 영향을 확인하고 기준anchor·대사·2초판정·공유rig/UI·기존 사용자 변경도 보존한다.
-- [ ] T037 `${E}/verification.md`에 SC-001~007별 실제 결과·증거·사용자승인·미검증기기/수신프로젝트를 집계하고 `specs/004-improve-visual-environments/tasks.md`의 실제 완료 항목만 체크한다. 구현 검증이 통과한 최종 MP4/대체 대표파일을 직접 링크해 보고하고, 미승인/미해결을 남긴 채 전체완료·VR검증완료·제출승인이라 선언하지 않는다.
+- [X] T037 `${E}/verification.md`에 SC-001~007별 실제 결과·증거·사용자승인·미검증기기/수신프로젝트를 집계하고 `specs/004-improve-visual-environments/tasks.md`의 실제 완료 항목만 체크한다. 구현 검증이 통과한 최종 MP4/대체 대표파일을 직접 링크해 보고하고, 미승인/미해결을 남긴 채 전체완료·VR검증완료·제출승인이라 선언하지 않는다.
 
 ## Dependencies & Execution Order
 
@@ -152,3 +152,16 @@ T001 → T002 → T003 → T004
 | FR-017 / 공용 렌더 설정·단순화 | T006, T036 |
 
 **Completion rule**: 작업 ID 37개는 모두 실제 결과 확인 후 체크한다. 검사/승인 작업은 파일이 존재한다는 이유만으로 완료하지 않는다. 확장 훅 파일이 없다면 전후 훅은 실행 대상 없음으로 기록한다.
+
+## Phase 8: Convergence
+
+**Assessment**: 현재 구현·명세·계획·기존 T001~T037 및 헌법 1.3.0을 대조했다. 기존 체크 상태는 변경하지 않는다. T038~T041은 기존 미완료 작업의 후속 보완이며 사용자 외관 승인과 실제 VR/수신 프로젝트 검증을 구분한다. 과거 완료 영상에 새 녹화 기준을 소급 적용하지 않는다.
+
+- [X] T038 CRITICAL [F1] 현재 `Assets/_02LWS/Scenes/FireNotification.unity`의 TeleportSurface Mesh Renderer 비활성화가 반영된 최종 실행 자료를 새 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-visual-environments-convergence/`에 저장한다. 두 체험의 진입·둘러보기·핵심 행동·결과·메뉴 복귀를 실제 1920×1080 이상·30fps 이상 MP4와 Unity 게임 소리로 기록하고, 회색 판 제거 및 Collider/TeleportationArea를 통한 실제 텔레포트 유지도 확인한다. 동일 녹화 방식·입력 설정이면 `Artifacts/Validation/VisualEvidence/20261113-150016-audio-isolation/verification.md`의 외부 앱·마이크 제외 근거를 재사용하고, 달라지면 외부 앱 출력 중 Unity 무음/유음으로 분리를 재검증한다. 저장 MP4를 재생하여 화면 식별·게임 소리·화면 동기화를 확인하며 트랙 존재만으로 통과시키지 않는다. 불가능한 항목은 헌법 II에 따라 사유·실제 조건·대체 자료 또는 미검증을 남기고, 같은 폴더 `verification.md`에 입력 방식·분리 근거·결과를 기록한다. 증거 원본의 제외·비추적을 확인하고 대표 파일을 직접 링크한다. 기존 전체 영상이나 도입부 소리 테스트만으로 현재 최종 씬 전체 검증을 대신하지 않는다. per Constitution I/II/III; FR-011/014; T030/T031/T036 (partial)
+- [X] T039 [F2] **사용자 방향에 따라 재촬영 생략으로 종료 — 아래는 원래 요구이며 수행 완료를 뜻하지 않는다.** 원본 제품 자원을 덮어쓰지 않는 검증용 환경에서 `${E}/before/FireNotification.unity`와 현재 연기 시안의 비교 조건을 맞춰 재확보한다. 기립1.65m/낮은1.15m×yaw0/90/180/270의 전후8쌍을 동일 위치·FOV·해상도·seed7100+i·단계·단계 시작 후 경과시간으로 기록하고, 0.8/1.2/1.6 시안은 Practice+3초 및 Collect+2/+5초 자료를 보완한다. 기존 simulationSeconds=12가 단계 경과시간과 같다고 가정하지 않고 실제 단계 시각과 입자 시각을 각각 기록한다. 새로운 증거 폴더의 `comparison.json`과 `us2-smoke-candidates.json`에 조건·대표 파일·형상/분포 보정 여부를 기록하고 기존 원본 seed의 기준 자료와 통제된 비교를 구분한다. 제품의 교육 흐름·판정 기준을 촬영 목적으로 바꾸지 않는다. per FR-008/009; SC-003; US2/AC3; plan: 검증·패키징·승인; T019/T027 (partial)
+- [X] T040 [F3] T038/T039 자료를 사용자에게 제시하고 복도 외관·연기 방의 상자 같은 인상·연기층 빽빽함의 승인 여부를 새로운 증거 폴더 `approval.md`에 답변·대표 자료와 함께 각각 기록하여 T032/T033의 남은 절차를 수행한다. 커밋 요청·소리 분리 확인·회색 판 제거를 두 콘텐츠 전체 외관 승인으로 확대하지 않는다. 승인 응답 전에는 pending으로 두고, 거절되면 합의된 구조와 교육 흐름을 유지하며 해당 외관만 수정한 후 영향받는 회귀·성능·비교·실행 자료를 갱신하고 재승인을 받는다. 수정 시 해당 승인은 pending으로 되돌린다. per FR-005/009/016; SC-003/004/007; US3/AC1/AC3; T032/T033 (partial)
+- [X] T041 [F4] T038~T040의 실제 결과를 바탕으로 새로운 증거 폴더 `evidence-index.md`와 `verification.md`에 SC-001~007별 결과·최종 씬 자료·동작 회귀·사용자 응답·기존 성능/출처/의존성 근거의 유효 범위를 집계하여 T028/T037의 남은 절차를 완료한다. 기준이 다른 과거 영상과 새 최종 영상을 구분하고, 승인 대기·미해결·Quest 입체감/편안함/성능·수신 프로젝트 import/runtime 미검증을 그대로 표시한다. 실제 충족한 작업만 완료 표시하고 최종 대표 MP4/대체 파일을 직접 링크한다. 사용자 미승인 상태에서 전체 외관 완료·VR 검증 완료·제출 승인을 선언하지 않는다. per FR-014/015/016; SC-006/007; US4/AC2/AC3; T028/T037 (partial)
+
+### Phase 8 처리 결과 — 2026-11-13
+
+사용자의 현재 외관 유지 승인과 실행 확인만 수행하는 요청을 적용했다. 근거: `Artifacts/Validation/VisualEvidence/20261113-164124-visual-environments-convergence/verification.md` 및 `approval.md`. T032/T033/T040은 현재 외관 승인·수정 없음으로 종료, T039는 추가 비교 재촬영 생략으로 종료했다. T038은1080p30fps 게임 소리 영상·텔레포트8/8·디코딩 확인과 청취/정밀동기화 미검증의 헌법II 한계 기록을 포함한다. T037/T041은 실제 결과 집계를 마쳤으며 전 기준 합격을 뜻하지 않는다. 통합검사48/49이며 기존 Status 글잘림1건이 미해결이다. SC-003 통제8쌍 재촬영은 생략했고 Quest/수신 프로젝트는 미검증이다. 제품 파일 변경·커밋·푸시 없음.
