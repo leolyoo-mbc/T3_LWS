@@ -1,0 +1,69 @@
+{
+  "model": "Supertone/supertonic-2",
+  "revision": "75e6727618a02f323c720cba9478152d4bc16ca4",
+  "voice": "F1",
+  "language": "ko",
+  "steps": 16,
+  "speed": 0.95,
+  "sample_rate": 44100,
+  "disclosure": "AI 합성 음성",
+  "listeningReview": "pending",
+  "cues": [
+    {
+      "id": "ready",
+      "text": "학교 복도에서 대피 경로를 선택하는 연습입니다. 준비가 되면 준비 완료를 선택하세요. 불편하면 언제든 메뉴에서 중단할 수 있습니다.",
+      "file": "ready.wav",
+      "duration_seconds": 11.911428571428571,
+      "sha256": "875a04eabdbf13ff1d6372337df135397a3fcf1063764186ba168229e2114f19",
+      "seed": 20261113
+    },
+    {
+      "id": "intro-a",
+      "text": "주변의 유도표지와 계단 상태를 살펴보세요. 바닥의 이동 지점을 가리켜 순간이동하고, 입구 앞 확인 지점에서는 주변을 살핀 뒤 행동을 선택하세요.",
+      "file": "intro-a.wav",
+      "duration_seconds": 13.939251700680272,
+      "sha256": "2ff6a2f6cd9b45db5e4ed6739916005c613b1139c32c176ea5577807246ac05e",
+      "seed": 20261114
+    },
+    {
+      "id": "intro-b",
+      "text": "같은 학교의 다른 구역입니다. 주변의 표지와 경로 상태를 살펴보고, 이용할 대피 경로를 직접 선택해 보세요.",
+      "file": "intro-b.wav",
+      "duration_seconds": 10.107165532879819,
+      "sha256": "40a4bea213726f949e93a7f1fd5db623eada4e949476a088278143acfee30096",
+      "seed": 20261115
+    },
+    {
+      "id": "elevator",
+      "text": "화재 때는 정전이나 고장으로 갇히거나 연기에 노출될 수 있어 엘리베이터를 이용하지 않습니다. 다른 경로를 찾아보세요.",
+      "file": "elevator.wav",
+      "duration_seconds": 10.162675736961452,
+      "sha256": "7bbd12c1c10ae6c863e57f3693e0e3c28f035a2369e334bc3912af68b8388687",
+      "seed": 20261116
+    },
+    {
+      "id": "smoke",
+      "text": "연기로 막힌 계단에 무리하게 들어가면 위험합니다. 낮은 자세만으로 통과할 수 있는 것은 아닙니다. 이 연습에서는 다른 경로를 찾아보세요.",
+      "file": "smoke.wav",
+      "duration_seconds": 11.711133786848073,
+      "sha256": "fc313740b5f0d98924136324c0a571aa392fe25db6b601f0e6e54297f88fc9b6",
+      "seed": 20261117
+    },
+    {
+      "id": "complete-a",
+      "text": "첫 번째 대피 경로 선택 연습을 마쳤습니다. 계단도 주변 상태를 확인해야 합니다. 다음 연습에서는 다른 구역에서 판단해 보세요.",
+      "file": "complete-a.wav",
+      "duration_seconds": 11.723537414965987,
+      "sha256": "4ca9822805c5ca8b6be1e1986832a98921306cac4d2ddface127b76da7b78c53",
+      "seed": 20261118
+    },
+    {
+      "id": "completion",
+      "text": "두 상황의 대피 경로 선택 연습을 마쳤습니다. 연기가 보이지 않는 것만으로 실제 안전을 보장하지는 않습니다. 실제 건물 탈출을 완료한 것은 아닙니다. 모든 경로가 막힌 경우의 대처는 별도 교육에서 다룹니다.",
+      "file": "completion.wav",
+      "duration_seconds": 18.30655328798186,
+      "sha256": "0e52528e4b5cfa44d009ce52c3f0fe4861ff93910117cd32a88e6e35680a5d13",
+      "seed": 20261119
+    }
+  ]
+}

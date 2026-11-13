@@ -1,6 +1,6 @@
 # Quickstart Validation: 안전한 대피 경로 판단
 
-구현 후 실행할 절차이며 현재 성공 기록이 아니다. [상태 모델](data-model.md)과 [UI/통합 계약](contracts/route-experience.md)을 기준으로 확인한다.
+구현 후 재실행할 절차와 2026-11-13 검증 상태다. 실제 결과는 [RouteAcceptance](../../Assets/_02LWS/Documentation/Validation/RouteAcceptance.md)에 집계했다. [상태 모델](data-model.md)과 [UI/통합 계약](contracts/route-experience.md)을 기준으로 확인한다.
 
 ## 1. 준비
 
@@ -22,7 +22,7 @@ CLI는 실행 시 unity-cli 스킬과 현재 help로 옵션을 확인한다. dis
 | Tools > LWS > Validate Route Configuration | 신규 RouteIntegrationChecks.ValidateConfiguration(): ID, 배치, 도착 영역, 이동 연결, 필수 cue 누락 0개 |
 | Tools > LWS > Validate Route Domain | 신규 RouteDomainChecks.Run(): 직접/우회/오답 후 완료, 미방문, 재방문, 중복/낡은 입력, 중단 assertion 전부 통과 |
 
-신규 두 메뉴/진입점은 아직 없으며 구현 산출물이다. 새 테스트 패키지 없이 Editor-only assertion runner로 실행하고 실패 시 사례명과 예외를 남긴다. 검증 수와 통과 수는 실제 출력으로 보고한다.
+두 메뉴/진입점은 구현됐다. 도메인 69개, 원본 경로 통합 164개와 별도 결과 추적 복구 검사, 최종 수신 경로 통합 166개, 기존 두 콘텐츠 회귀 49개가 통과했다. 새 테스트 패키지 없이 Editor-only assertion runner로 실행하고 실패 시 사례명과 예외를 남긴다. 검증 수와 통과 수는 실제 출력으로 보고한다.
 
 ## 3. 실제 판단, 이동
 
@@ -87,3 +87,7 @@ git -C 'E:/projects/T3_LWS' diff --check
 ```
 
 example은 실제 폴더로 바꾼다. ignore 적용, 검증 원본 추적 0건을 확인한다. 완료 보고에는 대표 MP4/대체 파일을 직접 링크하고 Editor/Quest/import/청취 결과와 한계를 각각 쓴다.
+
+## 8. 현재 승인/실행 상태
+
+Android 개발 APK와 별도 신규 프로젝트 Import/컴파일/세 콘텐츠 Play 확인을 마쳤다. 자세한 수신 범위와 실제 원본 링크는 RouteAcceptance.md, RouteExportImport.md를 따른다. 신규 음원 7개/외관의 사용자 승인, 최종 영상의 세밀한 소리 동기화 청취와 실제 Quest 2는 미완료다. T028/T032/T034/T036을 체크하지 않는다. 계단 확인 지점은 UI 앞 표지 겹침을 막기 위해 실제 제작에서 입구 쪽 3m로 조정했으며 안전 거리 기준이 아니다.

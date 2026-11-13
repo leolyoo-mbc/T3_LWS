@@ -62,4 +62,6 @@ AGENTS.md는 사용자만 수정한다. 새 콘텐츠 제작 시 이 문서와 �
 
 ## 체험 중 시야 보존
 
+세 번째 콘텐츠 `safe-evacuation-route`는 EvacuationRouteController와 ScenarioA/B, 고정 RouteWaypoint 그래프를 사용한다. 인접 TeleportationAnchor만 켜고 실제 도착 위치를 확인한다. 일반 선택 단계는 Blocked로 막지 않는다. LocomotionAllowed를 Explore/Decision에서만 허용하며 navigator의 기존 이동 조건과 AND한다. 잠금, 전환, 종료는 예약 이동도 취소한다. 경로 데이터와 실제 앵커 ID/인접 연결을 함께 갱신하고 Validate Route Configuration/Domain/Integration을 실행한다.
+
 공용 Canvas 하나라는 규칙이 안내를 큰 판 하나에 항상 표시하라는 뜻은 아니다. SharedContentUI가 하단에 실제 상태·자막·동작만 배치한다. 비어 있는 행/배경을 남기지 않고 150% 글자는 높이를 늘려 수용한다. 제목과 음성 출처는 메뉴에서 확인한다. 콘텐츠별 고정 설명·제목·큰 배경·별도 Canvas를 추가하지 않는다. 메뉴/설정/확인/결과는 공용 정면 패널을 재사용한다. 새 문구를 넣으면 실제 환경·손·대상과의 겹침, 긴 자막과 선택지, 150%, 자막 끄기, 숙인 상태를 다시 확인한다. 하단 배치만으로 모든 장면의 시야 보존을 보장하지 않는다.

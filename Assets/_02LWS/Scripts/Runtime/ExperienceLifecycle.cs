@@ -12,7 +12,7 @@ namespace LWS.FireNotification.Runtime
         public ExperienceStage stage;
         public long stageExecution;
     }
-    [DefaultExecutionOrder(-200)]
+    [DefaultExecutionOrder(-400)]
     public sealed class ExperienceLifecycle : MonoBehaviour
     {
         private bool paused;

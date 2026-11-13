@@ -171,11 +171,25 @@ namespace LWS.FireNotification.Runtime
         }
         private void Refresh()
         {
-            bool complete = navigator.InContent && Controller != null && Controller.ResultVisible &&
+            bool complete = navigator.InContent && Controller != null && Controller.ResultVisible && !Controller.Blocked &&
                 (contentUI == null || contentUI.guidance == null || !contentUI.guidance.IsPresenting);
             if (resultPanel != null) resultPanel.SetActive(complete && !IsOpen && !Controller.Blocked);
             if (resultText != null) resultText.text = Controller?.ResultText ?? "";
-            if (openMenuPanel != null) openMenuPanel.SetActive(navigator.InContent && !IsOpen);
+            if (openMenuPanel != null) openMenuPanel.SetActive(navigator.InContent && !IsOpen && !complete);
+            if(complete && resultPanel != null && resultText != null)
+            {
+                var panel=(RectTransform)resultPanel.transform;
+                var text=resultText.rectTransform;
+                float height=Mathf.Max(330,resultText.GetPreferredValues(resultText.text,936,Mathf.Infinity).y+16);
+                panel.sizeDelta=new Vector2(1000,height+290);
+                text.sizeDelta=new Vector2(936,height);
+                text.anchoredPosition=new Vector2(0,90);
+                foreach(var button in resultPanel.GetComponentsInChildren<FreshPressButton>(true))
+                {
+                    var rect=(RectTransform)button.transform;
+                    rect.anchoredPosition=new Vector2(rect.anchoredPosition.x,-height*.5f-55);
+                }
+            }
             if(menuPanel != null) menuPanel.SetActive(!navigator.InContent && !navigator.Loading && !IsOpen);
             if(contentUI != null && contentUI.panel != null) contentUI.panel.SetActive(navigator.InContent && !complete && contentUI.Owner == Controller);
         }

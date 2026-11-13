@@ -16,6 +16,7 @@ namespace LWS.FireNotification.Runtime
     }
 
     // Owns presentation only. Content supplies text and actions, never its stage machine.
+    [DefaultExecutionOrder(1000)]
     public sealed class SharedContentUI : MonoBehaviour
     {
         public GameObject panel;

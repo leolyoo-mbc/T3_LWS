@@ -29,7 +29,7 @@ namespace LWS.FireNotification.Runtime
         public bool Loading { get; private set; }
         public bool InContent => ActiveContent != null;
         public bool MovementAllowed => !Loading && lifecycle != null && !lifecycle.Blocked &&
-            (ActiveContent == null || (ActiveContent.locomotionAllowed && ActiveAdapter != null && !ActiveAdapter.Blocked));
+            (ActiveContent == null || (ActiveContent.locomotionAllowed && ActiveAdapter != null && !ActiveAdapter.Blocked && ActiveAdapter.LocomotionAllowed));
         public string ConfigurationError { get; private set; }
         private void Start()
         {

@@ -10,6 +10,7 @@ namespace LWS.FireNotification.Runtime
         public event Action MenuRequested;
         public event Action ExitConfirmationRequested;
         public abstract bool Blocked { get; }
+        public virtual bool LocomotionAllowed => !Blocked;
         public abstract bool ResultVisible { get; }
         public abstract string ResultText { get; }
         public abstract void Begin();

@@ -113,3 +113,8 @@ Teardown follow-up: stopping a session while a modal is open no longer dereferen
 Meta 지침 기반 완만한 추종과 텔레포트 완료 후 재배치를 반영했다. 초기값과 공식 근거, Editor 13개 추종/입력 및 111개 회귀 결과는 Validation/ComfortFollow.md를 참고한다. 실기기 가독성/불편감/지속 입력 검증은 미완료이며 최신 APK는 없다. 패키지를 다시 Export한 결과는 Artifacts/SharedUIPackageAudit.json 기준이다.
 
 Teleport correction: BellApproach and the owned TeleportSurface prefab use the existing dedicated Teleport interaction layer (current bit 31), excluding ordinary grip selection. On import, match this semantic layer with both Teleport Interactors. New full ray-selection/release regression passes 6/6; see Validation/WallAlarm-RayInput.txt.
+# 세 번째 콘텐츠 추가, 2026-11-13
+
+`FireNotification.unity`에 `safe-evacuation-route`를 등록했다. RouteSpace 아래 학교 복도 A/B, 기존 공용 Canvas와 음성 재생기, 추적 공급자, MenuTeleportationProvider를 사용한다. 앵커 목적지는 복도 쪽 확인 지점뿐이며 실제 계단 하강과 엘리베이터 탑승은 제공하지 않는다. 기존 두 콘텐츠의 외관은 수정하지 않는다.
+
+검증 상태는 `Validation/RouteAcceptance.md`가 기준이다. 신규 F1 음원은 AI 합성 음성이며 기존 음원 승인과 별도로 청취 검수를 받아야 한다. 새 공간 외관, Quest 실기기와 수신 환경 검증의 미완료를 제출 합격으로 해석하지 않는다.

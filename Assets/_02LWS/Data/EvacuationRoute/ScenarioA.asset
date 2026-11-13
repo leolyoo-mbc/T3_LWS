@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa1586599ba77f47b0ff45a6f1dc9c8, type: 3}
+  m_Name: ScenarioA
+  m_EditorClassIdentifier: LWS.FireNotification.Runtime::LWS.FireNotification.Presentation.RouteScenarioAsset
+  id: a
+  startWaypointId: a-w3
+  isGuided: 1
+  targets:
+  - Id: a-left
+    CheckpointId: a-w0
+    Kind: 0
+    State: 0
+  - Id: a-right
+    CheckpointId: a-w6
+    Kind: 0
+    State: 0
+  - Id: a-lift
+    CheckpointId: a-w4
+    Kind: 1
+    State: 2
+  waypoints:
+  - Id: a-w0
+    ScenarioId: a
+    TargetId: a-left
+    AdjacentIds:
+    - a-w1
+  - Id: a-w1
+    ScenarioId: a
+    TargetId:
+    AdjacentIds:
+    - a-w0
+    - a-w2
+  - Id: a-w2
+    ScenarioId: a
+    TargetId:
+    AdjacentIds:
+    - a-w1
+    - a-w3
+  - Id: a-w3
+    ScenarioId: a
+    TargetId:
+    AdjacentIds:
+    - a-w2
+    - a-w4
+  - Id: a-w4
+    ScenarioId: a
+    TargetId: a-lift
+    AdjacentIds:
+    - a-w3
+    - a-w5
+  - Id: a-w5
+    ScenarioId: a
+    TargetId:
+    AdjacentIds:
+    - a-w4
+    - a-w6
+  - Id: a-w6
+    ScenarioId: a
+    TargetId: a-right
+    AdjacentIds:
+    - a-w5
