@@ -69,3 +69,11 @@ T028 신규 음원 청취, T032 Quest 2, T034 최종 영상 세밀한 소리 동
 ## 메뉴 버튼 겹침 수정
 
 세 번째 콘텐츠 버튼과 설정 버튼의 실제 사각형이 겹친 실패를 확인했다. 메뉴 패널 높이를 1140에서 1320으로 늘리고 버튼/하단 안내 간격을 재배치했다. 콘텐츠 버튼 3개와 설정 버튼의 실제 GraphicRaycaster 적중, 기본/150% 글자 크기, 설정 열기를 포함한 Editor Play 검사 28개가 통과했다. 증거는 `Artifacts/Validation/VisualEvidence/20261113-231242-menu-button-spacing`의 PNG, execution.mp4, checks.txt에 있다. 이 메뉴와 설정 구간은 원래 무음이며 Unity 내부 출력만 녹화했다. Quest 실기 확인은 미완료다.
+
+## 텔레포트 레이 선택 수정
+
+경로 앵커 14개의 상호작용 레이어가 Default(1)였고 기존 리그의 Teleport Interactor는 비트 31(2147483648)만 선택했다. 실제 레이는 앵커 충돌체에 적중했지만 XRI가 레이어 불일치로 선택을 거부했다. 씬과 RouteTeleportAnchor/SchoolRouteA/SchoolRouteB 프리팹의 앵커를 기존 텔레포트 레이어로 통일했다.
+
+수정 전 실제 레이 재현은 hit=True, validTarget=False, arrived=False였고 수정 후 hit=True, validTarget=True, arrived=True였다. 기존 통합 검사의 직접 QueueTeleportRequest 호출은 레이 선택을 우회해 이 결함을 발견하지 못했다. Move 검사를 리그의 실제 레이어/물리 마스크를 복사한 레이 적중, XRI 선택/해제, 실제 도착 확인으로 교체했다. 이 검사는 Editor 합성 입력이며 물리 컨트롤러 입력이나 Quest 실기 검증을 대신하지 않는다. 이전 APK와 패키지에는 이 후속 수정이 아직 포함되지 않는다.
+
+수정된 통합 검사를 새 Play 세션에서 실행한 최종 결과는 196개 통과, 실패 0개다. A/B 경로의 실제 레이 선택과 도착, 우회, 중단/추적 복구, 재시작과 메뉴 복귀를 포함한다. 로그: `Artifacts/Validation/VisualEvidence/20261113-route-ray-regression/integration.txt`. 씬의 14개 앵커와 세 프리팹의 모든 경로 앵커에서 텔레포트 레이어 설정도 확인했다.

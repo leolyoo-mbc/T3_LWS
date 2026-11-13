@@ -4575,7 +4575,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 6613533437869912212}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_FocusMode: 1
@@ -9705,7 +9705,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 9121790686619832556}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_FocusMode: 1
@@ -11486,7 +11486,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 782489250267076372}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_FocusMode: 1
@@ -12478,7 +12478,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 1871977488939141903}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_FocusMode: 1
@@ -14109,7 +14109,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 5472957366536648750}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_FocusMode: 1
@@ -16825,7 +16825,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 5206310796043912614}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_FocusMode: 1
@@ -25852,7 +25852,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 9146973656265949798}
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_FocusMode: 1

@@ -7,6 +7,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using LWS.FireNotification.Runtime;
 using LWS.FireNotification.Interaction;
 using LWS.FireNotification.Domain.EvacuationRoute;
@@ -78,7 +80,22 @@ namespace LWS.FireNotification.Validation
         private static IEnumerator Move(EvacuationRouteController c,string id)
         {
             var w=c.waypoints.Single(p=>p.id==id);Check(w.anchor.enabled,"adjacent anchor enabled: "+id);
-            Check(c.teleport.QueueTeleportRequest(new TeleportRequest{destinationPosition=w.anchor.teleportAnchorTransform.position,destinationRotation=w.anchor.teleportAnchorTransform.rotation,matchOrientation=MatchOrientation.TargetUpAndForward}),"teleport queued: "+id);
+            var template=c.navigator.origin.GetComponentsInChildren<XRRayInteractor>(true).First(r=>r.name=="Teleport Interactor");
+            var go=new GameObject("Route regression teleport ray");go.SetActive(false);
+            try
+            {
+                var ray=go.AddComponent<XRRayInteractor>();ray.interactionLayers=template.interactionLayers;ray.raycastMask=template.raycastMask;ray.enableUIInteraction=false;
+                go.transform.SetPositionAndRotation(w.transform.position+Vector3.up,Quaternion.LookRotation(Vector3.down));go.SetActive(true);
+                yield return Frames();
+                var targets=new System.Collections.Generic.List<IXRInteractable>();ray.GetValidTargets(targets);
+                bool selectable=targets.Contains(w.anchor)&&(ray.interactionLayers.value&w.anchor.interactionLayers.value)!=0;
+                Check(selectable,"actual ray can target anchor: "+id);
+                if(!selectable)throw new InvalidOperationException("Teleport ray cannot select "+id);
+                ray.interactionManager.SelectEnter((IXRSelectInteractor)ray,(IXRSelectInteractable)w.anchor);
+                Check(ray.interactablesSelected.Contains(w.anchor),"actual XRI selection: "+id);
+                ray.interactionManager.SelectExit((IXRSelectInteractor)ray,(IXRSelectInteractable)w.anchor);
+            }
+            finally {UnityEngine.Object.Destroy(go);}
             yield return Wait(()=>c.Session.CurrentWaypointId==id,"actual arrival: "+id,8);
             yield return Frames();
         }
