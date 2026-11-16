@@ -97,3 +97,13 @@ git diff --check
 `ContentExperienceAdapter.ActionExecution`은 같은 문구를 다시 제공해도 교육 실행이 바뀌면 이전 listener를 무효화하는 경계다. 기존 Session 실행 번호를 노출하며 Domain 판단을 바꾸지 않는다. 정상 수락 판의 하강 완료와 `ResetDisplay`를 구별해야 다음 연습이 조기에 이동하지 않는다.
 
 2026-11-16 Editor 검증 자료: `Artifacts/Validation/VisualEvidence/20261116-194559-floor-choice-buttons/`. 실제 영상, 46개 배치 원본, 검사 로그, 상세 한계는 해당 폴더의 `verification.md`를 따른다. Quest/제작자 외관 승인/직접 청취는 별도다.
+
+## Convergence 보완 검사 T035~T037
+
+`FloorButtonChecks.RunPlayMode()`는 기존 검사에 반대 방향 진입, non-owner/owner 교체, 실제 Input System Esc, 상태별 재시작/종료, 하강 중 다음 연습 취소, 기울기 20개 조합을 포함한다. 검사 각도는 pitch/roll +/-15도와 복합15도, 버튼 1개/2개, 글자 100%/150%의 검사 입력이며 사용자 확정 외형이나 지원 각도 제한이 아니다. 저장 앵커의 기본 0도는 유지한다.
+
+`EvidenceDirectory`는 실행을 시작할 때 실제 고유 결과 경로로 갱신된다. 같은 요청 경로가 이미 있으면 `-001` 같은 접미사를 붙이므로, 호출자가 지정한 원래 경로 대신 실행 후 반환 필드를 읽는다. Floor/Route 검사 모두 기존 결과를 덮어쓰지 않는다. 결과는 계속 Artifacts/Validation/VisualEvidence 아래에 저장한다.
+
+기록 보존의 독립 검사는 `ValidationEvidenceChecks.Run(새 검사 경로)`로 실행한다. 실행 자료가 없는 미리보기 비교는 통과시키지 않는다. Play Mode 검사 종료 후 Edit Mode에서 `FloorButtonChecks.ValidateTiltPreviews(실제 EvidenceDirectory)`를 실행하면 20개 실제 Inspector 미리보기와 실행 위치를 1mm 이내 기준으로 비교한다.
+
+실행 결과와 한계는 `Artifacts/Validation/VisualEvidence/20261116-205922-floor-coverage/verification.md`를 따른다. T035/T036은 검증 보완이며, T037에서 재현된 기울기 문제는 Canvas/mask의 바닥 경계를 유지하고 판만 수직 이동하도록 수정했다. Quest, 제작자 외관 승인, 직접 청취 동기는 별도다. 메뉴 입력 바인딩 수정은 이번 범위에 포함하지 않는다.

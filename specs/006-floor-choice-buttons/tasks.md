@@ -157,3 +157,13 @@ US1은 공통 기반 이후 표시를 독립 검증할 수 있다. US2는 US1의
 | 헌법 I/II/III | T001, T015, T023, T028, T030, T033, T034 |
 
 **Count**: 총 34개. Setup 2개, Foundational 4개, US1 9개, US2 8개, US3 5개, 공통 마무리 6개. 모든 체크박스는 최초 미완료 상태다.
+
+## Phase 7: Convergence
+
+현재 명세/계획/기존 T001~T034와 소스 및 로컬 검증 자료를 대조한 결과다. 기존 체크박스는 변경하지 않는다. 아래 작업은 검증 도구와 누락된 검사 범위를 보완하며 새 교육 행동이나 외관 결정을 추가하지 않는다. Quest/제작자 외관 검토/청취의 미검증 기록을 합격으로 바꾸지 않는다.
+
+- [X] T035 [MEDIUM] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`와 `Assets/_02LWS/Scripts/Validation/RouteIntegrationChecks.cs`의 검사 결과 저장을 실행별 고유 경로로 분리하라. 현재 `RunPlayMode`는 설정된 EvidenceDirectory를 재사용하고 floor-checks.txt/integration.txt/xr-rays.txt/fresh-input.txt를 WriteAllText로 덮어쓸 수 있다. 공통 Artifacts/Validation/VisualEvidence 아래에서 기본 경로와 명시 경로 모두 기존 결과가 있으면 접미사 또는 새 실행 하위 폴더를 사용하고 실제 결과 경로를 노출하라. 같은 요청 경로로 두 번 실행해 이전 결과의 바이트가 보존되고 두 실행을 구별할 수 있음을 검사하라. per tasks: 공통 제약의 기존 검증 폴더 덮어쓰기 금지, T002/T030, Constitution III 저장 규칙 (partial, F1).
+
+- [X] T036 [MEDIUM] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`의 누락된 입력/수명 회귀 검사를 보완하라. 반대 방향을 먼저 본 상태에서 단계에 진입해 정상 상승하는지 검사하고, non-owner의 SetActions/Clear 및 owner 교체 후 이전 listener를 거부하는지 확인하라. 실제 Input System의 Esc 입력으로 정지/재개를 검사하고 Rising/Ready/Lowering 각각에서 재시작/종료 후 잔류 표시와 이전 입력 실행이 없는지 확인하라. 다음 연습을 실제 수락해 Lowering에 들어간 뒤 사전 ResetFloorDisplay 없이 재시작/종료하여 대기 B 이동이 취소되는지 각각 검사하라. 현재 Menu 검사는 정지 후 관찰한 임의 상태를 기준으로 삼으므로 요청한 표시 상태에서 정지가 걸렸다는 선행 조건도 명시적으로 단언하라. 구성/교육 단계 진입 보조와 실제 입력 검사를 구분하고 새 실행 자료에 결과를 남겨라. per T007/T016/T024/T027/T028, US1/AC3, US3/AC1~3, FR-004/FR-007/FR-009/FR-013, SC-004/SC-005 (partial, F2).
+
+- [X] T037 [MEDIUM] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`에 `FloorButtonAnchor`의 비영 기울기를 조정한 배치 검사를 추가하고 `FloorButtonPresenter.cs`/`FloorButtonAnchorEditor.cs`의 실제 표시와 미리보기를 대조하라. 현재 배치 기록은 모든 앵커 0도이며, 계획에서 요구한 기울인 판의 바닥 경계/가림 검증이 없다. 대표 pitch/roll을 검사 입력으로 정하고 한 버튼/두 버튼, 글자 100%/150%의 숨김/상승/Ready/하강에서 mask의 바닥 경계, 문구/선택 영역 잘림, 바닥 관통과 사건 가림을 실제 월드 좌표 및 실행 화면으로 확인하라. 결함이 재현되면 명세의 고정 위치/판만 이동/기존 설정 조건 안에서 수정하고 원래 저장 앵커 설정은 보존하라. 검사 각도를 사용자 확정 외형이나 새로운 지원 기준으로 취급하지 말라. per plan: 외형/Editor 조정의 기울인 판 검사, T009/T015/T029, FR-010/FR-012, SC-002 (partial, F3).

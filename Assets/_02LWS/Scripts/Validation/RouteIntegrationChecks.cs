@@ -35,9 +35,10 @@ namespace LWS.FireNotification.Validation
         public static void RunPlayMode()
         {
             if(!Application.isPlaying||Running)throw new InvalidOperationException("Start Play Mode with no route check running");
-            ValidateConfiguration();Passed=0;Failed=0;Running=true;
-            if(string.IsNullOrEmpty(EvidenceDirectory))EvidenceDirectory="Artifacts/Validation/VisualEvidence/"+DateTime.Now.ToString("yyyyMMdd-HHmmss")+"-safe-evacuation-route-us3";
-            Directory.CreateDirectory(EvidenceDirectory);File.WriteAllText(EvidenceDirectory+"/integration.txt","Editor synthetic tracking and button/teleport inputs, actual scene and audio playback\n");
+            ValidateConfiguration();
+            EvidenceDirectory=ValidationEvidence.CreateRunDirectory(EvidenceDirectory,"safe-evacuation-route-us3");
+            Passed=0;Failed=0;Running=true;
+            File.WriteAllText(EvidenceDirectory+"/integration.txt","Editor synthetic tracking and button/teleport inputs, actual scene and audio playback\n");
             var nav=UnityEngine.Object.FindFirstObjectByType<ContentSceneNavigator>();nav.StartCoroutine(Guard(Run(nav)));
         }
         private static IEnumerator Guard(IEnumerator root)

@@ -17,7 +17,7 @@ using LWS.FireNotification.Runtime;
 
 namespace LWS.FireNotification.Validation
 {
-    public static class FloorButtonChecks
+    public static partial class FloorButtonChecks
     {
         public static bool Running { get; private set; }
         public static int Passed { get; private set; }
@@ -45,9 +45,8 @@ namespace LWS.FireNotification.Validation
         public static void RunPlayMode()
         {
             if(!Application.isPlaying||Running)throw new InvalidOperationException("Start Play Mode with no floor checks running");
+            EvidenceDirectory=ValidationEvidence.CreateRunDirectory(EvidenceDirectory,"floor-choice-buttons");
             Passed=Failed=0;Running=true;
-            if(string.IsNullOrEmpty(EvidenceDirectory))EvidenceDirectory="Artifacts/Validation/VisualEvidence/"+DateTime.Now.ToString("yyyyMMdd-HHmmss")+"-floor-choice-buttons";
-            Directory.CreateDirectory(EvidenceDirectory);
             File.WriteAllText(EvidenceDirectory+"/floor-checks.txt","Editor synthetic tracking, real floor presenter and actual XR UI ray pipeline. Device acceptance separate.\n");
             UnityEngine.Object.FindFirstObjectByType<ContentSceneNavigator>().StartCoroutine(Guard(Run()));
         }
@@ -165,6 +164,8 @@ namespace LWS.FireNotification.Validation
             yield return RunRaycasts(nav);
             yield return RunContentChecks(nav);
             yield return RunInputChecks(nav);
+            yield return RunLifecycleCoverage(nav);
+            yield return RunTiltCoverage(nav);
             File.AppendAllText(EvidenceDirectory+"/floor-checks.txt","DONE passed="+Passed+" failed="+Failed+"\n");
         }
 private static IEnumerator RunRaycasts(ContentSceneNavigator nav)
@@ -246,7 +247,8 @@ private static IEnumerator RunInputChecks(ContentSceneNavigator nav){
    view.ResetFloorDisplay();view.SetActions(route,route.readyAnchor,new ContentUIAction("menu","준비 완료",()=>view.SetActions(route)));
    if(phase!=FloorButtonPhase.Rising)yield return Wait(()=>p.Phase==FloorButtonPhase.Ready);
    if(phase==FloorButtonPhase.Lowering)p.buttons[0].selected.Invoke();
-   Press(menu,1);yield return Frames(2);float progress=p.Progress;var actual=p.Phase;yield return Frames(4);Check(ui.IsOpen&&p.Phase==actual&&p.Progress==progress&&p.group.alpha==0,"left Menu freezes "+phase);
+   Check(p.Phase==phase,"requested phase before Menu "+phase);
+   Press(menu,1);yield return Frames(2);float progress=p.Progress;var actual=p.Phase;Check(actual==phase,"Menu reached requested phase "+phase);yield return Frames(4);Check(ui.IsOpen&&p.Phase==actual&&p.Progress==progress&&p.group.alpha==0,"left Menu freezes "+phase);
    Press(menu,0);yield return Frames(2);Press(menu,1);yield return Frames(2);Check(!ui.IsOpen,"left Menu resumes "+phase);Press(menu,0);yield return Frames(2);
   }
   nav.lifecycle.DebugSuspend(true);yield return Frames();var blockedPhase=p.Phase;float bp=p.Progress;yield return Frames();Check(p.Phase==blockedPhase&&p.Progress==bp&&p.group.alpha==0,"lifecycle blocker freezes floor");nav.lifecycle.DebugSuspend(false);yield return Frames();
