@@ -20,6 +20,21 @@ unity command script eval --project-path E:/projects/T3_LWS --caller plugin --sk
 
 ## Play Mode
 
+### 배치 검사표
+
+검사 전 아래 위치의 실제 월드 좌표/방향과 자세별 머리 높이를 verification.md에 고정 기록한다. 각 조합을 기본 100%/확대 150%로 반복하고 가려지면 안 되는 대상과 버튼 문구 전체가 함께 보이는지 확인한다. 기존에 지원하지 않는 자세는 근거와 제외 사유를 적으며 합격으로 계산하지 않는다.
+
+| 버튼 | 관찰 지점 | 자세 | 가리면 안 되는 대상 |
+|---|---|---|---|
+| 화재 선택지/다음 | fire-notification ContentEntry.anchor의 시작 위치 | 기존 지원 서기/앉기 | 화재 상황/비상벨 |
+| 연기 ready | smoke-low-posture ContentEntry.anchor의 시작 위치 | 기존 안내대로 서기 | 관찰할 연기 |
+| 경로 ready | a-w3 | 기존 지원 서기/앉기 | 주변 대피 경로 |
+| a-left/a-right/a-lift 선택지 | 각각 a-w0/a-w6/a-w4 | 기존 지원 서기/앉기 | 해당 출입구/판단에 필요한 연기 |
+| b-left/b-right/b-lift 선택지 | 각각 b-w0/b-w6/b-w2 | 기존 지원 서기/앉기 | 해당 출입구/판단에 필요한 연기 |
+| 다음 연습 | a-left 완료의 a-w0, a-right 완료의 a-w6를 각각 검사 | 기존 지원 서기/앉기 | 완료한 계단 출입구 |
+
+화재 다음은 버튼 표시 시점의 시작 관찰 위치에서 검사하며 이후 비상벨 접근/조작 조건을 바꾸지 않는다. 실제 기기와 Editor 합성 머리 높이는 서로 구별한다.
+
 ```powershell
 unity command editor.playmode start --project-path E:/projects/T3_LWS --format json
 unity command script eval --project-path E:/projects/T3_LWS --caller plugin --skill unity-cli 'LWS.FireNotification.Validation.FloorButtonChecks.RunPlayMode();' --format json
@@ -30,14 +45,16 @@ unity command script eval --project-path E:/projects/T3_LWS --caller plugin --sk
 | 검사 | 기대 결과 | 대응 |
 |---|---|---|
 | Q1 전 대상 | 화재 shout/wait/next, 연기 ready, 경로 ready/6개 대상 use+another/A 완료 next의 상승/대기/하강. 이전 화면 버튼 중복 0 | SC-001 |
-| Q2 배치 | 전 앵커, 의도된 관찰 위치, 배율 1/1.5, 기존 지원 자세. 사건 가림/관통/잘림/겹침/통로 침범 0. 이동 후 위치 고정 | SC-002 |
-| Q3 행동/입력 | 두 선택 결과/오답 재선택/준비 높이/next/nextpractice 보존. Rising 유지/연타/좌우 동시/Lowering/이전 listener 오실행 0. 상승 때와 클릭 때 자세를 달리해 클릭 순간 높이 저장. 자동 진행 0 | SC-003 |
+| Q2 배치 | 위 표의 전 관찰 지점/기록한 머리 높이/지원 자세와 배율 1/1.5. 사건 가림/관통/잘림/겹침/통로 침범 0. 이동 후 위치 고정 | SC-002 |
+| Q3 행동/입력 | 두 선택 결과/오답 재선택/준비 높이/next 보존. nextpractice는 현재 A에서 하강 완료 전 이동 0/완료 후 이동 1회. Rising 유지/연타/좌우 동시/Lowering/이전 listener 오실행 0. 클릭 순간 높이 저장과 유효 입력 없는 자동 진행 0 | SC-003 |
 | Q4 방향 | 반대 방향에서 진입해 정상 등장, 자유롭게 돌아봐 선택, 시선 조건 차단 0 | SC-004 |
 | Q5 수명 | Rising/Ready/Lowering 각각 Menu pause/resume, Esc, restart/exit/다른 체험/B 전환. 진행률/음성 위치 보존, 이전 판/입력 잔류 0 | SC-005 |
 | Q6 제외 | 자막/상태/선택 화면/일시정지/설정/확인/결과 연출 오적용 0. 글자 설정/재정렬/텔레포트 후 앵커 고정 | SC-006 |
 | Q7 증거 | 실제 등장 전/상승/대기/선택/하강 식별, 하강 중 추가 실행 0, 제작자 검토/수정 요청 기록 | SC-007 |
 
 추가 경계: 콜백의 동기 빈 요청+새 요청, 기존 컨트롤러의 선택 거부/같은 단계 유지, tracking/focus 복구, 비활성 B 앵커 구성, 프리뷰 저장/재로드. 최신 요청만 남고 이전 ticket은 무효여야 한다.
+
+다음 연습 하강 중 Menu pause에서는 판과 이동이 함께 기다리고 재개 후 하강을 마쳐 한 번만 이동해야 한다. 재시작/종료 중에는 대기 이동을 취소한다. ResetDisplay로 Hidden이 됐다는 이유만으로 B로 이동하면 실패다. 정상 전환 후 B 소개가 시작되는 기존 순서는 유지한다.
 
 ## 실제 레이/Quest
 

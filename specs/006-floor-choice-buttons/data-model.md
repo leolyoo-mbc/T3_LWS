@@ -27,6 +27,7 @@
 | anchor | 유효한 위치 참조 |
 | actions | 기존 행동 배열의 복사본 |
 | consumed | 해당 묶음의 실행 수락 여부 |
+| completedExitTicket | 정상 하강을 마친 수락 ticket. 현재 owner/실행에만 유효하며 리셋은 완료가 아님 |
 
 SharedContentUI는 논리 요청 1개를 소유한다. Presenter는 표시 스냅샷 1개와 최신 대기 요청 최대 1개를 보관한다. 입력은 표시 ticket과 현재 요청 ticket이 일치할 때만 수락한다. 다른 owner/실행의 동일 ID는 같은 요청이 아니다.
 
@@ -42,9 +43,11 @@ SharedContentUI는 논리 요청 1개를 소유한다. Presenter는 표시 스�
 | Rising/Ready + 일반 취소/교체 | 이전 ticket 무효화, Lowering, 최신 요청 보관 |
 | Lowering + 갱신 | 표시 스냅샷 유지, 최신 pending만 교체 |
 | Lowering 완료 | Hidden, 유효한 pending이 있으면 Rising |
+| next의 Lowering 정상 완료 | 현재 수락 ticket의 완료 표식 게시, 경로 컨트롤러가 같은 owner/run/execution의 대기 전환을 1회 실행 |
 | pause/owner 차단/로딩 | phase/progress 보존, 이동/입력 정지 |
 | 사용자 pause 해제 | phase/progress 복구, 새 입력 해제 요구 |
-| Clear/owner 교체/restart/exit/구역 전환/비활성 | 즉시 Hidden, ticket 갱신, 표시/콜백/대기 입력 폐기 |
+| Clear/owner 교체/restart/exit/비활성 | 즉시 Hidden, ticket 갱신, 표시/콜백/대기 입력/완료 표식 폐기, 대기 구역 이동 취소 |
+| 정상 다음 연습 구역 전환 | 현재 수락 판의 정상 하강 완료 후 리셋, 이전 상태 정리 후 B 이동 |
 
 pause 중 같은 요청 갱신은 상승을 재시작하지 않는다. 시스템 복구가 기존 교육 Present를 다시 호출하면 최신 요청을 적용한다. 교육 복구 정책은 변경하지 않는다.
 
@@ -55,3 +58,5 @@ pause 중 같은 요청 갱신은 상승을 재시작하지 않는다. 시스템
 경로 a-left/a-right/a-lift/b-left/b-right/b-lift의 누락/중복은 오류다. 저장 구성 검사에서 비활성 B 공간 참조는 허용하지만 현재 표시 요청은 활성 공간에 속해야 한다. 전환 전 이전 판/요청을 리셋한다.
 
 영구 저장/새 결과 모델은 만들지 않는다. 기존 Session/run/execution은 교육 컨트롤러가 소유하며 Presenter가 변경하지 않는다.
+
+경로 컨트롤러의 런타임 대기 전환은 owner/run/execution을 보관한다. NextScenario 요청은 즉시 수락할 수 있지만 실제 공간 비활성/이동/TransitionDone은 현재 판의 정상 하강 완료와 차단 해제 후 수행한다. 재시작/종료/실행 변경은 대기를 취소한다. 다른 버튼은 이 대기를 사용하지 않는다.

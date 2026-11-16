@@ -16,6 +16,8 @@
 
 **Decision**: 입력 잠금/하강 시작 후 기존 콜백을 즉시 실행한다. 내려가는 판은 스냅샷으로 유지하고 다음 요청은 최신 하나만 보관한다.
 
+**사용자 승인 보완**: 다음 연습의 실제 공간 전환은 현재 판의 정상 하강 완료 후로 미룬다. 콜백은 요청을 즉시 수락하되 경로 컨트롤러의 Transition에서 현재 owner/run/execution과 정상 하강 완료를 확인한다. 준비 완료 높이 저장과 다른 버튼 행동은 클릭 순간 실행한다. pause 중에는 기다리고 재시작/종료는 대기 전환을 취소한다.
+
 **Rationale**: `SmokePostureController.Ready()`는 호출 순간 높이를 읽는다. `EvacuationRouteController.Present()`는 빈 SetActions 뒤 새 요청을 동기적으로 보낼 수 있다. 화재는 Send 명령 큐로 진행하므로 양쪽 실행 경계를 모두 지원해야 한다.
 
 **Alternatives considered**: 하강 후 콜백, 콘텐츠마다 연출 복제. 높이 저장 시점 변화와 중복 때문에 제외한다.
@@ -38,7 +40,7 @@
 
 ## R5. 입력과 정지
 
-**Decision**: FreshPressButton을 재사용하고 Ready/정지 경계에 InvalidatePress를 호출한다. Owner.Blocked/메뉴/로딩은 정지, Clear/재시작/구역 전환은 하드 리셋으로 구분한다.
+**Decision**: FreshPressButton을 재사용하고 Ready/정지 경계에 InvalidatePress를 호출한다. Owner.Blocked/메뉴/로딩은 정지, Clear/재시작/종료는 즉시 하드 리셋한다. 정상 다음 연습의 구역 전환은 하강 완료 후 리셋한다.
 
 **Rationale**: `FreshPressButton.Update`는 CanSelect가 거짓이어도 armed가 될 수 있어 Ready 경계에서 무효화가 필요하다. `SharedUIController.BlockWorld`는 기존 contentGroup만 차단하므로 바닥 그룹 연동이 필요하다. 기존 정지는 timescale을 사용하지 않는다.
 

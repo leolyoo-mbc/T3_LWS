@@ -7,6 +7,7 @@
 void SetActions(ContentExperienceAdapter owner, params ContentUIAction[] actions);
 void SetActions(ContentExperienceAdapter owner, FloorButtonAnchor anchor, params ContentUIAction[] actions);
 void Clear(ContentExperienceAdapter owner);
+bool IsFloorExitComplete(ContentExperienceAdapter owner);
 
 // FloorButtonPresenter
 void Present(ContentExperienceAdapter owner, long ticket, FloorButtonAnchor anchor,
@@ -25,6 +26,8 @@ SharedContentUI가 owner/ticket/최신 행동의 실행 관문이다. Presenter�
 
 전체 묶음을 먼저 잠그고 하강을 기록한 뒤 콜백을 즉시 정확히 1회 실행한다. 하강 완료까지 미루지 않는다. 동기 빈 요청/새 요청이 발생해도 내려가는 스냅샷은 유지한다. ResetDisplay는 그 스냅샷도 즉시 버린다.
 
+다음 연습은 콜백의 요청 수락과 실제 공간 이동을 분리한다. 경로 컨트롤러는 현재 owner/run/execution에 연결된 대기 전환을 유지하고 `IsFloorExitComplete(owner)`가 참인 뒤에만 A를 끄고 B로 이동한다. 이 메서드는 현재 owner의 마지막 수락 판이 정상 하강을 마쳤을 때만 참이며 단순 Hidden/빈 요청/ResetDisplay를 완료로 취급하지 않는다. 정지/차단 중 전환은 보류하고 재시작/종료/owner 교체 시 대기 전환과 완료 표식을 폐기한다. 준비 완료와 다른 버튼 콜백의 실행 시점은 바꾸지 않는다.
+
 좌우 동시/연타/이전 UnityEvent는 첫 수락 이후 0회다. 기존 컨트롤러에서 실행을 거부해 같은 단계가 남으면 하강 후 현재 요청을 재확인해 새 ticket으로 제공한다. 상승/하강 종료로 교육 콜백을 실행하지 않는다.
 
 ## C3. 표시/배치
@@ -37,7 +40,7 @@ SharedContentUI가 owner/ticket/최신 행동의 실행 관문이다. Presenter�
 
 사용자 pause는 phase/progress를 보존하고 입력/이동을 멈추며 모달 아래 판을 숨긴다. 재개 시 해제 후 새 입력이 필요하다. 음성 재생 지점은 기존 컨트롤러가 유지한다. 시스템 차단 복구의 교육 정책은 그대로 둔다.
 
-restart/exit/owner 변경/B 전환은 ResetDisplay 후 다음 요청을 받는다. 이전 listener는 새 실행을 조작할 수 없다. 테마/글자 배율은 공용 설정을 적용한다. 재정렬/텔레포트로 바닥 앵커를 머리 앞에 옮기지 않는다. 제외 UI와 왼쪽 Menu/PC Esc는 기존 동작 유지.
+restart/exit/owner 변경은 즉시 ResetDisplay하고 대기 이동을 취소한다. 정상 B 전환은 현재 판의 하강 완료를 확인한 뒤 ResetDisplay하고 새 구역 요청을 받는다. 이전 listener는 새 실행을 조작할 수 없다. 테마/글자 배율은 공용 설정을 적용한다. 재정렬/텔레포트로 바닥 앵커를 머리 앞에 옮기지 않는다. 제외 UI와 왼쪽 Menu/PC Esc는 기존 동작 유지.
 
 ## C5. 제작 인터페이스/감사
 

@@ -46,12 +46,12 @@ Unity 6000.3.26f1, 기존 uGUI/TMP/XRI/Input System/OpenXR/URP를 유지한다. 
 
 - [ ] T008 [P] [US1] `Assets/_02LWS/Scripts/Runtime/FloorButtonPresenter.cs`에 Hidden/Rising/Ready/Lowering 이동과 고정 앵커 적용을 구현한다. 수직 이동은 바닥 mask 안에서 수행하고 실제 Canvas 단위 변환을 한 곳에서 처리한다. 한 항목 가운데/두 항목 좌우 배치, TMP preferred size와 배율 1/1.5, 동등한 스타일을 적용하며 머리/시선 추종과 프레임별 생성/파괴를 금지한다. 클릭 수락은 US2 전까지 비활성으로 둔다.
 - [ ] T009 [P] [US1] `Assets/_02LWS/Editor/FloorButtonAnchorEditor.cs`에 앵커의 위치/방향/기울기/크기/시간 조정과 숨김/완전 상승/해제 미리보기를 구현한다. 실제 판 프리팹을 Editor 전용 비저장 객체로 표시하고 교육/음성/입력을 실행하지 않으며 선택 변경/Play Mode 진입/재로드에 정리한다.
-- [ ] T010 [US1] `Assets/_02LWS/Scripts/Runtime/SharedContentUI.cs`에 위치를 받는 SetActions 오버로드와 공용 Presenter 위임을 연결한다. 기존 오버로드는 빈 요청에 사용하고 위치 없는 비어 있지 않은 요청은 구성 오류로 처리한다. 기존 Actions 행 생성/예약 높이를 제거하되 status/subtitle 레이아웃과 설정을 유지한다. ContentUIAction의 “묶음 내 ID 유일, 공백 문구/null 콜백 금지. 행동 선택 최대 2개/진행 버튼 1개”를 유지한다.
+- [ ] T010 [US1] `Assets/_02LWS/Scripts/Runtime/SharedContentUI.cs`에 위치를 받는 SetActions 오버로드와 공용 Presenter 위임을 연결한다. `IsFloorExitComplete(owner)` 경계도 선언하되 정상 수락 판의 완료 구현 전에는 false로 두어 T013의 연결이 컴파일되게 한다. 기존 오버로드는 빈 요청에 사용하고 위치 없는 비어 있지 않은 요청은 구성 오류로 처리한다. 기존 Actions 행 생성/예약 높이를 제거하되 status/subtitle 레이아웃과 설정을 유지한다. ContentUIAction의 “묶음 내 ID 유일, 공백 문구/null 콜백 금지. 행동 선택 최대 2개/진행 버튼 1개”를 유지한다.
 - [ ] T011 [P] [US1] `Assets/_02LWS/Scripts/Runtime/FireNotificationAdapter.cs`에 선택/다음 앵커 참조를 추가하고 AwaitAction shout/wait와 AwaitNext next의 기존 요청 시점/순서/문구를 유지해 위치를 전달한다. 기본으로 같은 앵커를 사용할 수 있게 하며 기존 교육 콜백은 변경하지 않는다.
 - [ ] T012 [P] [US1] `Assets/_02LWS/Scripts/Runtime/SmokePostureController.cs`에 준비 앵커 참조를 추가하고 AwaitingReady의 ready 요청에 전달한다. 기준 높이는 기존 Ready()가 실제 호출될 때 읽고 저장하도록 유지하며 상승 완료에 준비를 실행하지 않는다.
-- [ ] T013 [P] [US1] `Assets/_02LWS/Scripts/Runtime/EvacuationRouteController.cs`에 A 준비 앵커와 targetId 매핑을 추가해 ready/use/another/next 요청에 전달한다. “경로 a-left/a-right/a-lift/b-left/b-right/b-lift의 누락/중복은 오류다.”를 검사하고 “저장 구성 검사에서 비활성 B 공간 참조는 허용하지만 현재 표시 요청은 활성 공간에 속해야 한다.”를 적용한다. A 다음 연습은 완료 계단 앵커를 사용하며 B 준비/다음 버튼은 새로 만들지 않는다.
+- [ ] T013 [P] [US1] `Assets/_02LWS/Scripts/Runtime/EvacuationRouteController.cs`에 A 준비 앵커와 targetId 매핑을 추가해 ready/use/another/next 요청에 전달한다. “경로 a-left/a-right/a-lift/b-left/b-right/b-lift의 누락/중복은 오류다.”를 검사하고 “저장 구성 검사에서 비활성 B 공간 참조는 허용하지만 현재 표시 요청은 활성 공간에 속해야 한다.”를 적용한다. A 다음 연습은 완료 계단 앵커를 사용하며 B 준비/다음 버튼은 새로 만들지 않는다. next 요청 수락 후 실제 Transition은 현재 owner/run/execution과 `view.IsFloorExitComplete(this)`가 일치하는 정상 하강 완료까지 기다리도록 연결한다. 클릭/완료 신호는 US2에서 완성한다.
 - [ ] T014 [US1] `Assets/_02LWS/Scenes/FireNotification.unity`에 화재 1개/연기 준비 1개/경로 A 준비 1개/경로 판단 6개의 초기 FloorButtonAnchor를 배치하고 어댑터 참조를 연결한다. a-w3 준비와 6개 대상 확인 지점의 사건/계단/문/바닥/통로/텔레포트 지점 가림을 조정하고 기존 ContentPanel/Actions 중복 템플릿/버튼을 제거한다. 화재 다음의 가림이 있으면 선택 앵커와 분리한다.
-- [ ] T015 [US1] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`의 Q1/Q2/Q4와 저장 씬 재열기/미리보기 정리 검사를 실행한다. US2 전에는 기존 검사 도우미로 필요한 단계에 진입해 표시만 확인하고 UI 클릭 합격으로 기록하지 않는다. 전 지점의 기본/확대 글자와 기존 지원 자세에서 가림/관통/잘림/겹침 0을 실제 화면으로 확인해 작업별 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-floor-choice-buttons/verification.md`에 기록한다.
+- [ ] T015 [US1] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`의 Q1/Q2/Q4와 저장 씬 재열기/미리보기 정리 검사를 실행한다. US2 전에는 기존 검사 도우미로 필요한 단계에 진입해 표시만 확인하고 UI 클릭 합격으로 기록하지 않는다. `specs/006-floor-choice-buttons/spec.md`의 배치 검사 기준 표와 quickstart 관찰 지점 매핑을 사용해 좌표/방향/자세별 머리 높이를 먼저 기록하고 기본 100%/확대 150%에서 반복한다. 화재/경로는 기존 지원 서기/앉기, 연기 준비는 서기를 검사하며 미지원 자세는 근거와 제외 사유를 적는다. 사건 가림/관통/잘림/겹침 0을 실제 화면으로 확인해 작업별 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-floor-choice-buttons/verification.md`에 기록한다.
 
 **Checkpoint**: 위치/표시 검토용 MVP. 배치 검토 전 외관을 사용자 승인으로 표시하지 않는다.
 
@@ -63,17 +63,17 @@ Unity 6000.3.26f1, 기존 uGUI/TMP/XRI/Input System/OpenXR/URP를 유지한다. 
 
 ### 검증 정의
 
-- [ ] T016 [US2] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`에 C1/C2/Q3 실패 검사를 먼저 추가한다. non-owner/이전 ticket, Rising/Lowering 입력, 클릭 잠금 후 동기 빈 요청+새 요청, 최신 pending 1개, 좌우 동시/연타, 기존 컨트롤러 거부 후 같은 단계 재제공, 오답 재등장, 자동 진행 0과 클릭 순간 높이 저장을 고정하고 미구현 실패를 확인한다.
+- [ ] T016 [US2] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`에 C1/C2/Q3 실패 검사를 먼저 추가한다. non-owner/이전 ticket, Rising/Lowering 입력, 클릭 잠금 후 동기 빈 요청+새 요청, 최신 pending 1개, 좌우 동시/연타, 기존 컨트롤러 거부 후 같은 단계 재제공, 오답 재등장, 유효 입력 없는 자동 진행 0과 클릭 순간 높이 저장을 고정한다. 다음 연습은 현재 A에서 하강 완료 전 이동 0/정상 완료 후 1회이며 ResetDisplay는 완료가 아닌지 검사하고 미구현 실패를 확인한다.
 
 ### 구현
 
-- [ ] T017 [US2] `Assets/_02LWS/Scripts/Runtime/FloorButtonPresenter.cs`에 Ready 클릭의 원자적 consumed/전체 항목 잠금 -> 하강 시작 -> select(ticket,id) 즉시 1회 호출을 구현한다. 내려가는 문구/위치를 불변 스냅샷으로 보존하고 동기 재진입에도 최신 pending만 보관해 하강 후 표시한다. ResetDisplay는 스냅샷까지 즉시 폐기하며 콜백을 하강 완료까지 지연하지 않는다.
-- [ ] T018 [US2] `Assets/_02LWS/Scripts/Runtime/SharedContentUI.cs`에 owner 활성/Blocked/메뉴/로딩/ticket/현재 행동의 실행 관문을 완성한다. 같은 요청 반복은 무시하고 실행 문맥 변경/빈 요청 뒤 재요청은 새 ticket을 발급한다. 콜백이 기존 조건 검사에서 거부돼 같은 단계가 남으면 하강 후 최신 요청을 재확인해 새 ticket으로 제공하고 이전 listener는 거부한다.
+- [ ] T017 [US2] `Assets/_02LWS/Scripts/Runtime/FloorButtonPresenter.cs`에 Ready 클릭의 원자적 consumed/전체 항목 잠금 -> 하강 시작 -> select(ticket,id) 즉시 1회 호출을 구현한다. 내려가는 문구/위치를 불변 스냅샷으로 보존하고 동기 재진입에도 최신 pending만 보관해 하강 후 표시한다. 현재 수락 ticket의 정상 하강 완료 표식을 제공하고 ResetDisplay는 스냅샷/완료 표식을 폐기한다. 준비 완료와 다른 버튼 콜백을 지연하지 않으며 다음 연습의 실제 공간 이동만 완료 표식 이후로 제한한다.
+- [ ] T018 [US2] `Assets/_02LWS/Scripts/Runtime/SharedContentUI.cs`에 owner 활성/Blocked/메뉴/로딩/ticket/현재 행동의 실행 관문을 완성한다. 같은 요청 반복은 무시하고 실행 문맥 변경/빈 요청 뒤 재요청은 새 ticket을 발급한다. 콜백이 기존 조건 검사에서 거부돼 같은 단계가 남으면 하강 후 최신 요청을 재확인해 새 ticket으로 제공하고 이전 listener는 거부한다. `IsFloorExitComplete(owner)`는 현재 owner의 마지막 수락 판의 정상 하강 완료만 반환하게 하고 빈 요청/단순 Hidden/ResetDisplay를 완료로 처리하지 않는다.
 - [ ] T019 [US2] `Assets/_02LWS/Scripts/Runtime/FloorButtonPresenter.cs`에서 기존 FreshPressButton.CanSelect를 Ready/미처리/가용 조건에 연결하고 Rising -> Ready에 InvalidatePress를 호출한다. 상승 중 누른 채 유지한 입력과 이전 클릭이 새 묶음에 이어지지 않게 양손 해제 후 새 누름만 수락하며 `Assets/_02LWS/Scripts/Interaction/FreshPressButton.cs`는 가능한 그대로 재사용한다.
 - [ ] T020 [US2] `Assets/_02LWS/Scripts/Runtime/SharedUIController.cs`의 공용 글자 배율/테마 적용과 XR 활성 여부에 따른 마우스 raycaster 정책을 바닥판에도 연결한다. 설정 변경 시 판 크기를 재계산하되 위치 재정렬/텔레포트로 바닥 앵커가 이동하지 않게 한다. 자막/메뉴/확인/결과 버튼 동작은 보존한다.
 - [ ] T021 [US2] `Assets/_02LWS/Scripts/Validation/RouteIntegrationChecks.cs`의 버튼 조회를 공용 바닥 actionRoot로 갱신하고 Ready/새 입력 해제를 기다린 뒤 기존 pointer 검사를 수행하게 한다. 기존 교육 결과/오래된 콜백 검사는 유지하며 인위적인 시간 대기만으로 상승 완료를 추정하지 않는다.
 - [ ] T022 [US2] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`에 한 버튼/두 버튼 각각의 양손 실제 TrackedDeviceGraphicRaycaster 적중 -> 기존 이벤트 모듈 -> 콜백 1회 검사를 추가한다. 벽 가림 클릭 차단과 3D occlusion mask를 확인하고 pointer 직접 호출 검사는 실제 레이 검사와 구분한다.
-- [ ] T023 [US2] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`와 `Assets/_02LWS/Scripts/Validation/RouteIntegrationChecks.cs`를 실행해 전 선택 항목/오답/연기 준비/화재 다음/경로 다음 연습을 회귀 확인한다. 상승 때와 클릭 때 머리 높이를 달리해 클릭 순간 저장을 검증하고 결과/순서 차이/중복/자동 진행 0을 작업별 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-floor-choice-buttons/verification.md`에 기록한다.
+- [ ] T023 [US2] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`와 `Assets/_02LWS/Scripts/Validation/RouteIntegrationChecks.cs`를 실행해 전 선택 항목/오답/연기 준비/화재 다음/경로 다음 연습을 회귀 확인한다. 상승 때와 클릭 때 머리 높이를 달리해 클릭 순간 저장을 검증한다. next는 A에서 정상 하강을 끝내기 전 구역 이동 0/완료 후 이동 1회이고 다른 행동의 기존 실행 시점/결과/순서는 유지돼야 한다. 중복/유효 입력 없는 자동 진행 0을 작업별 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-floor-choice-buttons/verification.md`에 기록한다.
 
 **Checkpoint**: 정상 플레이의 표시/선택/하강/재선택을 검증할 수 있다. 중단/전환의 전체 합격은 US3에서 확인한다.
 
@@ -91,7 +91,7 @@ Unity 6000.3.26f1, 기존 uGUI/TMP/XRI/Input System/OpenXR/URP를 유지한다. 
 
 - [ ] T025 [US3] `Assets/_02LWS/Scripts/Runtime/SharedUIController.cs`와 `Assets/_02LWS/Scripts/Runtime/FloorButtonPresenter.cs`에 메뉴/owner.Blocked/로딩 가용성을 연결한다. 이동 delta=0과 phase/progress 보존, 모달 아래 렌더링/raycast 숨김, 정지 진입/해제 InvalidatePress, 해제 후 새 누름을 구현한다. 전역 timescale을 바꾸거나 기존 음성을 처음부터 재생하지 않는다.
 - [ ] T026 [US3] `Assets/_02LWS/Scripts/Runtime/SharedContentUI.cs`의 Bind/Clear/비활성 경계와 세 어댑터의 Stop/Restart 경로에서 ResetDisplay와 ticket 무효화를 보장한다. `Assets/_02LWS/Scripts/Runtime/ContentSceneNavigator.cs`의 로딩/owner 전환 중 이전 입력도 막고 이전 판/대기 요청/콜백을 즉시 정리한다. 같은 owner로 재시작해도 새 실행을 구별한다.
-- [ ] T027 [US3] `Assets/_02LWS/Scripts/Runtime/EvacuationRouteController.cs`의 A -> B Transition 전에 하강 스냅샷/대기 요청/입력을 하드 리셋하고 활성 공간 전환 뒤 필요한 새 요청만 허용한다. 다음 연습으로 이동한 뒤 A 앵커에 판이 남지 않고 B 준비/다음 버튼을 새로 추가하지 않는지 확인한다.
+- [ ] T027 [US3] `Assets/_02LWS/Scripts/Runtime/EvacuationRouteController.cs`의 정상 A -> B Transition은 T013/T017/T018의 현재 수락 판 하강 완료 후에만 수행하도록 완성한다. 하강 중 pause/차단은 A 공간과 대기 이동을 보존하고 재시작/종료/owner 또는 실행 변경은 대기 이동을 취소한다. 정상 하강을 마친 뒤 잔류 상태를 리셋하고 한 번만 이동하며 A 판 잔류/B 준비 또는 다음 버튼 추가가 없어야 한다. 강제 리셋을 하강 완료 신호로 처리하지 않는다.
 - [ ] T028 [US3] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`의 Q5/Q6와 기존 경로 회귀 검사를 실행한다. 왼쪽 Menu/PC Esc/정지 중 설정/음성 재개 지점/시스템 복구/모든 정리 경계를 확인하고 잔류/오실행 0 결과를 작업별 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-floor-choice-buttons/verification.md`에 기록한다.
 
 **Checkpoint**: 세 사용자 시나리오의 동작 검증을 완료할 수 있다. 기기/외관/소리 확인은 아래 결과와 구분한다.
