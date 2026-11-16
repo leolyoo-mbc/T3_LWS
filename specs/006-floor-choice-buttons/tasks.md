@@ -167,3 +167,11 @@ US1은 공통 기반 이후 표시를 독립 검증할 수 있다. US2는 US1의
 - [X] T036 [MEDIUM] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`의 누락된 입력/수명 회귀 검사를 보완하라. 반대 방향을 먼저 본 상태에서 단계에 진입해 정상 상승하는지 검사하고, non-owner의 SetActions/Clear 및 owner 교체 후 이전 listener를 거부하는지 확인하라. 실제 Input System의 Esc 입력으로 정지/재개를 검사하고 Rising/Ready/Lowering 각각에서 재시작/종료 후 잔류 표시와 이전 입력 실행이 없는지 확인하라. 다음 연습을 실제 수락해 Lowering에 들어간 뒤 사전 ResetFloorDisplay 없이 재시작/종료하여 대기 B 이동이 취소되는지 각각 검사하라. 현재 Menu 검사는 정지 후 관찰한 임의 상태를 기준으로 삼으므로 요청한 표시 상태에서 정지가 걸렸다는 선행 조건도 명시적으로 단언하라. 구성/교육 단계 진입 보조와 실제 입력 검사를 구분하고 새 실행 자료에 결과를 남겨라. per T007/T016/T024/T027/T028, US1/AC3, US3/AC1~3, FR-004/FR-007/FR-009/FR-013, SC-004/SC-005 (partial, F2).
 
 - [X] T037 [MEDIUM] `Assets/_02LWS/Scripts/Validation/FloorButtonChecks.cs`에 `FloorButtonAnchor`의 비영 기울기를 조정한 배치 검사를 추가하고 `FloorButtonPresenter.cs`/`FloorButtonAnchorEditor.cs`의 실제 표시와 미리보기를 대조하라. 현재 배치 기록은 모든 앵커 0도이며, 계획에서 요구한 기울인 판의 바닥 경계/가림 검증이 없다. 대표 pitch/roll을 검사 입력으로 정하고 한 버튼/두 버튼, 글자 100%/150%의 숨김/상승/Ready/하강에서 mask의 바닥 경계, 문구/선택 영역 잘림, 바닥 관통과 사건 가림을 실제 월드 좌표 및 실행 화면으로 확인하라. 결함이 재현되면 명세의 고정 위치/판만 이동/기존 설정 조건 안에서 수정하고 원래 저장 앵커 설정은 보존하라. 검사 각도를 사용자 확정 외형이나 새로운 지원 기준으로 취급하지 말라. per plan: 외형/Editor 조정의 기울인 판 검사, T009/T015/T029, FR-010/FR-012, SC-002 (partial, F3).
+
+## Phase 8: Touch Plus 메뉴 입력 복구
+
+2026-11-17 사용자 요청. 기존 C4/FR-009/SC-005의 왼손 메뉴 중지/재개 동작을 복구한다. 새 버튼 기능이나 SDK 의존성을 추가하지 않는다.
+
+- [X] T038 `Scripts/Validation/MenuInputChecks.cs`에 실제 연결된 왼손 XR MenuButton과 Left/Menu 액션의 연결 검사를 추가하고 Touch Plus에서 수정 전 실패를 기록한다. 모형 입력 합격을 실제 장치 형식 호환성으로 대신하지 않는다.
+- [X] T039 `Settings/LwsInputActions.inputactions`의 메뉴 바인딩을 왼손 XR MenuButton usage로 변경한다. 오른손 시스템 버튼/기존 액션 ID/트리거/Esc와 공용 UI 동작을 보존하고 수정 후 실제 연결 검사를 통과시킨다.
+- [X] T040 실제 XR Operator 메뉴 입력으로 세 체험 중지/재개, 유지 입력 중 중복 전환 없음, 설정에서 재개, 선택 화면/결과에서 오작동 없음을 확인한다. 기존 Oculus 및 Touch Plus 형식의 바인딩 호환성, 컴파일/공용 UI 감사와 제출 SDK 추가 의존성 없음을 확인하고 MP4/검증 한계를 새 Artifacts 자료와 quickstart에 기록한다.

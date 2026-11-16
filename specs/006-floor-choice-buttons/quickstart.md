@@ -107,3 +107,15 @@ git diff --check
 기록 보존의 독립 검사는 `ValidationEvidenceChecks.Run(새 검사 경로)`로 실행한다. 실행 자료가 없는 미리보기 비교는 통과시키지 않는다. Play Mode 검사 종료 후 Edit Mode에서 `FloorButtonChecks.ValidateTiltPreviews(실제 EvidenceDirectory)`를 실행하면 20개 실제 Inspector 미리보기와 실행 위치를 1mm 이내 기준으로 비교한다.
 
 실행 결과와 한계는 `Artifacts/Validation/VisualEvidence/20261116-205922-floor-coverage/verification.md`를 따른다. T035/T036은 검증 보완이며, T037에서 재현된 기울기 문제는 Canvas/mask의 바닥 경계를 유지하고 판만 수직 이동하도록 수정했다. Quest, 제작자 외관 승인, 직접 청취 동기는 별도다. 메뉴 입력 바인딩 수정은 이번 범위에 포함하지 않는다.
+
+## Touch Plus 메뉴 입력 복구, 2026-11-17
+
+C4/FR-009/SC-005의 기존 중지/재개 동작을 복구했다. `LwsInputActions.inputactions`의 `Left/Menu`는 `<XRController>{LeftHand}/{MenuButton}`을 사용한다. Oculus Touch와 Touch Plus의 왼손 메뉴 usage를 공유하며 오른손 시스템 버튼은 연결하지 않는다. 새 액션/버튼 기능/SDK 의존성을 추가하지 않는다.
+
+실제 XR 세션에서 다음 검사를 실행한다. 연결된 왼손 MenuButton과 액션의 실제 controls가 일치해야 PASS이며, XR 장치가 없으면 미검증으로 실패한다. 모형 검사로 실제 컨트롤러 호환성을 대체하지 않는다.
+
+```powershell
+unity command script eval --project-path E:/projects/T3_LWS --caller plugin --skill unity-cli 'return LWS.FireNotification.Validation.MenuInputChecks.ValidateLiveBinding();' --format json
+```
+
+실제 Simulator Touch Plus/Oculus Touch 메뉴 입력과 합성 입력 회귀 결과, 녹화 조건과 한계는 `Artifacts/Validation/VisualEvidence/20261117-005243-touch-plus-menu/verification.md`에 기록한다. Quest 실기기와 직접 청취는 별도다.

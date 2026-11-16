@@ -156,3 +156,7 @@ Inspector에 숨김/완전 상승/해제 미리보기를 제공한다. 실제 �
 ## Complexity Tracking
 
 헌법 위반 없음. 공용 Canvas 2개는 머리 추종 UI와 공간 고정 판을 분리하는 최소 변경이다. 콘텐츠별 Canvas/별도 EventSystem/새 입력 체계는 만들지 않는다.
+
+## 메뉴 입력 호환성 유지 보수, 2026-11-17
+
+사용자 승인된 후속 복구로 C4/FR-009/SC-005의 기존 왼손 메뉴 동작을 두 컨트롤러 형식에서 보존한다. 단일 기존 액션의 바인딩을 왼손 XR MenuButton usage로 변경하고 실제 연결 장치의 controls를 검사하는 Editor 전용 MenuInputChecks를 추가한다. 공용 UI 상태 전환과 바닥판/교육 API는 유지한다. 새 패키지와 제출 SDK 의존성은 추가하지 않는다. 실제 XR Operator 입력, 기존 바닥판 메뉴 회귀 검사와 실행 영상은 별도 자료에 남긴다.
