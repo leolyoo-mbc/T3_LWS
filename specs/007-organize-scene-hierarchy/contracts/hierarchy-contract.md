@@ -127,3 +127,19 @@ Editor 메뉴는 `Tools/LWS/Hierarchy` 아래 Capture Baseline, Dry Run, Apply O
 Capture는 기준 자료만 저장한다. DryRun은 변경 명세와 요약을 저장하고 씬을 수정하지 않는다. Apply는 검증된 변경 명세만 한 Undo 그룹으로 적용하고 자동 저장하지 않는다. 적용 후 Verify가 통과하면 사용자가 승인한 구현 흐름에서 씬을 저장하고 재개방 검사를 수행한다. 검증 실패는 적용분을 되돌린다. Verify는 읽기 전용이며 사람이 수정한 미승인 차이는 오류로 보고한다.
 
 작업 자료는 baseline.json, organization-plan.json, comparison.json, hierarchy-before.txt, hierarchy-after.txt로 Artifacts의 해당 run에 저장한다. 대상이 이미 최종 구조라면 DryRun은 변경 0개를 반환한다. Apply 시점에 새 사용자 변경을 발견하면 덮어쓰지 않는다.
+
+## 6. 적용 및 검사 범위
+
+네 메뉴의 개수는 유지한다. Dry Run에서 StructureOnly, NamesOnly, Full 중 범위를 선택하고 organization-plan.json에 저장한다. 기본값은 Full이며 Apply와 Verify는 명세에 저장된 동일 범위를 사용한다. 범위를 바꾸면 baseline에서 변경 명세를 다시 생성한다. 다른 범위의 임시 적용 결과를 이어서 적용하지 않는다.
+
+| 범위 | 적용과 검사 |
+|---|---|
+| StructureOnly | 기존 이름을 유지하고 승인된 그룹과 부모 구조만 적용한다. 구역/역할 분류, 빈 그룹 및 미분류를 검사하며 최종 영어 이름과 기존 이름 중복은 검사하지 않는다. |
+| NamesOnly | 기존 부모와 sibling 순서를 유지하고 이름만 바꾼다. 그룹은 만들지 않는다. 현재 부모 아래에서 원래 순서대로 번호를 붙여 명명과 중복을 검사하며 최종 구조는 검사하지 않는다. |
+| Full | 최종 구조와 이름을 함께 적용한다. 최종 부모별 원래 순서로 번호를 다시 배정하며 전체 요구사항을 검사한다. |
+
+범위 밖의 미적용 기준은 NotEvaluated로 기록한다. 참조, 배치, 화면 문구, 활성 상태, UI 레이아웃과 보호 대상 보존은 모든 범위에서 필수다. NamesOnly의 번호는 임시 번호이며 Full에 그대로 복사하지 않는다.
+
+StructureOnly와 NamesOnly는 검사 후 Undo하고 기존 ID/부모/이름/배치 및 참조가 baseline으로 복구됐는지 확인한다. 사용자 변경을 덮어쓰지 않으며 임시 적용 결과를 제품 씬에 저장하지 않는다. 저장은 Full 검사를 통과했을 때만 허용한다.
+
+기존 컴포넌트의 ID와 개수는 모두 유지한다. 새 그룹 하나마다 Transform 하나만 추가하므로 전체 컴포넌트 수는 기존 수 + 해당 범위의 승인된 신규 그룹 수다. NamesOnly에서는 전체 컴포넌트 수도 기존과 같다.
