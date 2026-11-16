@@ -12,6 +12,12 @@ namespace LWS.FireNotification.Runtime
     [DefaultExecutionOrder(-300)]
     public sealed class EvacuationRouteController : ContentExperienceAdapter
     {
+        [Serializable] public sealed class FloorTarget
+        { public string targetId; public FloorButtonAnchor anchor; }
+        public FloorButtonAnchor readyAnchor;
+        public FloorTarget[] floorTargets;
+        private long transitionRun=-1, transitionExecution=-1;
+        private FloorButtonAnchor TargetAnchor(string id) => floorTargets.Single(t=>t.targetId==id).anchor;
         public RouteScenarioAsset[] scenarios;
         public GameObject[] spaces;
         public Waypoint[] waypoints;
@@ -31,6 +37,7 @@ namespace LWS.FireNotification.Runtime
         private Action pending;
         private GuidancePresenter Guidance => view!=null&&view.Owner==this?view.guidance:null;
         public override bool Blocked => Session==null||Session.Stage==RouteStage.Closed||Session.Blocked;
+        public override long ActionExecution => Session?.Execution ?? -1;
         public override bool LocomotionAllowed => !Blocked&&(Session.Stage==RouteStage.Explore||Session.Stage==RouteStage.Decision);
         public override bool ResultVisible => Session!=null&&Session.Stage==RouteStage.Result;
         public override string ResultText
@@ -107,6 +114,10 @@ namespace LWS.FireNotification.Runtime
                         if(Vector3.Distance(local[i].transform.position,local[j].transform.position)<2)errors.Add("Overlapping route anchors");
                 }
             }
+            if(readyAnchor==null)errors.Add("Missing route ready floor anchor");
+            string[] targetIds={"a-left","a-right","a-lift","b-left","b-right","b-lift"};
+            if(floorTargets==null||floorTargets.Length!=6||floorTargets.Any(t=>t==null||t.anchor==null)||
+                targetIds.Any(id=>floorTargets.Count(t=>t!=null&&t.targetId==id)!=1))errors.Add("Missing or duplicate route floor target");
             if(arrivalRadius<=0||arrivalRadius>=1)errors.Add("Invalid arrival radius");
             return errors.ToArray();
         }
@@ -203,15 +214,15 @@ namespace LWS.FireNotification.Runtime
             switch(Session.Stage)
             {
                 case RouteStage.AwaitingReady:
-                    Play("ready",null);view.SetActions(this,new ContentUIAction("ready","준비 완료",()=> {UpdateBlockers();if(Session.Ready(r,e))Present();}));break;
+                    Play("ready",null);view.SetActions(this,readyAnchor,new ContentUIAction("ready","준비 완료",()=> {UpdateBlockers();if(Session.Ready(r,e))Present();}));break;
                 case RouteStage.Intro:Play(Session.ScenarioIndex==0?"intro-a":"intro-b",()=>Session.GuidanceDone(r,e));break;
                 case RouteStage.Decision:
                     var t=Session.Scenario.Targets.First(v=>v.Id==target);
-                    view.SetActions(this,new ContentUIAction("use",t.Kind==RouteTargetKind.Stair?"이 계단으로 대피한다":"이용한다",()=>Choose(r,e,target,RouteChoice.Use)),new ContentUIAction("another","다른 경로를 찾는다",()=>Choose(r,e,target,RouteChoice.FindAnotherRoute)));break;
+                    view.SetActions(this,TargetAnchor(target),new ContentUIAction("use",t.Kind==RouteTargetKind.Stair?"이 계단으로 대피한다":"이용한다",()=>Choose(r,e,target,RouteChoice.Use)),new ContentUIAction("another","다른 경로를 찾는다",()=>Choose(r,e,target,RouteChoice.FindAnotherRoute)));break;
                 case RouteStage.Feedback:
                     Play(Session.Scenario.Targets.First(tg=>tg.Id==target).Kind==RouteTargetKind.Elevator?"elevator":"smoke",()=>Session.GuidanceDone(r,e));break;
                 case RouteStage.ScenarioCompletion:
-                    if(Session.CompletionGuidanceDone)view.SetActions(this,new ContentUIAction("next","다음 연습",()=> {UpdateBlockers();if(Session.NextScenario(r,e))Present();}));
+                    if(Session.CompletionGuidanceDone)view.SetActions(this,TargetAnchor(target),new ContentUIAction("next","다음 연습",()=> {UpdateBlockers();if(Session.NextScenario(r,e)){transitionRun=Session.RunId;transitionExecution=Session.Execution;Present();}}));
                     else Play(Session.ScenarioIndex==0?"complete-a":"completion",()=>Session.GuidanceDone(r,e));break;
             }
             RefreshStatus();RefreshAnchors();Publish();
@@ -220,6 +231,9 @@ namespace LWS.FireNotification.Runtime
         { UpdateBlockers();CheckPosition();if(Session.Choose(r,e,target,choice))Present(); }
         private void Transition()
         {
+            if(Session.RunId!=transitionRun||Session.Execution!=transitionExecution||Blocked||view==null||view.Owner!=this||!view.IsFloorExitComplete(this))return;
+            transitionRun=transitionExecution=-1;
+            view.ResetFloorDisplay();
             try
             {
                 teleport.CancelPending();spaces[0].SetActive(false);spaces[1].SetActive(true);
@@ -247,7 +261,7 @@ namespace LWS.FireNotification.Runtime
             view.SetStatus(this,text);
         }
         public override void Stop()
-        {CancelPresentation();teleport?.CancelPending();DisableAnchors();smoke?.Stop();Session?.Close();occupiedTarget=null;view?.Clear(this);Publish();}
+        {transitionRun=transitionExecution=-1;CancelPresentation();teleport?.CancelPending();DisableAnchors();smoke?.Stop();Session?.Close();occupiedTarget=null;view?.Clear(this);Publish();}
         public override void Restart()
         {
             Stop();Session=null;

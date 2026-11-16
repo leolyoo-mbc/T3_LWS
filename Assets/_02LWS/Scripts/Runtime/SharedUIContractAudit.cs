@@ -13,21 +13,37 @@ namespace LWS.FireNotification.Runtime
             var errors = new List<string>();
             if (navigator == null) { errors.Add("Missing navigator"); return errors; }
             var scene = navigator.gameObject.scene;
-            int canvases = 0, voices = 0, followers = 0;
+            int canvases = 0, voices = 0, followers = 0, events = 0, presenters = 0;
             foreach (var root in scene.GetRootGameObjects())
             {
-                canvases += root.GetComponentsInChildren<Canvas>(true).Length;
+                foreach(var c in root.GetComponentsInChildren<Canvas>(true))if((c.hideFlags&HideFlags.DontSave)==0)canvases++;
+                foreach(var p in root.GetComponentsInChildren<FloorButtonPresenter>(true))if((p.hideFlags&HideFlags.DontSave)==0)presenters++;
+                events+=root.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>(true).Length;
                 voices += root.GetComponentsInChildren<GuidancePresenter>(true).Length;
                 followers += root.GetComponentsInChildren<ComfortFollowUI>(true).Length;
             }
-            if (canvases != 1) errors.Add("Expected 1 shared Canvas, found " + canvases);
+            if (canvases != 2) errors.Add("Expected 2 shared Canvases, found " + canvases);
+            if(events!=1||presenters!=1)errors.Add("Expected one EventSystem and one floor presenter");
             if (voices != 1) errors.Add("Expected 1 shared guidance presenter, found " + voices);
             if (followers != 1) errors.Add("Expected 1 shared UI follower, found " + followers);
             var view = navigator.contentUI;
             if (view == null || view.panel == null || view.title == null || view.status == null ||
                 view.guidance == null || view.guidance.voice == null || view.guidance.subtitle == null ||
-                view.actionRoot == null || view.actionTemplate == null)
+                view.floorButtons == null || view.actionRoot == null)
                 errors.Add("Missing shared content UI references");
+            if(view!=null&&view.floorButtons!=null)
+            {
+                var floor=view.floorButtons;
+                var shared=view.GetComponentInParent<Canvas>();
+                if(floor.floorCanvas==null||shared==null||shared==floor.floorCanvas||floor.floorCanvas.renderMode!=RenderMode.WorldSpace||
+                    shared.name!="SharedCanvas"||floor.floorCanvas.name!="FloorCanvas"||floor.transform.IsChildOf(shared.transform)||
+                    floor.GetComponentInParent<ComfortFollowUI>()!=null||floor.buttons==null||floor.buttons.Length!=2||floor.group==null||
+                    floor.floorCanvas.worldCamera==null||floor.viewport==null||floor.viewport.GetComponent<UnityEngine.UI.RectMask2D>()==null)
+                    errors.Add("Invalid shared floor presentation references");
+                var ray=floor.floorCanvas!=null?floor.floorCanvas.GetComponent<UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster>():null;
+                if(ray==null||!ray.checkFor3DOcclusion||ray.blockingMask.value==0)errors.Add("Missing floor XR occlusion raycaster");
+                foreach(var entry in navigator.contents)if(entry?.root!=null&&floor.transform.IsChildOf(entry.root.transform))errors.Add("Floor UI belongs to content");
+            }
             if (navigator.lifecycle == null) errors.Add("Missing shared lifecycle");
             if (navigator.menuRoot != null && navigator.menuRoot.GetComponentsInChildren<Canvas>(true).Length != 0)
                 errors.Add("Menu space owns a Canvas");
@@ -54,7 +70,7 @@ namespace LWS.FireNotification.Runtime
             var navigator = UnityEngine.Object.FindFirstObjectByType<ContentSceneNavigator>(FindObjectsInactive.Include);
             var errors = Validate(navigator);
             if (errors.Count != 0) throw new InvalidOperationException(string.Join("\n", errors));
-            Debug.Log("Shared UI contract PASS: one Canvas, one narrator, content UI duplication zero");
+            Debug.Log("Shared UI contract PASS: two shared Canvases, one narrator, content UI duplication zero");
         }
 #if UNITY_EDITOR
         [UnityEditor.MenuItem("Tools/LWS/Validate Shared UI")]

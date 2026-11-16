@@ -7,9 +7,11 @@ namespace LWS.FireNotification.Runtime
     public sealed class FireNotificationAdapter : ContentExperienceAdapter
     {
         public FireNotificationController controller;
+        public FloorButtonAnchor choiceAnchor, nextAnchor;
         private bool bound;
         private readonly Dictionary<AudioSource, float> volumes = new Dictionary<AudioSource, float>();
         public override bool Blocked => controller == null || controller.InputBlocked;
+        public override long ActionExecution => controller?.Session?.ExecutionId ?? -1;
         public override bool ResultVisible => controller != null && controller.Session != null && !controller.Session.Closed && !controller.Session.Suspended && controller.Session.Stage == ExperienceStage.CompletionGuidance;
         public override string ResultText => "화재 사실 알리기\n체험 완료\n큰소리로 화재 알리기 수행\n비상벨 누르기 수행";
         private void Bind()
@@ -46,9 +48,9 @@ namespace LWS.FireNotification.Runtime
                 view.SetStatus(this, session.Stage == ExperienceStage.AwaitAction ? "주변에 화재 사실을 알릴 행동을 선택하세요." :
                     session.Stage == ExperienceStage.AwaitNext ? "안내를 확인했다면 다음을 선택하세요." : "");
                 if (!session.Suspended && session.Stage == ExperienceStage.AwaitAction && !session.FeedbackActive)
-                    view.SetActions(this, new ContentUIAction("shout", "큰소리로 알리기", ChooseShout), new ContentUIAction("wait", "다른 사람이 알릴 때까지 기다리기", ChooseWait));
+                    view.SetActions(this, choiceAnchor, new ContentUIAction("shout", "큰소리로 알리기", ChooseShout), new ContentUIAction("wait", "다른 사람이 알릴 때까지 기다리기", ChooseWait));
                 else if (!session.Suspended && session.Stage == ExperienceStage.AwaitNext)
-                    view.SetActions(this, new ContentUIAction("next", "다음", Continue));
+                    view.SetActions(this, nextAnchor, new ContentUIAction("next", "다음", Continue));
                 else view.SetActions(this);
             }
             Publish();
@@ -61,7 +63,7 @@ namespace LWS.FireNotification.Runtime
             if (controller != null && controller.Session != null && !controller.Session.Closed) controller.ReturnToMenu();
             view?.Clear(this);
         }
-        public override void Restart() => controller.RestartExperience();
+        public override void Restart() { view.Clear(this); view.Bind(this,"화재 사실 알리기"); controller.RestartExperience(); RefreshView(); }
         public override void SetUserPaused(bool value) { if (controller != null) controller.SetUserPaused(value); }
         public override void RequestReturn() => controller.RequestReturnToMenu();
         public override void ReturnToMenu() => controller.ReturnToMenu();

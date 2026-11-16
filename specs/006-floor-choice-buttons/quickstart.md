@@ -80,3 +80,20 @@ git diff --check
 ```
 
 예상: ignore 경로가 출력되고 ls-files는 비어 있음, 저장 씬 감사 오류 0, 공백 오류 0. 자료를 강제 추가하거나 제출 자산에 넣지 않는다. 완료 보고는 대표 MP4/대체 파일을 직접 링크하고 Editor/Quest/소리 미검증을 구분한다. 사용자 검토 전 외관을 승인 완료로 표시하지 않는다.
+
+## 구현 후 바로 확인하기
+
+`FireNotification.unity`에서 Play를 누르고 체험을 선택한다. 선택지/준비 완료/다음/다음 연습은 바닥판, 자막/상태/일시정지/설정/결과는 기존 SharedCanvas를 사용한다.
+
+편집 위치:
+
+- 공용 모양: `SharedSystems/SharedFloorButtons/FloorCanvas/FloorViewport/MovingPanel`과 `Assets/_02LWS/Prefabs/UI/FloorButtonPanel.prefab`.
+- 개별 위치: 각 콘텐츠 공간의 `FloorButtonAnchors`. 경로는 A/B 공간 아래에 각각 있다. 앵커를 선택해 Inspector의 숨김 위치/완전 상승/해제 미리보기로 확인한다. 선택 해제/Play 진입/스크립트 재로드에 미리보기가 제거된다.
+- 준비 완료 앵커는 `readyAnchor`, 화재는 `choiceAnchor/nextAnchor`, 경로 판단은 `floorTargets`의 targetId별 참조다. 새 경로 대상은 구성 검사를 먼저 확장해야 한다.
+- 위치/방향은 수동 편집한다. 고개나 컨트롤러 방향에 자동으로 맞추지 않는다. 기본 하단0.60m/상승0.35초/하강0.25초는 수정 가능한 초기값이다.
+
+`Tools/LWS/Validate Floor Buttons`는 저장 구성 검사다. Play Mode의 `Tools/LWS/Run Floor Button Play Mode Checks`는 합성 입력 회귀 검사이며 종료 시 선택 화면으로 돌아간다. `FloorButtonChecks.Running/Passed/Failed/EvidenceDirectory`로 완료를 확인한다. 실제 헤드셋 검사를 대신하지 않는다.
+
+`ContentExperienceAdapter.ActionExecution`은 같은 문구를 다시 제공해도 교육 실행이 바뀌면 이전 listener를 무효화하는 경계다. 기존 Session 실행 번호를 노출하며 Domain 판단을 바꾸지 않는다. 정상 수락 판의 하강 완료와 `ResetDisplay`를 구별해야 다음 연습이 조기에 이동하지 않는다.
+
+2026-11-16 Editor 검증 자료: `Artifacts/Validation/VisualEvidence/20261116-194559-floor-choice-buttons/`. 실제 영상, 46개 배치 원본, 검사 로그, 상세 한계는 해당 폴더의 `verification.md`를 따른다. Quest/제작자 외관 승인/직접 청취는 별도다.

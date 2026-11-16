@@ -11,6 +11,7 @@ namespace LWS.FireNotification.Runtime
     public sealed class SmokePostureController : ContentExperienceAdapter
     {
         public SmokeGuidanceCatalog catalog;
+        public FloorButtonAnchor readyAnchor;
         public SmokePostureTuningAsset tuning;
         public HeadPoseSampleProvider poses;
         public ExperienceLifecycle lifecycle;
@@ -26,6 +27,7 @@ namespace LWS.FireNotification.Runtime
         private long shownExecution;
         private Action pendingGuidance;
         public override bool Blocked => Session==null || Session.Blocked;
+        public override long ActionExecution => Session?.Execution ?? -1;
         public override bool ResultVisible => Session!=null && Session.Stage==SmokeStage.Result;
         public override string ResultText => "연기 속에서 자세 낮추기\n자세 연습 완료\n연기 관찰 · 몸 낮추기 연습\n실제 대피 완료는 아닙니다.";
         private PostureTuning Values => tuning.tuning;
@@ -138,7 +140,7 @@ namespace LWS.FireNotification.Runtime
         {
             playback?.Dispose();guidance?.Cancel();pendingGuidance=null;
             shownStage=Session.Stage;shownExecution=Session.Execution;practiceArmed=false;
-            if(view!=null) { if(Session.Stage==SmokeStage.AwaitingReady && !configurationError)view.SetActions(this,new ContentUIAction("ready","준비 완료",Ready));else view.SetActions(this); }
+            if(view!=null) { if(Session.Stage==SmokeStage.AwaitingReady && !configurationError)view.SetActions(this,readyAnchor,new ContentUIAction("ready","준비 완료",Ready));else view.SetActions(this); }
             if(configurationError)return;
             var run=Session.RunId;var execution=Session.Execution;
             switch(Session.Stage)

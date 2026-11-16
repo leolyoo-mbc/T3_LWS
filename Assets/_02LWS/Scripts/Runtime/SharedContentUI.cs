@@ -22,27 +22,27 @@ namespace LWS.FireNotification.Runtime
         public GameObject panel;
         public TMP_Text title, status;
         public GuidancePresenter guidance;
-        public Transform actionRoot;
-        public FreshPressButton actionTemplate;
+        public FloorButtonPresenter floorButtons;
+        public Transform actionRoot => floorButtons != null ? floorButtons.ActionRoot : null;
         public ContentExperienceAdapter Owner { get; private set; }
         public int ActionCount => actions.Length;
-        private readonly List<FreshPressButton> buttons = new List<FreshPressButton>();
         private ContentUIAction[] actions = Array.Empty<ContentUIAction>();
-        private long generation;
-        private bool wasAvailable;
+        private FloorButtonAnchor actionAnchor;
+        private long generation, lastAccepted=-1;
+        private long actionExecution=-1;
+        private bool retryAfterExit;
         private bool Available => Owner != null && Owner.isActiveAndEnabled && !Owner.Blocked &&
-            (SharedUIController.Active == null || !SharedUIController.Active.IsOpen);
-
+            (SharedUIController.Active == null || (!SharedUIController.Active.IsOpen && !SharedUIController.Active.navigator.Loading && SharedUIController.Active.navigator.ActiveAdapter==Owner));
         public void Bind(ContentExperienceAdapter owner, string heading)
         {
             if (owner == null) throw new ArgumentNullException(nameof(owner));
             if (Owner != owner)
             {
                 if (Owner != null) Owner.StateChanged -= RefreshAvailability;
-                generation++; guidance.Cancel(); HideActions(); actions = Array.Empty<ContentUIAction>();
+                generation++; guidance.Cancel(); floorButtons.ResetDisplay(); actions = Array.Empty<ContentUIAction>(); actionAnchor=null;lastAccepted=-1;retryAfterExit=false;
                 Owner = owner; status.text = "";
                 Owner.StateChanged += RefreshAvailability;
-                wasAvailable = Available;
+
             }
             title.text = heading;
             panel.SetActive(true);
@@ -51,56 +51,45 @@ namespace LWS.FireNotification.Runtime
         { if (Owner == owner && owner != null) status.text = text; }
         public void SetActions(ContentExperienceAdapter owner, params ContentUIAction[] next)
         {
-            if (Owner != owner || owner == null) return;
-            next = next ?? Array.Empty<ContentUIAction>();
-            if (next.Length > 2) throw new ArgumentException("The shared action row supports at most two choices; extend the shared layout before adding more");
-            bool same = actions.Length == next.Length;
-            for (int i = 0; same && i < next.Length; i++)
-                same = actions[i].Id == next[i].Id && actions[i].Label == next[i].Label && actions[i].Invoke == next[i].Invoke;
-            if (same) return;
-            var ids = new HashSet<string>();
-            foreach (var action in next)
-                if (action == null || string.IsNullOrWhiteSpace(action.Id) || !ids.Add(action.Id) ||
-                    string.IsNullOrWhiteSpace(action.Label) || action.Invoke == null)
-                    throw new ArgumentException("Shared UI actions need unique IDs, labels and callbacks");
-            generation++; HideActions(); actions = (ContentUIAction[])next.Clone();
-            for (int i = 0; i < next.Length; i++)
+            if(Owner!=owner||owner==null)return;
+            if(next!=null&&next.Length>0)throw new ArgumentException("Nonempty floor actions require an anchor");
+            SetActions(owner,null,next);
+        }
+        public void SetActions(ContentExperienceAdapter owner,FloorButtonAnchor anchor,params ContentUIAction[] next)
+        {
+            if(Owner!=owner||owner==null)return;
+            next=next??Array.Empty<ContentUIAction>();
+            if(next.Length>2)throw new ArgumentException("At most two shared floor actions");
+            var ids=new HashSet<string>();
+            foreach(var action in next)
+                if(action==null||string.IsNullOrWhiteSpace(action.Id)||!ids.Add(action.Id)||string.IsNullOrWhiteSpace(action.Label)||action.Invoke==null)
+                    throw new ArgumentException("Actions require unique IDs, labels and callbacks");
+            if(next.Length>0&&anchor==null)throw new ArgumentException("Missing floor anchor");
+            bool same=actionExecution==owner.ActionExecution&&actionAnchor==anchor&&actions.Length==next.Length;
+            for(int i=0;same&&i<next.Length;i++)same=actions[i].Id==next[i].Id&&actions[i].Label==next[i].Label&&actions[i].Invoke==next[i].Invoke;
+            if(same)return;
+            generation++;actionExecution=owner.ActionExecution;actions=(ContentUIAction[])next.Clone();actionAnchor=next.Length>0?anchor:null;retryAfterExit=false;
+            floorButtons.Present(owner,generation,anchor,actions,(ticket,id)=>Invoke(owner,ticket,id));
+        }
+        private void Invoke(ContentExperienceAdapter owner,long ticket,string id)
+        {
+            if(Owner!=owner||generation!=ticket||actionExecution!=owner.ActionExecution||!Available)return;
+            foreach(var action in actions)if(action.Id==id)
             {
-                if (i == buttons.Count)
-                {
-                    var button = Instantiate(actionTemplate, actionRoot);
-                    button.name = "ActionButton" + (i + 1);
-                    button.selected = new UnityEngine.Events.UnityEvent();
-                    button.CanSelect = () => Available;
-                    buttons.Add(button);
-                }
-                var current = buttons[i]; var action = next[i]; long ticket = generation;
-                current.selected = new UnityEngine.Events.UnityEvent();
-                current.selected.AddListener(() => Invoke(owner, ticket, action.Id));
-                current.GetComponentInChildren<TMP_Text>(true).text = action.Label;
-                var rect = (RectTransform)current.transform;
-                float width = next.Length == 1 ? 660 : 666;
-                rect.sizeDelta = new Vector2(width, next.Length == 1 ? 112 : 180);
-                rect.anchoredPosition = new Vector2((i - (next.Length - 1) * .5f) * (width + 20), 0);
-                current.gameObject.SetActive(true);
-                var themed = current.GetComponent<ThemedButton>();
-                if (themed != null) themed.SetAvailable(Available);
-                var ui = SharedUIController.Active;
-                foreach (var text in current.GetComponentsInChildren<ThemedText>(true)) text.Apply(ui != null ? ui.TextScale : 1);
+                lastAccepted=ticket;retryAfterExit=true;
+                action.Invoke();return;
             }
         }
-        private void Invoke(ContentExperienceAdapter owner, long ticket, string id)
+        public bool IsFloorExitComplete(ContentExperienceAdapter owner) => owner!=null&&Owner==owner&&lastAccepted>=0&&floorButtons.CompletedExitTicket==lastAccepted;
+        public void ResetFloorDisplay()
         {
-            if (Owner != owner || generation != ticket || !Available) return;
-            foreach (var action in actions) if (action.Id == id) { action.Invoke(); return; }
+            generation++;lastAccepted=-1;actionExecution=-1;retryAfterExit=false;actions=Array.Empty<ContentUIAction>();actionAnchor=null;floorButtons.ResetDisplay();
         }
-        private void HideActions()
-        { foreach (var button in buttons) if (button != null) button.gameObject.SetActive(false); }
         public void Clear(ContentExperienceAdapter owner)
         {
             if (Owner != owner) return;
             if (Owner != null) Owner.StateChanged -= RefreshAvailability;
-            generation++; HideActions(); actions = Array.Empty<ContentUIAction>(); Owner = null;
+            ResetFloorDisplay(); Owner = null;
             guidance.Cancel(); title.text = status.text = ""; panel.SetActive(false);
         }
         private string layoutStatus, layoutSubtitle;
@@ -143,17 +132,6 @@ namespace LWS.FireNotification.Runtime
             }
             TextRow(status, !string.IsNullOrWhiteSpace(status.text));
             TextRow(guidance.subtitle, guidance.subtitle.enabled && !string.IsNullOrWhiteSpace(guidance.subtitle.text));
-            if (actions.Length > 0)
-            {
-                if (hasContent) cursor += gap;
-                float height = actions.Length == 1 ? 112 : 180;
-                var row = (RectTransform)actionRoot;
-                row.anchorMin = row.anchorMax = new Vector2(.5f, 1);
-                row.pivot = new Vector2(.5f, .5f);
-                row.sizeDelta = new Vector2(width - 2 * padding, height);
-                row.anchoredPosition = new Vector2(0, -cursor - height / 2);
-                cursor += height; hasContent = true;
-            }
             rect.sizeDelta = new Vector2(width, hasContent ? cursor + padding : 0);
             var background = panel.GetComponent<UnityEngine.UI.Image>();
             if (background != null) background.enabled = hasContent;
@@ -163,19 +141,16 @@ namespace LWS.FireNotification.Runtime
         }
         private void RefreshAvailability()
         {
-            bool available = Available;
-            if (available != wasAvailable)
+            if(floorButtons==null)return;
+            if(Owner!=null&&!Owner.isActiveAndEnabled){Clear(Owner);return;}
+            floorButtons.SetBlocked(!Available);
+            if(retryAfterExit&&floorButtons.CompletedExitTicket==lastAccepted&&actions.Length>0&&Available)
             {
-                foreach (var button in buttons) if (button != null) button.InvalidatePress();
-                wasAvailable = available;
+                retryAfterExit=false;generation++;
+                floorButtons.Present(Owner,generation,actionAnchor,actions,(ticket,id)=>Invoke(Owner,ticket,id));
             }
-            foreach (var button in buttons)
-                if (button != null && button.gameObject.activeSelf)
-                {
-                    var style = button.GetComponent<ThemedButton>();
-                    if (style != null) style.SetAvailable(available, button.Processing);
-                }
         }
+        private void OnDisable(){if(Owner!=null)Clear(Owner);else floorButtons?.ResetDisplay();}
         public void ApplySettings(float voice, bool subtitles)
         {
             if (guidance.voice != null) guidance.voice.volume = voice;

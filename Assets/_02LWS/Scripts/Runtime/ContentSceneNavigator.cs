@@ -61,6 +61,7 @@ namespace LWS.FireNotification.Runtime
         private IEnumerator Navigate(ContentEntry next)
         {
             Loading = true;
+            contentUI?.ResetFloorDisplay();
             yield return null; // Finish UI event before disabling its hierarchy.
             try
             {

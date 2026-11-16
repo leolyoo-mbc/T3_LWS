@@ -189,11 +189,13 @@ namespace LWS.FireNotification.Runtime
         {
             foreach (var text in FindObjectsByType<ThemedText>(FindObjectsInactive.Include, FindObjectsSortMode.None)) text.Apply(TextScale);
             contentUI?.ApplySettings(VoiceVolume, SubtitlesEnabled);
+            contentUI?.floorButtons?.ApplySettings(TextScale);
             foreach (var entry in navigator.contents) if (entry?.adapter != null) entry.adapter.ApplySettings(VoiceVolume, EffectsVolume, SubtitlesEnabled);
             if (settingsText != null) settingsText.text = $"음성 {VoiceVolume:P0}    효과음 {EffectsVolume:P0}\n자막 {(SubtitlesEnabled ? "켬" : "끔")}    글자 {TextScale:P0}";
         }
         private void BlockWorld(bool value)
         {
+            contentUI?.floorButtons?.SetBlocked(value);
             if(contentGroup != null)
             { contentGroup.blocksRaycasts = !value; contentGroup.interactable = !value; contentGroup.alpha = value ? 0 : 1; }
             if(value) foreach(var teleporter in teleporters)

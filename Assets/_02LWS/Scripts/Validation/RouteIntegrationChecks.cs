@@ -71,8 +71,10 @@ namespace LWS.FireNotification.Validation
             Check(condition(),name);
             if(!condition())throw new InvalidOperationException("Route integration timed out: "+name);
         }
-        private static void Click(SharedContentUI view,string label)
+        private static IEnumerator Click(SharedContentUI view,string label)
         {
+            yield return Wait(()=>view.floorButtons.Phase==FloorButtonPhase.Ready,"floor Ready before "+label);
+            yield return Frames(2);
             var b=view.actionRoot.GetComponentsInChildren<FreshPressButton>(true).Single(v=>v.gameObject.activeInHierarchy&&v.GetComponentInChildren<TMPro.TMP_Text>().text==label);
             PointerEventData e=UnityEngine.XR.XRSettings.isDeviceActive ? new UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceEventData(EventSystem.current){pointerId=812} : new PointerEventData(EventSystem.current){pointerId=-1};
             b.OnPointerDown(e);b.OnPointerUp(e);b.OnPointerClick(e);
@@ -121,20 +123,20 @@ namespace LWS.FireNotification.Validation
                 nav.StartContent("safe-evacuation-route");yield return Wait(()=>nav.ActiveAdapter==c&&!nav.Loading,"menu entry");yield return Frames();
                 Check(c.Session.Stage==RouteStage.AwaitingReady&&!nav.MovementAllowed,"ready locks locomotion without blocking actions");
                 Layout(view,"ready");CaptureRequested?.Invoke("01-a-start");yield return Frames(2);
-                Click(view,"준비 완료");yield return Wait(()=>c.Session.Stage==RouteStage.Explore,"A intro actual playback ends");
+                yield return Click(view,"준비 완료");yield return Wait(()=>c.Session.Stage==RouteStage.Explore,"A intro actual playback ends");
                 Check(!c.Session.Choose(c.Session.RunId,c.Session.Execution,"a-left",RouteChoice.Use),"remote choice rejected");
                 yield return Move(c,"a-w4");Check(c.Session.CurrentTargetId=="a-lift","lift target after arrival");CaptureRequested?.Invoke("02-a-elevator");yield return Frames(2);
-                var before=nav.origin.Camera.transform.position;Click(view,"이용한다");
+                var before=nav.origin.Camera.transform.position;yield return Click(view,"이용한다");
                 Check(c.Session.Stage==RouteStage.Feedback&&!nav.MovementAllowed,"lift feedback locks movement");
                 yield return Wait(()=>c.Session.Stage==RouteStage.Decision,"elevator actual feedback ends");Check(Vector3.Distance(before,nav.origin.Camera.transform.position)<.05f,"no elevator entry");
-                Click(view,"다른 경로를 찾는다");yield return Frames();Check(c.Session.Stage==RouteStage.Explore&&view.ActionCount==0,"find another suppresses same checkpoint");
+                yield return Click(view,"다른 경로를 찾는다");yield return Frames();Check(c.Session.Stage==RouteStage.Explore&&view.ActionCount==0,"find another suppresses same checkpoint");
                 yield return Move(c,"a-w5");yield return Move(c,"a-w6");
                 Layout(view,"A decision");CaptureRequested?.Invoke("03-a-stair");yield return Frames(2);
                 var previousChoice=view.actionRoot.GetComponentsInChildren<FreshPressButton>().First().selected;
-                long stale=c.Session.Execution;Click(view,"다른 경로를 찾는다");yield return Move(c,"a-w5");yield return Move(c,"a-w6");
+                long stale=c.Session.Execution;yield return Click(view,"다른 경로를 찾는다");yield return Move(c,"a-w5");yield return Move(c,"a-w6");
                 Check(!c.Session.Choose(c.Session.RunId,stale,"a-right",RouteChoice.Use),"stale target action rejected");
-                Click(view,"이 계단으로 대피한다");yield return Wait(()=>c.Session.CompletionGuidanceDone,"A completion actual playback ends");
-                Check(!c.ResultVisible,"A has no final result modal");Click(view,"다음 연습");
+                yield return Click(view,"이 계단으로 대피한다");yield return Wait(()=>c.Session.CompletionGuidanceDone,"A completion actual playback ends");
+                Check(!c.ResultVisible,"A has no final result modal");yield return Click(view,"다음 연습");
                 yield return Wait(()=>c.Session.ScenarioIndex==1&&c.Session.Stage==RouteStage.Intro,"B transition before intro");
                 Check(!c.spaces[0].activeSelf&&c.spaces[1].activeInHierarchy,"only B space active");
                 var start=c.waypoints.Single(w=>w.id=="b-w1").transform.position;var delta=nav.origin.Camera.transform.position-start;delta.y=0;
@@ -143,12 +145,12 @@ namespace LWS.FireNotification.Validation
                 yield return Move(c,"b-w0");CaptureRequested?.Invoke("05-b-blocked-stair");yield return Frames(2);
                 ui.ToggleTextSize();yield return Frames();Layout(view,"150 percent blocked stair");
                 ui.ToggleSubtitles();yield return Frames();Check(view.ActionCount==2&&!view.guidance.subtitle.enabled&&!string.IsNullOrEmpty(view.status.text),"subtitles off preserves actions and target");
-                ui.ToggleSubtitles();before=nav.origin.Camera.transform.position;Click(view,"이 계단으로 대피한다");yield return Frames(10);
+                ui.ToggleSubtitles();before=nav.origin.Camera.transform.position;yield return Click(view,"이 계단으로 대피한다");yield return Frames(10);
                 Check(c.Session.Stage==RouteStage.Feedback&&!nav.MovementAllowed,"smoke feedback locks movement");
                 ui.OpenPause();yield return Frames();float elapsed=view.guidance.Elapsed;yield return Frames(8);
                 Check(c.Blocked&&Mathf.Abs(view.guidance.Elapsed-elapsed)<.001f,"user pause preserves voice position");ui.Continue();
                 yield return Wait(()=>c.Session.Stage==RouteStage.Decision,"smoke actual feedback ends");Check(Vector3.Distance(before,nav.origin.Camera.transform.position)<.05f,"no smoke entry");
-                Click(view,"다른 경로를 찾는다");Check(!c.Session.Results[1].DetourPerformed,"no credit before actual detour");
+                yield return Click(view,"다른 경로를 찾는다");Check(!c.Session.Results[1].DetourPerformed,"no credit before actual detour");
                 yield return Move(c,"b-w1");yield return Move(c,"b-w2");
                 var p=nav.origin.Camera.transform.position;
                 var w3=c.waypoints.Single(w=>w.id=="b-w3");c.teleport.QueueTeleportRequest(new TeleportRequest{destinationPosition=w3.transform.position});
@@ -162,7 +164,7 @@ namespace LWS.FireNotification.Validation
                 nav.lifecycle.DebugSuspend(true);yield return Frames();Check(c.Blocked&&!nav.MovementAllowed,"lifecycle blocks movement");nav.lifecycle.DebugSuspend(false);yield return Frames();
                 yield return Move(c,"b-w3");yield return Move(c,"b-w4");CaptureRequested?.Invoke("06-b-corridor");yield return Frames(2);
                 yield return Move(c,"b-w5");yield return Move(c,"b-w6");CaptureRequested?.Invoke("07-b-available-stair");yield return Frames(2);Layout(view,"B 150 decision");
-                Click(view,"이 계단으로 대피한다");yield return Wait(()=>c.ResultVisible,"B completion actual playback ends");yield return Frames();
+                yield return Click(view,"이 계단으로 대피한다");yield return Wait(()=>c.ResultVisible,"B completion actual playback ends");yield return Frames();
                 Check(c.Session.Results[1].Completed&&c.Session.Results[1].DetourPerformed,"actual detour recorded");
                 Check(c.Session.Results[1].Decisions[0].FeedbackRequired&&c.ResultText.Contains("피드백 후 완료"),"first wrong preserved in result");
                 Check(ui.resultText.text.Contains("실제 대피 완료는 아닙니다"),"shared result limitation");CaptureRequested?.Invoke("08-result");yield return Frames(2);
@@ -188,22 +190,22 @@ namespace LWS.FireNotification.Validation
                         Check(view.guidance.voice.volume<.001f,"voice zero setting");
                         for(int volume=0;volume<10;volume++)ui.VoiceUp();
                     }
-                    Click(view,"준비 완료");yield return Wait(()=>c.Session.Stage==RouteStage.Explore,"independent A intro "+attempt);
+                    yield return Click(view,"준비 완료");yield return Wait(()=>c.Session.Stage==RouteStage.Explore,"independent A intro "+attempt);
                     yield return Move(c,"a-w4");yield return Move(c,"a-w5");yield return Move(c,"a-w6");
                     var staleAction=view.actionRoot.GetComponentsInChildren<FreshPressButton>().First().selected;
-                    Click(view,"이 계단으로 대피한다");staleAction.Invoke();
+                    yield return Click(view,"이 계단으로 대피한다");staleAction.Invoke();
                     Check(c.Session.Results[0].Decisions.Count==1,"rapid duplicate choice counted once");
                     yield return Wait(()=>c.Session.CompletionGuidanceDone,"independent A completion "+attempt);
-                    Click(view,"다음 연습");yield return Wait(()=>c.Session.ScenarioIndex==1&&c.Session.Stage==RouteStage.Explore,"independent B intro "+attempt);
+                    yield return Click(view,"다음 연습");yield return Wait(()=>c.Session.ScenarioIndex==1&&c.Session.Stage==RouteStage.Explore,"independent B intro "+attempt);
                     if(attempt==1)
                     {
-                        yield return Move(c,"b-w0");Click(view,"이 계단으로 대피한다");
+                        yield return Move(c,"b-w0");yield return Click(view,"이 계단으로 대피한다");
                         yield return Wait(()=>c.Session.Stage==RouteStage.Decision,"independent smoke feedback");
                         // Walking/teleporting away is allowed in Decision; it is not the FindAnotherRoute action.
                         yield return Move(c,"b-w1");
                     }
                     yield return Move(c,"b-w2");yield return Move(c,"b-w3");yield return Move(c,"b-w4");yield return Move(c,"b-w5");yield return Move(c,"b-w6");
-                    Click(view,"이 계단으로 대피한다");yield return Wait(()=>c.ResultVisible,"independent result "+attempt);
+                    yield return Click(view,"이 계단으로 대피한다");yield return Wait(()=>c.ResultVisible,"independent result "+attempt);
                     Check(!c.Session.Results[1].DetourPerformed,"no detour credit without full action sequence "+attempt);
                     Check(c.Session.Results[1].Decisions.Any(d=>d.FeedbackRequired)==(attempt==1),"direct versus feedback result "+attempt);
                     if(attempt==0)Check(c.Session.Results[1].Decisions.Count==1,"no mandatory blocked stair or lift visit");
@@ -212,7 +214,8 @@ namespace LWS.FireNotification.Validation
                 nav.StartContent("safe-evacuation-route");yield return Wait(()=>nav.ActiveAdapter==c&&!nav.Loading,"transition fault test entry");yield return Frames();
                 c.Session.Ready(c.Session.RunId,c.Session.Execution);c.Session.GuidanceDone(c.Session.RunId,c.Session.Execution);
                 c.Session.Arrive(c.Session.RunId,c.Session.Execution,"a-w6");c.Session.Choose(c.Session.RunId,c.Session.Execution,"a-right",RouteChoice.Use);c.Session.GuidanceDone(c.Session.RunId,c.Session.Execution);
-                var savedB=c.spaces[1];c.spaces[1]=null;c.Session.NextScenario(c.Session.RunId,c.Session.Execution);yield return Frames();
+                yield return Wait(()=>view.floorButtons.Phase==FloorButtonPhase.Ready&&view.floorButtons.buttons[0].GetComponentInChildren<TMPro.TMP_Text>().text=="다음 연습","fault next offered");
+                var savedB=c.spaces[1];c.spaces[1]=null;yield return Click(view,"다음 연습");yield return Wait(()=>(c.Session.Blockers&RouteBlocker.Configuration)!=0,"transition configuration failure");
                 Check(c.Session.Stage==RouteStage.Transition&&(c.Session.Blockers&RouteBlocker.Configuration)!=0,"failed transition does not start B guidance");
                 Check(view.status.text.Contains("메뉴"),"transition failure has menu recovery instruction");
                 c.spaces[1]=savedB;c.ReturnToMenu();yield return Wait(()=>!nav.InContent&&!nav.Loading,"failed transition menu recovery");
