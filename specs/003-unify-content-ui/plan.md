@@ -6,6 +6,10 @@
 
 ## Summary
 
+### 2026-11-16 추가 구현
+
+기존 LwsInputActions 자산에 Left/Menu를 추가하고 `<OculusTouchController>{LeftHand}/menu`에 연결한다. OpenXR 시작 시 바인딩 등록을 위해 SharedUIController.menuInputs에 자산을 직렬화해 참조한다. OnEnable/OnDisable에서 해당 action만 활성화/비활성화하며 공유 자산은 Dispose하지 않는다. 해제 후 새 누름과 한 프레임 내의 짧은 누름도 처리한다. 기존 Continue/OpenPause 경로를 재사용해 음성, 자막, 체험의 일시정지 정책을 유지한다. 씬의 OpenMenuPanel 및 컨트롤러 참조를 제거하고 기존 경로 회귀 검사를 갱신한다. Play Mode의 가상 왼쪽/오른쪽 XR 입력으로 열기, 유지, 닫기, 재활성화, 화면별 무시, Esc 호환과 상태 보존을 검증한다. Quest 실기 검증은 별도로 기록한다.
+
 기존 World Space uGUI와 Theme/버튼을 재사용해 콘텐츠 루트 밖에 공통 체험 UI 한 벌을 둔다. 현재 콘텐츠의 어댑터가 안내·필수 상태·행동 데이터를 공급한다. 기존 메뉴·모달·결과와 콘텐츠 진행·음성 재생·자세 판정은 유지한다. 화재 안내 원문과 음성은 보존하고 자세 연습의 긴 안내만 간결화하고 문장별 자막을 제공한다.
 
 아래 자료형과 연결 방식은 구현을 위한 설계 결정이며 사용자 확정 요구나 팀 합의로 소급 기록하지 않는다.

@@ -18,14 +18,15 @@ namespace LWS.FireNotification.Runtime
         public static SharedUIController Active { get; private set; }
         public ContentSceneNavigator navigator;
         public UITheme theme;
-        public GameObject modalRoot, pausePanel, settingsPanel, confirmPanel, resultPanel, openMenuPanel;
-        public TMP_Text confirmText, settingsText, resultText, inputText;
+        public GameObject modalRoot, pausePanel, settingsPanel, confirmPanel, resultPanel;
+        public TMP_Text confirmText, settingsText, resultText;
         public FreshPressButton cancelButton, executeButton;
         public CanvasGroup contentGroup;
         public GameObject menuPanel;
         public SharedContentUI contentUI;
         public ComfortFollowUI follow;
         public UnityEngine.UI.GraphicRaycaster desktopRaycaster;
+        public InputActionAsset menuInputs;
         public Transform head;
         public bool IsOpen { get; private set; }
         public float VoiceVolume { get; private set; } = 1;
@@ -35,6 +36,9 @@ namespace LWS.FireNotification.Runtime
         private enum Page { Pause, Settings, Restart, Exit }
         private Page page;
         private bool settingsFromMenu;
+        private InputAction menuToggle;
+        private bool menuReleased;
+        private int pendingMenuPresses;
         private TeleportationProvider[] teleporters;
         private ContentExperienceAdapter Controller => navigator.ActiveAdapter;
         private readonly Dictionary<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider, bool> movementDefaults = new Dictionary<UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider, bool>();
@@ -49,12 +53,29 @@ namespace LWS.FireNotification.Runtime
         private void OnEnable()
         {
             Active = this;
+            menuToggle = menuInputs != null ? menuInputs.FindAction("Left/Menu", true) : null;
+            menuReleased = false;
+            pendingMenuPresses = 0;
+            if (menuToggle != null)
+            {
+                menuToggle.performed += MenuPressed;
+                menuToggle.canceled += MenuReleased;
+            }
+            menuToggle?.Enable();
             navigator.ExitConfirmationRequested += ConfirmExit;
 
             foreach (var teleporter in teleporters) teleporter.locomotionEnded += TeleportEnded;
         }
         private void OnDisable()
         {
+            if (menuToggle != null)
+            {
+                menuToggle.performed -= MenuPressed;
+                menuToggle.canceled -= MenuReleased;
+                menuToggle.Disable();
+            }
+            menuReleased = false;
+            pendingMenuPresses = 0;
             if (teleporters != null) foreach (var teleporter in teleporters) if (teleporter != null) teleporter.locomotionEnded -= TeleportEnded;
             var controller = navigator != null ? navigator.ActiveAdapter : null;
             if (navigator != null) navigator.ExitConfirmationRequested -= ConfirmExit;
@@ -68,6 +89,12 @@ namespace LWS.FireNotification.Runtime
             if (Active == this) Active = null;
         }
         private void Start() { ConfigureFollowing(); ApplySettings(); Refresh(); }
+        private void MenuPressed(InputAction.CallbackContext context)
+        {
+            if (menuReleased) pendingMenuPresses++;
+            menuReleased = false;
+        }
+        private void MenuReleased(InputAction.CallbackContext context) => menuReleased = true;
         private void TeleportEnded(UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionProvider provider) => Recenter();
         private void ConfigureFollowing()
         {
@@ -81,18 +108,21 @@ namespace LWS.FireNotification.Runtime
                 if (pair.Key != null) pair.Key.enabled = pair.Value && !IsOpen && navigator.MovementAllowed;
             if(desktopRaycaster != null) desktopRaycaster.enabled = !UnityEngine.XR.XRSettings.isDeviceActive;
             Refresh();
+            bool menuPressed = menuToggle != null && menuToggle.IsPressed();
+            int menuPresses = pendingMenuPresses;
+            pendingMenuPresses = 0;
+            while (menuPresses-- > 0)
+            {
+                if (!navigator.Loading)
+                {
+                    if (IsOpen) Continue();
+                    else if (navigator.InContent && Controller != null && (resultPanel == null || !resultPanel.activeSelf)) OpenPause();
+                }
+            }
+            if (!menuPressed) menuReleased = true;
             if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 if (IsOpen) Back(); else if (navigator.InContent) OpenPause();
-            }
-            if (inputText != null)
-            {
-
-                var fresh = openMenuPanel.GetComponentInChildren<FreshPressButton>(true);
-                var action = fresh != null && fresh.inputs != null ? fresh.inputs.FindAction("Right/Press") : null;
-                inputText.text = UnityEngine.XR.XRSettings.isDeviceActive && action != null
-                    ? action.GetBindingDisplayString() + " 선택 · 화면 메뉴 버튼"
-                    : "마우스 왼쪽 버튼 선택 · Esc 메뉴";
             }
         }
         public void OpenPause()
@@ -175,7 +205,6 @@ namespace LWS.FireNotification.Runtime
                 (contentUI == null || contentUI.guidance == null || !contentUI.guidance.IsPresenting);
             if (resultPanel != null) resultPanel.SetActive(complete && !IsOpen && !Controller.Blocked);
             if (resultText != null) resultText.text = Controller?.ResultText ?? "";
-            if (openMenuPanel != null) openMenuPanel.SetActive(navigator.InContent && !IsOpen && !complete);
             if(complete && resultPanel != null && resultText != null)
             {
                 var panel=(RectTransform)resultPanel.transform;

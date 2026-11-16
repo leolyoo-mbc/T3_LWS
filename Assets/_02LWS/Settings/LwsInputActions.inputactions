@@ -78,6 +78,16 @@
             "id": "82388fd0-a3fb-4936-be68-c842db9d32fb",
             "actions": [
                 {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "7c2b72e6-4d08-45f2-8a8d-040bf3d7a489",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Position",
                     "type": "Value",
                     "id": "f5c228bf-faaa-4de3-bacc-bbdeb865fb10",
@@ -129,6 +139,17 @@
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "c85e687b-a749-443f-bd94-e26c7e84cf6d",
+                    "path": "<OculusTouchController>{LeftHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "",
                     "id": "74be71c9-a04e-4963-a6b3-354e7ccba53d",

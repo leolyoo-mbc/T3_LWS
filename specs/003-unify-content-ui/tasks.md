@@ -15,6 +15,15 @@
 
 ## Phase 1: Setup
 
+## 추가 변경: 2026-11-16 왼쪽 메뉴 버튼
+
+이번 실행은 아래 T041~T044에 한정한다. T001~T040의 이전 미체크 상태는 이번 변경의 증거로 수정하지 않는다.
+
+- [X] T041 현재 씬/입력 코드와 사용자 변경을 확인하고 메뉴 버튼 요구 및 구현 방식을 spec.md/plan.md에 기록한다.
+- [X] T042 SharedUIController에 왼쪽 메뉴 버튼 입력과 생명주기 관리를 추가하고 화면 OpenMenuPanel 및 관련 참조를 제거한다. 기존 RouteIntegrationChecks의 화면 버튼 검사를 갱신한다.
+- [X] T043 실제 씬 Play Mode에서 가상 XR 메뉴 버튼 입력으로 열기/닫기/길게 누름/우측 무시/하위 화면 닫기/재활성화/로딩과 결과 무시/음성 및 진행 보존/PC Esc를 확인하고 실행 시각 자료를 보관한다.
+- [X] T044 최종 컴파일, 씬 참조, Git 변경 및 검증 자료 제외를 확인하고 실제 결과와 Quest 미검증 범위를 보고한다.
+
 **Purpose**: 기존 작업과 화면/대사 기준을 보호하고 캡처 환경을 준비한다.
 
 - [ ] T001 `ProjectSettings/ProjectVersion.txt`, `Packages/manifest.json`, `.gitignore`와 Git 상태를 확인해 Unity 6000.3.26f1/기존 패키지 및 사용자 변경을 보존할 범위를 `Artifacts/Validation/VisualEvidence/YYYYMMDD-HHmmss-baseline/verification.md`에 기록하고 자료 폴더가 `/[Aa]rtifacts/`로 제외되는지 확인한다.

@@ -4,6 +4,10 @@
 
 ## 준비와 실행
 
+### 2026-11-16 메뉴 입력 변경의 확인
+
+체험 플레이 중 왼쪽 컨트롤러 메뉴 버튼으로 일시정지 메뉴를 열고, 같은 버튼을 다시 눌러 닫는다. 길게 누름과 짧게 누름 모두 한 번만 처리한다. 설정 또는 재시작/나가기 확인 중 같은 버튼을 누르면 실행하지 않고 기존 체험을 재개한다. 오른손 Meta 시스템 버튼은 앱이 처리하지 않는다. PC Esc는 기존 뒤로/메뉴 동작을 유지한다. 플레이 화면의 OpenMenuPanel과 InputHint는 제거되었다. 자막, 선택지, 준비 완료, 다음, 결과 및 설정의 위치 재정렬은 유지한다. Editor 가상 입력 검증과 Quest 실물 검증 결과는 구분한다.
+
 Unity Hub에서 기존 프로젝트를 Unity 6000.3.26f1로 연다. 패키지를 업그레이드하지 않는다. `Assets/_02LWS/Scenes/FireNotification.unity`를 열고 Console 컴파일 오류 0건을 확인한다. 콘텐츠 메뉴 진입 씬도 따로 실행해 실제 씬 연결이 유지되는지 확인한다.
 
 구현할 Editor 메뉴 `LWS/Validation/Shared Experience UI`는 [연결 계약](contracts/shared-experience-ui.md)의 RunAll을 호출한다. 메뉴를 실행해 PASS와 실패 0건을 확인한다. 프로젝트가 다른 Editor에서 열려 있지 않을 때만 다음 batch 대안을 사용한다. 설치 경로는 Hub의 실제 6000.3.26f1 위치로 지정한다.

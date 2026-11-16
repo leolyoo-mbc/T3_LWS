@@ -166,12 +166,12 @@ namespace LWS.FireNotification.Validation
                 Check(c.Session.Results[1].Completed&&c.Session.Results[1].DetourPerformed,"actual detour recorded");
                 Check(c.Session.Results[1].Decisions[0].FeedbackRequired&&c.ResultText.Contains("피드백 후 완료"),"first wrong preserved in result");
                 Check(ui.resultText.text.Contains("실제 대피 완료는 아닙니다"),"shared result limitation");CaptureRequested?.Invoke("08-result");yield return Frames(2);
-                Check(!ui.openMenuPanel.activeSelf,"result has no overlapping menu shortcut");
+                Check(view.transform.Find("OpenMenuPanel")==null,"result has no screen menu shortcut");
                 Check(ui.resultText.GetPreferredValues(ui.resultText.text,ui.resultText.rectTransform.rect.width,Mathf.Infinity).y<=ui.resultText.rectTransform.rect.height,"150 percent result fits allocated height");
                 c.DebugTracking(false);yield return Frames();
-                Check(ui.openMenuPanel.activeSelf&&view.panel.activeSelf&&view.status.text.Contains("추적"),"result tracking loss retains menu and recovery instruction");
+                Check(view.panel.activeSelf&&view.status.text.Contains("추적"),"result tracking loss retains recovery instruction");
                 c.DebugTracking(true);yield return Frames();
-                Check(ui.resultPanel.activeSelf&&!ui.openMenuPanel.activeSelf,"tracking recovery restores unobstructed result");
+                Check(ui.resultPanel.activeSelf&&view.transform.Find("OpenMenuPanel")==null,"tracking recovery restores unobstructed result");
                 ui.ToggleTextSize();ui.CompletedRestart();yield return Frames();
                 previousChoice.Invoke();yield return Frames();
                 Check(c.Session.Stage==RouteStage.AwaitingReady&&c.Session.Results.All(r=>r.Decisions.Count==0),"restart resets both results and A space");
