@@ -166,7 +166,9 @@ namespace LWS.FireNotification.Runtime
             else if(Session.Stage==SmokeStage.CompletionGuidance)message="자세 연습을 마쳤어요. 편하게 일어서세요.\n낮은 자세만으로 안전해지는 것은 아닙니다.";
             else if(Session.Stage==SmokeStage.PrincipleGuidance)message="연기가 위로 올라가 모이는 모습을 관찰하세요.";
             else message="";
-            view.SetStatus(this,message);
+            var kind=(Session.Blockers&(SmokeBlocker.Configuration|SmokeBlocker.Tracking))!=0
+                ?ContentStatusKind.Warning:ContentStatusKind.Instruction;
+            view.SetStatus(this,message,kind);
         }
         public override void SetUserPaused(bool value) { userPaused=value;if(Session!=null)UpdateBlockers(Read(0)); }
         public override void RequestReturn() { if(Session==null||Session.Closed)return;if(ResultVisible)ReturnToMenu();else RequestExit(); }

@@ -160,7 +160,7 @@ namespace LWS.FireNotification.Runtime
         {
             if(Session==null)return;
             UpdateBlockers();
-            if(configurationError) {view?.SetStatus(this,"체험 구성을 확인할 수 없습니다. 메뉴로 돌아가 주세요.");return;}
+            if(configurationError) {view?.SetStatus(this,"체험 구성을 확인할 수 없습니다. 메뉴로 돌아가 주세요.",ContentStatusKind.Warning);return;}
             if(Session.Stage==RouteStage.Closed)return;
             if(!Session.Blocked)
             {
@@ -246,7 +246,7 @@ namespace LWS.FireNotification.Runtime
                 if(delta.magnitude>arrivalRadius||!spaces[1].activeInHierarchy)throw new InvalidOperationException("B transition not confirmed");
                 if(Session.TransitionDone(Session.RunId,Session.Execution)) {occupiedTarget=null;smoke.Play();Present();}
             }
-            catch(Exception error) {configurationError=true;UpdateBlockers();view.SetActions(this);view.SetStatus(this,"구역을 전환할 수 없습니다. 메뉴로 돌아가 주세요.");Debug.LogWarning("Route transition: "+error.Message);}
+            catch(Exception error) {configurationError=true;UpdateBlockers();view.SetActions(this);view.SetStatus(this,"구역을 전환할 수 없습니다. 메뉴로 돌아가 주세요.",ContentStatusKind.Warning);Debug.LogWarning("Route transition: "+error.Message);}
         }
         private void RefreshStatus()
         {
@@ -258,7 +258,7 @@ namespace LWS.FireNotification.Runtime
             else if(Session.Stage==RouteStage.Explore)text="이동 지점을 가리켜 순간이동하세요. 입구 앞에서 주변 상태를 살펴보세요.";
             else if(Session.Stage==RouteStage.Decision||Session.Stage==RouteStage.Feedback)text=TargetName(Session.CurrentTargetId)+" 앞 확인 지점\n주변 상태를 살펴보고 행동을 선택하세요.";
             else if(Session.Stage==RouteStage.ScenarioCompletion)text="대피 경로 선택 연습 완료";
-            view.SetStatus(this,text);
+            view.SetStatus(this,text,configurationError||(Session.Blockers&RouteBlocker.Tracking)!=0?ContentStatusKind.Warning:ContentStatusKind.Instruction);
         }
         public override void Stop()
         {transitionRun=transitionExecution=-1;CancelPresentation();teleport?.CancelPending();DisableAnchors();smoke?.Stop();Session?.Close();occupiedTarget=null;view?.Clear(this);Publish();}
@@ -277,6 +277,6 @@ namespace LWS.FireNotification.Runtime
         public override void RequestReturn() {if(ResultVisible)ReturnToMenu();else RequestExit();}
         public override void ReturnToMenu() {Stop();RequestMenu();}
         public override void ApplySettings(float voice,float effects,bool subtitles)
-        {if(Guidance!=null) {Guidance.voice.volume=voice;Guidance.subtitle.enabled=subtitles;}}
+        {if(Guidance!=null)Guidance.voice.volume=voice;}
     }
 }

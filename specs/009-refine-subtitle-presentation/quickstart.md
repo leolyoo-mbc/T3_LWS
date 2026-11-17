@@ -1,6 +1,6 @@
 # Quickstart: 자막 표시 검증
 
-**→ 전제:** 구현 후 검증 절차다. 신규 SubtitlePresentationChecks/씬/머티리얼 변경은 아직 구현 전이다. Unity 6000.3.26f1에서 Assets/_02LWS/Scenes/FireNotification.unity를 열고 기존 입력/음원을 사용한다.
+**→ 전제:** SubtitlePresentationChecks, 자막 전용 씬 부모와 외곽선 머티리얼이 구현되어 있다. 아래 절차로 현재 변경을 검증한다. 실제 청취와 Quest 합격은 별도다. Unity 6000.3.26f1에서 Assets/_02LWS/Scenes/FireNotification.unity를 열고 기존 입력/음원을 사용한다.
 
 ## 1. 변경 전 기준과 연결
 

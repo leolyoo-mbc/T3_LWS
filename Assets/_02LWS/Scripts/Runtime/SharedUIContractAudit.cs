@@ -44,6 +44,16 @@ namespace LWS.FireNotification.Runtime
                 if(ray==null||!ray.checkFor3DOcclusion||ray.blockingMask.value==0)errors.Add("Missing floor XR occlusion raycaster");
                 foreach(var entry in navigator.contents)if(entry?.root!=null&&floor.transform.IsChildOf(entry.root.transform))errors.Add("Floor UI belongs to content");
             }
+            if (view != null && view.guidance != null && view.guidance.subtitle != null)
+            {
+                var subtitle = view.guidance.subtitle;
+                if (view.panel == null || view.subtitleRoot == null || view.subtitleRoot.parent != view.panel.transform ||
+                    subtitle.transform.parent != view.subtitleRoot || view.subtitleRoot.GetComponent<Canvas>() != null ||
+                    view.subtitleRoot.GetComponent<UnityEngine.UI.Image>() != null || view.subtitleRoot.GetComponent<CanvasGroup>() != null)
+                    errors.Add("Invalid subtitle-only root");
+                if (view.subtitleMaterial == null || subtitle.fontSharedMaterial != view.subtitleMaterial || subtitle.raycastTarget)
+                    errors.Add("Invalid isolated subtitle material or input target");
+            }
             if (navigator.lifecycle == null) errors.Add("Missing shared lifecycle");
             if (navigator.menuRoot != null && navigator.menuRoot.GetComponentsInChildren<Canvas>(true).Length != 0)
                 errors.Add("Menu space owns a Canvas");

@@ -23453,6 +23453,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1499301851062768549, guid: f7da0b7a93d45bf42af3eaf4f140ce96, type: 3}
   m_PrefabInstance: {fileID: 463929917}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &466597656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466597657}
+  m_Layer: 0
+  m_Name: SubtitleRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &466597657
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466597656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -799.99994}
+  m_LocalScale: {x: 0.5555556, y: 0.5555556, z: 0.5555556}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1678102280}
+  m_Father: {fileID: 1338795116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1400, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &468125136
 GameObject:
   m_ObjectHideFlags: 0
@@ -54661,8 +54697,8 @@ RectTransform:
   m_Children:
   - {fileID: 100398656}
   - {fileID: 386714971}
-  - {fileID: 1678102280}
   - {fileID: 452503341}
+  - {fileID: 466597657}
   m_Father: {fileID: 1913844371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -72339,14 +72375,14 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
-  m_sharedMaterial: {fileID: -4471024112838326175, guid: 72863eaf97454fe4190eb5eab214ed8a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: ba6567c2fbf227740ace082933e257ab, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.9607843, g: 0.96862745, b: 0.98039216, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -72443,7 +72479,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1338795116}
+  m_Father: {fileID: 466597657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -87513,6 +87549,8 @@ MonoBehaviour:
   title: {fileID: 100398658}
   status: {fileID: 386714973}
   guidance: {fileID: 789638051}
+  subtitleRoot: {fileID: 466597657}
+  subtitleMaterial: {fileID: 2100000, guid: ba6567c2fbf227740ace082933e257ab, type: 2}
   floorButtons: {fileID: 7812211909503732810}
 --- !u!1 &1914045979
 GameObject:

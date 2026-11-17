@@ -7,6 +7,7 @@ using LWS.FireNotification.Presentation;
 
 namespace LWS.FireNotification.Runtime
 {
+    public enum ContentStatusKind { Instruction, Warning }
     public sealed class ContentUIAction
     {
         public readonly string Id, Label;
@@ -22,10 +23,14 @@ namespace LWS.FireNotification.Runtime
         public GameObject panel;
         public TMP_Text title, status;
         public GuidancePresenter guidance;
+        public RectTransform subtitleRoot;
+        public Material subtitleMaterial;
         public FloorButtonPresenter floorButtons;
         public Transform actionRoot => floorButtons != null ? floorButtons.ActionRoot : null;
         public ContentExperienceAdapter Owner { get; private set; }
         public int ActionCount => actions.Length;
+        public bool SubtitlesEnabled { get; private set; } = true;
+        private ContentStatusKind statusKind;
         private ContentUIAction[] actions = Array.Empty<ContentUIAction>();
         private FloorButtonAnchor actionAnchor;
         private long generation, lastAccepted=-1;
@@ -40,15 +45,15 @@ namespace LWS.FireNotification.Runtime
             {
                 if (Owner != null) Owner.StateChanged -= RefreshAvailability;
                 generation++; guidance.Cancel(); floorButtons.ResetDisplay(); actions = Array.Empty<ContentUIAction>(); actionAnchor=null;lastAccepted=-1;retryAfterExit=false;
-                Owner = owner; status.text = "";
+                Owner = owner; status.text = ""; statusKind = ContentStatusKind.Instruction; layoutGeneration = -1;
                 Owner.StateChanged += RefreshAvailability;
 
             }
             title.text = heading;
             panel.SetActive(true);
         }
-        public void SetStatus(ContentExperienceAdapter owner, string text)
-        { if (Owner == owner && owner != null) status.text = text; }
+        public void SetStatus(ContentExperienceAdapter owner, string text, ContentStatusKind kind = ContentStatusKind.Instruction)
+        { if (Owner == owner && owner != null) { status.text = text; statusKind = kind; } }
         public void SetActions(ContentExperienceAdapter owner, params ContentUIAction[] next)
         {
             if(Owner!=owner||owner==null)return;
@@ -90,19 +95,24 @@ namespace LWS.FireNotification.Runtime
             if (Owner != owner) return;
             if (Owner != null) Owner.StateChanged -= RefreshAvailability;
             ResetFloorDisplay(); Owner = null;
-            guidance.Cancel(); title.text = status.text = ""; panel.SetActive(false);
+            guidance.Cancel(); title.text = status.text = ""; statusKind = ContentStatusKind.Instruction;
+            status.enabled = false; guidance.subtitle.enabled = false; layoutGeneration = -1; panel.SetActive(false);
         }
         private string layoutStatus, layoutSubtitle;
         private float layoutStatusSize, layoutSubtitleSize;
-        private bool layoutSubtitles;
+        private bool layoutSubtitles, layoutStatusEnabled;
         private long layoutGeneration = -1;
         private void LateUpdate()
         {
             RefreshAvailability();
+            bool warning = statusKind == ContentStatusKind.Warning && !string.IsNullOrWhiteSpace(status.text);
+            bool narration = SubtitlesEnabled && guidance.IsPresenting;
+            status.enabled = Owner != null && (warning || !narration);
+            guidance.subtitle.enabled = Owner != null && !warning && narration;
             if (panel != null && panel.activeInHierarchy &&
                 (layoutGeneration != generation || layoutStatus != status.text ||
                  layoutSubtitle != guidance.subtitle.text || layoutStatusSize != status.fontSize ||
-                 layoutSubtitleSize != guidance.subtitle.fontSize || layoutSubtitles != guidance.subtitle.enabled))
+                 layoutSubtitleSize != guidance.subtitle.fontSize || layoutSubtitles != guidance.subtitle.enabled || layoutStatusEnabled != status.enabled))
                 RefreshLayout();
         }
 
@@ -130,14 +140,32 @@ namespace LWS.FireNotification.Runtime
                 row.anchoredPosition = new Vector2(0, -cursor - height / 2);
                 cursor += height; hasContent = true;
             }
-            TextRow(status, !string.IsNullOrWhiteSpace(status.text));
-            TextRow(guidance.subtitle, guidance.subtitle.enabled && !string.IsNullOrWhiteSpace(guidance.subtitle.text));
+            TextRow(status, status.enabled && !string.IsNullOrWhiteSpace(status.text));
             rect.sizeDelta = new Vector2(width, hasContent ? cursor + padding : 0);
             var background = panel.GetComponent<UnityEngine.UI.Image>();
             if (background != null) background.enabled = hasContent;
+            if (subtitleRoot != null)
+            {
+                const float ratio = 5f / 9f;
+                var follow = GetComponentInParent<ComfortFollowUI>();
+                subtitleRoot.anchorMin = subtitleRoot.anchorMax = new Vector2(.5f, 1);
+                subtitleRoot.pivot = new Vector2(.5f, 1);
+                subtitleRoot.sizeDelta = new Vector2(width, 0);
+                subtitleRoot.localScale = Vector3.one * ratio;
+                if (follow != null)
+                {
+                    var referenceHead = follow.transform.position - follow.transform.rotation * follow.offset;
+                    subtitleRoot.localPosition = (1 - ratio) * rect.InverseTransformPoint(referenceHead);
+                }
+                // Subtitle uses the original single-row reference, independently of status height.
+                cursor = padding; hasContent = false;
+                TextRow(guidance.subtitle, guidance.subtitle.enabled && !string.IsNullOrWhiteSpace(guidance.subtitle.text));
+                ApplySubtitlePreset();
+            }
             layoutGeneration = generation; layoutStatus = status.text; layoutSubtitle = guidance.subtitle.text;
             layoutStatusSize = status.fontSize; layoutSubtitleSize = guidance.subtitle.fontSize;
             layoutSubtitles = guidance.subtitle.enabled;
+            layoutStatusEnabled = status.enabled;
         }
         private void RefreshAvailability()
         {
@@ -154,7 +182,21 @@ namespace LWS.FireNotification.Runtime
         public void ApplySettings(float voice, bool subtitles)
         {
             if (guidance.voice != null) guidance.voice.volume = voice;
-            if (guidance.subtitle != null) guidance.subtitle.enabled = subtitles;
+            SubtitlesEnabled = subtitles;
+            ApplySubtitlePreset();
         }
+        private void ApplySubtitlePreset()
+        {
+            if (guidance == null || guidance.subtitle == null || subtitleMaterial == null) return;
+            var text = guidance.subtitle;
+            if (text.fontSharedMaterial != subtitleMaterial)
+            {
+                text.fontSharedMaterial = subtitleMaterial;
+                text.UpdateMeshPadding();
+            }
+            text.color = Color.white;
+            text.raycastTarget = false;
+        }
+        private void OnEnable() { layoutGeneration = -1; ApplySubtitlePreset(); }
     }
 }

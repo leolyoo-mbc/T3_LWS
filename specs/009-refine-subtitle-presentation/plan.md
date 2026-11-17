@@ -88,7 +88,7 @@ Assets/_02LWS/
 
 **→ 비교 기준:** 변경 전 일반 상태 행을 비운 자막 단독 배치를 같은 문구/100%/150%에서 기록한다. 상태 행 때문에 자막이 밀리는 기존 가변 높이는 새 기준에 포함하지 않는다. 자막 영역 폭은 유지하고 문구에 따른 높이만 측정한다. 일반 안내/메뉴/결과의 거리와 배치는 보존한다.
 
-**→ 외곽선:** 기존 LwsKorean 폰트 머티리얼을 SubtitleOutline.mat로 복제하고 같은 셰이더/atlas를 참조한다. OUTLINE_ON, 흰 FaceColor, 검정 OutlineColor, OutlineWidth=0.15, OutlineSoftness=0, Underlay 비활성으로 시작한다. 공통 머티리얼/ZTest는 수정하지 않는다. TMP 패딩을 갱신하고 150%에서 외곽선 잘림을 검사한다.
+**→ 외곽선:** 현재 씬의 DisasterKorean 폰트 머티리얼을 SubtitleOutline.mat로 복제하고 같은 셰이더/atlas를 참조한다. OUTLINE_ON, 흰 FaceColor, 검정 OutlineColor, OutlineWidth=0.45, FaceDilate=0.30, OutlineSoftness=0, Underlay 비활성으로 둔다. 초기 0.15는 밝은 배경에서 약해 실제 Game View 비교 후 전용 머티리얼만 조정했다. 공통 머티리얼/ZTest는 수정하지 않는다. TMP 패딩을 갱신하고 150%에서 외곽선 잘림을 검사한다.
 
 **→ 설정과 레이아웃:** ThemedText.Apply 뒤 SharedContentUI.ApplySettings에서 전용 프리셋을 적용하고 재활성화 후에도 유지시킨다. 상태 행 배경/레이아웃은 기존대로 유지하되 자막은 상태 패널의 높이/배경 표시 계산에서 제외한다. 문구/글자 크기/가시성 변경 시만 레이아웃을 측정한다.
 

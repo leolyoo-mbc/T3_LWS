@@ -13,7 +13,8 @@ namespace LWS.FireNotification.Presentation
         private Coroutine playback;
         private bool paused;
         private float elapsed;
-        public float Elapsed => elapsed;
+        public float Elapsed => playback != null && voice != null && voice.clip != null
+            ? (float)voice.timeSamples / voice.clip.frequency : elapsed;
         public bool IsPresenting => playback != null;
         public void SetPaused(bool value)
         {
@@ -31,16 +32,22 @@ namespace LWS.FireNotification.Presentation
         {
             voice.clip = cue.audio; voice.loop = false; voice.Play();
             elapsed = 0; paused = false;
-            while (elapsed < cue.audio.length && !run.Canceled)
+            int startFrame = Time.frameCount;
+            while (!run.Canceled)
             {
                 if (paused) { yield return null; continue; }
-                subtitle.text = "";
+                // Natural end resets timeSamples to zero; detect it before sampling the audio clock.
+                if (!voice.isPlaying && Time.frameCount > startFrame)
+                { elapsed = cue.audio.length; break; }
+                elapsed = (float)voice.timeSamples / cue.audio.frequency;
+                string currentText = "";
                 foreach (var segment in cue.segments)
-                    if (elapsed >= segment.start && elapsed < segment.end) { subtitle.text = segment.text; break; }
+                    if (elapsed >= segment.start && elapsed < segment.end) { currentText = segment.text; break; }
+                subtitle.text = currentText;
                 yield return null;
-                if (!paused) elapsed += Time.unscaledDeltaTime;
             }
             subtitle.text = ""; playback = null;
+            if (run.Canceled) voice.Stop();
             if (!run.Canceled) completed?.Invoke();
         }
         public void Cancel()
@@ -49,6 +56,7 @@ namespace LWS.FireNotification.Presentation
             playback = null;
             if (voice != null) { voice.Stop(); voice.clip = null; }
             if (subtitle != null) subtitle.text = "";
+            elapsed = 0; paused = false;
         }
         private void LateUpdate()
         {

@@ -16,11 +16,11 @@
 
 **Decision:** 자막 전용 머티리얼 프리셋으로 기존 SDF 외곽선을 사용한다.
 
-**Rationale:** LwsKoreanSDF.shader에 Outline/Underlay가 있고 기존 폰트 머티리얼 OutlineWidth는 0이다. atlas padding은 5다. ThemedText.Apply가 폰트/스타일을 재설정하므로 설정 적용/재활성화 뒤 전용 프리셋 유지와 패딩 검사가 필요하다.
+**Rationale:** LwsKoreanSDF.shader에 Outline/Underlay가 있고 현재 씬은 DisasterKorean 폰트를 사용하고 기존 폰트 머티리얼 OutlineWidth는 0이다. atlas padding은 5다. ThemedText.Apply가 폰트/스타일을 재설정하므로 설정 적용/재활성화 뒤 전용 프리셋 유지와 패딩 검사가 필요하다.
 
 **Alternatives considered:** 공통 font material 수정은 메뉴/환경 글자까지 바꾼다. 별도 Shadow/Outline 컴포넌트와 새 셰이더는 기존 TMP 기능과 중복된다. 추가 그림자는 기본 범위가 아니다.
 
-**Evidence:** Assets/_02LWS/Art/Shaders/LwsKoreanSDF.shader, Art/Fonts/LwsKorean.asset, Scripts/Presentation/ThemedText.cs, Scripts/Runtime/SharedUIController.cs.
+**Evidence:** Assets/_02LWS/Art/Shaders/LwsKoreanSDF.shader, UI/Fonts/DisasterKorean.asset, Scripts/Presentation/ThemedText.cs, Scripts/Runtime/SharedUIController.cs.
 
 ## 3. 중복과 경고
 
