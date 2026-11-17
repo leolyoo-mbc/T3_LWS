@@ -47,12 +47,13 @@ namespace LWS.FireNotification.Runtime
             if (view != null && view.guidance != null && view.guidance.subtitle != null)
             {
                 var subtitle = view.guidance.subtitle;
-                if (view.panel == null || view.subtitleRoot == null || view.subtitleRoot.parent != view.panel.transform ||
-                    subtitle.transform.parent != view.subtitleRoot || view.subtitleRoot.GetComponent<Canvas>() != null ||
+                if (view.panel == null || view.status == null || view.subtitleRoot == null || view.subtitleRoot.parent != view.panel.transform ||
+                    subtitle.transform.parent != view.subtitleRoot || view.status.transform.parent != view.subtitleRoot || view.subtitleRoot.GetComponent<Canvas>() != null ||
                     view.subtitleRoot.GetComponent<UnityEngine.UI.Image>() != null || view.subtitleRoot.GetComponent<CanvasGroup>() != null)
-                    errors.Add("Invalid subtitle-only root");
-                if (view.subtitleMaterial == null || subtitle.fontSharedMaterial != view.subtitleMaterial || subtitle.raycastTarget)
-                    errors.Add("Invalid isolated subtitle material or input target");
+                    errors.Add("Invalid shared guidance text root");
+                if (view.subtitleMaterial == null || view.status == null || subtitle.fontSharedMaterial != view.subtitleMaterial ||
+                    view.status.fontSharedMaterial != view.subtitleMaterial || subtitle.raycastTarget || view.status.raycastTarget)
+                    errors.Add("Invalid shared guidance material or input target");
             }
             if (navigator.lifecycle == null) errors.Add("Missing shared lifecycle");
             if (navigator.menuRoot != null && navigator.menuRoot.GetComponentsInChildren<Canvas>(true).Length != 0)

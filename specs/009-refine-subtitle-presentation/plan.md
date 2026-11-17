@@ -1,16 +1,16 @@
 # Implementation Plan: 자막 가독성과 표시 흐름 개선
 
-**Branch**: `main` | **Date**: 2026-11-18 | **Spec**: [spec.md](spec.md)
+**Branch**: `codex/009-refine-subtitle-presentation` | **Date**: 2026-11-18 | **Spec**: [spec.md](spec.md)
 
 **Input**: `specs/009-refine-subtitle-presentation/spec.md`
 
-**→ 경로 해석:** 실제 Git 브랜치는 main이다. setup-plan의 BRANCH=009-refine-subtitle-presentation은 feature 식별자이며 브랜치를 생성하거나 전환하지 않았다.
+**→ 경로 해석:** 명세 작성 당시 Git 브랜치는 main이었으며 현재 구현 브랜치는 codex/009-refine-subtitle-presentation이다. setup-plan의 BRANCH=009-refine-subtitle-presentation은 feature 식별자이며 브랜치를 생성하거나 전환하지 않았다.
 
 ## Summary
 
-**→ 확정 결과:** 자막만 앞쪽 1m에 배치하고 보이는 크기를 유지한다. 배경을 제거하고 흰 글자와 검정 외곽선을 쓴다. 필수 경고 > 음성 자막 > 일반 행동 안내 순으로 표시하며 긴 자막은 기존 음성에 맞춰 분할한다.
+**→ 확정 결과:** 음성 자막, 일반 행동 안내와 필수 경고 모두 앞쪽 1m에 배치하고 각 문구의 보이는 크기를 유지한다. 배경을 제거하고 같은 흰 글자와 검정 외곽선을 쓴다. 필수 경고 > 음성 자막 > 일반 행동 안내 순서를 유지한다. 일반 안내와 경고는 전체 문구를 유지하고 자연스럽게 줄바꿈한다.
 
-**→ 구현 결정:** 기존 SharedCanvas/ContentPanel/TMP/GuidancePresenter를 재사용한다. ContentPanel 아래 자막 전용 RectTransform 하나를 추가한다. 새 Canvas/추종기/배경 크기 계산기/음원 재생성은 필요 없다.
+**→ 구현 결정:** 기존 SharedCanvas/ContentPanel/TMP/GuidancePresenter를 재사용한다. 기존 ContentPanel 아래 SubtitleRoot 하나를 공용 글자 컨테이너로 재사용한다. 새 Canvas/추종기/배경 크기 계산기/음원 재생성은 필요 없다.
 
 ## Technical Context
 
@@ -82,15 +82,15 @@ Assets/_02LWS/
 
 ### 자막 배치와 스타일
 
-**→ 씬:** ContentPanel 아래 SubtitleRoot를 추가하고 기존 SubtitleText만 옮긴다. 기존 GuidancePresenter.subtitle 참조는 유지한다. root에는 Image/Canvas/CanvasGroup/레이캐스터를 추가하지 않는다. 기존 부모의 활성 상태/CanvasGroup을 상속하므로 메뉴/결과/전환 때 함께 숨겨진다. 자막은 raycastTarget=false다.
+**→ 씬:** 기존 ContentPanel/SubtitleRoot를 공용 글자 컨테이너로 재사용하고 StatusText도 그 아래로 이동한다. 기존 TMP 참조, 공개/직렬화 필드명과 자산 GUID를 유지한다. root에는 Image/Canvas/CanvasGroup/레이캐스터를 추가하지 않는다. 두 텍스트는 같은 부모 숨김을 상속하고 raycastTarget=false다.
 
 **→ 거리 계산:** 비율 r=1/1.8=5/9를 쓴다. 원래 자막 행의 최대 폭 1352u/상단 여백 24u와 부모의 상단 기준을 유지하고 root scale=r로 둔다. 추종 기준 머리점을 부모 로컬 좌표 H로 바꾸어 root.localPosition=(1-r)H로 정한다. 원래 자막 좌표 P가 H+r(P-H)가 되므로 시야상 크기와 높이 각도가 유지된다. 현재 offset=(0,-0.35,1.8), 부모 상단=-180u, scale=.001에서는 H=(0,530,-1800), root 위치=(0,235.5556,-800)u다. 기준값에서 계산하고 반복 누적하지 않는다. 실제 머리 위치에 매 프레임 강제로 붙이지 않고 기존 ComfortFollowUI의 추종 기준을 따른다.
 
-**→ 비교 기준:** 변경 전 일반 상태 행을 비운 자막 단독 배치를 같은 문구/100%/150%에서 기록한다. 상태 행 때문에 자막이 밀리는 기존 가변 높이는 새 기준에 포함하지 않는다. 자막 영역 폭은 유지하고 문구에 따른 높이만 측정한다. 일반 안내/메뉴/결과의 거리와 배치는 보존한다.
+**→ 비교 기준:** 변경 전 일반 상태 행을 비운 자막 단독 배치를 같은 문구/100%/150%에서 기록한다. 상태 행 때문에 자막이 밀리는 기존 가변 높이는 새 기준에 포함하지 않는다. 자막 영역 폭은 유지하고 문구에 따른 높이만 측정한다. 일반 안내와 경고도 같은 단독 행 기준으로 1m에 옮기고, 메뉴/결과/선택 버튼의 배치는 보존한다.
 
 **→ 외곽선:** 현재 씬의 DisasterKorean 폰트 머티리얼을 SubtitleOutline.mat로 복제하고 같은 셰이더/atlas를 참조한다. OUTLINE_ON, 흰 FaceColor, 검정 OutlineColor, OutlineWidth=0.45, FaceDilate=0.30, OutlineSoftness=0, Underlay 비활성으로 둔다. 초기 0.15는 밝은 배경에서 약해 실제 Game View 비교 후 전용 머티리얼만 조정했다. 공통 머티리얼/ZTest는 수정하지 않는다. TMP 패딩을 갱신하고 150%에서 외곽선 잘림을 검사한다.
 
-**→ 설정과 레이아웃:** ThemedText.Apply 뒤 SharedContentUI.ApplySettings에서 전용 프리셋을 적용하고 재활성화 후에도 유지시킨다. 상태 행 배경/레이아웃은 기존대로 유지하되 자막은 상태 패널의 높이/배경 표시 계산에서 제외한다. 문구/글자 크기/가시성 변경 시만 레이아웃을 측정한다.
+**→ 설정과 레이아웃:** ThemedText.Apply 뒤와 텍스트 재활성화 뒤 두 TMP에 같은 전용 프리셋을 적용한다. 안내 패널 Image는 항상 비활성이고 두 텍스트 모두 패널 높이 계산에서 제외한다. 각 텍스트는 폭 1352u/상단 여백 24u의 같은 위치를 사용하며, 우선순위에 따라 하나만 표시한다. 문구/글자 크기/가시성 변경 시만 높이를 측정한다. 일반 안내와 경고는 줄 수 제한이나 자동 축소 없이 전체를 표시한다.
 
 ### 표시 우선순위와 공용 인터페이스
 

@@ -1,5 +1,7 @@
 # Tasks: 자막 가독성과 표시 흐름 개선
 
+**→ 현재 확정 범위:** 2026-11-18 후속 정정에 따라 일반 행동 안내와 필수 경고도 음성 자막과 같은 1m 무배경 스타일로 통일한다. T001~T027의 완료 기록은 이전 구현 이력이며, 상태 배경 보존을 전제한 항목은 아래 T028~T032로 대체한다. 기존 청취/Quest 미완료 6개는 유지한다.
+
 **Input**: `specs/009-refine-subtitle-presentation/`의 spec.md, plan.md, research.md, data-model.md, contracts/subtitle-presentation.md, quickstart.md
 
 **Prerequisites**: 위 설계 문서와 프로젝트 헌법 1.3.0. Unity 6000.3.26f1, 기존 세 콘텐츠와 음원.
@@ -113,3 +115,17 @@
 **→ 미완료:** T019/T020/T021은 파형 기반 분할 후보만 작성했다. T023 실제 발화/표시 오차 청취 승인, T025 어두운 복도와 실제 청취, T026 실제 Quest 검증이 남았다. 검사/녹화만으로 이를 완료 처리하지 않는다.
 
 **→ 기록:** `Artifacts/Validation/VisualEvidence/20261118-031339-subtitle-presentation/verification.md`, `execution.mp4`, `final-screen-reference-100.png`, `final-screen-reference-150.png`. 원본은 Git 제외다. 커밋/푸시/패키지 배포는 하지 않았다.
+
+## Phase 7: 행동 안내와 필수 경고의 공용 스타일
+
+- [X] T028 확정된 범위를 spec/plan/data-model/contracts/research/quickstart에 반영하고, 439d27d 기준의 행동 안내/경고 일반 및 150% 배치와 다른 UI 참조를 새 검증 폴더 baseline.json에 기록한다. 기존 체크리스트와 청취/Quest 미완료는 변경하지 않는다.
+- [X] T029 SubtitlePresentationChecks에 행동 안내/경고의 공용 부모/머티리얼, 배경 없음, 1m 거리와 기존 대비 시야상 크기/각도, 긴 경고 전체 표시, 자막 꺼짐과 경고 해제 검사를 추가하고 기존 구현에서 실패를 확인한다.
+- [X] T030 기존 SubtitleRoot 아래로 StatusText를 이동하고 SharedContentUI에서 두 텍스트의 스타일과 레이아웃을 통일한다. 안내 패널 Image를 비활성화하고 두 행을 패널 높이 계산에서 제외한다. 기존 필드명/GUID/API, 우선순위와 메뉴/결과/선택 버튼을 보존하고 SharedUIContractAudit의 참조 계약을 확장한다.
+- [X] T031 구성/Play Mode 검사를 실행하고 세 콘텐츠의 일반 안내/자막/경고, 일반/150%, 설정 토글, 메뉴 복귀와 긴 경고를 확인한다. 같은 Game View의 실제 화면과 1920x1080/30fps 이상 MP4를 Unity 소리 분리 방식으로 저장하고 재생 결과와 한계를 기록한다. 음원/카탈로그와 다른 UI 보존을 확인한다.
+- [X] T032 verification.md에 새 검사 결과, 배치 수치, 영상/소리, 실제 청취와 Quest 미검증을 정리하고 Git 제외, diff --check와 후처리 훅을 확인한다. 완료한 T028~T032만 체크하며 자동 커밋/푸시는 하지 않는다.
+
+**→ 실행 순서:** T028 → T029 RED → T030 → T031 GREEN/실제 화면 → T032. 기존 타이밍/음원/카탈로그는 이번 후속 수정에서 바꾸지 않는다. 일반 안내와 경고는 전체 문구를 줄바꿈해 표시하며 두 줄 제한을 적용하지 않는다.
+
+**→ 후속 적용 결과:** T028~T032의 5개 작업 완료. 공용 안내 구성225/225, 실행500/500, 바닥 버튼458/458. 최신 증거는 `Artifacts/Validation/VisualEvidence/20261118-041113-unified-guidance-style/verification.md`와 `execution.mp4`다. 이전 미완료6개는 그대로 유지하며 이번 변경은 아직 커밋하지 않았다.
+
+**→ 별도 Console 문제:** 바닥 회귀 도중 변경하지 않은 RouteSmokePresenter.Play의 파티클 시드 설정에서 Assert 2건이 발생했다. 이번 UI 수정 범위 밖으로 기록하며 Console 전체 무오류로 보고하지 않는다. 자세한 기록은 위 verification.md에 있다.

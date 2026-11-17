@@ -112,38 +112,33 @@ namespace LWS.FireNotification.Runtime
             if (panel != null && panel.activeInHierarchy &&
                 (layoutGeneration != generation || layoutStatus != status.text ||
                  layoutSubtitle != guidance.subtitle.text || layoutStatusSize != status.fontSize ||
-                 layoutSubtitleSize != guidance.subtitle.fontSize || layoutSubtitles != guidance.subtitle.enabled || layoutStatusEnabled != status.enabled))
+                 layoutSubtitleSize != guidance.subtitle.fontSize || layoutSubtitles != guidance.subtitle.enabled || layoutStatusEnabled != status.enabled ||
+                 status.color != Color.white || guidance.subtitle.color != Color.white))
                 RefreshLayout();
         }
 
-        // Top stays below the observation area; empty text never reserves an opaque rectangle.
-        // All content types share this layout, including enlarged text and tracking warnings.
+        // Narration, instructions and warnings share one unbacked, head-relative text area.
         public void RefreshLayout()
         {
-            const float width = 1400, padding = 24, gap = 16;
+            const float width = 1400, padding = 24;
             var rect = (RectTransform)panel.transform;
             rect.localScale = Vector3.one;
             rect.pivot = new Vector2(.5f, 1);
             rect.anchoredPosition = new Vector2(0, -180);
-            float cursor = padding;
-            bool hasContent = false;
+            rect.sizeDelta = new Vector2(width, 0);
+            var background = panel.GetComponent<UnityEngine.UI.Image>();
+            if (background != null) background.enabled = false;
             void TextRow(TMP_Text text, bool visible)
             {
                 text.gameObject.SetActive(visible);
                 if (!visible) return;
-                if (hasContent) cursor += gap;
                 float height = Mathf.Ceil(text.GetPreferredValues(text.text, width - 2 * padding, Mathf.Infinity).y);
                 var row = text.rectTransform;
                 row.anchorMin = row.anchorMax = new Vector2(.5f, 1);
                 row.pivot = new Vector2(.5f, .5f);
                 row.sizeDelta = new Vector2(width - 2 * padding, height);
-                row.anchoredPosition = new Vector2(0, -cursor - height / 2);
-                cursor += height; hasContent = true;
+                row.anchoredPosition = new Vector2(0, -padding - height / 2);
             }
-            TextRow(status, status.enabled && !string.IsNullOrWhiteSpace(status.text));
-            rect.sizeDelta = new Vector2(width, hasContent ? cursor + padding : 0);
-            var background = panel.GetComponent<UnityEngine.UI.Image>();
-            if (background != null) background.enabled = hasContent;
             if (subtitleRoot != null)
             {
                 const float ratio = 5f / 9f;
@@ -157,8 +152,7 @@ namespace LWS.FireNotification.Runtime
                     var referenceHead = follow.transform.position - follow.transform.rotation * follow.offset;
                     subtitleRoot.localPosition = (1 - ratio) * rect.InverseTransformPoint(referenceHead);
                 }
-                // Subtitle uses the original single-row reference, independently of status height.
-                cursor = padding; hasContent = false;
+                TextRow(status, status.enabled && !string.IsNullOrWhiteSpace(status.text));
                 TextRow(guidance.subtitle, guidance.subtitle.enabled && !string.IsNullOrWhiteSpace(guidance.subtitle.text));
                 ApplySubtitlePreset();
             }
@@ -188,7 +182,12 @@ namespace LWS.FireNotification.Runtime
         private void ApplySubtitlePreset()
         {
             if (guidance == null || guidance.subtitle == null || subtitleMaterial == null) return;
-            var text = guidance.subtitle;
+            ApplyTextPreset(status);
+            ApplyTextPreset(guidance.subtitle);
+        }
+        private void ApplyTextPreset(TMP_Text text)
+        {
+            if (text == null) return;
             if (text.fontSharedMaterial != subtitleMaterial)
             {
                 text.fontSharedMaterial = subtitleMaterial;

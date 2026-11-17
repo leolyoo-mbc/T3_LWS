@@ -28,8 +28,9 @@ namespace LWS.FireNotification.Validation
             var asset=AssetDatabase.LoadMainAssetAtPath(path);
             return (GuidanceCue[])asset.GetType().GetField("cues").GetValue(asset);
         }
-        [Serializable] private sealed class Baseline { public BaselineCue[] cues; }
+        [Serializable] private sealed class Baseline { public BaselineCue[] cues; public StatusSample[] statusSamples; }
         [Serializable] private sealed class BaselineCue { public string catalog,id,text,audio,hash; }
+        [Serializable] private sealed class StatusSample { public string kind,text; public float scale,forward,downwardAngle,angularHeight,angularWidth; }
         private static void Check(bool ok,string message)
         {
             if(ok)Passed++;else Failed++;
@@ -60,17 +61,20 @@ namespace LWS.FireNotification.Validation
             if(!string.IsNullOrEmpty(EvidenceDirectory)&&File.Exists(EvidenceDirectory+"/baseline.json"))
                 baseline=JsonUtility.FromJson<Baseline>(File.ReadAllText(EvidenceDirectory+"/baseline.json"));
             var root=text.transform.parent as RectTransform;
-            Check(root!=null&&root.name=="SubtitleRoot"&&root.parent==view.panel.transform,"subtitle-only root under ContentPanel");
+            Check(root!=null&&root.name=="SubtitleRoot"&&root.parent==view.panel.transform&&view.status.transform.parent==root,"shared guidance root under ContentPanel");
             Check(root!=null&&Vector3.Distance(root.localScale,new Vector3(5f/9,5f/9,5f/9))<.001f,"subtitle scale preserves angular size");
             Check(root!=null&&root.GetComponent<Canvas>()==null&&root.GetComponent<UnityEngine.UI.Image>()==null&&root.GetComponent<CanvasGroup>()==null,"no subtitle canvas or background");
             Check(!text.raycastTarget,"subtitle does not intercept controller input");
+            Check(!view.status.raycastTarget&&view.status.fontSharedMaterial==text.fontSharedMaterial,"status uses the same noninteractive outline style");
+            var panelBackground=view.panel.GetComponent<UnityEngine.UI.Image>();
+            Check(panelBackground==null||!panelBackground.enabled,"guidance panel background disabled");
             var mat=text.fontSharedMaterial;
             Check(AssetDatabase.GetAssetPath(mat)=="Assets/_02LWS/Art/Materials/SubtitleOutline.mat","dedicated subtitle material");
             Check(mat.IsKeywordEnabled("OUTLINE_ON")&&Mathf.Approximately(mat.GetFloat("_OutlineWidth"),.45f)&&
                 Mathf.Approximately(mat.GetFloat("_FaceDilate"),.30f)&&mat.GetColor("_OutlineColor")==Color.black&&mat.GetColor("_FaceColor")==Color.white,"white face and black outline preset");
             Check(!mat.IsKeywordEnabled("UNDERLAY_ON")&&!mat.IsKeywordEnabled("UNDERLAY_INNER"),"no additional shadow");
             foreach(var other in nav.gameObject.scene.GetRootGameObjects().SelectMany(x=>x.GetComponentsInChildren<TMP_Text>(true)))
-                if(other!=text)Check(other.fontSharedMaterial!=mat||AssetDatabase.GetAssetPath(mat)!="Assets/_02LWS/Art/Materials/SubtitleOutline.mat","material isolation: "+other.name);
+                if(other!=text&&other!=view.status)Check(other.fontSharedMaterial!=mat||AssetDatabase.GetAssetPath(mat)!="Assets/_02LWS/Art/Materials/SubtitleOutline.mat","material isolation: "+other.name);
             var go=new GameObject("Subtitle measurement",typeof(RectTransform),typeof(Canvas));go.hideFlags=HideFlags.HideAndDontSave;
             try
             {
@@ -127,6 +131,44 @@ namespace LWS.FireNotification.Validation
             finally {(run as IDisposable)?.Dispose();Running=false;}
         }
         private static void Tick(SharedContentUI view) {view.SendMessage("LateUpdate");}
+        private static void StatusGeometry(SharedContentUI view,string content)
+        {
+            var text=view.status;string previous=text.text;bool subtitles=view.SubtitlesEnabled;
+            var theme=text.GetComponent<ThemedText>();float previousScale=text.fontSize/theme.baseSize;
+            var follower=view.GetComponentInParent<ComfortFollowUI>();follower.Recenter();
+            Baseline baseline=null;
+            if(!string.IsNullOrEmpty(EvidenceDirectory)&&File.Exists(EvidenceDirectory+"/baseline.json"))
+                baseline=JsonUtility.FromJson<Baseline>(File.ReadAllText(EvidenceDirectory+"/baseline.json"));
+            try
+            {
+                foreach(var kind in new[]{ContentStatusKind.Instruction,ContentStatusKind.Warning})foreach(float scale in new[]{1f,1.5f})
+                {
+                    string message=kind==ContentStatusKind.Instruction?"주변에 화재 사실을 알려 주세요.":"머리 위치를 확인할 수 없어 잠시 멈췄습니다. 추적 복구를 기다리거나 메뉴로 나갈 수 있습니다.";
+                    theme.Apply(scale);view.SetStatus(view.Owner,message,kind);
+                    view.ApplySettings(SharedUIController.Active.VoiceVolume,kind==ContentStatusKind.Warning);Tick(view);text.ForceMeshUpdate(true,true);
+                    var delta=text.transform.position-follower.head.position;
+                    float forward=Vector3.Dot(delta,follower.transform.forward);
+                    float angle=Mathf.Atan2(-Vector3.Dot(delta,follower.transform.up),forward)*Mathf.Rad2Deg;
+                    float height=text.rectTransform.rect.height*text.transform.lossyScale.y/forward;
+                    float width=text.rectTransform.rect.width*text.transform.lossyScale.x/forward;
+                    var before=baseline?.statusSamples?.FirstOrDefault(s=>s.kind==kind.ToString()&&s.scale==scale&&s.text==message);
+                    float referenceHeight=before!=null?before.angularHeight:text.rectTransform.rect.height*.001f/1.8f;
+                    float referenceAngle=before!=null?before.downwardAngle:Mathf.Atan2(.53f+text.rectTransform.rect.height*.0005f,1.8f)*Mathf.Rad2Deg;
+                    float referenceWidth=before!=null?before.angularWidth:1.352f/1.8f;
+                    string context=content+" "+kind+" @"+scale;
+                    Check(text.enabled&&text.gameObject.activeInHierarchy&&!view.guidance.subtitle.enabled,"only status visible: "+context);
+                    Check(Mathf.Abs(forward-1)<.02f,"status forward distance 1m: "+context);
+                    Check(Mathf.Abs(angle-referenceAngle)/referenceAngle<=.05f&&Mathf.Abs(height-referenceHeight)/referenceHeight<=.05f&&Mathf.Abs(width-referenceWidth)/referenceWidth<=.05f,"status apparent size and angle preserved: "+context);
+                    Check(text.fontSharedMaterial==view.subtitleMaterial&&text.color==Color.white&&!text.raycastTarget,"shared status preset after settings: "+context);
+                    Check(!view.panel.GetComponent<UnityEngine.UI.Image>().enabled,"no instruction or warning background: "+context);
+                    Check(text.text==message&&text.textInfo.characterCount>0&&!text.isTextOverflowing&&!text.enableAutoSizing&&Mathf.Approximately(text.fontSize,theme.baseSize*scale),"full message without shrinking or clipping: "+context);
+                    view.panel.SetActive(false);Check(!text.gameObject.activeInHierarchy,"status inherits panel hide: "+context);
+                    view.panel.SetActive(true);Tick(view);Check(text.color==Color.white&&text.fontSharedMaterial==view.subtitleMaterial,"status preset after reactivation: "+context);
+                    if(!string.IsNullOrEmpty(EvidenceDirectory))File.AppendAllText(EvidenceDirectory+"/status-geometry.txt",context+": forward="+forward+", angle="+angle+", beforeAngle="+referenceAngle+", angularHeight="+height+", beforeHeight="+referenceHeight+", lines="+text.textInfo.lineCount+"\n");
+                }
+            }
+            finally {text.text=previous;theme.Apply(previousScale);view.SetStatus(view.Owner,previous);view.ApplySettings(SharedUIController.Active.VoiceVolume,subtitles);Tick(view);}
+        }
         private static void Geometry(SharedContentUI view,string content)
         {
             var text=view.guidance.subtitle;string previous=text.text;
@@ -167,6 +209,7 @@ namespace LWS.FireNotification.Validation
                     yield return new WaitForSecondsRealtime(.5f);
                     Check(nav.ActiveAdapter==entry.adapter&&view.Owner==entry.adapter,"owner entered: "+entry.id);
                     view.guidance.Cancel();view.ApplySettings(1,true);
+                    StatusGeometry(view,entry.id);
                     current=new PresentationRun(99001,default,null);int completed=0;
                     view.SetStatus(entry.adapter,"첫 문장");view.guidance.Play(cue,current,()=>completed++);
                     yield return new WaitForSecondsRealtime(.12f);Tick(view);

@@ -14,11 +14,11 @@
 
 **→ 보존 계약:** SharedCanvas/FloorCanvas 이름과 WorldSpace 모드, Canvas 총 2개, ComfortFollowUI 1개, GuidancePresenter 1개, EventSystem 1개와 기존 바닥 버튼 참조를 보존한다.
 
-**→ 자막 부모:** SubtitleRoot는 ContentPanel 자식이고 기존 CanvasGroup/활성 상태를 상속한다. 부모 높이가 바뀌어도 상단 기준을 유지한다. SubtitleText 컴포넌트 참조는 그대로이고 입력 대상이 아니다.
+**→ 자막 부모:** SubtitleRoot는 ContentPanel 자식이며 SubtitleText와 StatusText의 공용 부모다. 기존 CanvasGroup/활성 상태를 상속한다. 부모 높이가 바뀌어도 상단 기준을 유지한다. SubtitleText 컴포넌트 참조는 그대로이고 입력 대상이 아니다.
 
-**→ 스타일/설정:** ThemedText의 100%/150%를 유지하고 설정 뒤 전용 프리셋을 적용한다. 다른 텍스트의 공통 머티리얼은 수정하지 않는다. 자막은 상태 패널의 높이/배경 계산에서 제외한다.
+**→ 스타일/설정:** ThemedText의 100%/150%를 유지하고 설정 뒤 전용 프리셋을 적용한다. 다른 텍스트의 공통 머티리얼은 수정하지 않는다. 두 텍스트 모두 상태 패널의 높이/배경 계산에서 제외한다.
 
-**→ 경고 위치:** 기존 상태 행 위치/배경을 유지한다. 메뉴 진입 실패는 기존 메뉴 오류 경로를 보존한다. 1m 배치는 자막만의 변경이다.
+**→ 공용 안내 위치:** 음성 자막, 일반 행동 안내와 필수 경고 모두 SubtitleRoot와 같은 전용 머티리얼을 사용한다. 기존 필드명과 자산 GUID는 유지한다. ContentPanel 배경은 표시하지 않는다. 자막 끄기는 일반 안내와 경고를 숨기지 않는다. 메뉴 진입 실패는 기존 메뉴 오류 경로를 보존한다.
 
 ## 검증 인터페이스
 
