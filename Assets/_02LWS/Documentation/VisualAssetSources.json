@@ -108,5 +108,16 @@
         "Android1024 ASTC6x6; source2048 retained"
       ]
     }
-  ]
+  ],
+  "schoolArchitecture": {
+    "created": "2026-11-17",
+    "source": "Original geometry created in Blender for T3_LWS",
+    "thirdPartyArchitectureAssets": false,
+    "blend": "Assets/_02LWS/Art/Models/SchoolArchitecture/Source~/SchoolArchitecture.blend",
+    "generator": "Assets/_02LWS/Art/Models/SchoolArchitecture/Source~/BuildSchoolArchitecture.py",
+    "runtimeModel": "Assets/_02LWS/Art/Models/SchoolArchitecture/SchoolArchitecture.fbx",
+    "distribution": "FBX, mapped URP materials and prefabs; Source~ excluded",
+    "approval": "Per-run appearance decisions are recorded in approval.md; no physical-device or submission acceptance implied",
+    "revision": "Upper flight waist and landing bearings, doorway localx11.4 after user spacing feedback; current source14388triangles"
+  }
 }

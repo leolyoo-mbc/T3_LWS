@@ -10,11 +10,11 @@ Editor visual evidence and user approval are separate from Quest stereo/comfort/
 
 ## Latest: 체험 UI 시야 가림 수정 — 2026-11-12
 
-공용 Canvas1개와 안내 재생기1개를 유지하고 체험 안내를 아래쪽 가변 높이로 바꿨다. 고정1.325m 높이 배경·중복 제목·콘텐츠2 전용 고정 설명을 제거했다. 빈 상태/자막 행은 공간을 사용하지 않고 내용/동작이 모두 없으면 배경을 숨긴다. 글자150%는 높이를 늘려 수용한다. 메뉴/설정/결과 배치는 유지한다.
+공용 Canvas1개와 안내 재생기1개를 유지하고 체험 안내를 아래쪽 가변 높이로 바꿨다. 고정1.325m 높이 배경,중복 제목,콘텐츠2 전용 고정 설명을 제거했다. 빈 상태/자막 행은 공간을 사용하지 않고 내용/동작이 모두 없으면 배경을 숨긴다. 글자150%는 높이를 늘려 수용한다. 메뉴/설정/결과 배치는 유지한다.
 
-현재 수정본 Editor 통합49/49, 자막/배치452/452 PASS. 실제 실행 영상의1101개 활성 안내 표본에서 상단 고정·글자 영역 초과0건. 저장 씬 Canvas1/안내 재생기1/누락 스크립트0/외부 프로젝트 자산 참조0, 컴파일 오류0. 실제 MP4를 Unity VideoPlayer로 디코딩했다.
+현재 수정본 Editor 통합49/49, 자막/배치452/452 PASS. 실제 실행 영상의1101개 활성 안내 표본에서 상단 고정,글자 영역 초과0건. 저장 씬 Canvas1/안내 재생기1/누락 스크립트0/외부 프로젝트 자산 참조0, 컴파일 오류0. 실제 MP4를 Unity VideoPlayer로 디코딩했다.
 
-원본: Artifacts/Validation/VisualEvidence/20261112-023201-compact-content-ui/verification.md, execution.mp4, 03-fire-choices.png, 03b-fire-choices150.png, 09-synthetic-crouch.png. 검증은 Editor 합성 입력이다. Quest 가독성/편안함·기기 성능·학습·최종 Import는 미검증. 아래 기존 APK와284검사 기록은 이 수정 이전 이력이며 최신 시야 수정이 APK에 포함됐다는 뜻이 아니다.
+원본: Artifacts/Validation/VisualEvidence/20261112-023201-compact-content-ui/verification.md, execution.mp4, 03-fire-choices.png, 03b-fire-choices150.png, 09-synthetic-crouch.png. 검증은 Editor 합성 입력이다. Quest 가독성/편안함,기기 성능,학습,최종 Import는 미검증. 아래 기존 APK와284검사 기록은 이 수정 이전 이력이며 최신 시야 수정이 APK에 포함됐다는 뜻이 아니다.
 ## Current shared UI architecture — 2026-11-12
 
 SharedSystems owns one World Space SharedCanvas, one SharedNarration (GuidancePresenter/AudioSource), and shared head tracking/lifecycle. Contents groups MenuSpace/FireNotificationSpace/SmokePostureSpace; content roots contain zero Canvas and zero UI guidance presenters. Existing two content flows use SharedContentUI owner-bound text/actions and preserve their own scripts/cues/spatial effects. Common UI does not reference either concrete content controller. The old per-content GuidanceCanvas/SmokeGuidanceCanvas/ActionChoicePanel/NextPanel/ReturnToMenuPanel descriptions below are historical. New content authors must follow ContentAuthoring.md and run Tools > LWS > Validate Shared UI. Original UI prefabs retained for historical assets are not the new-content template.
@@ -22,7 +22,7 @@ SharedSystems owns one World Space SharedCanvas, one SharedNarration (GuidancePr
 
 ## F1 음성 통일 — 2026-11-11
 
-사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델·Python은 제출물에 포함하지 않는다. 2026-11-12 사용자 청취 검수 완료: 6개 모두 발음·억양·대본에 문제가 없다고 확인했다.
+사용자 확정: 연기 자세 안내 6개는 콘텐츠 1과 같은 Supertonic 2 F1으로 통일한다. 기존 대본과 교육 흐름을 유지한다. 한국어, 속도 0.95, 16스텝으로 로컬 사전 생성한 WAV를 사용하며 실제 길이에 자막 종료 시각을 맞춘다. 모델,Python은 제출물에 포함하지 않는다. 2026-11-12 사용자 청취 검수 완료: 6개 모두 발음,억양,대본에 문제가 없다고 확인했다.
 
 Current source: Supertonic 2 revision 75e6727618a02f323c720cba9478152d4bc16ca4; F1; ko; 16 steps; speed 0.95. See Audio/Voice/SmokePosture/VoiceManifest.json and Licenses/Supertonic2.txt. Earlier Heami notes describe superseded development audio. Preserve AI speech disclosure and existing model-license conditions.
 
@@ -118,3 +118,10 @@ Teleport correction: BellApproach and the owned TeleportSurface prefab use the e
 `FireNotification.unity`에 `safe-evacuation-route`를 등록했다. RouteSpace 아래 학교 복도 A/B, 기존 공용 Canvas와 음성 재생기, 추적 공급자, MenuTeleportationProvider를 사용한다. 앵커 목적지는 복도 쪽 확인 지점뿐이며 실제 계단 하강과 엘리베이터 탑승은 제공하지 않는다. 기존 두 콘텐츠의 외관은 수정하지 않는다.
 
 검증 상태는 `Validation/RouteAcceptance.md`가 기준이다. 신규 F1 음원은 AI 합성 음성이며 기존 음원 승인과 별도로 청취 검수를 받아야 한다. 새 공간 외관, Quest 실기기와 수신 환경 검증의 미완료를 제출 합격으로 해석하지 않는다.
+## School architecture (008)
+
+The current FireNotification scene and Corridor, CorridorFinish, SmokeRoomFinish, SchoolRouteA/B environment prefabs share `SchoolArchitecture` FBX/material/prefab assets. Scene007 hierarchy remains independent of the older source prefab hierarchy. Do not replace scene roots from those prefabs. Source prefabs retain their original scripts, component references, root IDs and GUIDs; their lighting layout is not a replacement for scene shared lighting/probe configuration.
+
+Original Blender authoring sources are in `Art/Models/SchoolArchitecture/Source~`; exclude this directory and validation media from the development unitypackage. Include the new FBX, explicit URP materials, seven common visual prefabs, modified environment prefabs, target scene and current `Lighting/BakedEnvironment` data. Use the existing export procedure and exclude archival ContentMenu.unity. Keep host URP/XRI/OpenXR package/configuration requirements; do not overwrite host ProjectSettings wholesale.
+
+Visual approval, Editor regression, package inventory, receiver import and physical Quest acceptance are separate checks. Feature008 evidence is in the ignored `Artifacts/Validation/VisualEvidence/20261117-132627-school-realism/` run. Its acceptance summary is authoritative for actual completed and pending checks. A fresh package is not evidence of successful receiver import or Quest performance.
